@@ -25,7 +25,7 @@ SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.rqms.fr', 'rqms.fr', 'http://46.101.62.246/']
 
 # Application definition
 
