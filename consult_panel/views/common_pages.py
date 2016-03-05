@@ -15,7 +15,7 @@ def form(request, name):
         response = getattr(common_forms, name)(request)
         return response if response is not None else redirect('/')
     else :
-        messages.warning('Oops, vous vous êtes perdu...')
+        messages.warning(request, 'Oops, vous vous êtes perdu...')
         return redirect('/')
 
 def login(request):
