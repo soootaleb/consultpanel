@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^api/', include('public_api.urls')),
     url(r'^ajax/', include('ajax_api.urls')),
     url(r'^action/', common_pages.action),
+    url(r'^todo/', common_pages.todo),
     url(r'^index/', common_pages.index, name='common_index'),
     url(r'^login/', common_pages.login, name='login'),
     url(r'^logout/', common_pages.logout, name='logout'),

@@ -38,3 +38,6 @@ def logout(request):
 
 def action(request):
     return render(request, 'common_pages_login.html')
+
+def todo(request):
+    return render(request, 'common_pages_todo.html')

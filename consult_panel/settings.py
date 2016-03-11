@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['rqms.fr', '46.101.62.246']
+ALLOWED_HOSTS = ['rqms.fr', '46.101.62.246', 'www.rqms.fr']
 
 # Application definition
 
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'consult_panel',
         'USER': 'consult_panel',
         'PASSWORD': 'mastercraft',
-        'HOST': 'localhost',
+        'HOST': 'rqms.fr',
         'PORT': '3306',
     }
 }

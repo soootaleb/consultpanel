@@ -1,0 +1,63 @@
+{% extends "common_root.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+  <h1>v0.1 (MVP) : Echéance le 31 Mai 2016</h1>
+  ______________________________________________________________________________
+  <h2>Codes couleurs</h2>
+  <p>Etre précis pour ne pas laisser de bug ou fonctionnalités incomplètes</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Etat d'avancement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>Fonctionnalité complète et débuguée</td>
+      </tr>
+      <tr class="danger">
+        <td>Fonctionnalité non implémentée</td>
+      </tr>
+      <tr class="warning">
+        <td>Fonctionnalité en cours d'implémentation (incomplète et non débuguée)</td>
+      </tr>
+      <tr class="info">
+        <td>Fonctionnalité incomplète mais débuguée</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2></h2>
+<div class="container">
+  <h2>Index des fonctionnalités</h2>
+  <p>A BIEN TENIR A JOUR</p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Etat d'avancement</th>
+        <th>Notes diverses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>Se connecter en tant que formateur</td>
+        <td></td>
+      </tr>
+      <tr class="danger">
+        <td>Se connecter en tant que client</td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>En tant qu'administrateur : Afficher la liste des formations</td>
+        <td></td>
+      </tr>
+      <tr class="danger">
+        <td>En tant qu'administrateur : Ajouter une formation</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

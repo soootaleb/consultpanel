@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     </head>
     <body>
         <div id="menu" class="row">
@@ -53,23 +54,30 @@
                     <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
                     <div id="sidebar" class="well sidebar-nav">
                         <h5><i class="glyphicon glyphicon-home"></i>
-                            <small><b>MANAGEMENT</b></small>
+                            <small><b>GESTION</b></small>
                         </h5>
                         <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Add</a></li>
-                            <li><a href="#">Search</a></li>
+                            <li class="active"><a href="{% url 'sessions_index' %}">Gérer les sessions</a></li>
+                            <li><a href="#">Gérer les catalogues</a></li>
+                            <li><a href="{% url 'formations_index' %}">Gérer les formations</a></li>
                         </ul>
                         <h5><i class="glyphicon glyphicon-user"></i>
-                            <small><b>USERS</b></small>
+                            <small><b>COMPTABILITE</b></small>
                         </h5>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">List</a></li>
-                            <li><a href="#">Manage</a></li>
+                            <li><a href="#">Manipuler des données</a></li>
+                            <li><a href="#">Consulter les archives</a></li>
+                        </ul>
+                        <h5><i class="glyphicon glyphicon-user"></i>
+                            <small><b>DOCUMENTS</b></small>
+                        </h5>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#">Générer des documents</a></li>
+                            <li><a href="#">Modifier des documents</a></li>
                         </ul>
                     </div>
                 </div>
-                <div id="content" class="col-md-8">
+                <div id="content" class="col-md-9">
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert alert-{{ message.tags | default_if_none:'success' }}">
@@ -82,5 +90,6 @@
             </div>
         </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </html>
