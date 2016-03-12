@@ -11,19 +11,45 @@
             </div>
         </div>
     </div>
-
+    
     <div class="row">
         {% for formation in formation_list %}
         <div class="col-sm-4" style="min-height:200px;">
             <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-              <h3 class="card-title">{{ formation.name }}</h3>
-              <p class="card-text">{{ formation.description }}</p>
-              <a href="{% url 'formations_edit' id=formation.id %}" class="btn btn-danger">Go somewhere</a>
+                <h3 class="card-title">{{ formation.name }}</h3>
+                <p class="card-text">{{ formation.description }}</p>
+                <a href="{% url 'formations_edit' id=formation.id %}" class="btn btn-info">Modifier</a>
+                <button id="{{formation.id}}" class="btn btn-danger btn-delete">Supprimier</button>
             </div>
-        </div> 
+        </div>
+        
         {% endfor %}
     </div>
-    
 </div>
-    
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $(".btn-delete").click(function(){
+            $.ajax({
+                url : "http://localhost:8000/ajax/formations/delete/" + event.target.id,
+                type : 'GET',
+                dataType    : 'html',
+                success : function(code_html, statut){
+                    alert(code_html); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+                },
+
+                error : function(resultat, statut, erreur){
+                    alert(erreur)
+                },
+
+                complete : function(resultat, statut){
+                    alert(status)
+                }
+            });
+
+        });
+    });
+</script>
 {% endblock %}

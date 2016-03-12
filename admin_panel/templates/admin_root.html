@@ -81,7 +81,7 @@
                 <div id="content" class="col-md-9">
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="alert alert-{{ message.tags | default_if_none:'success' }}">
+                            <div class="alert alert-{{ message.tags | default_if_none:'success' }} flash-message">
                                 {{ message }}
                             </div>
                         {% endfor %}
@@ -93,4 +93,5 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% block script %}{% endblock %}
 </html>
