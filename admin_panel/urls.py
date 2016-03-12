@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^formations/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/index/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/add/$', admin_formations.formations_add, name='formations_add'),
+    url(r'^formations/edit/(?P<id>[0-9]+)$', admin_formations.formations_edit, name='formations_edit'),
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]

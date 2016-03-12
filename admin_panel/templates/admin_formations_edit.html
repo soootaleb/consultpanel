@@ -1,0 +1,10 @@
+{% extends "admin_root.html" %}
+
+{% block content %}
+<form action="/consult/form/formations_edit" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="hidden" name="formation_id" value="{{form.instance.id}}"/>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -3,10 +3,7 @@
 {% block content %}
 <form action="/consult/form/formations_add" method="post">
     {% csrf_token %}
-    <ul>
-        {{ form.as_ul }}
-    </ul>
-    
+    {{ form }}    
     <input type="submit" value="Submit" />
 </form>
 {% endblock %}

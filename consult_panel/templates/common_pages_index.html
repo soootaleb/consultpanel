@@ -16,7 +16,7 @@
                 <div class="row" style="margin: 50px">
                     <div class="col-sm-12 text-center">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'dashboard' %}">
+                            <a href="{% url 'admin_index' %}">
                                 <button type="submit" class="btn btn-success btn-lg">Tableau de bord</button>
                             </a>
                         {% else %}
