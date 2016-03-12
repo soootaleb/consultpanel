@@ -19,12 +19,13 @@ from django.contrib import admin
 from .views import admin_pages, admin_profile, admin_sessions, admin_formations
 
 urlpatterns = [
-    url(r'^$', admin_pages.index),
-    url(r'^index/', admin_pages.index, name='dashboard'),
-    url(r'^profile/', admin_profile.index, name='profile_index'),
-    url(r'^sessions/', admin_sessions.sessions_index, name='sessions_index'),
-    url(r'^sessions/index', admin_sessions.sessions_index, name='sessions_index'),
-    url(r'^formations/', admin_formations.formations_index, name='formations_index'),
-    url(r'^formations/index', admin_formations.formations_index, name='formations_index'),
-    url(r'^form/(?P<name>[a-z]+)', admin_pages.form),
+    url(r'^$', admin_pages.index, name='admin_index'),
+    url(r'^index/$', admin_pages.index, name='admin_index'),
+    url(r'^profile/$', admin_profile.index, name='profile_index'),
+    url(r'^sessions/$', admin_sessions.sessions_index, name='sessions_index'),
+    url(r'^sessions/index/$', admin_sessions.sessions_index, name='sessions_index'),
+    url(r'^formations/$', admin_formations.formations_index, name='formations_index'),
+    url(r'^formations/index/$', admin_formations.formations_index, name='formations_index'),
+    url(r'^formations/add/$', admin_formations.formations_add, name='formations_add'),
+    url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]
