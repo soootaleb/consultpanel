@@ -12,9 +12,9 @@
         </div>
     </div>
     
-    <div class="row">
+    <div id="form_container" class="row">
         {% for formation in formation_list %}
-        <div class="col-sm-4" style="min-height:200px;">
+        <div id="box_{{formation.id}}" class="col-sm-4" style="min-height:200px;">
             <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
                 <h3 class="card-title">{{ formation.name }}</h3>
                 <p class="card-text">{{ formation.description }}</p>
@@ -22,7 +22,6 @@
                 <button id="{{formation.id}}" class="btn btn-danger btn-delete">Supprimier</button>
             </div>
         </div>
-        
         {% endfor %}
     </div>
 </div>
@@ -32,23 +31,24 @@
 <script>
     $(document).ready(function(){
         $(".btn-delete").click(function(){
+            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
             $.ajax({
-                url : "http://localhost:8000/ajax/formations/delete/" + event.target.id,
-                type : 'GET',
-                dataType    : 'html',
-                success : function(code_html, statut){
-                    alert(code_html); // On passe code_html à jQuery() qui va nous créer l'arbre DOM !
+                type: "GET", //rest Type
+                dataType: 'html', //mispelled
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    var json = JSON.parse(msg);
+                    if(json['status'] === "OK") {
+                        document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
+                    } else {
+                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
+                    }
                 },
-
-                error : function(resultat, statut, erreur){
-                    alert(erreur)
-                },
-
-                complete : function(resultat, statut){
-                    alert(status)
+                error : function(var1, var2, var3) {
+                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
                 }
             });
-
         });
     });
 </script>

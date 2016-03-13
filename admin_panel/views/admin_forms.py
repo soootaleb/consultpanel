@@ -6,6 +6,7 @@ from django.contrib import messages
 
 def formations_add(request):
     form = forms.FormationForm(request.POST);
+    form.user = request.user
     if form.is_valid() :
         form.save();
         messages.success(request, 'La formation a bien été ajoutée');

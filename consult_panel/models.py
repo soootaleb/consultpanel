@@ -11,6 +11,10 @@ class Profile(models.Model):
 class Formation(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
+    user = models.ForeignKey(User, default=1)
+    
+    def is_formation_of_user(self, the_user):
+        return self.user.id == the_user.id;
     
     def __str__(self):
         return self.name
