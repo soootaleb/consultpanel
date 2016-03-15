@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,93 +6,96 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-table.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datepicker.css' %}">
+        <link rel="stylesheet" href="{% static 'css/datepicker3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        
+        <script src="{% static 'js/lumino.glyphs.js' %}"></script>
     </head>
     <body>
-        <div id="menu" class="row">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="{% url 'common_index' %}">Brand</a>
-                    </div>
-                    
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
-                                
-                            </li>
-                        </ul>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{% url 'logout' %}">Déconnexion</a></li>
-                            <li class="nav">
-                                <a href="{% url 'profile_index' %}">{{ request.user.first_name |  default_if_none:request.user.username}}</a>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
-                    <div id="sidebar" class="well sidebar-nav">
-                        <li class="active"><a href="{% url 'admin_index' %}">Tableau de bord</a></li>
-                        <h5><i class="glyphicon glyphicon-home"></i>
-                            <small><b>GESTION</b></small>
-                        </h5>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="{% url 'sessions_index' %}">Gérer les sessions</a></li>
-                            <li><a href="#">Gérer les catalogues</a></li>
-                            <li><a href="{% url 'formations_index' %}">Gérer les formations</a></li>
-                        </ul>
-                        <h5><i class="glyphicon glyphicon-user"></i>
-                            <small><b>COMPTABILITE</b></small>
-                        </h5>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Manipuler des données</a></li>
-                            <li><a href="#">Consulter les archives</a></li>
-                        </ul>
-                        <h5><i class="glyphicon glyphicon-user"></i>
-                            <small><b>DOCUMENTS</b></small>
-                        </h5>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Générer des documents</a></li>
-                            <li><a href="#">Modifier des documents</a></li>
-                        </ul>
-                    </div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'common_index' %}"><span>Consult</span>Panel</a>
+                    <ul class="user-menu">
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> {{ request.user.first_name |  default_if_none:request.user.username}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+                                <li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Paramètres</a></li>
+                                <li><a href="{% url 'logout' %}"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
+                
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-xs-3 col-lg-2 sidebar">
+            <form role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+            <ul class="nav menu">
+                <li class="active"><a href="{% url 'admin_index' %}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Tableau de bord</a></li>
+                <li><a href="{% url 'sessions_index' %}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Gérer les sessions</a></li>
+                <li><a href="{% url 'formations_index' %}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Gérer les formations</a></li>
+                <li><a href="#"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Gérer les catalogues</a></li>
+            </ul>
+            
+        </div><!--/.sidebar-->
+        <div class="col-xs-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
                 <div id="content" class="col-md-9">
                     {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags | default_if_none:'success' }} flash-message">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags | default_if_none:'success' }} flash-message">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
                     {% endif %}
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table.js' %}"></script>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <script src="{% static 'js/chart-data.js' %}"></script>
+    <script src="{% static 'js/easypiechart.js' %}"></script>
+    <script src="{% static 'js/easypiechart-data.js' %}"></script>
+    <script src="{% static 'js/html5shiv.min.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+    <script>
+        $('#calendar').datepicker({
+        });
+
+        !function ($) {
+            $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+                $(this).find('em:first').toggleClass("glyphicon-minus");      
+            }); 
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
     {% block script %}{% endblock %}
 </html>
