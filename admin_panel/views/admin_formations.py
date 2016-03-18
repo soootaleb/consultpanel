@@ -7,7 +7,7 @@ from admin_panel import forms
 def formations_index(request):
     return render(request, 'admin_formations_index.html', context={
         'page_title'        :   'Gestion des formations',
-        'formation_list'    :   Formation.objects.all(),
+        'formations_list'    :   Formation.objects.all(),
     });
 
 @permission_required('consult_panel.is_admin')

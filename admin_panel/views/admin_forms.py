@@ -24,3 +24,24 @@ def formations_edit(request):
     else :
         messages.warning(request, 'Merci de vérifier les informations');
         return render(request, 'admin_formations_edit.html', context={'form' : form});
+    
+def catalogues_add(request):
+    form = forms.CatalogueForm(request.POST);
+    form.user = request.user
+    if form.is_valid() :
+        form.save();
+        messages.success(request, 'Le catalogue a bien été ajoutéé');
+        return redirect('/consult/catalogues/')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_catalogues_add.html', context={'form' : form});
+    
+def catalogues_edit(request):
+    form = forms.CatalogueForm(request.POST or None, instance=Catalogue.objects.get(pk=request.POST["catalogue_id"]));
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'Le catalogue a bien été modifié');
+        return redirect('/consult/catalogues/')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_catalogues_edit.html', context={'form' : form});

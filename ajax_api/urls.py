@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import ajax_api_general, ajax_formations
+from .views import ajax_api_general, ajax_formations, ajax_catalogues
 
 urlpatterns = [
     url(r'^$', ajax_api_general.test),
     url(r'^formations/delete/(?P<id>[0-9]+)$', ajax_formations.formations_delete, name='formations_delete'),
+    url(r'^catalogues/delete/(?P<id>[0-9]+)$', ajax_catalogues.catalogues_delete, name='catalogues_delete'),
 ]

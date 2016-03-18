@@ -7,19 +7,19 @@
         <div class="col-sm-12" style="margin-bottom: 10px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
             <div class="btn-group">
                 <h3>Actions</h3>
-                <a href="{% url 'formations_add' %}">Ajouter une formation</a>
+                <a href="{% url 'catalogues_add' %}">Ajouter un catalogue</a>
             </div>
         </div>
     </div>
     
     <div id="form_container" class="row">
-        {% for formation in formations_list %}
-        <div id="box_{{formation.id}}" class="col-sm-4" style="min-height:200px;">
+        {% for catalogue in catalogues_list %}
+        <div id="box_{{catalogue.id}}" class="col-sm-4" style="min-height:200px;">
             <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-                <h3 class="card-title">{{ formation.name }}</h3>
-                <p class="card-text">{{ formation.description }}</p>
-                <a href="{% url 'formations_edit' id=formation.id %}" class="btn btn-info">Modifier</a>
-                <button id="{{formation.id}}" class="btn btn-danger btn-delete">Supprimier</button>
+                <h3 class="card-title">{{ catalogue.name }}</h3>
+                <p class="card-text">{{ catalogue.description }}</p>
+                <a href="{% url 'catalogues_edit' id=catalogue.id %}" class="btn btn-info">Modifier</a>
+                <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimier</button>
             </div>
         </div>
         {% endfor %}
@@ -31,7 +31,7 @@
 <script>
     $(document).ready(function(){
         $(".btn-delete").click(function(){
-            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
+            var url = "http://localhost:8000/ajax/catalogues/delete/" + event.target.id
             $.ajax({
                 type: "GET", //rest Type
                 dataType: 'html', //mispelled
@@ -42,11 +42,11 @@
                     if(json['status'] === "OK") {
                         document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
                     } else {
-                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
+                        alert("Une erreur est survenue, le catalogue n'a pas été supprimé");
                     }
                 },
                 error : function(var1, var2, var3) {
-                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
+                    alert("Une erreur est survenue, le catalogue n'a pas été supprimé");
                 }
             });
         });
