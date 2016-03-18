@@ -2,29 +2,23 @@
 
 {% block content %}
 
-<div class="col-sm-12">
-    <div class="row">
-        <div class="col-sm-12" style="margin-bottom: 10px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-            <div class="btn-group">
-                <h3>Actions</h3>
-                <a href="{% url 'catalogues_add' %}">Ajouter un catalogue</a>
-            </div>
-        </div>
-    </div>
-    
-    <div id="form_container" class="row">
-        {% for catalogue in catalogues_list %}
-        <div id="box_{{catalogue.id}}" class="col-sm-4" style="min-height:200px;">
-            <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-                <h3 class="card-title">{{ catalogue.name }}</h3>
-                <p class="card-text">{{ catalogue.description }}</p>
-                <a href="{% url 'catalogues_edit' id=catalogue.id %}" class="btn btn-info">Modifier</a>
-                <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimier</button>
-            </div>
-        </div>
-        {% endfor %}
+<div class="col-sm-12" style="margin-bottom: 10px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
+    <div class="btn-group">
+        <h3>Actions</h3>
+        <a href="{% url 'catalogues_add' %}">Ajouter un catalogue</a>
     </div>
 </div>
+
+{% for catalogue in catalogues_list %}
+<div id="box_{{catalogue.id}}" class="col-sm-4" style="min-height:200px;">
+    <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
+        <h3 class="card-title">{{ catalogue.name }}</h3>
+        <p class="card-text">{{ catalogue.description }}</p>
+        <a href="{% url 'catalogues_edit' id=catalogue.id %}" class="btn btn-info">Modifier</a>
+        <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimier</button>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
 
 {% block script %}
