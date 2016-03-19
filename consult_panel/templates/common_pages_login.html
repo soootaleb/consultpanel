@@ -2,15 +2,32 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="col-sm-4 col-sm-offset-4">
-        <form action="/form/login" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Connexion</h2>
-            {% csrf_token %}
-            {{ login_form.as_p }}
-            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Connexion" />
-        </form> 
+<div class="page-center" style="height: 576px;">
+        <div class="page-center-in">
+            <div class="container-fluid">
+                <form action="/form/login" method="post" class="sign-box">
+                    {% csrf_token %}
+                    <div class="sign-avatar">
+                        <img src="http://lorempicsum.com/rio/200/200/1" alt="">
+                    </div>
+                    <header class="sign-title">Sign In</header>
+                    <div class="form-group">
+                      {{login_form.username}}
+                    </div>
+                    <div class="form-group">
+                      {{login_form.password}}
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox float-left">
+                            <input type="checkbox" id="signed-in">
+                            <label for="signed-in">Rester connecté</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-rounded">Sign in</button>
+                    <p class="sign-note"><a href="#">Mot de passe oublié</a></p>
+                </form>
+            </div>
+        </div>
     </div>
     
-</div>
 {% endblock %}
