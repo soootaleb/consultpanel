@@ -83,8 +83,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'consult_panel',
         'USER': 'consult_panel',
-        'PASSWORD': 'mastercraft',
-        'HOST': 'rqms.fr',
+        'PASSWORD': 'mastercraft', #LOURD
+        'HOST': '46.101.62.246',
         'PORT': '3306',
     }
 }
