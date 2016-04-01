@@ -3,21 +3,18 @@ from consult_panel.models import *
 from django.contrib.auth.decorators import permission_required
 from admin_panel import forms
 
-@permission_required('consult_panel.is_admin')
 def catalogues_index(request):
     return render(request, 'admin_catalogues_index.html', context={
         'page_title'        :   'Gestion des catalogues',
         'catalogues_list'    :   Catalogue.objects.all(),
     });
 
-@permission_required('consult_panel.is_admin')
 def catalogues_add(request):
     return render(request, 'admin_catalogues_add.html', {
         'page_title'        : 'Ajouter un catalogue',
         'form'              : forms.CatalogueForm()
     });
     
-@permission_required('consult_panel.is_admin')
 def catalogues_edit(request, id):
     return render(request, 'admin_catalogues_edit.html', {
         'page_title'        : 'Editer un catalogue',

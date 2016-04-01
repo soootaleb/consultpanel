@@ -30,7 +30,7 @@ def catalogues_add(request):
     form.user = request.user
     if form.is_valid() :
         form.save();
-        messages.success(request, 'Le catalogue a bien été ajoutéé');
+        messages.success(request, 'Le catalogue a bien été ajoutée');
         return redirect('/consult/catalogues/')
     else :
         messages.warning(request, 'Merci de vérifier les informations');
@@ -45,3 +45,31 @@ def catalogues_edit(request):
     else :
         messages.warning(request, 'Merci de vérifier les informations');
         return render(request, 'admin_catalogues_edit.html', context={'form' : form});
+    
+    
+    
+    
+    
+    
+    
+    
+    
+def sessions_add(request):
+    form = forms.SessionForm(request.POST);
+    if form.is_valid() :
+        form.save();
+        messages.success(request, 'La formation a bien été ajoutée');
+        return redirect('sessions_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_formations_add.html', context={'form' : form});
+    
+def sessions_edit(request):
+    form = forms.SessionForm(request.POST or None, instance=Session.objects.get(pk=request.POST["session_id"]));
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'La formation a bien été modifiée');
+        return redirect('sessions_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_sessions_edit.html', context={'form' : form});

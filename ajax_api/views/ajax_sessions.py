@@ -2,12 +2,12 @@ from django.http import JsonResponse
 from consult_panel.models import *
 from django.contrib.auth.decorators import permission_required
 
-def formations_delete(request, id):
+def sessions_delete(request, id):
     status = "OK"
-    formation = Formation.objects.get(pk=id);
+    formation = Session.objects.get(pk=id);
     formation.delete();
     return JsonResponse({
-        "model"     :   "Formation",
+        "model"     :   "Session",
         "status"    :   status,
         "id"        :   id,
         "action"    :   'delete'

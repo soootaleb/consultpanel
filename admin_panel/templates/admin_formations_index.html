@@ -16,7 +16,7 @@
             <h3 class="card-title">{{ formation.name }}</h3>
             <p class="card-text">{{ formation.description }}</p>
             <a href="{% url 'formations_edit' id=formation.id %}" class="btn btn-info">Modifier</a>
-            <button id="{{formation.id}}" class="btn btn-danger btn-delete">Supprimier</button>
+            <button id="{{formation.id}}" class="btn btn-danger btn-delete">supprimer</button>
         </div>
     </div>
     {% endfor %}

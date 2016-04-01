@@ -15,7 +15,7 @@
         <h3 class="card-title">{{ catalogue.name }}</h3>
         <p class="card-text">{{ catalogue.description }}</p>
         <a href="{% url 'catalogues_edit' id=catalogue.id %}" class="btn btn-info">Modifier</a>
-        <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimier</button>
+        <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimer</button>
     </div>
 </div>
 {% endfor %}

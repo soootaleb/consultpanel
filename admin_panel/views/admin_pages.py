@@ -3,7 +3,6 @@ from consult_panel.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 
-@permission_required('consult_panel.is_admin')
 def index(request):
     return render(request, 'admin_pages_index.html', context={
         'page_title'        :   'Tableau de bord',

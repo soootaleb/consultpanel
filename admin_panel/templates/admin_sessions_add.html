@@ -1,0 +1,9 @@
+{% extends "admin_root.html" %}
+
+{% block content %}
+<form action="/consult/form/sessions_add" method="post">
+    {% csrf_token %}
+    {{ form }}    
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
