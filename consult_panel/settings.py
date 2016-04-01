@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'consult_panel',
         'USER': 'consult_panel',
         'PASSWORD': 'mastercraft', #LOURD
-        'HOST': '46.101.62.246',
+        'HOST': 'rqms.fr',
         'PORT': '3306',
     }
 }
