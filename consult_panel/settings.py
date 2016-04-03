@@ -36,13 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'consult_panel',
     'admin_panel',
     'client_panel',
     'public_api',
     'ajax_api',
     'master_panel',
     'public_site',
+    'consult_panel',
 ]
 
 MIDDLEWARE_CLASSES = [
