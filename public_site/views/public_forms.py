@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login as lin # To avoid ambigous function name
-from consult_panel import forms
+from public_site import forms
 from django.contrib import messages
 
 def login(request):
@@ -20,7 +20,7 @@ def login(request):
                     if user.groups.filter(name='consultants').exists() :
                         return render(request, 'admin_pages_index.html', context=context);
                     else :
-                        return render(request, 'common_pages_index.html', context=context);
+                        return render(request, 'public_pages_index.html', context=context);
                 else:
                     return HttpResponseForbidden("Désolé, mais votre compte n'est plus actif")
             else:
@@ -29,10 +29,10 @@ def login(request):
                     'login_form'        :   form,
                 }
                 messages.warning(request, "Merci de vérifier les informations");
-                return render(request, 'common_pages_login.html', context=context);
+                return render(request, 'public_pages_login.html', context=context);
         else :
             context = {
                 'page_title'        :   'Connexion',
             }
             messages.warning(request, "Merci de vérifier les informations");
-            return render(request, 'common_pages_login.html', context=context);
+            return render(request, 'public_pages_login.html', context=context);

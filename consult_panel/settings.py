@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'client_panel',
     'public_api',
     'ajax_api',
+    'master_panel',
+    'public_site',
 ]
 
 MIDDLEWARE_CLASSES = [

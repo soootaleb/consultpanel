@@ -16,13 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from .views import master_pages
+
 urlpatterns = [
-    url(r'^', include('public_site.urls')),
-    url(r'^api/', include('public_api.urls')),
-    url(r'^ajax/', include('ajax_api.urls')),
-    url(r'^master/', include('master_panel.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^consult/', include('admin_panel.urls')),
-    url(r'^client/', include('client_panel.urls')),
+    url(r'^$', master_pages.index, name='master_index'),
+    url(r'^index/$', master_pages.index, name='master_index'),
+    url(r'^todo/$', master_pages.todo, name='master_todo'),
 ]
 

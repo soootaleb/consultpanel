@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from .views import public_pages
+
 urlpatterns = [
-    url(r'^', include('public_site.urls')),
-    url(r'^api/', include('public_api.urls')),
-    url(r'^ajax/', include('ajax_api.urls')),
-    url(r'^master/', include('master_panel.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^consult/', include('admin_panel.urls')),
-    url(r'^client/', include('client_panel.urls')),
+    url(r'^$', public_pages.index, name='public_index'),
+    url(r'^index/$', public_pages.index, name='public_index'),
+    url(r'^login/', public_pages.login, name='login'),
+    url(r'^logout/', public_pages.logout, name='logout'),
+    url(r'^form/(?P<name>[a-z]+)', public_pages.form),
 ]
 

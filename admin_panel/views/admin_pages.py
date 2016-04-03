@@ -9,7 +9,7 @@ def index(request):
         'formation_list'    :   Formation.objects.all(),
     });
 
-# Getting common forms routed here. Process is done in common_forms.py
+# Getting forms routed here. Process is done in admin_forms.py
 def form(request, name):
     from . import admin_forms
     if request.method == 'POST' :
@@ -17,10 +17,4 @@ def form(request, name):
         return response if response is not None else redirect('consult/')
     else :
         messages.warning(request, 'Oops, vous vous êtes perdu...')
-        return redirect('consult/')   
-    
-def about(request):
-    pass;
-
-def contact(request):
-    pass;
+        return redirect('admin_index')
