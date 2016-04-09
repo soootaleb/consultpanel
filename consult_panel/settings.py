@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'consult_panel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'consult_panel',
-        'USER': 'consult_panel',
+        'NAME': 'consultpanel',
+        'USER': 'master',
         'PASSWORD': 'mastercraft', #LOURD
-        'HOST': 'rqms.fr',
+        'HOST': '163.172.28.152',
         'PORT': '3306',
     }
 }
