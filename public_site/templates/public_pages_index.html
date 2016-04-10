@@ -3,7 +3,6 @@
 
 {% block content %}
 <div class="main-wrapper">
-    
     <!-- =========================
          PRELOADER
     ============================== -->
@@ -148,8 +147,16 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="hero-section text-center">
                             
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags | default_if_none:'success' }}" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+        
                             <!-- Welcome - Hero Message -->
-                            <h1 class="text-white">Gagnez du temps et de l'argent.</h1>
+                            <h1 class="text-white">Gagnez du temps, donc de l'argent.</h1>
                             <p class="text-white">Gérez vos formations, partout, tout le temps.</p>
                                 
                             <!-- Learn More & Video Buttons -->
@@ -178,7 +185,6 @@
     <!-- =========================
          /END HEADER
     ============================== -->
-        
         
     <!-- =================================
          SECTION ABOUT - INTRO FEATURES
