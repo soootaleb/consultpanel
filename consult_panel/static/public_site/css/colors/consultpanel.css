@@ -161,8 +161,10 @@ a, .text-color {
 /*------------------------------------------*/
 /*   Signup-Divider & Fast-Reg
 /*------------------------------------------*/
-.signup-divider .form-control:focus{
-    border-color: #1892F8;
+
+.signup-divider .btn:hover{
+    background: #1892F8;
+    border-color: #1892F8;;
 }
 
 .fast-reg .form-control:focus{
