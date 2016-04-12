@@ -245,12 +245,12 @@
                     </div>
                 </div>
                 <div class="row contact">
-                    <form method="GET" id="ask-for-beta">
+                    <form method="GET" class="ask-for-beta">
                     <div class="col-md-6 col-md-offset-3">
+                        <div class="thanks hidden">Merci, à très vite !</div>
                         <div class="input-group text-white">
                             <!-- Input Form -->
-                         
-                                <input type="email" id="ask-for-beta-email" name="email" placeholder="Votre adresse e-mail" class="form-control" required>
+                                <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
                                 <!-- Submit Button -->
                                 <span class="input-group-btn">
                                     <button class="btn btn-white">Envoyer</button>
@@ -542,8 +542,7 @@
     <!-- =============================
          /END FEATURES TAB
     ============================== -->
-        
-        
+
     <!-- ==================================================
         SIGNUP DIVIDER
     ======================================================= -->
@@ -556,18 +555,20 @@
                         <p class="large text-white">Laissez-nous sublimer votre quotidient, laissez-nous votre adresse e-mail.</p>
                     </div>
                 </div>
-
                 <div class="row contact">
+                    <form method="GET" class="ask-for-beta">
                     <div class="col-md-6 col-md-offset-3">
+                        <div class="thanks hidden">Merci, à très vite !</div>
                         <div class="input-group text-white">
                             <!-- Input Form -->
-                            <input type="email" id="subscriber-email" name="email" placeholder="Votre adresse e-mail" class="form-control">
-                            <!-- Submit Button -->
-                            <span class="input-group-btn">
-                                <button class="btn btn-white">Envoyer</button>
-                            </span>
+                                <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
+                                <!-- Submit Button -->
+                                <span class="input-group-btn">
+                                    <button class="btn btn-white">Envoyer</button>
+                                </span>
                         </div><!-- /End Input Group -->
                     </div>
+                    </form>
                 </div><!-- /End Row -->
             </div><!-- /End Wrapper -->
         </div><!-- /End Container -->
@@ -939,17 +940,52 @@
 {% endblock %}
 {% block script %}
 <script type="text/javascript">
-    function ask_for_beta_with_email(email) {
-        var url = "{% url 'add-email-for-beta' %}"
+
+    var emailForm = $('.ask-for-beta');
+    var emailSubmit = $('.ask-for-beta button');
+    var emailInput = $('.ask-for-beta-email');
+    var emailThanks = $('.ask-for-beta .thanks');
+    var validEmail = $('input.valid');
+    var emailInputParent = emailInput.parent('.input-group');
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
+    function sendEmail(email) {
+        var url = '{% url 'add-email-for-beta' %}';
         $.getJSON( url+"?email="+email, function( json ) {
             alert(json.status+":  "+json.message)
         });
     };
-    $('#ask-for-beta').on('submit', function(event){
-        event.preventDefault();
-        email = $('#ask-for-beta-email').val();
-        console.log("ask for beta with email : "+email)  // sanity check
-        ask_for_beta_with_email(email);
+
+    emailInput
+        .bind('input', function(event){
+            var parent = $(this).parent('.input-group');
+            if (validateEmail($(this).val())) {
+                parent.removeClass('false');
+                $(this).addClass("valid")
+            }else{
+                parent.addClass('false');
+                $(this).removeClass("valid")
+            }
+        });
+
+    emailSubmit.hover(function(){
+        $(this).toggleClass('focus');
     });
+
+    emailForm.submit(function(event){
+        event.preventDefault();
+        var input = $(this).find('.ask-for-beta-email');
+        var email = input.val();
+        if (input.hasClass('valid') && validateEmail(email)){
+            sendEmail(email);
+            emailInputParent.remove();
+            emailThanks.removeClass('hidden');
+        }
+    });
+
 </script>
 {% endblock %}

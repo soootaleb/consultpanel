@@ -167,6 +167,48 @@ a, .text-color {
     border-color: #1892F8;;
 }
 
+.signup-divider input,
+.signup-divider button{
+    -webkit-transition: color 1s;
+    transition: color 1s;
+}
+
+.signup-divider input:-webkit-autofill,
+.signup-divider input:-webkit-autofill:focus,
+.signup-divider input:-webkit-autofill:hover
+{
+    -webkit-box-shadow: 0 0 0px 1000px #323a45 inset;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+.signup-divider .input-group.false input{
+    border-color: #c0392b;
+}
+
+.signup-divider input.focus
+{
+    border-color: #1892F8 !important;
+}
+
+.signup-divider .input-group.false button{
+    border-color: #c0392b;
+    background-color: #c0392b;
+    color: #FFFFFF;
+}
+
+.signup-divider .thanks{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    display: block;
+}
+
+.signup-divider.hidden{
+    display: none;
+}
+
 .fast-reg .form-control:focus{
     background-color: #1892F8;
     border-color: #1892F8;
