@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
+    
+    
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
@@ -45,6 +49,14 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.first_name;
 
+"""
+Landing page models
+"""
+class EmailForBeta(models.Model):
+    email = models.EmailField(unique=True)
+    
+    def __str__(self):
+        return self.email
 
 
 
