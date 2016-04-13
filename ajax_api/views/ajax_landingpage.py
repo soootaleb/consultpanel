@@ -12,14 +12,13 @@ def add_email(request):
     if 'email' in request.GET:
         try:
             email = EmailForBeta.objects.get_or_create(email=request.GET.get('email'))
-            email.save()
             #send confirmation email
             status = "success"
             message = "Vous avez reçu un email de confirmation !"
         except:
             status = "error"
             message = "Une erreur est survenu, veuillez réessayer plus tard."
-            
+    
     return JsonResponse({
         "status"    :   status,
         "message"        :   message
