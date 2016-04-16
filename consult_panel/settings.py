@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'consultpanel',
         'USER': 'master',
         'PASSWORD': 'mastercraft', #LOURD
-        'HOST': '163.172.28.152',
+        'HOST': 'consultpanel.fr',
         'PORT': '3306',
     }
 }
