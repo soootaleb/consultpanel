@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'master_panel',
     'public_site',
     'consult_panel',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,3 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
