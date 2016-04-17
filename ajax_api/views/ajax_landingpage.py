@@ -2,7 +2,6 @@
 
 from django.http import JsonResponse
 from consult_panel.models import EmailForBeta
-
 """
     This is the ajax part for the landing page
     @author=mastercraft
