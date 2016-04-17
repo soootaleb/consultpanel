@@ -887,12 +887,14 @@ p {
 .tab-features .etabs{
     display: table;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
+    width: 60%;
+    table-layout: fixed; /* Added */
 }
 
 .tab-features .etabs .tab{
     display: table-cell;
-    padding: 0 70px 50px 0;
+    /*padding: 0 70px 50px 0;*/
     opacity: 0.5;
 }
 
@@ -907,8 +909,8 @@ p {
 .tab-features .etabs .tab.active:before{
     content: '';
     position: relative;
-    bottom: -126px;
-    margin-left: 48px;
+    bottom: -106px;
+    margin-left: 75px;
     vertical-align: middle;
     content: " ";
     border-left: 10px solid transparent;
@@ -924,7 +926,7 @@ p {
     display: inline-block;
     width:55px;
     height:auto;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     vertical-align: sub;
     color: #ffffff;
 }
@@ -1727,4 +1729,8 @@ input:-webkit-autofill:focus {
 
 .semi-img{
     width: 100%;
+}
+
+.input-area-wrapper__logo{
+    display: none !important;
 }

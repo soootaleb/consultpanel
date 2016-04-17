@@ -280,30 +280,37 @@
                     </div>
                 </div>
                     
-                <div class="row">
+                <div class="row text-image">
                     <div class="col-md-6 col-md-push-6 col-sm-12">
-                        <h4>Catalogues, conventions, bilans pédagogiques, agenda...</h4>
-                        <p>En quelques cliques, générez vos documents en format PDF prêt à l'impression. Vos conventions sont pré-remplies et pré-signées, vos bilans pédagogiques toujours à jour, et votre secrétaire peut s'offrir des vacances.<br>Gardez tout le temps un oeil sur votre emploi du temps ! L'agenda se synchronise automatiquement avec vos sessions</p>
+                        <div class="semi-txt">
+                            <h4>Catalogues, conventions, bilans pédagogiques, agenda...</h4>
+                            <p>En quelques cliques, générez vos documents en format PDF prêt à l'impression. Vos conventions sont pré-remplies et pré-signées, vos bilans pédagogiques toujours à jour, et votre secrétaire peut s'offrir des vacances.<br>Gardez tout le temps un oeil sur votre emploi du temps ! L'agenda se synchronise automatiquement avec vos sessions</p>
+                            <p><a href="#features" class="scrollto"><strong>Learn how customize SmartMvp ›</strong></a></p>
+                        </div>
                     </div>
                     <div class="col-md-6 col-md-pull-6 col-sm-12">
                         <img src="{% static 'public_site/images/gain_de_temps_mac.png' %}" alt="gain de temps" class="semi-img"/>
                     </div>
                 </div>
                     
-                <div class="row">
+                <div class="row text-image">
                     <div class="col-md-6">
-                        <h4>Vous avez besoin de quelque chose ? Appelez-nous.</h4>
-                        <p>L'équipe de Consult Panel vous répond toute la semaine, à n'importe quelle heure. Que ce soit pour vous aider à découvrir votre outil, effectuer une tâche à votre place, ou simplement pour aller boire un café.<br>Contactez-nous directement sur Skype, LinkedIn, Facebook, par mail ou simplement au téléphone.</p>
+                        <div class="semi-txt">
+                            <h4>Vous avez besoin de quelque chose ? Appelez-nous.</h4>
+                            <p>L'équipe de Consult Panel vous répond toute la semaine, à n'importe quelle heure. Que ce soit pour vous aider à découvrir votre outil, effectuer une tâche à votre place, ou simplement pour aller boire un café.<br>Contactez-nous directement sur Skype, LinkedIn, Facebook, par mail ou simplement au téléphone.</p>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <img src="{% static 'public_site/images/assistance.png' %}" alt="assistance accompagnement" class="semi-img"/>
                     </div>
                 </div>
                 
-                <div class="row">
+                <div class="row text-image">
                     <div class="col-md-6 col-md-push-6 col-sm-12">
-                        <h4>Jamais être formateur n'a été aussi simple.</h4>
-                        <p>Nous mettons un point d'honneur à ce que votre outil soit simple à prendre en main. Adapté aux petits centres de formations, les fonctionnalités restent épurées et les manipulations rapide.<br>Après tout, le temps, c'est de l'argent !</p>
+                        <div class="semi-txt">
+                            <h4>Jamais être formateur n'a été aussi simple.</h4>
+                            <p>Nous mettons un point d'honneur à ce que votre outil soit simple à prendre en main. Adapté aux petits centres de formations, les fonctionnalités restent épurées et les manipulations rapide.<br>Après tout, le temps, c'est de l'argent !</p>
+                        </div>
                     </div>
                     <div class="col-md-6 col-md-pull-6 col-sm-12">
                         <img src="{% static 'public_site/images/simplicite.png' %}" alt="simplicite" class="semi-img"/>
@@ -687,7 +694,10 @@
     <!-- =============================
          /END TEAM SECTION
     ============================== -->
-    
+        
+    <!-- ==================================================
+        CONTACT AND SOCIAL DIVIDER
+    ======================================================= -->
     <section class="contact color-bg" id="contact">
         <div class="container">
             <div class="wrapper-sm">
@@ -722,6 +732,10 @@
             </div>
         </div>
     </section>
+    <!-- =============================
+         /END CONTACT SECTION
+    ============================== -->
+        
         
     <!-- ==================================================
         FOOTER
@@ -776,6 +790,9 @@
 {% block script %}
 <script type="text/javascript">
 
+    /*
+    ** Email
+     */
     var emailForm = $('.ask-for-beta');
     var emailSubmit = $('.ask-for-beta button');
     var emailInput = $('.ask-for-beta-email');
@@ -822,9 +839,29 @@
         }
     });
 
-</script>
-<script>
-    ChatraID = 'Ym4qTFhw6CMYZ4bNE';
+    /*
+    ** Text / Image
+     */
+    var TMrow = $('.text-image');
+    var TMimg;
+    var TMtxt;
+
+    $(window).on("resize", function(){
+        TMrow.each(function(idx, elem){
+            TMtxt = $(elem).find('.semi-txt');
+            if ($(window).width() > 976){
+                TMimg = $(elem).find('.semi-img');
+                TMtxt.css("margin-top", (TMimg.outerHeight() - TMtxt.outerHeight()) / 2) + "px";
+            }else{
+                TMtxt.css("margin-top", "0px");
+            }
+        });
+    }).resize();
+
+    /*
+    ** Chatra
+     */
+    var ChatraID = 'Ym4qTFhw6CMYZ4bNE';
     (function(d, w, c) {
         var n = d.getElementsByTagName('script')[0],
             s = d.createElement('script');
@@ -836,5 +873,11 @@
             + '//call.chatra.io/chatra.js';
         n.parentNode.insertBefore(s, n);
     })(document, window, 'Chatra');
+
+    window.ChatraSetup = {
+        colors: ['#ffffff', '#1892F8']
+    };
+
+
 </script>
 {% endblock %}
