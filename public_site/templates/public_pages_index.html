@@ -692,79 +692,6 @@
          /END TEAM SECTION
     ============================== -->
         
-    <!-- ==================================================
-        CONTACT AND SOCIAL DIVIDER
-    ======================================================= -->
-    <section class="contact color-bg" id="contact">
-        <div class="container">
-            <div class="wrapper-sm">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- =========================
-                            Social Icons
-                        ============================== -->
-                        <div class="table">
-                            <div class="table-row">
-                                <div class="table-cell follow">
-                                    <h5 class="table-title">Venez nous parler !</h5>
-                                </div>
-                                <div class="table-cell">
-                                    <ul class="social-list">
-                                        <li>
-                                            <a target="_blank" href="https://www.facebook.com/consultpanel/">
-                                                <i class="icon icon-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="#">
-                                                <i class="icon icon-linkedin"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div><!-- /End Table-Cell -->
-                            </div><!-- /End Table-Row -->
-                        </div><!-- /End Table -->
-                    </div><!-- /End Col -->
-                        
-                    <div class="col-md-6">
-                        <!-- =========================
-                            MAILCHIMP SUBSCRIPTION FORM
-                        ============================== -->
-                        <form class="mailchimp-subscribe" role="form">
-                            <div class="table">
-                                <div class="table-row">
-                                    <div class="table-cell getcontact">
-                                        <h5 class="table-title">Dites-nous tout</h5>
-                                    </div>
-                                    <div class="table-cell">
-                                        <div class="input-group text-white">
-                                            <!-- Input Form -->
-                                            <input type="email" id="subscriber-email" name="email" placeholder="Votre adresse e-mail" class="form-control">
-                                            <!-- Submit Button -->
-                                            <span class="input-group-btn">
-                                                <button onclick="ga('send', 'event', 'landing', 'subscribe-email-3')" class="btn btn-white">Envoyer</button>
-                                            </span>
-                                        </div><!-- /End Input Group -->
-                                    </div><!-- /End Table-Cell -->
-                                </div><!-- /End Table-Row -->
-                            </div><!-- /End Table -->
-                            <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-                                <!-- Notifications -->
-                                <p class="mc-success"></p>
-                                <p class="mc-failed"></p>
-                            </div>
-                        </form><!-- /End Mailchimp Subscribe Form -->
-                            
-                            
-                    </div><!-- /End Col -->
-                </div><!-- /End Row -->
-            </div><!-- End Wrapper -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END CONTACT SECTION
-    ============================== -->
-        
         
     <!-- ==================================================
         FOOTER
@@ -865,5 +792,19 @@
         }
     });
 
+</script>
+<script>
+    ChatraID = 'Ym4qTFhw6CMYZ4bNE';
+    (function(d, w, c) {
+        var n = d.getElementsByTagName('script')[0],
+            s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+            + '//call.chatra.io/chatra.js';
+        n.parentNode.insertBefore(s, n);
+    })(document, window, 'Chatra');
 </script>
 {% endblock %}
