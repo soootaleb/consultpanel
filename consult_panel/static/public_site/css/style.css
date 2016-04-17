@@ -910,7 +910,8 @@ p {
     content: '';
     position: relative;
     bottom: -106px;
-    margin-left: 75px;
+    margin-left: -10px;
+    left: 50%;
     vertical-align: middle;
     content: " ";
     border-left: 10px solid transparent;
