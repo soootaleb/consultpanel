@@ -1730,3 +1730,7 @@ input:-webkit-autofill:focus {
 .semi-img{
     width: 100%;
 }
+
+.input-area-wrapper__logo{
+    display: none !important;
+}
