@@ -1,9 +1,15 @@
 {% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<form action="/consult/form/catalogues_add" method="post">
-    {% csrf_token %}
-    {{ form }}    
-    <input type="submit" value="Submit" />
-</form>
+    <div class="box-typical box-typical-padding">
+
+        <form action="/consult/form/catalogues_add" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+            <input type="submit" class="btn btn-md btn-success" value="Sauvegarder"/>
+        </form>
+
+
+    </div>
 {% endblock %}
