@@ -1,5 +1,4 @@
 from consult_panel.models import *
-from consult_panel.utils.startuiforms import StartUIForm
 from django.forms import *
 from crispy_forms.helper import FormHelper
 
