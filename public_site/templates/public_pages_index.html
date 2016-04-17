@@ -867,24 +867,33 @@
             }
         });
 
+
+        
         /*
          ** Text / Image
          */
         var TMrow = $('.text-image');
         var TMimg;
         var TMtxt;
+        var nbLoaded = 0;
 
-        win.on("resize", function(){
-            TMrow.each(function(idx, elem){
-                TMtxt = $(elem).find('.semi-txt');
-                if ($(window).width() > 976){
-                    TMimg = $(elem).find('.semi-img');
-                    TMtxt.css("margin-top", (TMimg.outerHeight() - TMtxt.outerHeight()) / 2) + "px";
-                }else{
-                    TMtxt.css("margin-top", "0px");
-                }
-            });
-        }).resize();
+        $('img.semi-img').load(function(){
+            if(++nbLoaded >= 3)
+            {
+                win.on("resize", function(){
+                    TMrow.each(function(idx, elem){
+                        TMtxt = $(elem).find('.semi-txt');
+                        if ($(window).width() > 976){
+                            TMimg = $(elem).find('.semi-img');
+                            //alert(((TMimg.outerHeight() - TMtxt.outerHeight()) / 2) + "px");
+                            TMtxt.css("margin-top", (TMimg.outerHeight() - TMtxt.outerHeight()) / 2) + "px";
+                        }else{
+                            TMtxt.css("margin-top", "0px");
+                        }
+                    });
+                }).resize();
+            }
+        });
 
 
 
@@ -892,7 +901,7 @@
          ** Chatra
          */
         var assistance = $('#assistance');
-        var assistanceTopOffset = assistance.offset().top;
+        var assistanceTopOffset = assistance.offset().top - 100;
         var assistanceBottomOffset = assistanceTopOffset + assistance.outerHeight();
         var ok = 0;
 
