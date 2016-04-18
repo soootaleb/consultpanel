@@ -203,6 +203,12 @@ a, .text-color {
     width: 100%;
     line-height: 50px;
     display: block;
+    text-align: center;
+}
+
+.signup-divider .thanks.error{
+    background-color: #c0392b;
+    color: #FFFFFF;
 }
 
 .signup-divider.hidden{

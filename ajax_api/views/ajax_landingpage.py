@@ -13,7 +13,7 @@ def add_email(request):
             email = EmailForBeta.objects.get_or_create(email=request.GET.get('email'))
             #send confirmation email
             status = "success"
-            message = "Vous avez reçu un email de confirmation !"
+            message = "Vous avez reçu un e-mail de confirmation."
         except:
             status = "error"
             message = "Une erreur est survenu, veuillez réessayer plus tard."

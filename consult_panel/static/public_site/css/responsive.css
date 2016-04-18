@@ -183,6 +183,7 @@
         height: auto;
         display: block;
         text-align: left;
+        width: 100%;
     }
 
     .tab-features .etabs .tab {
@@ -191,9 +192,10 @@
         height: auto;
         margin: 0;
         border-bottom: 1px solid #ffffff;
-        padding: 1% 0;
         border-right: 0;
         opacity: 1;
+        padding: 10px 20px;
+        line-height: 20px;
     }
 
     .tab-features .etabs .tab:first-child {
@@ -205,7 +207,9 @@
     }
 
     .tab-features .etabs .icon-sm {
-        padding-left: 15px;
+        width: 55px;
+        text-align: center;
+        margin-right: 10px;
     }
 
     .tab-features .etabs .tab.active {
@@ -527,6 +531,18 @@
     }
 
     /*------------------------------------------*/
+    /*    Contact
+    /*------------------------------------------*/
+    .contact .social-list{
+        display: inline-block;
+    }
+
+    .contact .text-right,
+    .contact .text-left{
+        text-align: center;
+    }
+
+    /*------------------------------------------*/
     /*    Footer
     /*------------------------------------------*/
     .footer{
@@ -609,7 +625,7 @@
     }
 
     .signup-divider .btn{
-        width: 78%;
+        /*width: 78%;*/
         margin-left: 15px;
     }
 
@@ -737,7 +753,7 @@
     /*    Sign-Up Divider
     /*------------------------------------------*/
     .signup-divider .btn{
-        width: 77%;
+        /*width: 77%;*/
     }
 
     /*------------------------------------------*/

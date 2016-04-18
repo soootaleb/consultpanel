@@ -705,10 +705,10 @@
                         <!-- =========================
                             Social Icons
                         ============================== -->
-                        <div class="col-md-6 text-right">
+                        <div class="col-sm-6 text-right">
                             <h5 class="table-title">Venez nous parler !</h5>
                         </div>
-                        <div class="col-md-6 text-left">
+                        <div class="col-sm-6 text-left">
                             <ul class="social-list">
                                 <li>
                                     <a target="_blank" href="https://www.facebook.com/consultpanel/">
@@ -842,7 +842,12 @@
         function sendEmail(email) {
             var url = '{% url 'add-email-for-beta' %}';
             $.getJSON( url+"?email="+email, function( json ) {
-                alert(json.status+":  "+json.message)
+                if (json.status == "error"){
+                    emailThanks.removeClass('error');
+                }
+                emailThanks.text(json.message);
+                emailInputParent.remove();
+                emailThanks.removeClass('hidden');
             });
         };
 
@@ -868,8 +873,6 @@
             var email = input.val();
             if (input.hasClass('valid') && validateEmail(email)){
                 sendEmail(email);
-                emailInputParent.remove();
-                emailThanks.removeClass('hidden');
             }
         });
 
