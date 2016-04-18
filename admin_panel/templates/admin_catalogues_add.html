@@ -3,13 +3,9 @@
 
 {% block content %}
     <div class="box-typical box-typical-padding">
-
-        <form action="/consult/form/catalogues_add" method="post">
+        <form method="POST">
             {% csrf_token %}
             {% crispy form %}
-            <input type="submit" class="btn btn-md btn-success" value="Sauvegarder"/>
         </form>
-
-
     </div>
 {% endblock %}
