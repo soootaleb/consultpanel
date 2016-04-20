@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Template</title>
+        <title id="page_title">Consult Panel</title>
         
         <link href="{% static 'main/img/favicon.144x144.png' %}" rel="apple-touch-icon" type="image/png" sizes="144x144">
         <link href="{% static 'main/img/favicon.114x114.png' %}" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -119,6 +119,12 @@
                         <a href="{% url 'admin_index' %}">
                             <i class="font-icon font-icon-notebook"></i>
                             <span class="lbl">Bilan pédagogique</span>
+                        </a>
+                    </li>
+                    <li class="blue">
+                        <a href="{% url 'admin_index' %}">
+                            <i class="font-icon font-icon-notebook"></i>
+                            <span class="lbl">Certifications</span>
                         </a>
                     </li>
                 </ul>
