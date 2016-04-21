@@ -928,7 +928,8 @@ p {
     width:55px;
     height:auto;
     /* margin-right: 10px; */
-    vertical-align: sub;
+    /* vertical-align: sub; */
+    vertical-align: middle;
     color: #ffffff;
 }
 
@@ -1732,6 +1733,6 @@ input:-webkit-autofill:focus {
     width: 100%;
 }
 
-.input-area-wrapper__logo{
-    display: none !important;
+#contact h5.table-title{
+    line-height: 30px;
 }
