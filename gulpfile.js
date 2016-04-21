@@ -17,34 +17,34 @@ var gulp = require('gulp'),
 
 var path = {
     build: { // production
-        html: 'build/',
-        js: 'build/js/',
-        jsLib: 'build/js/lib/',
-        css: 'build/css/',
-        cssLib: 'build/css/lib/',
-        img: 'build/img/',
-        fonts: 'build/fonts/'
+        html: 'consult_panel/static/main/build/',
+        js: 'consult_panel/static/main/build/js/',
+        jsLib: 'consult_panel/static/main/build/js/lib/',
+        css: 'consult_panel/static/main/build/css/',
+        cssLib: 'consult_panel/static/main/build/css/lib/',
+        img: 'consult_panel/static/main/build/img/',
+        fonts: 'consult_panel/static/main/build/fonts/'
     },
     src: { // development
         html: '**/*.html',
-        jsPlugins: 'consult_panel/static/js/plugins.js',
-        jsLib: 'src/js/lib/**/*.*',
-        js: 'src/js/app/app.js',
-        style: 'src/styles/main.less',
-        styleLib: 'src/styles/lib/*.css',
-        styleLibFiles: 'src/styles/lib/**/*.*',
-        styleLibIgnore: '!src/styles/lib/*.css',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        jsPlugins: 'consult_panel/static/main/js/plugins.js',
+        jsLib: 'consult_panel/static/main/js/lib/**/*.*',
+        js: 'consult_panel/static/main/js/app/app.js',
+        style: 'consult_panel/static/main/styles/main.less',
+        styleLib: 'consult_panel/static/main/styles/lib/*.css',
+        styleLibFiles: 'consult_panel/static/main/styles/lib/**/*.*',
+        styleLibIgnore: '!consult_panel/static/main/styles/lib/*.css',
+        img: 'consult_panel/static/main/img/**/*.*',
+        fonts: 'consult_panel/static/main/fonts/**/*.*'
     },
     watch: {
-        html: 'src/**/*.html',
-        js: 'src/js/**/*.js',
-        style: 'src/styles/**/*.*',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        html: 'consult_panel/static/main/**/*.html',
+        js: 'consult_panel/static/main/js/**/*.js',
+        style: 'consult_panel/static/main/styles/**/*.*',
+        img: 'consult_panel/static/main/img/**/*.*',
+        fonts: 'consult_panel/static/main/fonts/**/*.*'
     },
-    clean: './build'
+    clean: './consult_panel/static/main/build'
 };
 
 /* =====================================================
@@ -53,7 +53,7 @@ var path = {
 
 var config = {
     server: {
-        baseDir: "./build"
+        baseDir: "."
     },
     tunnel: true,
     host: 'localhost',
@@ -171,7 +171,7 @@ gulp.task('fonts:build', function() {
     ===================================================== */
 
 gulp.task('build', [
-    'html:build',
+    //'html:build',
     'fonts:build',
     'jsPlugins:build',
     'jsLib:build',
@@ -231,4 +231,6 @@ gulp.task('clean', function (cb) {
     DEFAULT TASK
     ===================================================== */
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+/* gulp.task('default', ['build', 'webserver', 'watch']); */
+
+gulp.task('default', ['build']);
