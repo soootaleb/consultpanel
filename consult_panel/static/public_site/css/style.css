@@ -1678,10 +1678,72 @@ p {
     font-size: 15px;
 }
 
+/* ==========================================================================
+   15. CALL CHAT
+========================================================================== */
+/*
+#call-chat{
+    height: 50px;
+    width: 160px;
+    display: block;
+    position: fixed;
+    background: url('../images/call_chat.svg') no-repeat center center;
+    bottom: 40px;
+    right: 55px;
+    background-size: contain;
+}
+*/
 
+#call-chat {
+    font-family: 'Handlee', cursive;
+    position: fixed;
+
+    -moz-transform: rotate(-7deg) scale(1);
+    -o-transform: rotate(-7deg) scale(1);
+    -ms-transform: rotate(-7deg) scale(1);
+    -webkit-transform: rotate(-7deg) scale(1);
+    transform: rotate(-7deg) scale(1);
+
+    -webkit-transition:-webkit-transform .5s ease-in-out;
+    -moz-transition:-moz-transform .5s ease-in-out;
+    -o-transition:-o-transform .5s ease-in-out;
+    -ms-transition:-ms-transform .5s ease-in-out;
+    transition:transform .5s ease-in-out;
+    right: 50px;
+    bottom: 70px;
+    font-size: 21px;
+    color: #323a45;
+}
+
+#call-chat:before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 0;
+    background-repeat: no-repeat;
+    background-image: url(../images/arrow-hand.png);
+    background-size: 31px 55px;
+    background-position: center center;
+    width: 31px;
+    height: 54px;
+}
+
+#call-chat.hidden-cta {
+    -moz-transform: rotate(0deg) scale(0);
+    -o-transform: rotate(0deg) scale(0);
+    -ms-transform: rotate(0deg) scale(0);
+    -webkit-transform: rotate(0deg) scale(0);
+    transform: rotate(0deg) scale(0);
+
+    -webkit-transition:-webkit-transform .5s ease-in-out, bottom .5s ease-in-out;
+    -moz-transition:-moz-transform .5s ease-in-out, bottom .5s ease-in-out;
+    -o-transition:-o-transform .5s ease-in-out, bottom .5s ease-in-out;
+    -ms-transition:-ms-transform .5s ease-in-out, bottom .5s ease-in-out;
+    transition:transform .5s ease-in-out, bottom .5s ease-in-out;
+}
 
 /* ==========================================================================
-   14. CUSTOM
+   16. CUSTOM
 ========================================================================== */
 
 .navbar-right{

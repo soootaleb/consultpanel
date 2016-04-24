@@ -2,67 +2,67 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="main-wrapper">
-    <!-- =========================
-         PRELOADER
-    ============================== -->
-    <div class="preloader">
-        <div class="loader-container">
-            <div class="text-logo">Consult Panel</div>
-            <div class="signal"></div>
+    <div class="main-wrapper">
+        <!-- =========================
+             PRELOADER
+        ============================== -->
+        <div class="preloader">
+            <div class="loader-container">
+                <div class="text-logo">Consult Panel</div>
+                <div class="signal"></div>
+            </div>
         </div>
-    </div>
-        
-        
-    <!-- =========================
-         HEADER
-    ============================== -->
-    <header class="header dashboard solid-bg" id="top">
-        <!-- Background Overlay -->
-        <div class="overlay">
-            
-            <!-- =========================================
-                 Navigation
-            ========================================== -->
-            <nav class="navbar navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Navbar-Header -->
-                            <div class="navbar-header">
-                                
-                                <!-- Mobile Menu -->
-                                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                                    <i class="icon icon_menu"></i>
-                                </button>
-                                    
-                                <!-- Text-Logo -->
-                                <a href="#top" class="navbar-brand scrollto" title="Consult Panel">
-                                    <img src="{% static 'public_site/images/consultpanel_logo_white.svg' %}" id="header-logo" alt="Consult Panel Logo">
-                                    <span class="text-logo">Consult Panel</span>
-                                </a>
-                                    
-                            </div><!-- /End Navbar-Header -->
-                                
-                            <!-- Navbar-Collapse -->
-                            <div class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <!-- Menu Items -->
-                                    <li><a href="#about" title="" class="scrollto">Quoi ?</a></li>
-                                    <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
-                                    <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
-                                    <li><a href="#team" title="" class="scrollto">L'équipe</a></li>
-                                    <!-- Login and Signup Modal on click -->
-                                    <!-- <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li> -->
-                                    <!-- <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
-                                </ul>
-                            </div><!-- /End Navbar-Collapse -->
-                        </div><!-- /End Col -->
-                    </div><!-- /End Row -->
-                </div><!-- /End Container -->
-            </nav><!-- /End Sticky Navigation -->
-                
-                
+
+
+        <!-- =========================
+             HEADER
+        ============================== -->
+        <header class="header dashboard solid-bg" id="top">
+            <!-- Background Overlay -->
+            <div class="overlay">
+
+                <!-- =========================================
+                     Navigation
+                ========================================== -->
+                <nav class="navbar navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Navbar-Header -->
+                                <div class="navbar-header">
+
+                                    <!-- Mobile Menu -->
+                                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                        <i class="icon icon_menu"></i>
+                                    </button>
+
+                                    <!-- Text-Logo -->
+                                    <a href="#top" class="navbar-brand scrollto" title="Consult Panel">
+                                        <img src="{% static 'public_site/images/consultpanel_logo_white.svg' %}" id="header-logo" alt="Consult Panel Logo">
+                                        <span class="text-logo">Consult Panel</span>
+                                    </a>
+
+                                </div><!-- /End Navbar-Header -->
+
+                                <!-- Navbar-Collapse -->
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <!-- Menu Items -->
+                                        <li><a href="#about" title="" class="scrollto">Quoi ?</a></li>
+                                        <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
+                                        <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
+                                        <li><a href="#team" title="" class="scrollto">L'équipe</a></li>
+                                        <!-- Login and Signup Modal on click -->
+                                        <!-- <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li> -->
+                                        <!-- <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
+                                    </ul>
+                                </div><!-- /End Navbar-Collapse -->
+                            </div><!-- /End Col -->
+                        </div><!-- /End Row -->
+                    </div><!-- /End Container -->
+                </nav><!-- /End Sticky Navigation -->
+
+                {% comment "Login" %}
             <!-- =========================================
                  Login/Signup Bootstrap Modal
             ==========================================  -->
@@ -137,495 +137,496 @@
                     </div><!-- /End Modal Content -->
                 </div><!-- /End Modal Dialog -->
             </div><!-- /End Modal -->
-                
-                
-            <!-- =========================================
-                 Hero-Section
-            ========================================== -->
+            {% endcomment %}
+
+
+                <!-- =========================================
+                     Hero-Section
+                ========================================== -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="hero-section text-center">
+
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags | default_if_none:'success' }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                <!-- Welcome - Hero Message -->
+                                <h1 class="text-white">Gérez vos formations, simplement.</h1>
+                                <p class="text-white">Consult Panel, c'est un outil adapté aux petits organismes de formations.<br>Inscrivez vos clients, générez vos documents, et gagnez du temps !</p>
+
+                                <!-- Learn More & Video Buttons -->
+                                <div class="btn-box">
+                                    <a href="#about" class="btn btn-ghost scrollto hidden-xs">En Savoir Plus</a>
+                                </div>
+
+                            </div><!-- /End Intro-Section -->
+
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Dashboard Image -->
+                            <div class="image-dashboard text-center">
+                                <img src="{% static 'public_site/images/first-screenshot.png' %}" class="wow fadeInUp" data-wow-duration="2s" alt="SmartMvp-Dashboard">
+                            </div>
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+                </div><!-- /End Container Hero-Section -->
+
+
+            </div><!-- /End Background Overlay -->
+        </header>
+        <!-- =========================
+             /END HEADER
+        ============================== -->
+
+        <!-- =================================
+             SECTION ABOUT - INTRO FEATURES
+        ====================================== -->
+        <section class="intro-features" id="about">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="hero-section text-center">
-                            
-                            {% if messages %}
-                            {% for message in messages %}
-                            <div class="alert alert-{{ message.tags | default_if_none:'success' }}" role="alert">
-                                {{ message }}
+                <!-- Padding -->
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <!-- Section Header Title -->
+                        <div class="col-xs-12">
+                            <h2>Adieu la paperasse</h2>
+                            <p class="large">Contentrez-vous sur ce que vous savez faire le mieux, former.</p>
+                        </div>
+                    </div>
+                    <!-- Three Main Features with Icons -->
+                    <div class="row">
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-hourglass"></i>
                             </div>
-                            {% endfor %}
-                            {% endif %}
-        
-                            <!-- Welcome - Hero Message -->
-                            <h1 class="text-white">Gérez vos formations, simplement.</h1>
-                            <p class="text-white">Consult Panel, c'est un outil adapté aux petits organismes de formations.<br>Inscrivez vos clients, générez vos documents, et gagnez du temps !</p>
-                                
-                            <!-- Learn More & Video Buttons -->
-                            <div class="btn-box">
-                                <a href="#about" class="btn btn-ghost scrollto hidden-xs">En Savoir Plus</a>
+                            <h4>Gain de temps</h4>
+                            <p>Personnalisez vos catalogues de formations pour vos clients, inscrivez vos stagiaires, générez leur convention et votre bilan pédagogique. Cliquez, imprimez, formez.</p>
+                        </div>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-linegraph"></i>
                             </div>
-                                
-                        </div><!-- /End Intro-Section -->
-                            
-                    </div><!-- /End Col -->
-                </div><!-- /End Row -->
-                    
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Dashboard Image -->
-                        <div class="image-dashboard text-center">
-                            <img src="{% static 'public_site/images/first-screenshot.png' %}" class="wow fadeInUp" data-wow-duration="2s" alt="SmartMvp-Dashboard">
+                            <h4>Assistance 24/24</h4>
+                            <p>Que ce soit pour une question, un service ou simplement aller boire un café, l'équipe de Consult Panel vous répondra par mail, téléphone ou Skype tous les jours de la semaine, 24/24 heures.</p>
                         </div>
-                    </div><!-- /End Col -->
-                </div><!-- /End Row -->
-            </div><!-- /End Container Hero-Section -->
-                
-                
-        </div><!-- /End Background Overlay -->
-    </header>
-    <!-- =========================
-         /END HEADER
-    ============================== -->
-        
-    <!-- =================================
-         SECTION ABOUT - INTRO FEATURES
-    ====================================== -->
-    <section class="intro-features" id="about">
-        <div class="container">
-            <!-- Padding -->
-            <div class="wrapper-lg">
-                <div class="row">
-                    <!-- Section Header Title -->
-                    <div class="col-xs-12">
-                        <h2>Adieu la paperasse</h2>
-                        <p class="large">Contentrez-vous sur ce que vous savez faire le mieux, former.</p>
-                    </div>
-                </div>
-                <!-- Three Main Features with Icons -->
-                <div class="row">
-                    <div class="col-sm-4 intro-content">
-                        <div class="icon-lg">
-                            <i class="icon icon-hourglass"></i>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-gift"></i>
+                            </div>
+                            <h4>Simplicité</h4>
+                            <p>Consult Panel est un outil simple et facile à prendre en main. Adapté aux organismes avec peu de formateurs, les fonctionnalités sont celles dont vous avez besoin. Ni plus, ni moins.</p>
                         </div>
-                        <h4>Gain de temps</h4>
-                        <p>Personnalisez vos catalogues de formations pour vos clients, inscrivez vos stagiaires, générez leur convention et votre bilan pédagogique. Cliquez, imprimez, formez.</p>
-                    </div>
-                    <div class="col-sm-4 intro-content">
-                        <div class="icon-lg">
-                            <i class="icon icon-linegraph"></i>
+                    </div><!-- /End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END INTRO FEATURES
+        ============================== -->
+
+
+        <!-- ==================================================
+            SIGNUP DIVIDER
+        ======================================================= -->
+        <section id="canvas-bg" class="dark-bg signup-divider">
+            <div class="container">
+                <div class="wrapper-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-white">Inscrivez-vous ! Il vous suffit d'un email.</h2>
+                            <p class="large text-white">Votre compte sera créé automatiquement lors de la sortie de la version finale.</p>
                         </div>
-                        <h4>Assistance 24/24</h4>
-                        <p>Que ce soit pour une question, un service ou simplement aller boire un café, l'équipe de Consult Panel vous répondra par mail, téléphone ou Skype tous les jours de la semaine, 24/24 heures.</p>
                     </div>
-                    <div class="col-sm-4 intro-content">
-                        <div class="icon-lg">
-                            <i class="icon icon-gift"></i>
-                        </div>
-                        <h4>Simplicité</h4>
-                        <p>Consult Panel est un outil simple et facile à prendre en main. Adapté aux organismes avec peu de formateurs, les fonctionnalités sont celles dont vous avez besoin. Ni plus, ni moins.</p>
-                    </div>
-                </div><!-- /End Row -->
-            </div><!-- /End Wrapper -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END INTRO FEATURES
-    ============================== -->
-        
-        
-    <!-- ==================================================
-        SIGNUP DIVIDER
-    ======================================================= -->
-    <section id="canvas-bg" class="dark-bg signup-divider">
-        <div class="container">
-            <div class="wrapper-sm">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-white">Inscrivez-vous ! Il vous suffit d'un email.</h2>
-                        <p class="large text-white">Votre compte sera créé automatiquement lors de la sortie de la version finale.</p>
-                    </div>
-                </div>
-                <div class="row contact">
-                    <form method="GET" class="ask-for-beta">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="thanks hidden">Nous préparons votre arrivée...</div>
-                        <div class="input-group text-white">
-                            <!-- Input Form -->
-                                <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                <!-- Submit Button -->
+                    <div class="row contact">
+                        <form method="GET" class="ask-for-beta">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="thanks hidden">Nous préparons votre arrivée...</div>
+                                <div class="input-group text-white">
+                                    <!-- Input Form -->
+                                    <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
+                                    <!-- Submit Button -->
                                 <span class="input-group-btn">
                                     <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
                                 </span>
-                        </div><!-- /End Input Group -->
-                    </div>
-                    </form>
-                </div><!-- /End Row -->
-            </div><!-- /End Wrapper -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END SIGNUP SECTION
-    ============================== -->
-        
-        
-    <!-- ==================================================
-        CHARTS & SHOWCASE SECTION
-    ======================================================= -->
-    <section class="charts" id="charts">
-        <div class="container">
-            <div class="wrapper-lg">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>29€ <small>/ mois,</small> c'est tout.</h2>
-                        <p class="large">Quelque soit le nombre de formateurs, ou de clients.</p>
-                    </div>
-                </div>
-                    
-                <div class="row text-image">
-                    <div class="col-md-6 col-md-push-6 col-sm-12">
-                        <div class="semi-txt">
-                            <h4>Catalogues, conventions, bilans pédagogiques, agenda...</h4>
-                            <p>En quelques cliques, générez vos documents en format PDF prêt à l'impression. Vos conventions sont pré-remplies et pré-signées, vos bilans pédagogiques toujours à jour, et votre secrétaire peut s'offrir des vacances.<br>Gardez tout le temps un oeil sur votre emploi du temps ! L'agenda se synchronise automatiquement avec vos sessions</p>
+                                </div><!-- /End Input Group -->
+                            </div>
+                        </form>
+                    </div><!-- /End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END SIGNUP SECTION
+        ============================== -->
+
+
+        <!-- ==================================================
+            CHARTS & SHOWCASE SECTION
+        ======================================================= -->
+        <section class="charts" id="charts">
+            <div class="container">
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>29€ <small>/ mois,</small> c'est tout.</h2>
+                            <p class="large">Quelque soit le nombre de formateurs, ou de clients.</p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-md-pull-6 col-sm-12">
-                        <img src="{% static 'public_site/images/gain_de_temps_mac.png' %}" alt="gain de temps" class="semi-img"/>
-                    </div>
-                </div>
-                    
-                <div class="row text-image" id="assistance">
-                    <div class="col-md-6">
-                        <div class="semi-txt">
-                            <h4>Vous avez besoin de quelque chose ? Appelez-nous.</h4>
-                            <p>L'équipe de Consult Panel vous répond toute la semaine, à n'importe quelle heure. Que ce soit pour vous aider à découvrir votre outil, effectuer une tâche à votre place, ou simplement pour aller boire un café.<br>Contactez-nous directement sur Skype, LinkedIn, Facebook, par mail ou simplement au téléphone.</p>
+
+                    <div class="row text-image">
+                        <div class="col-md-6 col-md-push-6 col-sm-12">
+                            <div class="semi-txt">
+                                <h4>Catalogues, conventions, bilans pédagogiques, agenda...</h4>
+                                <p>En quelques cliques, générez vos documents en format PDF prêt à l'impression. Vos conventions sont pré-remplies et pré-signées, vos bilans pédagogiques toujours à jour, et votre secrétaire peut s'offrir des vacances.<br>Gardez tout le temps un oeil sur votre emploi du temps ! L'agenda se synchronise automatiquement avec vos sessions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-pull-6 col-sm-12">
+                            <img src="{% static 'public_site/images/gain_de_temps_mac.png' %}" alt="gain de temps" class="semi-img"/>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <img src="{% static 'public_site/images/assistance.png' %}" alt="assistance accompagnement" class="semi-img"/>
-                    </div>
-                </div>
-                
-                <div class="row text-image">
-                    <div class="col-md-6 col-md-push-6 col-sm-12">
-                        <div class="semi-txt">
-                            <h4>Jamais être formateur n'a été aussi simple.</h4>
-                            <p>Nous mettons un point d'honneur à ce que votre outil soit simple à prendre en main. Adapté aux petits centres de formations, les fonctionnalités restent épurées et les manipulations rapide.<br>Après tout, le temps, c'est de l'argent !</p>
+
+                    <div class="row text-image" id="assistance">
+                        <div class="col-md-6">
+                            <div class="semi-txt">
+                                <h4>Vous avez besoin de quelque chose ? Appelez-nous.</h4>
+                                <p>L'équipe de Consult Panel vous répond toute la semaine, à n'importe quelle heure. Que ce soit pour vous aider à découvrir votre outil, effectuer une tâche à votre place, ou simplement pour aller boire un café.<br>Contactez-nous directement sur Skype, LinkedIn, Facebook, par mail ou simplement au téléphone.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{% static 'public_site/images/assistance.png' %}" alt="assistance accompagnement" class="semi-img"/>
                         </div>
                     </div>
-                    <div class="col-md-6 col-md-pull-6 col-sm-12">
-                        <img src="{% static 'public_site/images/simplicite.png' %}" alt="simplicite" class="semi-img"/>
+
+                    <div class="row text-image">
+                        <div class="col-md-6 col-md-push-6 col-sm-12">
+                            <div class="semi-txt">
+                                <h4>Jamais être formateur n'a été aussi simple.</h4>
+                                <p>Nous mettons un point d'honneur à ce que votre outil soit simple à prendre en main. Adapté aux petits centres de formations, les fonctionnalités restent épurées et les manipulations rapide.<br>Après tout, le temps, c'est de l'argent !</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-pull-6 col-sm-12">
+                            <img src="{% static 'public_site/images/simplicite.png' %}" alt="simplicite" class="semi-img"/>
+                        </div>
                     </div>
-                </div>
-                    
-            </div><!-- /End Wrapper -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END CHARTS SECTION
-    ============================== -->
-        
-        
-    <!-- ==================================================
-        FEATURES SECTION
-    ======================================================= -->
-    <section class="tab-features color-bg" id="features">
-        <div class="container">
-            <div class="features-title">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-white">Ce dont vous avez besoin</h2>
-                        <p class="large text-white">Ni plus, ni moins. Et en toute simplicité !</p>
+
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END CHARTS SECTION
+        ============================== -->
+
+
+        <!-- ==================================================
+            FEATURES SECTION
+        ======================================================= -->
+        <section class="tab-features color-bg" id="features">
+            <div class="container">
+                <div class="features-title">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-white">Ce dont vous avez besoin</h2>
+                            <p class="large text-white">Ni plus, ni moins. Et en toute simplicité !</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
-        <div class="row">
-            <div class="col-xs-12">
-                <!-- Features Tab -->
-                <div class="tabs features tab-container">
-                    <ul class="etabs">
-                        <!-- Feature Icon -->
-                        <li class="tab">
-                            <a href="#tab-feature-1">
-                                <div class="icon-sm">
-                                    <i class="icon icon-layers"></i>
-                                </div>
-                                <h5 class="text-white">Formations</h5>
-                            </a>
-                        </li>
-                        <!-- Feature Icon -->
-                        <li class="tab">
-                            <a href="#tab-feature-2">
-                                <div class="icon-sm">
-                                    <i class="icon icon-pictures"></i>
-                                </div>
-                                <h5 class="text-white">Documents</h5>
-                            </a>
-                        </li>
-                        <!-- Feature Icon -->
-                        <li class="tab">
-                            <a href="#tab-feature-3">
-                                <div class="icon-sm">
-                                    <i class="icon icon-grid"></i>
-                                </div>
-                                <h5 class="text-white">Agenda</h5>
-                            </a>
-                        </li>
-                        <!-- Feature Icon -->
-                        <li class="tab">
-                            <a href="#tab-feature-4">
-                                <div class="icon-sm">
-                                    <i class="icon icon-chat"></i>
-                                </div>
-                                <h5 class="text-white">Sécurité</h5>
-                            </a>
-                        </li>
-                        <!-- Feature Icon -->
-                        <li class="tab">
-                            <a href="#tab-feature-5">
-                                <div class="icon-sm">
-                                    <i class="icon icon-lightbulb"></i>
-                                </div>
-                                <h5 class="text-white">Statistiques</h5>
-                            </a>
-                        </li>
-                    </ul><!-- /End Etabs -->
-                        
-                    <div class="panel-container">
-                        
-                        <div class="tab-content" id="tab-feature-1">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Feature Description 2cols Text-Left with Buttons -->
-                                    <div class="col-md-5 col-sm-6">
-                                        <h4>Mettez vos formations en valeur,<br>et personnalisez vos catalogues clients.</h4>
-                                        <p>Ajoutez vos formations sur Consult Panel. Selectionnez des formations pour faire un catalogue. Envoyez votre catalogue à un client. Pas de temps à perdre ? Pas de problèmes, notre équipe le fera pour vous !<br>
-                                        Chaque formation comporte une description qui permettra à vos clients d'en savoir plus. Ils pourront accéder aux supports de formation, vous poser des questions, tout aussi simplement.
-                                        </p>
-                                    </div>
-                                    <!-- Image-right -->
-                                    <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature1.png' %}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /End Tab-content -->
-                            
-                        <div class="tab-content" id="tab-feature-2">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Feature Description 2cols Text-Right with Icons -->
-                                    <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
-                                        <h4>Importez vos documents une fois, et générez-les indéfiniments.</h4>
-                                        <p>Parce-que le temps perdu ne se ratrappe pas, nous avons automatisé la génération de vos documents : Vos conventions sont générées en fonction des inscrits, avec votre signature, prêtes à être envoyées au client.<br>De la même manière, vos bilans pédagogiques sont accessibles à tout moment, par simple clic sur un bouton. Toujours pas le temps ? N'oubliez pas, un coup de téléphone, et notre équipe est sur le coup !</p>
-                                    </div>
-                                    <!-- Image-Left -->
-                                    <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature2.png' %}" class="img-device" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- / End Tab-content -->
-                            
-                        <div class="tab-content" id="tab-feature-3">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Feature Description 2cols Text-Left -->
-                                    <div class="col-md-5 col-sm-6">
-                                        <h4>Concentrez-vous sur vos clients,<br>Consult Panel fait le reste pour vous.</h4>
-                                        <p>Le métier de formateur demande beaucoup d'organisation. C'est pourquoi vous avez à disposition un agenda en ligne, où sont répertoriées vos sessions de formation. Vous pouvez y ajouter des notes, les déplacer, les supprimer...<br>Ah, toujours pas le temps ? Ne vous inquiétez pas, on s'occupe de tout :) Vous savez où nous joindre !</p>
-                                    </div>
-                                    <!-- Image-Right -->
-                                    <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature3.png' %}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /End Tab-content -->
-                            
-                        <div class="tab-content" id="tab-feature-4">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Feature Description 2col Text-Left with Icons-->
-                                    <div class="col-md-7 col-sm-6">
-                                        <h4>La sécurité de vos données est un point fondamental pour nous.</h4>
-                                        <p>Nous savons que vos données doivent être bien gardées. Ne vous en faites pas, notre base de données est cryptée, et répliquée sur un deuxième serveur pour y être en sécurité.<br>De plus, Consult Panel est construit sur l'environement Django, un logiciel qui nous assure une sécurité à toutes épreuves et des performances accrues.</p>
-                                    </div>
-                                    <!-- Image Right -->
-                                    <div class="col-md-5 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature4.png' %}" class="img-device" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /End Tab-content -->
-                            
-                        <div class="tab-content" id="tab-feature-5">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Feature Description 2cols Text-Right with Icons -->
-                                    <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
-                                        <h4>Contemplez votre assention, et voyez où vous êtes le meilleur !</h4>
-                                        <p>Grace à un système complet de statistiques, vous pouvez voir votre évolution au fil des mois et des années. Nombre de clients, nombre de formations, chiffre d'affaire, consultez à tout instant les chiffres qui vous subliment.<br>
-                                        Encore une fois, s'il vous manque quelque-chose, dites-le nous ! Nous vous taillerons — sur mesure — les comptes rendus dont vous avez besoin.
-                                        </p>
-                                    </div>
-                                    <!-- Image-Left -->
-                                    <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature2.png' %}" class="img-device" alt="">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <!-- Image below -->
-                                    <div class="col-xs-12 hidden-xs wow fadeInUp" data-wow-duration="2s">
-                                        <img src="{% static 'public_site/images/features/feature5.png' %}" class="img-device" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- / End Tab-content -->
-                            
-                    </div><!-- / End Panel-Container -->
-                </div><!-- / End Tabs -->
-            </div><!-- /End Col -->
-        </div><!-- /End Row -->
-    </section>
-    <!-- =============================
-         /END FEATURES TAB
-    ============================== -->
 
-    <!-- ==================================================
-        SIGNUP DIVIDER
-    ======================================================= -->
-    <section id="canvas-bg" class="dark-bg signup-divider">
-        <div class="container">
-            <div class="wrapper-sm">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-white">Vous êtes intéressé ? Laissez-nous votre email !</h2>
-                        <p class="large text-white">Nous serons heureux de répondre à vos questions, suggestions, remarques, ...</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Features Tab -->
+                    <div class="tabs features tab-container">
+                        <ul class="etabs">
+                            <!-- Feature Icon -->
+                            <li class="tab">
+                                <a href="#tab-feature-1">
+                                    <div class="icon-sm">
+                                        <i class="icon icon-layers"></i>
+                                    </div>
+                                    <h5 class="text-white">Formations</h5>
+                                </a>
+                            </li>
+                            <!-- Feature Icon -->
+                            <li class="tab">
+                                <a href="#tab-feature-2">
+                                    <div class="icon-sm">
+                                        <i class="icon icon-pictures"></i>
+                                    </div>
+                                    <h5 class="text-white">Documents</h5>
+                                </a>
+                            </li>
+                            <!-- Feature Icon -->
+                            <li class="tab">
+                                <a href="#tab-feature-3">
+                                    <div class="icon-sm">
+                                        <i class="icon icon-grid"></i>
+                                    </div>
+                                    <h5 class="text-white">Agenda</h5>
+                                </a>
+                            </li>
+                            <!-- Feature Icon -->
+                            <li class="tab">
+                                <a href="#tab-feature-4">
+                                    <div class="icon-sm">
+                                        <i class="icon icon-chat"></i>
+                                    </div>
+                                    <h5 class="text-white">Sécurité</h5>
+                                </a>
+                            </li>
+                            <!-- Feature Icon -->
+                            <li class="tab">
+                                <a href="#tab-feature-5">
+                                    <div class="icon-sm">
+                                        <i class="icon icon-lightbulb"></i>
+                                    </div>
+                                    <h5 class="text-white">Statistiques</h5>
+                                </a>
+                            </li>
+                        </ul><!-- /End Etabs -->
+
+                        <div class="panel-container">
+
+                            <div class="tab-content" id="tab-feature-1">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Feature Description 2cols Text-Left with Buttons -->
+                                        <div class="col-md-5 col-sm-6">
+                                            <h4>Mettez vos formations en valeur,<br>et personnalisez vos catalogues clients.</h4>
+                                            <p>Ajoutez vos formations sur Consult Panel. Selectionnez des formations pour faire un catalogue. Envoyez votre catalogue à un client. Pas de temps à perdre ? Pas de problèmes, notre équipe le fera pour vous !<br>
+                                                Chaque formation comporte une description qui permettra à vos clients d'en savoir plus. Ils pourront accéder aux supports de formation, vous poser des questions, tout aussi simplement.
+                                            </p>
+                                        </div>
+                                        <!-- Image-right -->
+                                        <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature1.png' %}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /End Tab-content -->
+
+                            <div class="tab-content" id="tab-feature-2">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Feature Description 2cols Text-Right with Icons -->
+                                        <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
+                                            <h4>Importez vos documents une fois, et générez-les indéfiniments.</h4>
+                                            <p>Parce-que le temps perdu ne se ratrappe pas, nous avons automatisé la génération de vos documents : Vos conventions sont générées en fonction des inscrits, avec votre signature, prêtes à être envoyées au client.<br>De la même manière, vos bilans pédagogiques sont accessibles à tout moment, par simple clic sur un bouton. Toujours pas le temps ? N'oubliez pas, un coup de téléphone, et notre équipe est sur le coup !</p>
+                                        </div>
+                                        <!-- Image-Left -->
+                                        <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature2.png' %}" class="img-device" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- / End Tab-content -->
+
+                            <div class="tab-content" id="tab-feature-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Feature Description 2cols Text-Left -->
+                                        <div class="col-md-5 col-sm-6">
+                                            <h4>Concentrez-vous sur vos clients,<br>Consult Panel fait le reste pour vous.</h4>
+                                            <p>Le métier de formateur demande beaucoup d'organisation. C'est pourquoi vous avez à disposition un agenda en ligne, où sont répertoriées vos sessions de formation. Vous pouvez y ajouter des notes, les déplacer, les supprimer...<br>Ah, toujours pas le temps ? Ne vous inquiétez pas, on s'occupe de tout :) Vous savez où nous joindre !</p>
+                                        </div>
+                                        <!-- Image-Right -->
+                                        <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature3.png' %}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /End Tab-content -->
+
+                            <div class="tab-content" id="tab-feature-4">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Feature Description 2col Text-Left with Icons-->
+                                        <div class="col-md-7 col-sm-6">
+                                            <h4>La sécurité de vos données est un point fondamental pour nous.</h4>
+                                            <p>Nous savons que vos données doivent être bien gardées. Ne vous en faites pas, notre base de données est cryptée, et répliquée sur un deuxième serveur pour y être en sécurité.<br>De plus, Consult Panel est construit sur l'environement Django, un logiciel qui nous assure une sécurité à toutes épreuves et des performances accrues.</p>
+                                        </div>
+                                        <!-- Image Right -->
+                                        <div class="col-md-5 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature4.png' %}" class="img-device" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /End Tab-content -->
+
+                            <div class="tab-content" id="tab-feature-5">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Feature Description 2cols Text-Right with Icons -->
+                                        <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
+                                            <h4>Contemplez votre assention, et voyez où vous êtes le meilleur !</h4>
+                                            <p>Grace à un système complet de statistiques, vous pouvez voir votre évolution au fil des mois et des années. Nombre de clients, nombre de formations, chiffre d'affaire, consultez à tout instant les chiffres qui vous subliment.<br>
+                                                Encore une fois, s'il vous manque quelque-chose, dites-le nous ! Nous vous taillerons — sur mesure — les comptes rendus dont vous avez besoin.
+                                            </p>
+                                        </div>
+                                        <!-- Image-Left -->
+                                        <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature2.png' %}" class="img-device" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Image below -->
+                                        <div class="col-xs-12 hidden-xs wow fadeInUp" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature5.png' %}" class="img-device" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- / End Tab-content -->
+
+                        </div><!-- / End Panel-Container -->
+                    </div><!-- / End Tabs -->
+                </div><!-- /End Col -->
+            </div><!-- /End Row -->
+        </section>
+        <!-- =============================
+             /END FEATURES TAB
+        ============================== -->
+
+        <!-- ==================================================
+            SIGNUP DIVIDER
+        ======================================================= -->
+        <section id="canvas-bg" class="dark-bg signup-divider">
+            <div class="container">
+                <div class="wrapper-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-white">Vous êtes intéressé ? Laissez-nous votre email !</h2>
+                            <p class="large text-white">Nous serons heureux de répondre à vos questions, suggestions, remarques, ...</p>
+                        </div>
                     </div>
-                </div>
-                <div class="row contact">
-                    <form method="GET" class="ask-for-beta">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="thanks hidden">Prêt... Feu... Formez !</div>
-                        <div class="input-group text-white">
-                            <!-- Input Form -->
-                                <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                <!-- Submit Button -->
+                    <div class="row contact">
+                        <form method="GET" class="ask-for-beta">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="thanks hidden">Prêt... Feu... Formez !</div>
+                                <div class="input-group text-white">
+                                    <!-- Input Form -->
+                                    <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
+                                    <!-- Submit Button -->
                                 <span class="input-group-btn">
                                     <button onclick="ga('send', 'event', 'landing', 'subscribe-email-2')" class="btn btn-white">Envoyer</button>
                                 </span>
-                        </div><!-- /End Input Group -->
-                    </div>
-                    </form>
-                </div><!-- /End Row -->
-            </div><!-- /End Wrapper -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END SIGNUP SECTION
-    ============================== -->
-        
-    <!-- =======================================================
-         TESTIMONIALS WITH PRESS/CLIENTS LOGOS
-    ============================================================ -->
-    <section class="testimonial-press light-bg" id="testimonials">
-        <div class="container vmiddle">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Ce qu'en pensent nos clients</h2>
-                    <p class="large">Ce sont des formateurs, comme vous !</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="tabs testimonials tab-container">
-                    <div class="col-md-8">
-                        <div class="panel-container">
-                            <div class="tab-block" id="tab-testimonials-1">
-                                <blockquote>
-                                    <!-- Testimonial quote -->
-                                    <p>Génial ! Simple à utiliser, efficace, exactement ce dont j'avais besoin. Plus besoin de passer des heures à faire des papiers, en quelques cliques j'ai tout ce qu'il me faut.</p>
-                                    <!-- Testimonial info -->
-                                    <p class="testimonial-name"><span>Bertrand Guerin</span>Formateur @ A&B Consulting</p>
-                                </blockquote>
-                            </div><!-- /End Tab-block -->
-                            <div class="tab-block" id="tab-testimonials-2">
-                                <blockquote>
-                                    <!-- Testimonial quote -->
-                                    <p>Super sympa... Une équipe disponible à tous moments, un outil fiable et sans fioritures, le parfait compromis entre fonctionnalités et simplicité. Je recommande vivement !</p>
-                                    <!-- Testimonial info -->
-                                    <p class="testimonial-name"><span>Marie Degani</span>Directrice @ France Formations</p>
-                                </blockquote>
-                            </div><!-- /End Tab-block -->
-                            <div class="tab-block" id="tab-testimonials-3">
-                                <blockquote>
-                                    <!-- Testimonial quote -->
-                                    <p>Je ne maitrise absolument pas l'outil informatique. Pourtant, après quelques minutes de pratique j'ai rapidement pu exploiter les possibilités de Consult Panel. Maintenant, je prends des vacances plus souvent, et je gère tout depuis mon téléphone.</p>
-                                    <!-- Testimonial info -->
-                                    <p class="testimonial-name"><span>Catherine Navel</span>Formatrice @ FormationPlus</p>
-                                </blockquote>
-                            </div><!-- /End Tab-block -->
-                            <div class="tab-block" id="tab-testimonials-4">
-                                <blockquote>
-                                    <!-- Testimonial quote -->
-                                    <p>Je recommande totallement ! Pour moins de 30€ par mois, j'ai exporté toutes mes données et gère toutes mes formations depuis Consult Panel. J'ai calculé, je gagne jusqu'à 5 jours de travail par mois en générant mes documents automatiquement.</p>
-                                    <!-- Testimonial info -->
-                                    <p class="testimonial-name"><span>Jean Costa</span>CEO and Founder @ IpsumSite</p>
-                                </blockquote>
-                            </div><!-- /End Tab-block -->
-                        </div><!-- /End Panel-container -->
-                    </div><!-- /End Col -->
-                        
-                    <ul class="etabs col-md-4 list-unstyled">
-                        <li class="tab col-md-6">
-                            <a href="#tab-testimonials-1">
-                                <!-- Testimonial logo -->
-                            </a>
-                        </li>
-                        <li class="tab col-md-6">
-                            <a href="#tab-testimonials-2">
-                                <!-- Testimonial logo -->
-                            </a>
-                        </li>
-                        <li class="tab col-md-6">
-                            <a href="#tab-testimonials-3">
-                                <!-- Testimonial logo -->
-                            </a>
-                        </li>
-                        <li class="tab col-md-6">
-                            <a href="#tab-testimonials-4">
-                                <!-- Testimonial logo -->
-                            </a>
-                        </li>
-                    </ul><!-- /End Etabs --> 
-                </div><!-- /End Tabs -->
-            </div><!-- /End Row -->
-        </div><!-- /End Container -->
-    </section>
-    <!-- =============================
-         /END TESTIMONIALS
-    ============================== -->
-        
-        
-    <!-- ==================================================
-        TEAM
-    ======================================================= -->
-    <section class="team" id="team">
-        <div class="container">
-            <div class="wrapper-sm">
+                                </div><!-- /End Input Group -->
+                            </div>
+                        </form>
+                    </div><!-- /End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END SIGNUP SECTION
+        ============================== -->
+
+        <!-- =======================================================
+             TESTIMONIALS WITH PRESS/CLIENTS LOGOS
+        ============================================================ -->
+        <section class="testimonial-press light-bg" id="testimonials">
+            <div class="container vmiddle">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Une équipe à votre service.</h2>
-                        <p class="large">Nous souhaitons établir une relation de confiance avec nos utilisateurs.</p>
+                        <h2>Ce qu'en pensent nos clients</h2>
+                        <p class="large">Ce sont des formateurs, comme vous !</p>
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Team Box -->
-                    <div class="col-sm-4 team-box">
-                        <div class="team-img">
-                            <img src="{% static 'public_site/images/bross.jpg' %}" class="img-responsive" alt="">
-                            <div class="img-overlay">
-                                <div class="img-icons">
+                    <div class="tabs testimonials tab-container">
+                        <div class="col-md-8">
+                            <div class="panel-container">
+                                <div class="tab-block" id="tab-testimonials-1">
+                                    <blockquote>
+                                        <!-- Testimonial quote -->
+                                        <p>Génial ! Simple à utiliser, efficace, exactement ce dont j'avais besoin. Plus besoin de passer des heures à faire des papiers, en quelques cliques j'ai tout ce qu'il me faut.</p>
+                                        <!-- Testimonial info -->
+                                        <p class="testimonial-name"><span>Bertrand Guerin</span>Formateur @ A&B Consulting</p>
+                                    </blockquote>
+                                </div><!-- /End Tab-block -->
+                                <div class="tab-block" id="tab-testimonials-2">
+                                    <blockquote>
+                                        <!-- Testimonial quote -->
+                                        <p>Super sympa... Une équipe disponible à tous moments, un outil fiable et sans fioritures, le parfait compromis entre fonctionnalités et simplicité. Je recommande vivement !</p>
+                                        <!-- Testimonial info -->
+                                        <p class="testimonial-name"><span>Marie Degani</span>Directrice @ France Formations</p>
+                                    </blockquote>
+                                </div><!-- /End Tab-block -->
+                                <div class="tab-block" id="tab-testimonials-3">
+                                    <blockquote>
+                                        <!-- Testimonial quote -->
+                                        <p>Je ne maitrise absolument pas l'outil informatique. Pourtant, après quelques minutes de pratique j'ai rapidement pu exploiter les possibilités de Consult Panel. Maintenant, je prends des vacances plus souvent, et je gère tout depuis mon téléphone.</p>
+                                        <!-- Testimonial info -->
+                                        <p class="testimonial-name"><span>Catherine Navel</span>Formatrice @ FormationPlus</p>
+                                    </blockquote>
+                                </div><!-- /End Tab-block -->
+                                <div class="tab-block" id="tab-testimonials-4">
+                                    <blockquote>
+                                        <!-- Testimonial quote -->
+                                        <p>Je recommande totallement ! Pour moins de 30€ par mois, j'ai exporté toutes mes données et gère toutes mes formations depuis Consult Panel. J'ai calculé, je gagne jusqu'à 5 jours de travail par mois en générant mes documents automatiquement.</p>
+                                        <!-- Testimonial info -->
+                                        <p class="testimonial-name"><span>Jean Costa</span>CEO and Founder @ IpsumSite</p>
+                                    </blockquote>
+                                </div><!-- /End Tab-block -->
+                            </div><!-- /End Panel-container -->
+                        </div><!-- /End Col -->
+
+                        <ul class="etabs col-md-4 list-unstyled">
+                            <li class="tab col-md-6">
+                                <a href="#tab-testimonials-1">
+                                    <!-- Testimonial logo -->
+                                </a>
+                            </li>
+                            <li class="tab col-md-6">
+                                <a href="#tab-testimonials-2">
+                                    <!-- Testimonial logo -->
+                                </a>
+                            </li>
+                            <li class="tab col-md-6">
+                                <a href="#tab-testimonials-3">
+                                    <!-- Testimonial logo -->
+                                </a>
+                            </li>
+                            <li class="tab col-md-6">
+                                <a href="#tab-testimonials-4">
+                                    <!-- Testimonial logo -->
+                                </a>
+                            </li>
+                        </ul><!-- /End Etabs -->
+                    </div><!-- /End Tabs -->
+                </div><!-- /End Row -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END TESTIMONIALS
+        ============================== -->
+
+
+        <!-- ==================================================
+            TEAM
+        ======================================================= -->
+        <section class="team" id="team">
+            <div class="container">
+                <div class="wrapper-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Une équipe à votre service.</h2>
+                            <p class="large">Nous souhaitons établir une relation de confiance avec nos utilisateurs.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Team Box -->
+                        <div class="col-sm-4 team-box">
+                            <div class="team-img">
+                                <img src="{% static 'public_site/images/bross.jpg' %}" class="img-responsive" alt="">
+                                <div class="img-overlay">
+                                    <div class="img-icons">
                                     <span class="icon-white">
                                         <a target="_blank" href="https://www.facebook.com/QuentinBross">
                                             <i class="icon icon-facebook"></i>
@@ -636,18 +637,18 @@
                                             <i class="icon icon-linkedin"></i>
                                         </a>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
+                            <h4>Quentin Brosse</h4>
+                            <p class="team-bio">Après plusieurs années à développer des progicielles, j'ai voulu m'adresser à un public plus flexible. J'ai donc développé Consult Panel afin d'apporter une solution alternative aux formateurs des petis organismes.</p>
                         </div>
-                        <h4>Quentin Brosse</h4>
-                        <p class="team-bio">Après plusieurs années à développer des progicielles, j'ai voulu m'adresser à un public plus flexible. J'ai donc développé Consult Panel afin d'apporter une solution alternative aux formateurs des petis organismes.</p>
-                    </div>
-                    <!-- Team Box -->
-                    <div class="col-sm-4 team-box">
-                        <div class="team-img">
-                            <img src="{% static 'public_site/images/berger.jpg' %}" class="img-responsive" alt="">
-                            <div class="img-overlay">
-                                <div class="img-icons">
+                        <!-- Team Box -->
+                        <div class="col-sm-4 team-box">
+                            <div class="team-img">
+                                <img src="{% static 'public_site/images/berger.jpg' %}" class="img-responsive" alt="">
+                                <div class="img-overlay">
+                                    <div class="img-icons">
                                     <span class="icon-white">
                                         <a target="_blank" href="https://www.facebook.com/matthieu.berger.5">
                                             <i class="icon icon-facebook"></i>
@@ -658,18 +659,18 @@
                                             <i class="icon icon-linkedin"></i>
                                         </a>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
+                            <h4>Matthieu Berger</h4>
+                            <p class="team-bio">Après avoir développé des applications personnelles, j'ai décidé de proposer des outils simples et performants aux formateurs. J'adore échanger avec mes clients pour leur proposer un produit toujours plus adapté à leurs besoins.</p>
                         </div>
-                        <h4>Matthieu Berger</h4>
-                        <p class="team-bio">Après avoir développé des applications personnelles, j'ai décidé de proposer des outils simples et performants aux formateurs. J'adore échanger avec mes clients pour leur proposer un produit toujours plus adapté à leurs besoins.</p>
-                    </div>
-                    <!-- Team Box -->
-                    <div class="col-sm-4 team-box">
-                        <div class="team-img">
-                            <img src="{% static 'public_site/images/sofiane.jpg' %}" class="img-responsive" alt="">
-                            <div class="img-overlay">
-                                <div class="img-icons">
+                        <!-- Team Box -->
+                        <div class="col-sm-4 team-box">
+                            <div class="team-img">
+                                <img src="{% static 'public_site/images/sofiane.jpg' %}" class="img-responsive" alt="">
+                                <div class="img-overlay">
+                                    <div class="img-icons">
                                     <span class="icon-white">
                                         <a target="_blank" href="https://www.facebook.com/Zackyii">
                                             <i class="icon icon-facebook"></i>
@@ -680,258 +681,252 @@
                                             <i class="icon icon-linkedin"></i>
                                         </a>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
+                            <h4>Sofiane Taleb</h4>
+                            <p class="team-bio">Entreprendre est ma passion. En travaillant avec différents formateurs, j'ai décidé d'apporter un vent de nouveauté au monde de la formation. J'accorde un point d'honneur à la relation que j'entretiens avec mes clients.</p>
                         </div>
-                        <h4>Sofiane Taleb</h4>
-                        <p class="team-bio">Entreprendre est ma passion. En travaillant avec différents formateurs, j'ai décidé d'apporter un vent de nouveauté au monde de la formation. J'accorde un point d'honneur à la relation que j'entretiens avec mes clients.</p>
-                    </div>
-                </div><!-- /End Row -->
-            </div><!-- End Wrapper -->
-        </div><!--/End Container -->
-    </section>
-    <!-- =============================
-         /END TEAM SECTION
-    ============================== -->
-        
-    <!-- ==================================================
-        CONTACT AND SOCIAL DIVIDER
-    ======================================================= -->
-    <section class="contact color-bg" id="contact">
-        <div class="container">
-            <div class="wrapper-sm">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- =========================
-                            Social Icons
-                        ============================== -->
-                        <div class="col-sm-6 text-right">
-                            <h5 class="table-title">Venez nous parler !</h5>
-                        </div>
-                        <div class="col-sm-6 text-left">
-                            <ul class="social-list">
-                                <li>
-                                    <a target="_blank" href="https://www.facebook.com/consultpanel/">
-                                        <i class="icon icon-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="https://www.linkedin.com/company/consult-panel/">
-                                        <i class="icon icon-linkedin"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                    </div><!-- /End Row -->
+                </div><!-- End Wrapper -->
+            </div><!--/End Container -->
+        </section>
+        <!-- =============================
+             /END TEAM SECTION
+        ============================== -->
+
+        <!-- ==================================================
+            CONTACT AND SOCIAL DIVIDER
+        ======================================================= -->
+        <section class="contact color-bg" id="contact">
+            <div class="container">
+                <div class="wrapper-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- =========================
+                                Social Icons
+                            ============================== -->
+                            <div class="col-sm-6 text-right">
+                                <h5 class="table-title">Venez nous parler !</h5>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <ul class="social-list">
+                                    <li>
+                                        <a target="_blank" href="https://www.facebook.com/consultpanel/">
+                                            <i class="icon icon-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://www.linkedin.com/company/consult-panel/">
+                                            <i class="icon icon-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- =============================
-         /END CONTACT SECTION
-    ============================== -->
-        
-        
-    <!-- ==================================================
-        FOOTER
-    ======================================================= -->
-    <footer class="footer dark-bg" id="footer">
-        <div class="container">
-            <div class="wrapper-lg">
-                <div class="row">
-                    <!-- Footer Left Col -->
-                    <div class="col-md-6">
-                        <!-- Logo -->
-                        <a href="#top" class="scrollto" title="SmartMvp">
-                            <span class="text-logo">Consult Panel</span>
-                        </a>
-                        <p class="footer-hero">Un outil simple et performant pour les formateurs indépendants.</p>
-                    </div>
-                    <!-- Footer Contact Col -->
-                    <div class="col-md-6">
-                        <h5 class="text-white">Nous contacter</h5>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="icon icon_mail"></i>
-                            </div>
-                            <div class="contact-content">
-                                <a href="mailto:support@consultpanel.fr">support@consultpanel.fr</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="icon icon_pin"></i>
-                            </div>
-                            <div class="contact-content">
-                                Carrefour Georges Pompidou<br>
-                                06560 Valbonne, France
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="icon icon_pin"></i>
-                            </div>
-                            <div class="contact-content">
-                                Rue du Pensionnat<br>
-                                69003 Lyon, France
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="icon icon_phone"></i>
-                            </div>
-                            <div class="contact-content">
-                                +33 6 48 14 31 94
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Row -->
-            </div><!-- /End Wrapper -->
-        </div><!-- /End Container -->
-    </footer>
-</div><!-- /End Main Wrapper -->
+        </section>
+        <!-- =============================
+             /END CONTACT SECTION
+        ============================== -->
 
+
+        <!-- ==================================================
+            FOOTER
+        ======================================================= -->
+        <footer class="footer dark-bg" id="footer">
+            <div class="container">
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <!-- Footer Left Col -->
+                        <div class="col-md-6">
+                            <!-- Logo -->
+                            <a href="#top" class="scrollto" title="SmartMvp">
+                                <span class="text-logo">Consult Panel</span>
+                            </a>
+                            <p class="footer-hero">Un outil simple et performant pour les formateurs indépendants.</p>
+                        </div>
+                        <!-- Footer Contact Col -->
+                        <div class="col-md-6">
+                            <h5 class="text-white">Nous contacter</h5>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_mail"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <a href="mailto:support@consultpanel.fr">support@consultpanel.fr</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_pin"></i>
+                                </div>
+                                <div class="contact-content">
+                                    Carrefour Georges Pompidou<br>
+                                    06560 Valbonne, France
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_pin"></i>
+                                </div>
+                                <div class="contact-content">
+                                    Rue du Pensionnat<br>
+                                    69003 Lyon, France
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_phone"></i>
+                                </div>
+                                <div class="contact-content">
+                                    +33 6 48 14 31 94
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </footer>
+    </div><!-- /End Main Wrapper -->
+
+    <p id="call-chat" class="hidden-cta">Une question ?</p>
     <div id="chat"></div>
 {% endblock %}
 {% block script %}
 
 
-<script type="text/javascript">
-
-    /*
-     ** Chatra
-     */
-    var ChatraID = 'Ym4qTFhw6CMYZ4bNE';
-    (function(d, w, c) {
-        var n = d.getElementsByTagName('script')[0],
-                s = d.createElement('script');
-        w[c] = w[c] || function() {
-                    (w[c].q = w[c].q || []).push(arguments);
-                };
-        s.async = true;
-        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
-                + '//call.chatra.io/chatra.js';
-        n.parentNode.insertBefore(s, n);
-    })(document, window, 'Chatra');
-
-    window.ChatraSetup = {
-        colors: ['#ffffff', '#46c35f']
-    };
-
-
-
-    $(document).ready(function(){
-
-        var win = $(window);
-
-        /*
-         ** Email
-         */
-        var emailForm = $('.ask-for-beta');
-        var emailSubmit = $('.ask-for-beta button');
-        var emailInput = $('.ask-for-beta-email');
-        var emailThanks = $('.ask-for-beta .thanks');
-        var validEmail = $('input.valid');
-        var emailInputParent = emailInput.parent('.input-group');
-
-        function validateEmail(email) {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
-        };
-
-        function sendEmail(email) {
-            var url = '{% url 'add-email-for-beta' %}';
-            $.getJSON( url+"?email="+email, function( json ) {
-                if (json.status == "error"){
-                    emailThanks.removeClass('error');
-                }
-                emailThanks.text(json.message);
-                emailInputParent.remove();
-                emailThanks.removeClass('hidden');
-            });
-        };
-
-        emailInput
-                .bind('input', function(event){
-                    var parent = $(this).parent('.input-group');
-                    if (validateEmail($(this).val())) {
-                        parent.removeClass('false');
-                        $(this).addClass("valid")
-                    }else{
-                        parent.addClass('false');
-                        $(this).removeClass("valid")
-                    }
-                });
-
-        emailSubmit.hover(function(){
-            $(this).toggleClass('focus');
-        });
-
-        emailForm.submit(function(event){
-            event.preventDefault();
-            var input = $(this).find('.ask-for-beta-email');
-            var email = input.val();
-            if (input.hasClass('valid') && validateEmail(email)){
-                sendEmail(email);
-            }
-        });
-
-
-        
-        /*
-         ** Text / Image
-         */
-        var TMrow = $('.text-image');
-        var TMimg;
-        var TMtxt;
-        var nbLoaded = 0;
-
-        win.on("resize", function(){
-            TMrow.each(function(idx, elem){
-                TMtxt = $(elem).find('.semi-txt');
-                if ($(window).width() > 976){
-                    TMimg = $(elem).find('.semi-img');
-                    var margin = (TMimg.outerHeight() - TMtxt.outerHeight()) / 2;
-                    if (margin > 0){
-                        TMtxt.css("margin-top", margin + "px");
-                    }
-                }else{
-                    TMtxt.css("margin-top", "0px");
-                }
-            });
-        }).resize();
-
-        $('img.semi-img').load(function(){
-            if(++nbLoaded >= 3){
-                win.resize();
-            }
-        });
-
-
+    <script type="text/javascript">
 
         /*
          ** Chatra
          */
-        var assistance = $('#assistance');
-        var assistanceTopOffset = assistance.offset().top - 100;
-        var assistanceBottomOffset = assistanceTopOffset + assistance.outerHeight();
-        var ok = 0;
+        var ChatraID = 'Ym4qTFhw6CMYZ4bNE';
+        (function(d, w, c) {
+            var n = d.getElementsByTagName('script')[0],
+                    s = d.createElement('script');
+            w[c] = w[c] || function() {
+                        (w[c].q = w[c].q || []).push(arguments);
+                    };
+            s.async = true;
+            s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                    + '//call.chatra.io/chatra.js';
+            n.parentNode.insertBefore(s, n);
+        })(document, window, 'Chatra');
 
-        win.on("load", function(){
-            Chatra('minimizeWidget');
+        window.ChatraSetup = {
+            colors: ['#ffffff', '#46c35f']
+        };
+
+
+
+        $(document).ready(function(){
+
+            var win = $(window);
+
+            /*
+             ** Email
+             */
+            var emailForm = $('.ask-for-beta');
+            var emailSubmit = $('.ask-for-beta button');
+            var emailInput = $('.ask-for-beta-email');
+            var emailThanks = $('.ask-for-beta .thanks');
+            var validEmail = $('input.valid');
+            var emailInputParent = emailInput.parent('.input-group');
+
+            function validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            };
+
+            function sendEmail(email) {
+                var url = '{% url 'add-email-for-beta' %}';
+                $.getJSON( url+"?email="+email, function( json ) {
+                    if (json.status == "error"){
+                        emailThanks.removeClass('error');
+                    }
+                    emailThanks.text(json.message);
+                    emailInputParent.remove();
+                    emailThanks.removeClass('hidden');
+                });
+            };
+
+            emailInput
+                    .bind('input', function(event){
+                        var parent = $(this).parent('.input-group');
+                        if (validateEmail($(this).val())) {
+                            parent.removeClass('false');
+                            $(this).addClass("valid")
+                        }else{
+                            parent.addClass('false');
+                            $(this).removeClass("valid")
+                        }
+                    });
+
+            emailSubmit.hover(function(){
+                $(this).toggleClass('focus');
+            });
+
+            emailForm.submit(function(event){
+                event.preventDefault();
+                var input = $(this).find('.ask-for-beta-email');
+                var email = input.val();
+                if (input.hasClass('valid') && validateEmail(email)){
+                    sendEmail(email);
+                }
+            });
+
+
+
+            /*
+             ** Text / Image
+             */
+            var TMrow = $('.text-image');
+            var TMimg;
+            var TMtxt;
+            var nbLoaded = 0;
+
+            win.on("resize", function(){
+                TMrow.each(function(idx, elem){
+                    TMtxt = $(elem).find('.semi-txt');
+                    if ($(window).width() > 976){
+                        TMimg = $(elem).find('.semi-img');
+                        var margin = (TMimg.outerHeight() - TMtxt.outerHeight()) / 2;
+                        if (margin > 0){
+                            TMtxt.css("margin-top", margin + "px");
+                        }
+                    }else{
+                        TMtxt.css("margin-top", "0px");
+                    }
+                });
+            }).resize();
+
+            $('img.semi-img').load(function(){
+                if(++nbLoaded >= 3){
+                    win.resize();
+                }
+            });
+
+
+            /*
+             ** Chatra call to action
+             */
+            var chatraCTA = $('#call-chat');
+            var assistance = $('#assistance');
+            var assistanceTopOffset = assistance.offset().top - 300;
+            var assistanceBottomOffset = assistanceTopOffset + assistance.outerHeight() + 300;
+
+            win.scroll(function(elem){
+                if ((win.scrollTop() >= assistanceTopOffset && win.scrollTop() <= assistanceBottomOffset)){
+                    chatraCTA.removeClass("hidden-cta");
+                }else{
+                    chatraCTA.addClass("hidden-cta");
+                }
+            });
+
         });
 
-        win.scroll(function(elem){
-            if (ok < 2 && (win.scrollTop() >= assistanceTopOffset && win.scrollTop() <= assistanceBottomOffset)){
-                Chatra('openChat');
-                ok = 1;
-            }else if(ok == 1){
-                Chatra('minimizeWidget');
-                ok = 2;
-            }
-        });
-
-    });
-
-</script>
+    </script>
 {% endblock %}
