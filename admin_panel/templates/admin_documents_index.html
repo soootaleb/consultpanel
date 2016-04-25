@@ -1,0 +1,71 @@
+{% extends "admin_root.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <section class="box-typical files-manager">
+        
+        
+        <div class="files-manager-panel">
+            <div class="files-manager-panel-in" style="margin-left: 0px">
+                <header class="files-manager-header">
+                    <div class="files-manager-header-left">
+                        <button type="button" class="btn btn-rounded"><i class="font-icon-left font-icon-upload-2"></i>Importer un fichier</button>
+                    </div>
+                    <div class="files-manager-header-right">
+                        <div class="views">
+                            <button type="button" class="btn-icon view active"><i class="font-icon font-icon-view-grid"></i></button>
+                            <button type="button" class="btn-icon view"><i class="font-icon font-icon-view-rows"></i></button>
+                        </div>
+                        <div class="search">
+                            <input type="text" class="form-control form-control-rounded" placeholder="Chercher">
+                            <button type="submit" class="btn-icon"><i class="font-icon font-icon-search"></i></button>
+                        </div>
+                    </div>
+                </header><!--.files-manager-header-->
+                
+                <div class="files-manager-content">
+                    <div class="files-manager-content-in scrollable-block jspScrollable" style="overflow: hidden; padding: 0px; height: 380px; border-right: none; margin-right: 0" tabindex="0">
+                        <div class="jspContainer" style="height: 380px;">
+                            <div class="jspPane" style="padding: 0px; top: 0px; left: 0px;">
+                                <div class="fm-file-grid">
+                                    <div class="fm-file selected">
+                                        <div class="fm-file-icon">
+                                            <img src="{% static 'main/img/folder.png' %}" alt="">
+                                        </div>
+                                        <div class="fm-file-name">Conventions</div>
+                                        <div class="fm-file-size">34 fichiers</div>
+                                    </div>
+                                    <div class="fm-file">
+                                        <div class="fm-file-icon">
+                                            <img src="{% static 'main/img/folder.png' %}" alt="">
+                                        </div>
+                                        <div class="fm-file-name">BPF</div>
+                                        <div class="fm-file-size">6 fichiers</div>
+                                    </div>
+                                    <div class="fm-file">
+                                        <div class="fm-file-icon">
+                                            <img src="{% static 'main/img/folder.png' %}" alt="">
+                                        </div>
+                                        <div class="fm-file-name">Certifications</div>
+                                        <div class="fm-file-size">23 fichiers</div>
+                                    </div>
+                                </div>   
+                            </div>
+                            <div class="jspVerticalBar"><div class="jspCap jspCapTop"></div>
+                                <div class="jspTrack" style="height: 380px;">
+                                    <div class="jspDrag" style="height: 356px;">
+                                        <div class="jspDragTop"></div>
+                                        <div class="jspDragBottom"></div>
+                                    </div>
+                                </div>
+                                <div class="jspCap jspCapBottom"></div>  
+                            </div>
+                        </div>
+                    </div><!--.files-manager-content-in-->
+                </div><!--.files-manager-content-->
+            </div><!--.files-manager-panel-in-->
+        </div><!--.files-manager-panels-->
+    </section><!--.files-manager-->
+</div>
+{% endblock %}
