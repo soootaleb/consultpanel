@@ -1,0 +1,96 @@
+{% load staticfiles %}
+
+<nav class="side-menu">
+    <ul class="side-menu-list">
+        <li class="purple">
+            <a href="{% url 'admin_index' %}">
+                <i class="font-icon font-icon-dashboard"></i>
+                <span class="lbl">Accueil</span>
+            </a>
+        </li>
+        <li class="gold">
+            <a href="{% url 'admin_index' %}">
+                <i class="font-icon glyphicon glyphicon-phone"></i>
+                <span class="lbl">Assistance</span>
+            </a>
+        </li>
+    </ul>
+    <header class="side-menu-title">Gestion</header>
+    <ul class="side-menu-list">
+        <li class="blue">
+            <a href="{% url 'formations_index' %}">
+                <i class="font-icon glyphicon glyphicon-blackboard"></i>
+                <span class="lbl">Formations</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'catalogues_index' %}">
+                <i class="font-icon font-icon-widget"></i>
+                <span class="lbl">Catalogues</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'sessions_index' %}">
+                <i class="font-icon font-icon-calend"></i>
+                <span class="lbl">Sessions</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'sessions_index' %}">
+                <i class="font-icon glyphicon glyphicon-folder-open"></i>
+                <span class="lbl">Inscriptions</span>
+            </a>
+        </li>
+    </ul>
+    <header class="side-menu-title">Documents</header>
+    <ul class="side-menu-list">
+        <li class="blue">
+            <a href="{% url 'admin_index' %}">
+                <i class="font-icon glyphicon glyphicon-duplicate"></i>
+                <span class="lbl">Conventions</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'admin_index' %}">
+                <i class="font-icon font-icon-notebook"></i>
+                <span class="lbl">Bilan pédagogique</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'admin_index' %}">
+                <i class="font-icon font-icon-notebook"></i>
+                <span class="lbl">Certifications</span>
+            </a>
+        </li>
+    </ul>
+    <header class="side-menu-title">Relations</header>
+    <ul class="side-menu-list">
+        <li class="blue">
+            <a href="{% url 'formations_index' %}">
+                <i class="font-icon font-icon-case-2"></i>
+                <span class="lbl">Entreprises</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'catalogues_index' %}">
+                <i class="font-icon glyphicon glyphicon-heart"></i>
+                <span class="lbl">Clients</span>
+            </a>
+        </li>
+    </ul>
+    <header class="side-menu-title">Utilisateurs</header>
+    <ul class="side-menu-list">
+        <li class="blue">
+            <a href="{% url 'formations_index' %}">
+                <i class="font-icon glyphicon glyphicon-list"></i>
+                <span class="lbl">Mes formateurs</span>
+            </a>
+        </li>
+        <li class="blue">
+            <a href="{% url 'catalogues_index' %}">
+                <i class="font-icon font-icon-user"></i>
+                <span class="lbl">Mon profile</span>
+            </a>
+        </li>
+    </ul>
+</nav><!--.side-menu-->
