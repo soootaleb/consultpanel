@@ -5,5 +5,7 @@ from admin_panel.forms import SessionForm
 
 
 def documents_index(request):
-    return render(request, 'admin_documents_index.html');
+    return render(request, 'admin_documents_index.html', context={
+        'page_title'        : 'Gestion des documents'
+        });
     

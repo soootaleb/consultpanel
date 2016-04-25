@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title id="page_title">Consult Panel</title>
+    <title id="page_title">{{ page_title | default_if_none:"Consul Panel" }}</title>
 
         <link href="{% static 'main/img/favicon.144x144.png' %}" rel="apple-touch-icon" type="image/png" sizes="144x144">
         <link href="{% static 'main/img/favicon.114x114.png' %}" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -39,7 +39,7 @@
             <div class="tbl">
                 <div class="tbl-row">
                     <div class="tbl-cell">
-                        <h3>Titre <i>[à implementer]</i></h3>
+                        <h3>{{ page_title | default:"View title" }}</i></h3>
                     </div>
                 </div>
             </div>
