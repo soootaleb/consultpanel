@@ -17,34 +17,30 @@ var gulp = require('gulp'),
 
 var path = {
     build: { // production
-        html: 'consult_panel/static/main/build/',
-        js: 'consult_panel/static/main/build/js/',
-        jsLib: 'consult_panel/static/main/build/js/lib/',
-        css: 'consult_panel/static/main/build/css/',
-        cssLib: 'consult_panel/static/main/build/css/lib/',
-        img: 'consult_panel/static/main/build/img/',
-        fonts: 'consult_panel/static/main/build/fonts/'
+        js: 'consult_panel/static/main/js/',
+        jsLib: 'consult_panel/static/main/js/lib/',
+        css: 'consult_panel/static/main/css/',
+        cssLib: 'consult_panel/static/main/css/lib/',
+        img: 'consult_panel/static/main/img/',
+        fonts: 'consult_panel/static/main/fonts/'
     },
     src: { // development
-        html: '**/*.html',
-        jsPlugins: 'consult_panel/static/main/js/plugins.js',
-        jsLib: 'consult_panel/static/main/js/lib/**/*.*',
-        js: 'consult_panel/static/main/js/app/app.js',
-        style: 'consult_panel/static/main/styles/main.less',
-        styleLib: 'consult_panel/static/main/styles/lib/*.css',
-        styleLibFiles: 'consult_panel/static/main/styles/lib/**/*.*',
-        styleLibIgnore: '!consult_panel/static/main/styles/lib/*.css',
-        img: 'consult_panel/static/main/img/**/*.*',
-        fonts: 'consult_panel/static/main/fonts/**/*.*'
+        jsPlugins: 'consult_panel/static/main/src/js/plugins.js',
+        jsLib: 'consult_panel/static/main/src/js/lib/**/*.*',
+        js: 'consult_panel/static/main/src/js/app/app.js',
+        style: 'consult_panel/static/main/src/styles/main.less',
+        styleLib: 'consult_panel/static/main/src/styles/lib/*.css',
+        styleLibFiles: 'consult_panel/static/main/src/styles/lib/**/*.*',
+        styleLibIgnore: '!consult_panel/static/main/src/styles/lib/*.css',
+        img: 'consult_panel/static/main/src/img/**/*.*',
+        fonts: 'consult_panel/static/main/src/fonts/**/*.*'
     },
     watch: {
-        html: 'consult_panel/static/main/**/*.html',
-        js: 'consult_panel/static/main/js/**/*.js',
-        style: 'consult_panel/static/main/styles/**/*.*',
-        img: 'consult_panel/static/main/img/**/*.*',
-        fonts: 'consult_panel/static/main/fonts/**/*.*'
-    },
-    clean: './consult_panel/static/main/build'
+        js: 'consult_panel/static/main/src/js/**/*.js',
+        style: 'consult_panel/static/main/src/styles/**/*.*',
+        img: 'consult_panel/static/main/src/img/**/*.*',
+        fonts: 'consult_panel/static/main/src/fonts/**/*.*'
+    }
 };
 
 /* =====================================================
@@ -65,19 +61,6 @@ var config = {
 gulp.task('webserver', function () {
     browserSync(config);
 });
-
-
-/* =====================================================
-    HTML
-    ===================================================== */
-
-gulp.task('html:build', function () {
-    return gulp.src(path.src.html)
-        .pipe(rigger())
-        .pipe(gulp.dest(path.build.html))
-        .pipe(reload({stream: true}));
-});
-
 
 /* =====================================================
     JS
@@ -171,7 +154,6 @@ gulp.task('fonts:build', function() {
     ===================================================== */
 
 gulp.task('build', [
-    //'html:build',
     'fonts:build',
     'jsPlugins:build',
     'jsLib:build',
@@ -188,9 +170,6 @@ gulp.task('build', [
     ===================================================== */
 
 gulp.task('watch', function(){
-    watch([path.watch.html], function(event, cb) {
-        gulp.start('html:build');
-    });
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');
     });
@@ -215,15 +194,6 @@ gulp.task('watch', function(){
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
     });
-});
-
-
-/* =====================================================
-    CLEAN PRODUCTION
-    ===================================================== */
-
-gulp.task('clean', function (cb) {
-    rimraf(path.clean, cb);
 });
 
 

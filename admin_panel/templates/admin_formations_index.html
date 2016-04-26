@@ -1,191 +1,177 @@
 {% extends "admin_root.html" %}
 
+{% block header_action %}
+<a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
+    <i class="font-icon-plus"> Ajouter une formation</i>
+</a>
+{% endblock %}
+
 {% block content %}
 
-<section class="box-typical">
+<section class="box-typical box-typical-max-screen">
     <header class="box-typical-header">
         <div class="tbl-row">
             <div class="tbl-cell tbl-cell-title">
-                <h1 style='font-size: 40px; display: inline; margin-right: 100px'>Vos formations</h1>
-                <a href="{% url 'formations_add' %}" class="btn btn-success pull-right">
-                    <i class="font-icon-plus"> Ajouter une formation</i>
-                </a>
+                <h3>23 Formations</h3>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
             </div>
         </div>
     </header>
-    <div class="box-typical-body jspScrollable" tabindex="0" style="overflow: hidden; padding: 0px; width: 100%;">
-        <div class="jspContainer" style="width: 1060px; height: 680px;">
-            <div class="jspPane" style="padding: 0px; top: 0px;">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <td class="table-check">
-										<div class="checkbox checkbox-only">
-											<input type="checkbox" id="tbl-check-2-1">
-											<label for="tbl-check-2-1"></label>
-										</div>
-									</td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Comptabilité — Intermédiaire</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Formation avancée pour les personnes avec des connaissances en comptabilité.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    100€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    120€
-                                </td>
-                                
-                            </tr>
-                            <tr>
-                                <td class="table-check">
-										<div class="checkbox checkbox-only">
-											<input type="checkbox" id="tbl-check-2-1">
-											<label for="tbl-check-2-1"></label>
-										</div>
-									</td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Gestion du temps</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Apprenez à gérer votre temps afin d'être plus productif et avoir plus de temps pour vous.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    100€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    120€
-                                </td>
-                                
-                            </tr>
-                            <tr>
-                                <td class="table-check">
-										<div class="checkbox checkbox-only">
-											<input type="checkbox" id="tbl-check-2-1">
-											<label for="tbl-check-2-1"></label>
-										</div>
-									</td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Comptabilité — Basique</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Vous allez découvrir les bases de la comptabilité.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    300€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    360€
-                                </td>
-                                
-                            </tr>
-                            <tr>
-                                <td class="table-check">
-										<div class="checkbox checkbox-only">
-											<input type="checkbox" id="tbl-check-2-1">
-											<label for="tbl-check-2-1"></label>
-										</div>
-									</td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Management d'équipe</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Développez vos relations professionnelles en découvrant des habitudes simples à mettre en place.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    300€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    360€
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-check">
-										<div class="checkbox checkbox-only">
-											<input type="checkbox" id="tbl-check-2-1">
-											<label for="tbl-check-2-1"></label>
-										</div>
-									</td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Gestion du stress</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Apprenez à gérer votre stress afin d'être plus efficace et avoir plus d'assurance en vous.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    200€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    240€
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-check">
-                                    <div class="checkbox checkbox-only">
-                                        <input type="checkbox" id="tbl-check-2-1">
-                                        <label for="tbl-check-2-1"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Nom</div>
-                                    <b>Comptabilité — Expert</b>
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Description</div>
-                                    Je vous propose de découvrir des mécaniques pointues de comptabilité d'entreprise.
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix H.T</div>
-                                    200€
-                                </td>
-                                <td>
-                                    <div class="font-11 color-blue-grey-lighter uppercase">Prix T.T.C</div>
-                                    240€
-                                </td>
-                                
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="jspVerticalBar">
-                <div class="jspCap jspCapTop"></div>
-                <div class="jspTrack" style="height: 280px;">
-                    <div class="jspDrag" style="height: 228px;">
-                        <div class="jspDragTop"></div>
-                        <div class="jspDragBottom"></div>  
-                    </div>
-                </div>
-                <div class="jspCap jspCapBottom"></div>  
-            </div>  
+    <div class="box-typical-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th style="min-width:75px">
+                            Prix H.T
+                        </th>
+                        <th style="min-width:85px">
+                            Prix T.T.C
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Intermédiaire</b>
+                        </td>
+                        <td>
+                            Formation avancée pour les personnes avec des connaissances en comptabilité.
+                        </td>
+                        <td>
+                            100€
+                        </td>
+                        <td>
+                            120€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Gestion du temps</b>
+                        </td>
+                        <td>
+                            Apprenez à gérer votre temps afin d'être plus productif et avoir plus de temps pour vous.
+                        </td>
+                        <td>
+                            100€
+                        </td>
+                        <td>
+                            120€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Basique</b>
+                        </td>
+                        <td>
+                            Vous allez découvrir les bases de la comptabilité.
+                        </td>
+                        <td>
+                            300€
+                        </td>
+                        <td>
+                            360€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Management d'équipe</b>
+                        </td>
+                        <td>
+                            Développez vos relations professionnelles en découvrant des habitudes simples à mettre en place.
+                        </td>
+                        <td>
+                            300€
+                        </td>
+                        <td>
+                            360€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Gestion du stress</b>
+                        </td>
+                        <td>
+                            Apprenez à gérer votre stress afin d'être plus efficace et avoir plus d'assurance en vous.
+                        </td>
+                        <td>
+                            200€
+                        </td>
+                        <td>
+                            240€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Expert</b>
+                        </td>
+                        <td>
+                            Je vous propose de découvrir des mécaniques pointues de comptabilité d'entreprise.
+                        </td>
+                        <td>
+                            200€
+                        </td>
+                        <td>
+                            240€
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div><!--.box-typical-body-->
+    </div>
 </section>
-
 
 {% endblock %}
 
