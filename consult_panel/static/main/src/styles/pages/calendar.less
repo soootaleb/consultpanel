@@ -88,8 +88,8 @@ a.fc-more { font-size: 1rem; .a_bordered(@color-link); }
    ========================================================================== */
 
 .calendar-page { .clearfix();
-   .calendar-page-content { float: left; width: 100%; margin-right: -250px; position: relative; }
-   .calendar-page-content-in { margin: 0 249px -1px -1px; }
+   .calendar-page-content { float: left; width: 100%; position: relative; }
+   .calendar-page-content-in { margin: 0 -1px -1px -1px; overflow: hidden; }
    .calendar-page-title { position: absolute; left: 0; top: 10px; font-size: 1rem; font-weight: 600; z-index: 2; padding: .375rem 15px; }
 
    // Side
@@ -138,3 +138,4 @@ a.fc-more { font-size: 1rem; .a_bordered(@color-link); }
    li { position: relative; padding: 0 0 10px 25px; }
 }
 
+.calendar-page .fc-center{ text-transform: capitalize;  }
