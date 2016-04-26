@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import permission_required
 def index(request):
     return render(request, 'admin_pages_index.html', context={
         'page_title'        :   'Tableau de bord',
+        'header'            :   False,
         'formation_list'    :   Formation.objects.all(),
     });
 

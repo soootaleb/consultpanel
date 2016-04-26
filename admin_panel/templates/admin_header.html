@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         {% comment "Logo"%}{% endcomment %}
-        <a href="#" class="site-logo">
+        <a href="{% url 'admin_index' %}" class="site-logo">
             <img class="hidden-md-down" src="{% static 'main/img/consultpanel_logo_header.png' %}" alt="">
             <img class="hidden-lg-up" src="{% static 'main/img/consultpanel_logo_header_mobile.png' %}" alt="">
         </a>
