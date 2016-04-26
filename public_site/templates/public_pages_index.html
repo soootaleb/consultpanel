@@ -349,7 +349,7 @@
                             <li class="tab">
                                 <a href="#tab-feature-1">
                                     <div class="icon-sm">
-                                        <i class="icon icon-layers"></i>
+                                        <i class="icon icon-briefcase"></i>
                                     </div>
                                     <h5 class="text-white">Formations</h5>
                                 </a>
@@ -358,7 +358,7 @@
                             <li class="tab">
                                 <a href="#tab-feature-2">
                                     <div class="icon-sm">
-                                        <i class="icon icon-pictures"></i>
+                                        <i class="icon icon-documents"></i>
                                     </div>
                                     <h5 class="text-white">Documents</h5>
                                 </a>
@@ -367,7 +367,7 @@
                             <li class="tab">
                                 <a href="#tab-feature-3">
                                     <div class="icon-sm">
-                                        <i class="icon icon-grid"></i>
+                                        <i class="icon icon-calendar"></i>
                                     </div>
                                     <h5 class="text-white">Agenda</h5>
                                 </a>
@@ -376,7 +376,7 @@
                             <li class="tab">
                                 <a href="#tab-feature-4">
                                     <div class="icon-sm">
-                                        <i class="icon icon-chat"></i>
+                                        <i class="icon icon-key"></i>
                                     </div>
                                     <h5 class="text-white">Sécurité</h5>
                                 </a>
@@ -385,9 +385,9 @@
                             <li class="tab">
                                 <a href="#tab-feature-5">
                                     <div class="icon-sm">
-                                        <i class="icon icon-lightbulb"></i>
+                                        <i class="icon icon-telescope"></i>
                                     </div>
-                                    <h5 class="text-white">Statistiques</h5>
+                                    <h5 class="text-white">Clientèle</h5>
                                 </a>
                             </li>
                         </ul><!-- /End Etabs -->
@@ -416,13 +416,16 @@
                                 <div class="container">
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Right with Icons -->
-                                        <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
-                                            <h4>Importez vos documents une fois, et générez-les indéfiniments.</h4>
-                                            <p>Parce-que le temps perdu ne se ratrappe pas, nous avons automatisé la génération de vos documents : Vos conventions sont générées en fonction des inscrits, avec votre signature, prêtes à être envoyées au client.<br>De la même manière, vos bilans pédagogiques sont accessibles à tout moment, par simple clic sur un bouton. Toujours pas le temps ? N'oubliez pas, un coup de téléphone, et notre équipe est sur le coup !</p>
+                                        <!-- Feature Description 2cols Text-Left with Buttons -->
+                                        <div class="col-md-5 col-sm-6">
+                                            <h4>Importez vos documents une fois, c'est tout.</h4>
+                                            <p>
+                                                Parce-que le temps perdu ne se ratrappe pas, ConsultPanel vous permet de générer automatiquement vos convention, à votre demande ou à celle de vos clients.
+                                                d'établir une connous avons automatisé la génération de vos documents : Vos conventions sont générées en fonction des inscrits, avec votre signature, prêtes à être envoyées au client.<br>De la même manière, vos bilans pédagogiques sont accessibles à tout moment, par simple clic sur un bouton. Toujours pas le temps ? N'oubliez pas, un coup de téléphone, et notre équipe est sur le coup !</p>
                                         </div>
-                                        <!-- Image-Left -->
-                                        <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-lg-5 col-lg-pull-7 hidden-xs wow fadeInLeft" data-wow-duration="2s">
-                                            <img src="{% static 'public_site/images/features/feature2.png' %}" class="img-device" alt="">
+                                        <!-- Image-right -->
+                                        <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature2.png' %}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -433,8 +436,12 @@
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Left -->
                                         <div class="col-md-5 col-sm-6">
-                                            <h4>Concentrez-vous sur vos clients,<br>Consult Panel fait le reste pour vous.</h4>
-                                            <p>Le métier de formateur demande beaucoup d'organisation. C'est pourquoi vous avez à disposition un agenda en ligne, où sont répertoriées vos sessions de formation. Vous pouvez y ajouter des notes, les déplacer, les supprimer...<br>Ah, toujours pas le temps ? Ne vous inquiétez pas, on s'occupe de tout :) Vous savez où nous joindre !</p>
+                                            <h3><strong>Optimisez chacune de vos journées</strong></h3>
+                                            <p>Grâce aux vues quotidiennes, hebdomadaires et mensuelles, vous pouvez consulter votre planning
+                                                en un clin d'œil. <br>L'agenda ConsultPanel est si simple qu'il est d'une efficacité redoutable. <br><br>
+                                                Le métier de formateur requiert un regard permanent sur votre planning, c'est pourquoi nous avons créé l'agenda dont vous avez besoin, à disposition dans aussi bien dans votre poche que sur votre bureau.
+                                                <br><br>De plus l'agenda ConsultPanel se synchronise automatiquement avec votre smartphone et votre tablette puisqu'il est compatible iOS et Android.
+                                            </p>
                                         </div>
                                         <!-- Image-Right -->
                                         <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
@@ -447,14 +454,17 @@
                             <div class="tab-content" id="tab-feature-4">
                                 <div class="container">
                                     <div class="row">
-                                        <!-- Feature Description 2col Text-Left with Icons-->
-                                        <div class="col-md-7 col-sm-6">
-                                            <h4>La sécurité de vos données est un point fondamental pour nous.</h4>
-                                            <p>Nous savons que vos données doivent être bien gardées. Ne vous en faites pas, notre base de données est cryptée, et répliquée sur un deuxième serveur pour y être en sécurité.<br>De plus, Consult Panel est construit sur l'environement Django, un logiciel qui nous assure une sécurité à toutes épreuves et des performances accrues.</p>
+                                        <!-- Feature Description 2cols Text-Left with Buttons -->
+                                        <div class="col-md-5 col-sm-6">
+                                            <h3><strong>Sécurité, confidentialité et sauvegarde de vos données.</strong></h3>
+                                            <p>Avec ConsultPanel, gardez l'esprit tranquille. Les fichiers sauvegardés dans votre espace sont en lieu sûr et accessibles à tout moment. Vous pouvez récupérer les données de votre espace quand vous le souhaitez, les télécharger localement, ou bien les retrouver sur un nouvel appareil. Par exemple, en cas de changement, perte, vol ou casse de votre appareil, vos données sauvegardés dans votre espace sont intactes et vous pouvez les récupérer facilement sur votre nouvel appareil.<br><br>Les transferts de fichiers vers votre espace ConsultPanel sont encryptés en https. Ce protocole est notamment utilisé par les banques pour vous permettre de consulter vos comptes bancaires par Internet de façon sécurisée.
+
+
+                                            </p>
                                         </div>
-                                        <!-- Image Right -->
-                                        <div class="col-md-5 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
-                                            <img src="{% static 'public_site/images/features/feature4.png' %}" class="img-device" alt="">
+                                        <!-- Image-right -->
+                                        <div class="col-md-7 col-sm-6 hidden-xs wow fadeInRight" data-wow-duration="2s">
+                                            <img src="{% static 'public_site/images/features/feature4.png' %}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -465,9 +475,17 @@
                                     <div class="row">
                                         <!-- Feature Description 2cols Text-Right with Icons -->
                                         <div class="col-xs-12 col-sm-6 col-sm-push-6 col-lg-7 col-lg-push-5">
-                                            <h4>Contemplez votre assention, et voyez où vous êtes le meilleur !</h4>
-                                            <p>Grace à un système complet de statistiques, vous pouvez voir votre évolution au fil des mois et des années. Nombre de clients, nombre de formations, chiffre d'affaire, consultez à tout instant les chiffres qui vous subliment.<br>
-                                                Encore une fois, s'il vous manque quelque-chose, dites-le nous ! Nous vous taillerons — sur mesure — les comptes rendus dont vous avez besoin.
+                                            <h3><strong>Impactez votre clientèle.</strong></h3>
+                                            <p>
+                                                ConsultPanel offre aussi un espace personnalisé à vos clients. Ils peuvent consulter un catalogue élaboré par vos soins, s'inscrire à une session de formation,
+                                                télécharger, remettre ou encore signer une convention ou autres documents préremplis nécéssaires à leur remboursement.
+                                                <br><br>
+                                                ConsultPanel vous aide également a offrir un suivi personnalisé pour chacun de vos clients.
+                                                Vous créez vos questionnaires depuis votre espace et vos clients peuvent y repondre depuis le leur.
+                                                Vous gardez la possibilité de saisir les réponses pour vos clients ainsi, vous gardez le contrôle sur chaque suivi.
+                                                <br><br>
+                                                L'historique d'un stagiaire vous permet d'avoir une vue d'emsemble sur toutes les formations qu'il a suivi.
+                                                Vous serez donc en mesure de lui fournir une formation adaptès a son besoin.
                                             </p>
                                         </div>
                                         <!-- Image-Left -->
