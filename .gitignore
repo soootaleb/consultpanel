@@ -1,4 +1,5 @@
 setup.py
+.vscode/
 
 ### Django ###
 *.log
