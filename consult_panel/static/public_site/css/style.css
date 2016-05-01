@@ -1713,6 +1713,8 @@ p {
     bottom: 70px;
     font-size: 21px;
     color: #323a45;
+    white-space: nowrap;
+    display: block;
 }
 
 #call-chat:before {

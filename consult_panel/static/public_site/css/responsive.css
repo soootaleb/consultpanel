@@ -581,6 +581,13 @@
     .hero-app .hero-section .btn{
         margin-top: 5px;
     }
+
+    /*------------------------------------------*/
+    /*   Call Chatra
+    /*------------------------------------------*/
+    #call-chat {
+        display: none;
+    }
     
 
 }
