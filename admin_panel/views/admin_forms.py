@@ -73,3 +73,43 @@ def sessions_edit(request):
     else :
         messages.warning(request, 'Merci de vérifier les informations');
         return render(request, 'admin_sessions_edit.html', context={'form' : form});
+    
+def formateurs_add(request):
+    form = forms.FormateurForm(request.POST);
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'Le formateur a bien été ajouté');
+        return redirect('formateurs_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_formateurs_edit.html', context={'form' : form});
+    
+def formateurs_edit(request):
+    form = forms.ProfileForm(request.POST or None, instance=Profile.objects.get(pk=request.POST["profile_id"]));
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'Le formateur a bien été modifié');
+        return redirect('formateurs_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_formateurs_edit.html', context={'form' : form});
+    
+def entreprises_add(request):
+    form = forms.EntrepriseForm(request.POST);
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'L\'entreprise a bien été ajoutée');
+        return redirect('entreprises_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_entreprises_edit.html', context={'form' : form});
+    
+def entreprises_edit(request):
+    form = forms.EntrepriseForm(request.POST or None, instance=Entreprise.objects.get(pk=request.POST["entreprise_id"]));
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'L\'entreprise a bien été modifiée');
+        return redirect('entreprises_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_entreprises_edit.html', context={'form' : form});

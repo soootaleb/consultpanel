@@ -42,3 +42,14 @@ class SessionForm(ModelForm):
     class Meta:
         model = Session
         fields = ['formation']
+        
+        
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['liste_entreprises', 'user', 'liste_catalogues']
+        
+class EntrepriseForm(ModelForm):
+    class Meta:
+        model = Entreprise
+        fields = ['nom']

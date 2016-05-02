@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import admin_pages, admin_profile, admin_sessions, admin_formations, admin_catalogues, admin_documents
+from .views import admin_entreprises, admin_pages, admin_profile, admin_sessions, admin_formations, admin_catalogues, admin_documents, admin_formateurs
 
 urlpatterns = [
     url(r'^$', admin_pages.index, name='admin_index'),
@@ -21,5 +21,13 @@ urlpatterns = [
     url(r'^formations/index/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/add/$', admin_formations.formations_add, name='formations_add'),
     url(r'^formations/edit/(?P<id>[0-9]+)$', admin_formations.formations_edit, name='formations_edit'),
+    url(r'^formateurs/$', admin_formateurs.formateurs_index, name='formateurs_index'),
+    url(r'^formateurs/index/$', admin_formateurs.formateurs_index, name='formateurs_index'),
+    url(r'^formateurs/add/$', admin_formateurs.formateurs_add, name='formateurs_add'),
+    url(r'^formateurs/edit/(?P<id>[0-9]+)$', admin_formateurs.formateurs_edit, name='formateurs_edit'),
+    url(r'^entreprises/$', admin_entreprises.entreprises_index, name='entreprises_index'),
+    url(r'^entreprises/index/$', admin_entreprises.entreprises_index, name='entreprises_index'),
+    url(r'^entreprises/add/$', admin_entreprises.entreprises_add, name='entreprises_add'),
+    url(r'^entreprises/edit/(?P<id>[0-9]+)$', admin_entreprises.entreprises_edit, name='entreprises_edit'),
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]
