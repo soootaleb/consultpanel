@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', admin_pages.index, name='admin_index'),
     url(r'^index/$', admin_pages.index, name='admin_index'),
     url(r'^profile/$', admin_profile.index, name='profile_index'),
+    url(r'^profile/index/$', admin_profile.index, name='profile_index'),
     url(r'^documents/$', admin_documents.documents_index, name='documents_index'),
     url(r'^documents/index/$', admin_documents.documents_index, name='documents_index'),
     url(r'^sessions/$', admin_sessions.sessions_index, name='sessions_index'),
