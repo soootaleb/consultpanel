@@ -55,7 +55,7 @@ class ProfileForm(ModelForm):
     
     class Meta:
         model = Profile
-        fields = ['liste_entreprises', 'user', 'liste_catalogues']
+        fields = ['user', 'liste_entreprises', 'liste_catalogues']
         
 class EntrepriseForm(ModelForm):
     

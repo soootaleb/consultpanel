@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import admin_entreprises, admin_pages, admin_profile, admin_sessions, admin_formations, admin_catalogues, admin_documents, admin_formateurs
+from .views import admin_clients, admin_entreprises, admin_pages, admin_profile, admin_sessions, admin_formations, admin_catalogues, admin_documents, admin_formateurs
 
 urlpatterns = [
     url(r'^$', admin_pages.index, name='admin_index'),
@@ -30,5 +30,9 @@ urlpatterns = [
     url(r'^entreprises/index/$', admin_entreprises.entreprises_index, name='entreprises_index'),
     url(r'^entreprises/add/$', admin_entreprises.entreprises_add, name='entreprises_add'),
     url(r'^entreprises/edit/(?P<id>[0-9]+)$', admin_entreprises.entreprises_edit, name='entreprises_edit'),
+    url(r'^clients/$', admin_clients.clients_index, name='clients_index'),
+    url(r'^clients/index/$', admin_clients.clients_index, name='clients_index'),
+    url(r'^clients/add/$', admin_clients.clients_add, name='clients_add'),
+    url(r'^clients/edit/(?P<id>[0-9]+)$', admin_clients.clients_edit, name='clients_edit'),
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]

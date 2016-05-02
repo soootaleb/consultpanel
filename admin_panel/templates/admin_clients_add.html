@@ -1,0 +1,10 @@
+{% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="/consult/form/clients_add" method="post">
+    {% csrf_token %}
+    {% crispy form %}
+    <input type="hidden" name="client_id" value="{{form.instance.id}}"/>
+</form>
+{% endblock %}
