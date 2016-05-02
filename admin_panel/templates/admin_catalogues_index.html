@@ -1,24 +1,178 @@
 {% extends "admin_root.html" %}
 
+{% block header_action %}
+<a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
+    <i class="font-icon-plus"> Ajouter une formation</i>
+</a>
+{% endblock %}
+
 {% block content %}
 
-<div class="col-sm-12" style="margin-bottom: 10px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-    <div class="btn-group">
-        <h3>Actions</h3>
-        <a href="{% url 'catalogues_add' %}">Ajouter un catalogue</a>
+<section class="box-typical box-typical-max-screen">
+    <header class="box-typical-header">
+        <div class="tbl-row">
+            <div class="tbl-cell tbl-cell-title">
+                <h3>23 Formations</h3>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
+            </div>
+        </div>
+    </header>
+    <div class="box-typical-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th style="min-width:75px">
+                            Prix H.T
+                        </th>
+                        <th style="min-width:85px">
+                            Prix T.T.C
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Intermédiaire</b>
+                        </td>
+                        <td>
+                            Formation avancée pour les personnes avec des connaissances en comptabilité.
+                        </td>
+                        <td>
+                            100€
+                        </td>
+                        <td>
+                            120€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Gestion du temps</b>
+                        </td>
+                        <td>
+                            Apprenez à gérer votre temps afin d'être plus productif et avoir plus de temps pour vous.
+                        </td>
+                        <td>
+                            100€
+                        </td>
+                        <td>
+                            120€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Basique</b>
+                        </td>
+                        <td>
+                            Vous allez découvrir les bases de la comptabilité.
+                        </td>
+                        <td>
+                            300€
+                        </td>
+                        <td>
+                            360€
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Management d'équipe</b>
+                        </td>
+                        <td>
+                            Développez vos relations professionnelles en découvrant des habitudes simples à mettre en place.
+                        </td>
+                        <td>
+                            300€
+                        </td>
+                        <td>
+                            360€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Gestion du stress</b>
+                        </td>
+                        <td>
+                            Apprenez à gérer votre stress afin d'être plus efficace et avoir plus d'assurance en vous.
+                        </td>
+                        <td>
+                            200€
+                        </td>
+                        <td>
+                            240€
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>Comptabilité — Expert</b>
+                        </td>
+                        <td>
+                            Je vous propose de découvrir des mécaniques pointues de comptabilité d'entreprise.
+                        </td>
+                        <td>
+                            200€
+                        </td>
+                        <td>
+                            240€
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</section>
 
-{% for catalogue in catalogues_list %}
-<div id="box_{{catalogue.id}}" class="col-sm-4" style="min-height:200px;">
-    <div class="card card-block" style="padding: 10px; margin-bottom: 30px; border-color: lightgray; border-style: solid; border-width: 1px; border-radius: 3px">
-        <h3 class="card-title">{{ catalogue.name }}</h3>
-        <p class="card-text">{{ catalogue.description }}</p>
-        <a href="{% url 'catalogues_edit' id=catalogue.id %}" class="btn btn-info">Modifier</a>
-        <button id="{{catalogue.id}}" class="btn btn-danger btn-delete">Supprimer</button>
-    </div>
-</div>
-{% endfor %}
 {% endblock %}
 
 {% block script %}

@@ -1,8 +1,8 @@
 {% extends "admin_root.html" %}
 
 {% block header_action %}
-<a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
-    <i class="font-icon-plus"> Ajouter une formation</i>
+<a href="{% url 'formateurs_add' %}" class="btn btn-rounded btn-success">
+    <i class="font-icon-plus"> Ajouter un formateur</i>
 </a>
 {% endblock %}
 
@@ -179,7 +179,7 @@
 <script>
     $(document).ready(function(){
         $(".btn-delete").click(function(){
-            var url = "http://localhost:8000/ajax/sessions/delete/" + event.target.id
+            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
             $.ajax({
                 type: "GET", //rest Type
                 dataType: 'html', //mispelled
@@ -190,11 +190,11 @@
                     if(json['status'] === "OK") {
                         document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
                     } else {
-                        alert("Une erreur est survenue, la session n'a pas été supprimée");
+                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
                     }
                 },
                 error : function(var1, var2, var3) {
-                    alert(var3);
+                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
                 }
             });
         });
