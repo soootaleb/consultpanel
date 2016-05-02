@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="box-typical box-typical-padding">
-        <form method="POST">
+        <form action="/consult/form/catalogues_add" method="POST">
             {% csrf_token %}
             {% crispy form %}
         </form>

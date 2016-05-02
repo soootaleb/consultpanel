@@ -4,4 +4,7 @@ from django.contrib.auth.decorators import permission_required
 
 def index(request):
     #user = Profile.objects.get(user=request.user)
-    return render(request, 'admin_profile_index.html', context={'user':user});
+    return render(request, 'admin_profile_index.html', context={
+        'user'          :   request.user,
+        'page_title'    :   'Mon profile'  
+        });

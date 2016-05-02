@@ -75,7 +75,7 @@ def sessions_edit(request):
         return render(request, 'admin_sessions_edit.html', context={'form' : form});
     
 def formateurs_add(request):
-    form = forms.FormateurForm(request.POST);
+    form = forms.ProfileForm(request.POST);
     if form.is_valid() and form.instance is not None :
         form.save();
         messages.success(request, 'Le formateur a bien été ajouté');
@@ -113,3 +113,24 @@ def entreprises_edit(request):
     else :
         messages.warning(request, 'Merci de vérifier les informations');
         return render(request, 'admin_entreprises_edit.html', context={'form' : form});
+    
+def clients_add(request):
+    form = forms.ProfileForm(request.POST);
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'Le client a bien été ajouté');
+        return redirect('clients_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_clients_edit.html', context={'form' : form});
+    
+def clients_edit(request):
+    form = forms.ProfileForm(request.POST or None, instance=Profile.objects.get(pk=request.POST["client_id"]));
+    if form.is_valid() and form.instance is not None :
+        form.save();
+        messages.success(request, 'Le client a bien été modifié');
+        return redirect('clients_index')
+    else :
+        messages.warning(request, 'Merci de vérifier les informations');
+        return render(request, 'admin_clients_edit.html', context={'form' : form});
+    

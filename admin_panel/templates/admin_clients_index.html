@@ -1,8 +1,8 @@
 {% extends "admin_root.html" %}
 
 {% block header_action %}
-<a href="{% url 'sessions_add' %}" class="btn btn-rounded btn-success">
-    <i class="font-icon-plus"> Ajouter une session</i>
+<a href="{% url 'clients_add' %}" class="btn btn-rounded btn-success">
+    <i class="font-icon-plus"> Ajouter un client</i>
 </a>
 {% endblock %}
 
@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for s in sessions_list %}
+                    {% for c in clients_list %}
                     <tr>
                         <td class="table-check">
                             <div class="checkbox checkbox-only">
@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         <td>
-                            <b>{{ s.formation }}</b>
+                            <b>{{ c.user }}</b>
                         </td>
                     </tr>
                     {% endfor %}
