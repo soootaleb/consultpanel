@@ -75,7 +75,7 @@ def sessions_edit(request):
         return render(request, 'admin_sessions_edit.html', context={'form' : form});
     
 def formateurs_add(request):
-    form = forms.FormateurForm(request.POST);
+    form = forms.ProfileForm(request.POST);
     if form.is_valid() and form.instance is not None :
         form.save();
         messages.success(request, 'Le formateur a bien été ajouté');

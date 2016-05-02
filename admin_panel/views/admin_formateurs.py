@@ -5,7 +5,8 @@ from admin_panel import forms
 
 def formateurs_index(request):
     return render(request, 'admin_formateurs_index.html', context={
-                  'page_title'        :   'Gestion des formateurs',
+                  'page_title'          :   'Gestion des formateurs',
+                  'profiles_list'       : Profile.objects.all()
                   });
 
 def formateurs_add(request):
