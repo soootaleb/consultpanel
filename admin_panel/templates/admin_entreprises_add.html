@@ -3,11 +3,9 @@
 
 {% block content %}
     <div class="box-typical box-typical-padding">
-
-        <form action="/consult/form/formateurs_edit" method="post">
+        <form action="/consult/form/entreprises_add" method="POST">
             {% csrf_token %}
             {% crispy form %}
-            <input type="hidden" name="formateur_id" value="{{form.instance.id}}"/>
         </form>
     </div>
 {% endblock %}
