@@ -38,7 +38,7 @@
 
                                     <!-- Text-Logo -->
                                     <a href="#top" class="navbar-brand scrollto" title="Consult Panel">
-                                        <img src="{% static 'public_site/images/consultpanel_logo_white.svg' %}" id="header-logo" alt="Consult Panel Logo">
+                                        <img src="{% static 'public_site/images/consultpanel_logo_white.svg' %}" id="header-logo" alt="Consult Panel - Logo">
                                         <span class="text-logo">Consult Panel</span>
                                     </a>
 
@@ -52,9 +52,11 @@
                                         <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
                                         <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
                                         <li><a href="#team" title="" class="scrollto">L'équipe</a></li>
+                                        {% comment "Login" %}
                                         <!-- Login and Signup Modal on click -->
                                         <!-- <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li> -->
                                         <!-- <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
+                                        {% endcomment %}
                                     </ul>
                                 </div><!-- /End Navbar-Collapse -->
                             </div><!-- /End Col -->
@@ -174,7 +176,7 @@
                         <div class="col-md-12">
                             <!-- Dashboard Image -->
                             <div class="image-dashboard text-center">
-                                <img src="{% static 'public_site/images/first-screenshot.png' %}" class="wow fadeInUp" data-wow-duration="2s" alt="SmartMvp-Dashboard">
+                                <img src="{% static 'public_site/images/dashboard.png' %}" class="wow fadeInUp" data-wow-duration="2s" alt="Consult Panel Dashboard">
                             </div>
                         </div><!-- /End Col -->
                     </div><!-- /End Row -->
@@ -641,7 +643,7 @@
                         <!-- Team Box -->
                         <div class="col-sm-4 team-box">
                             <div class="team-img">
-                                <img src="{% static 'public_site/images/bross.jpg' %}" class="img-responsive" alt="">
+                                <img src="{% static 'public_site/images/bross.jpg' %}" class="img-responsive" alt="Quentin Brosse">
                                 <div class="img-overlay">
                                     <div class="img-icons">
                                     <span class="icon-white">
@@ -663,7 +665,7 @@
                         <!-- Team Box -->
                         <div class="col-sm-4 team-box">
                             <div class="team-img">
-                                <img src="{% static 'public_site/images/berger.jpg' %}" class="img-responsive" alt="">
+                                <img src="{% static 'public_site/images/berger.jpg' %}" class="img-responsive" alt="Matthieu Berger">
                                 <div class="img-overlay">
                                     <div class="img-icons">
                                     <span class="icon-white">
@@ -685,7 +687,7 @@
                         <!-- Team Box -->
                         <div class="col-sm-4 team-box">
                             <div class="team-img">
-                                <img src="{% static 'public_site/images/sofiane.jpg' %}" class="img-responsive" alt="">
+                                <img src="{% static 'public_site/images/sofiane.jpg' %}" class="img-responsive" alt="Sofiane Taleb">
                                 <div class="img-overlay">
                                     <div class="img-icons">
                                     <span class="icon-white">
