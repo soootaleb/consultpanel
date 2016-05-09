@@ -166,5 +166,14 @@ LOGGING = {
     }
 }
 
+#   MAILING
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'consultpanel.fr'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'support'
+EMAIL_HOST_PASSWORD = 'mastercraft'
+DEFAULT_FROM_EMAIL = 'support@consultpanel.fr'
+EMAIL_USE_TLS = True
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
