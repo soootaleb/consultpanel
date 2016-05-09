@@ -1,3 +1,5 @@
+# coding: utf8
+
 from django.shortcuts import render, redirect
 from consult_panel.models import *
 from django.contrib import messages
