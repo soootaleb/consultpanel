@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<head lang="fr">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Inscription - Consult Panel</title>
+
+    <link href="{% static 'main/img/favicon.144x144.png' %}" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="{% static 'main/img/favicon.114x114.png' %}" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="{% static 'main/img/favicon.72x72.png' %}" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="{% static 'main/img/favicon.57x57.png' %}" rel="apple-touch-icon" type="image/png">
+    <link href="{% static 'main/img/favicon.png' %}" rel="icon" type="image/png">
+    <link href="{% static 'main/img/favicon.ico' %}" rel="shortcut icon">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+    <style type="text/css"></style>
+</head>
+<body>
+
+<div class="page-center">
+    <div class="page-center-in">
+        <div class="container-fluid">
+
+            <div class="col-xs-12 col-md-offset-1 col-md-10">
+                <section class="box-typical steps-icon-block">
+                    <div class="row text-center" style="padding: 20px;">
+                        <h1>Inscription - Consult Panel</h1>
+                    </div>
+                    <div class="steps-icon-progress">
+                        <ul style="margin-left: 45px; margin-right: 45px;">
+                            <li class="active">
+                                <div class="icon">
+                                    <i class="font-icon font-icon-cart-2"></i>
+                                </div>
+                                <div class="caption">Cart</div>
+                            </li>
+                            <li {%  if wizard.steps.step1 > 1%}class="active"{% endif %}>
+                                <div class="icon">
+                                    <i class="font-icon font-icon-pin-2"></i>
+                                </div>
+                                <div class="caption">Delivery</div>
+                            </li>
+                            <li {%  if wizard.steps.step1 > 2%}class="active"{% endif %}>
+                                <div class="icon">
+                                    <i class="font-icon font-icon-card"></i>
+                                </div>
+                                <div class="caption">Payment</div>
+                            </li>
+                            <li {%  if wizard.steps.step1 > 3%}class="active"{% endif %}>
+                                <div class="icon">
+                                    <i class="font-icon font-icon-check-bird"></i>
+                                </div>
+                                <div class="caption">Confirmation</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ wizard.management_form }}
+
+                        {% crispy wizard.form %}
+
+                        <div class="col-xs-6 text-left">
+                        {% if wizard.steps.prev %}
+                            <button name="wizard_goto_step" class="btn btn-rounded btn-grey" type="submit"
+                                    value="{{ wizard.steps.prev }}">← Précédent
+                            </button>
+                        {% endif %}
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <input type="submit" class="btn btn-rounded" value="Suivant →"/>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div><!--.page-center-->
+
+</body>
+</html>

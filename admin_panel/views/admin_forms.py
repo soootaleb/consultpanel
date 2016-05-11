@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as lin # To avoid ambigous function name
-from admin_panel import forms
+from admin_panel.forms import forms
 from consult_panel.models import *
 from django.contrib import messages
 

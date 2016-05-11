@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import permission_required
-from admin_panel import forms
+from admin_panel.forms import forms
 
 def formateurs_index(request):
     return render(request, 'admin_formateurs_index.html', context={

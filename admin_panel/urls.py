@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
-from django.contrib import admin
+from admin_panel.forms.registration_forms import RegistrationForm, ProfileForm
+from admin_panel.views.admin_login import RegistrationWizard
 
 from .views import \
     admin_clients, \
@@ -11,11 +12,14 @@ from .views import \
     admin_formations, \
     admin_catalogues, \
     admin_documents, \
-    admin_formateurs
+    admin_formateurs, \
+    admin_login
 
 urlpatterns = [
     url(r'^$', admin_pages.index, name='admin_index'),
     url(r'^index/$', admin_pages.index, name='admin_index'),
+
+    url(r'^registration/$', RegistrationWizard.as_view([RegistrationForm, ProfileForm]), name='registration_steps'),
 
     url(r'^profile/$', admin_profile.index, name='profile_index'),
     url(r'^profile/index/$', admin_profile.index, name='profile_index'),
