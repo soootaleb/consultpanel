@@ -1,0 +1,101 @@
+{% extends "admin_root.html" %}
+
+{% block content %}
+
+    <section class="tabs-section">
+        <div class="tabs-section-nav tabs-section-nav-icons">
+            <div class="tbl">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">
+                                <i class="font-icon glyphicon glyphicon-duplicate"></i>
+                                Thèmes
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">
+                                <span class="glyphicon glyphicon-music"></span>
+                                [A faire]
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="tabs-1-tab-1">
+                {% include "admin_preferences_documents_templates.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-2">
+                Tab 2
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        "use strict";
+
+        $(document).ready(function() {
+
+            /* ==========================================================================
+             Documents templates
+             ========================================================================== */
+            var filterBtn = $('.files-manager-side-list a');
+            var templates = $('.fm-file');
+            var aside = {
+                'title': $('.files-manager-aside-section .box-typical-header-sm'),
+                'preveiw': $('.files-manager-aside-section .preview')
+            };
+            var filterClass;
+
+            //Aside
+            var refreshAside = function (templateSelector) {
+                aside['title'].text(templateSelector.find($('.fm-file-name')).text());
+            };
+
+
+            //Selection
+            var selectTemplate = function (templateSelector) {
+                templates.removeClass('current');
+                templateSelector.addClass('current');
+                refreshAside(templateSelector);
+            };
+
+            templates.click(function (event) {
+                selectTemplate($(this));
+            });
+
+
+            //Filtering
+            filterBtn.click(function (event) {
+                event.preventDefault();
+                filterClass = $('.' + $(this).attr('href'));
+
+                filterBtn.removeClass('active');
+                $(this).addClass('active');
+
+                templates.addClass('hidden');
+                $.each(filterClass, function(key, val){
+                    $(val).removeClass('hidden');
+                });
+                selectTemplate($(filterClass[0]));
+            });
+
+            $(filterBtn[0]).trigger('click');
+
+
+
+
+        });
+
+    </script>
+
+{% endblock %}
