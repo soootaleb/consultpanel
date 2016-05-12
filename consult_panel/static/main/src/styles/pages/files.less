@@ -39,7 +39,7 @@
    }
 }
 
-.files-manager-aside { float: right; width: 280px; position: relative; }
+.files-manager-aside { float: right; width: 200px; position: relative; }
 .files-manager-aside-section { border-top: solid 1px @color-border-light; padding: 15px 15px 20px;
    &:first-child { border-top: none; }
    .box-typical-header-sm { padding: 0 0 10px; }
@@ -54,11 +54,11 @@
       .font-icon-tw-fill { color: @color-tw; }
       .font-icon-gp-fill { color: @color-gp; }
    }
-   img.preview { width: 100%; border-radius: 3px; border: 1px solid @color-grey; } //LA
+   img.preview { width: 100%; border-radius: 3px; border: 1px solid @color-grey; margin-bottom: 20px; }
 }
 
-.files-manager-content { float: left; width: 100%; margin-right: -280px; }
-.files-manager-content-in { margin-right: 280px; border-right: solid 1px @color-border-light;}
+.files-manager-content { float: left; width: 100%; margin-right: -200px; }
+.files-manager-content-in { margin-right: 200px; border-right: solid 1px @color-border-light;}
 
 .fm-file-grid { padding: 18px 0 0 18px; .clearfix();  }
 
@@ -71,7 +71,7 @@
 
    &:hover,
    &.current { background-color: @color-bg-grey-light; cursor: pointer; }
-   &.selected { border: 1px solid @color-blue; cursor: pointer; }
+   &.used { border: 1px solid @color-blue; cursor: pointer; margin-top: -1px; }
 }
 
 @media (max-width: 830px) {

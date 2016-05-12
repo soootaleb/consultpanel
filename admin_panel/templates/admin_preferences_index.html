@@ -10,7 +10,7 @@
                         <a class="nav-link active" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                             <span class="nav-link-in">
                                 <i class="font-icon glyphicon glyphicon-duplicate"></i>
-                                Thèmes
+                                Documents
                             </span>
                         </a>
                     </li>
@@ -55,10 +55,40 @@
                 'preveiw': $('.files-manager-aside-section .preview')
             };
             var filterClass;
+            var useBtn = $('#file-use');
+            var useAlreadyBtn = $('#file-already-used');
+
+
+            // Use
+            var canUse = function (templateSelector) {
+                if (templateSelector.hasClass('used')) {
+                    useBtn.addClass('hidden');
+                    useAlreadyBtn.removeClass('hidden');
+                } else {
+                    useBtn.removeClass('hidden');
+                    useAlreadyBtn.addClass('hidden');
+                }
+            };
+
+            var useTemplate = function (templateSelector) {
+                var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
+                classTab.removeClass('used');
+                templateSelector.addClass('used');
+                canUse(templateSelector);
+            };
+
+            useBtn.click(function (event) {
+                var selectedTemplate = $(".fm-file.current");
+                useTemplate(selectedTemplate);
+                //console.log(selectedTemplate.data('template-name'));
+                alert('TODO :\n- Sending to server\n- Modal')
+            });
+
 
             //Aside
             var refreshAside = function (templateSelector) {
                 aside['title'].text(templateSelector.find($('.fm-file-name')).text());
+                canUse(templateSelector);
             };
 
 
@@ -90,9 +120,6 @@
             });
 
             $(filterBtn[0]).trigger('click');
-
-
-
 
         });
 

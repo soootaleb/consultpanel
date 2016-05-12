@@ -1,15 +1,20 @@
 {% load staticfiles %}
 
+<h2>Thèmes</h2>
+
+<p>Veuillez choisir les thèmes à utiliser pour générer vos documents :</p>
+
 <section class="box-typical files-manager">
     <nav class="files-manager-side">
         <header class="files-manager-side-title">Documents</header>
         <ul class="files-manager-side-list">
-            <li><a href="files-manager-1-tab-1" class="active">Programme</a></li>
-            <li><a href="files-manager-1-tab-2">Convention</a></li>
-            <li><a href="files-manager-1-tab-3">Fiche de Présence</a></li>
-            <li><a href="files-manager-1-tab-4">Certification</a></li>
-            <li><a href="files-manager-1-tab-5">Trash</a></li>
-            <li><a href="files-manager-1-tab-6">Questionnaire</a></li>
+            {% for type in dg_types %}
+                <li>
+                    <a href="files-manager-1-tab-{{ type.id }}" {% if forloop.first %}class="active"{% endif %}>
+                        {{ type.label }}
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
     </nav>
 
@@ -19,101 +24,16 @@
             <div class="files-manager-content">
                 <div class="files-manager-content-in scrollable-block">
                     <div class="fm-file-grid">
-                        <div class="fm-file hidden files-manager-1-tab-1 selected">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">1</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
 
-                        <div class="fm-file hidden files-manager-1-tab-2">
+                        {% for template in dg_templates %}
+                        <div class="fm-file hidden files-manager-1-tab-{{ template.type_id }}" data-template-name="{{ template.slug }}">
                             <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
+                                <img src="{% static 'main/img/file.png' %}" alt="">
                             </div>
-                            <div class="fm-file-name">2</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
+                            <div class="fm-file-name">{{ template.label }}</div>
                         </div>
+                        {% endfor %}
 
-                        <div class="fm-file hidden files-manager-1-tab-3">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">3</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-4">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">4</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-5">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">5</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-6">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">6</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-1">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">12</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-2">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">22</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-3">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">32</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-4">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">42</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-5">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}" alt="">
-                            </div>
-                            <div class="fm-file-name">52</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
-
-                        <div class="fm-file hidden files-manager-1-tab-6">
-                            <div class="fm-file-icon">
-                                <img src="{% static 'main/img/folder.png' %}">
-                            </div>
-                            <div class="fm-file-name">62</div>
-                            <div class="fm-file-size">7 files, 358 MB</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -124,7 +44,8 @@
 
                     <img class="preview" src="{% static 'main/img/cv.jpg' %}">
 
-                    <a href="#" class="btn btn-rounded"><i class="font-icon-left font-icon-download-3"></i>Download</a>
+                    <button class="btn btn-rounded" id="file-use"><i class="font-icon-left font-icon-download-3"></i>Utiliser</button>
+                    <button type="button" class="btn btn-rounded" id="file-already-used" disabled="">Déjà Utilisé</button>
                 </div>
             </section>
         </div>

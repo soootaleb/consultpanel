@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-    
+
+"""
+Consult Panel models
+"""
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
@@ -12,7 +15,7 @@ class Session(models.Model):
     formation = models.ForeignKey(Formation)
     
     def __str__(self):
-        return "Session de : " + self.formation.nom;
+        return "Session de : " + self.formation.nom
     
 class Localisation(models.Model):
     nom = models.CharField(max_length=200)
@@ -35,7 +38,7 @@ class Entreprise(models.Model):
     nom = models.CharField(max_length=200)
     
     def __str__(self):
-        return self.nom;
+        return self.nom
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -43,7 +46,8 @@ class Profile(models.Model):
     liste_catalogues = models.ManyToManyField(Catalogue)
     
     def __str__(self):
-        return self.user.first_name;
+        return self.user.first_name
+
 
 """
 Landing page models
