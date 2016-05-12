@@ -48,6 +48,13 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.first_name
 
+class PreferenceType(models.Model):
+    label = models.CharField(max_length=100)
+
+class Preference(models.Model):
+    type = models.ForeignKey(PreferenceType, on_delete=models.CASCADE)
+    value = models.CharField(max_length=255)
+
 
 """
 Landing page models
