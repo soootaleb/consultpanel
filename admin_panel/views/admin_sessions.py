@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import permission_required
-from admin_panel.forms import SessionForm
+from admin_panel.forms.forms import SessionForm
 
 
 def sessions_index(request):
