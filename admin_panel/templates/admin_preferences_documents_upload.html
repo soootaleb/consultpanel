@@ -1,0 +1,6 @@
+{% load crispy_forms_tags %}
+
+<form action="/consult/form/file_upload" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% crispy form %}
+</form>
