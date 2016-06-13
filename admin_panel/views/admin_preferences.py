@@ -23,8 +23,8 @@ def preferences_index(request):
         'form': FileForm(),
         'dg_types':   DocumentType.objects.all(),
         'dg_templates': pdf_ones,
-        'generated_file': generator.generate('myfile.html').with_context({
-            'my_message': 'This is my message',
+        'generated_file': generator.generate('test.html').with_context({
+            'message': 'This is my message',
             'document_title': 'Convention de stage',
             'document_description': 'DocumentGenerator demonstration'
         }).as_html()

@@ -7,6 +7,8 @@ import os
 class DocumentGenerator():
 
     def __init__(self, user):
+        if user is None:
+            raise Exception("You must give a user to the generator")
         self.profile = Profile.objects.get(user=user)
         self.context = {
             'profile': self.profile
@@ -14,6 +16,9 @@ class DocumentGenerator():
 
     def generate(self, document):
         self.file = os.path.join(self.profile.get_medias_directory(), document)
+        if not os.path.isfile(self.file):
+            raise Exception("The file " + self.file +
+                            " does not exists for user " + str(self.profile.user))
         self.template = DjangoTemplate(open(self.file, 'r').read())
         return self
 
