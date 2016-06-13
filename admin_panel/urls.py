@@ -29,8 +29,6 @@ urlpatterns = [
         name='preferences_index'),
     url(r'^preferences/index/$', admin_preferences.preferences_index,
         name='preferences_index'),
-    url(r'^preferences/template/$',
-        admin_preferences.update_template, name='preferences_update_template'),
 
     url(r'^documents/$', admin_documents.documents_index, name='documents_index'),
     url(r'^documents/index/$', admin_documents.documents_index,

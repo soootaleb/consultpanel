@@ -3,9 +3,11 @@
 from django.shortcuts import render, redirect
 from consult_panel.models import *
 from django.contrib import messages
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from admin_panel.user_tests import *
 
 
+@user_passes_test(is_formateur)
 def pages_index(request):
     return render(request, 'admin_pages_index.html', context={
         'page_title':   'Tableau de bord',
