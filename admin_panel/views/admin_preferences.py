@@ -6,7 +6,7 @@ from document_generator.models import *
 from document_generator.generators import ConventionGenerator
 from admin_panel.forms import FileForm
 from admin_panel.user_tests import *
-
+from consult_panel.settings import MEDIA_ROOT
 import os
 
 
@@ -17,6 +17,7 @@ def preferences_index(request):
     profile_folder = profile.get_medias_directory()
     files = os.listdir(profile_folder)
     pdf_ones = [x for x in files if x[-4:] == '.pdf']
+
     return render(request, 'admin_preferences_index.html', context={
         'user':   request.user,
         'page_title':   'Préférences',
@@ -27,5 +28,5 @@ def preferences_index(request):
             'message': 'This is my message',
             'document_title': 'Convention de stage',
             'document_description': 'DocumentGenerator demonstration'
-        }).as_html()
+        }).as_pdf()
     })

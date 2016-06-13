@@ -54,6 +54,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.first_name
 
+    def get_medias_directory_simple(self):
+        return str(self.user.id) + '_' + self.user.username
+
     def get_medias_directory(self):
         user_folder = str(self.user.id) + '_' + self.user.username
         directory = os.path.join(MEDIA_ROOT, 'admin_documents', user_folder)
