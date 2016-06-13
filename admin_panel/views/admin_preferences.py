@@ -4,10 +4,7 @@ from consult_panel.settings import *
 from django.contrib.auth.decorators import permission_required
 from document_generator.models import *
 from admin_panel.forms.forms import FileForm
-
-from io import BytesIO
-from reportlab.pdfgen import canvas
-from django.http import HttpResponse
+from admin_panel.user_tests import *
 
 import os
 
