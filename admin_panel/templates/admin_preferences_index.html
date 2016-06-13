@@ -22,6 +22,14 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">
+                                <span class="glyphicon glyphicon-music"></span>
+                                Test view
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -32,6 +40,9 @@
             </div>
             <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
                 {% include "admin_preferences_documents_upload.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
+                {% include "admin_preferences_test_view.html" %}
             </div>
         </div>
     </section>
