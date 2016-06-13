@@ -135,6 +135,8 @@ LOGIN_URL = '/login/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'consult_panel', 'medias')
 MEDIA_URL = '/medias/'
 
+AUTH_PROFILE_MODULE = 'consult_panel.models.Profile'
+
 # LOGGING
 LOGGING = {
     'version': 1,

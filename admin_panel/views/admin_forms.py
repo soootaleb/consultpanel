@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 # To avoid ambigous function name
 from django.contrib.auth import authenticate, login as lin
-from admin_panel.forms import forms
+from admin_panel import forms
 from consult_panel.models import *
 from document_generator.models import *
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 
 
 def file_upload(request):
     form = forms.FileForm(request.POST, request.FILES)
+    form.instance.profile = Profile.objects.get(user=request.user)
     form.slug = 'this-is-my-test-slug'
     if form.is_valid():
         form.save()

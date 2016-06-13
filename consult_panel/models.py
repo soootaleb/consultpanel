@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-"""
-Consult Panel models
-"""
+import os
+from consult_panel.settings import MEDIA_ROOT
 
 
 class Formation(models.Model):
@@ -57,7 +55,7 @@ class Profile(models.Model):
         return self.user.first_name
 
     def get_medias_directory(self):
-        user_folder = str(self.user.id) + "_" + self.user.first_name
+        user_folder = str(self.user.id) + '_' + self.user.username
         directory = os.path.join(MEDIA_ROOT, 'admin_documents', user_folder)
         if not os.path.isdir(directory):
             os.mkdir(directory)

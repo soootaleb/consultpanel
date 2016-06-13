@@ -11,9 +11,9 @@ import os
 
 @user_passes_test(is_formateur)
 def preferences_index(request):
-    #user = Profile.objects.get(user=request.user)
-    #user_folder = user.get_medias_directory()
-    files = os.listdir(os.path.join(MEDIA_ROOT, 'admin_documents'))
+    profile = Profile.objects.get(user=request.user)
+    profile_folder = profile.get_medias_directory()
+    files = os.listdir(profile_folder)
     pdf_ones = [x for x in files if x[-4:] == '.pdf']
     return render(request, 'admin_preferences_index.html', context={
         'user':   request.user,
