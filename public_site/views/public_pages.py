@@ -14,7 +14,6 @@ class RegistrationWizard(SessionWizardView):
         return ['public_pages_register.html']
 
     def done(self, form_list, **kwargs):
-        messages.success(request, 'Vous êtes maintenant enregistré')
         return redirect('public_index')
 
 

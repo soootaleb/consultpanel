@@ -10,9 +10,7 @@ from .views import \
     admin_formations, \
     admin_catalogues, \
     admin_documents, \
-    admin_formateurs, \
-    admin_login
-
+    admin_formateurs
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
     url(r'^index/$', admin_pages.pages_index, name='admin_index'),
