@@ -16,6 +16,7 @@ def pages_index(request):
     })
 
 
+@user_passes_test(is_formateur)
 def form(request, name):
     from . import admin_forms
     if request.method == 'POST':

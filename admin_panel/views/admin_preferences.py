@@ -12,6 +12,7 @@ from django.http import HttpResponse
 import os
 
 
+@user_passes_test(is_formateur)
 def preferences_index(request):
     #user = Profile.objects.get(user=request.user)
     files = os.listdir(os.path.join(MEDIA_ROOT, 'admin_documents'))

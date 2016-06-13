@@ -4,21 +4,25 @@ from django.contrib.auth.decorators import permission_required
 from admin_panel.forms.forms import ProfileForm
 
 
+@user_passes_test(is_formateur)
 def clients_index(request):
     return render(request, 'admin_clients_index.html', context={
-        'page_title'        : 'Gestion des clients',
-        'clients_list'     : Profile.objects.all()
-        });
-        
+        'page_title': 'Gestion des clients',
+        'clients_list': Profile.objects.all()
+    })
+
+
+@user_passes_test(is_formateur)
 def clients_add(request):
     return render(request, 'admin_clients_add.html', {
-        'page_title'        : 'Ajouter un client',
-        'form'              : ProfileForm()
-    });
-    
+        'page_title': 'Ajouter un client',
+        'form': ProfileForm()
+    })
+
+
+@user_passes_test(is_formateur)
 def clients_edit(request, id):
     return render(request, 'admin_clients_edit.html', {
-        'page_title'        : 'Editer un client',
-        'form'              : ProfileForm(instance=Profile.objects.get(pk=id))
-    });
-    
+        'page_title': 'Editer un client',
+        'form': ProfileForm(instance=Profile.objects.get(pk=id))
+    })
