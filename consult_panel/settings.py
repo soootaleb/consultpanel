@@ -132,7 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'document_generator', 'medias')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'consult_panel', 'medias')
 MEDIA_URL = '/medias/'
 
 # LOGGING

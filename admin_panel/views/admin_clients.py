@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from admin_panel.forms.forms import ProfileForm
+from consult_panel.forms import ProfileForm
 from admin_panel.user_tests import *
 
 

@@ -1,6 +1,4 @@
 from django.conf.urls import url, include
-from admin_panel.forms.registration_forms import RegistrationForm, ProfileForm
-from admin_panel.views.admin_login import RegistrationWizard
 
 from .views import \
     admin_clients, \
@@ -18,9 +16,6 @@ from .views import \
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
     url(r'^index/$', admin_pages.pages_index, name='admin_index'),
-
-    url(r'^registration/$', RegistrationWizard.as_view(
-        [RegistrationForm, ProfileForm]), name='registration_steps'),
 
     url(r'^profile/$', admin_profile.profile_index, name='profile_index'),
     url(r'^profile/index/$', admin_profile.profile_index, name='profile_index'),
