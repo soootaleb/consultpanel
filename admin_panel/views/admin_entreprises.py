@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from consult_panel.models import *
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import user_passes_test
 from admin_panel.forms import forms
 from admin_panel.user_tests import *
 
