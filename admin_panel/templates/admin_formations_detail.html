@@ -1,8 +1,134 @@
-{% extends "admin_root.html" %}
+{% extends "admin_root.html" %} {% block content %}
+
+<section class="tabs-section">
+    <div class="tabs-section-nav tabs-section-nav-icons">
+        <div class="tbl">
+            <ul class="nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link {% if not flag %}active{% endif %}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+                        <span class="nav-link-in">
+                                <i class="font-icon glyphicon glyphicon-duplicate"></i>
+                                Détail
+                            </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if flag %} active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                        <span class="nav-link-in">
+                                <span class="glyphicon glyphicon-music"></span> Inscriptions
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                        <span class="nav-link-in">
+                                <span class="glyphicon glyphicon-music"></span> Documents
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade {% if not flag %}in active{% endif %}" id="tabs-1-tab-1">
+            <p><strong>Nom : </strong>{{formation.nom}}</p>
+            <p><strong>Description : </strong>{{formation.description}}</p>
+            <p><strong>Prix H.T (€) : </strong>{{formation.prix_ht}}</p>
+            <p><strong>Prix T.T.C (€) : </strong>{{formation.prix_ttc}}</p>
+            
+        </div>
+        <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}
+
+<script type="text/javascript">
+        "use strict";
+
+        $(document).ready(function() {
+
+            /* ==========================================================================
+             Documents templates
+             ========================================================================== */
+            var filterBtn = $('.files-manager-side-list a');
+            var templates = $('.fm-file');
+            var aside = {
+                'title': $('.files-manager-aside-section .box-typical-header-sm'),
+                'preveiw': $('.files-manager-aside-section .preview')
+            };
+            var filterClass;
+            var useBtn = $('#file-use');
+            var useAlreadyBtn = $('#file-already-used');
 
 
-{% block content %}
+            // Use
+            var canUse = function (templateSelector) {
+                if (templateSelector.hasClass('used')) {
+                    useBtn.addClass('hidden');
+                    useAlreadyBtn.removeClass('hidden');
+                } else {
+                    useBtn.removeClass('hidden');
+                    useAlreadyBtn.addClass('hidden');
+                }
+            };
 
-{{formation}}
+            var useTemplate = function (templateSelector) {
+                var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
+                classTab.removeClass('used');
+                templateSelector.addClass('used');
+                canUse(templateSelector);
+            };
 
-{% endblock %}
+            useBtn.click(function (event) {
+                var selectedTemplate = $(".fm-file.current");
+                useTemplate(selectedTemplate);
+                //console.log(selectedTemplate.data('template-name'));
+                alert('TODO :\n- Sending to server\n- Modal')
+            });
+
+
+            //Aside
+            var refreshAside = function (templateSelector) {
+                aside['title'].text(templateSelector.find($('.fm-file-name')).text());
+                canUse(templateSelector);
+            };
+
+
+            //Selection
+            var selectTemplate = function (templateSelector) {
+                templates.removeClass('current');
+                templateSelector.addClass('current');
+                refreshAside(templateSelector);
+            };
+
+            templates.click(function (event) {
+                selectTemplate($(this));
+            });
+
+
+            //Filtering
+            filterBtn.click(function (event) {
+                event.preventDefault();
+                filterClass = $('.' + $(this).attr('href'));
+
+                filterBtn.removeClass('active');
+                $(this).addClass('active');
+
+                templates.addClass('hidden');
+                $.each(filterClass, function(key, val){
+                    $(val).removeClass('hidden');
+                });
+                selectTemplate($(filterClass[0]));
+            });
+
+            $(filterBtn[0]).trigger('click');
+
+        });
+
+    </script> {% endblock %}
