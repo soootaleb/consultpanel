@@ -56,6 +56,8 @@ def catalogues_add(request):
     form.user = request.user
     if form.is_valid():
         form.save()
+        Profile.objects.get(user=request.user).liste_catalogues.add(
+            Catalogue.objects.get(pk=form.instance.id))
         messages.success(request, 'Le catalogue a bien été ajoutée')
         return redirect('/consult/catalogues/')
     else:

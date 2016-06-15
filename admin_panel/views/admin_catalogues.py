@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from admin_panel.forms import forms
+from admin_panel.forms import *
 from admin_panel.user_tests import *
 
 
 @user_passes_test(is_formateur)
 def catalogues_index(request):
     return render(request, 'admin_catalogues_index.html', context={
+        # Session.objects.filter(formation__catalogue__profile__user=request.user)
         'page_title':   'Gestion des catalogues',
-        'catalogues_list':   Catalogue.objects.all(),
+        'catalogues_list':   Catalogue.objects.filter(profile__user=request.user).exclude(nom='main'),
     })
 
 
@@ -17,7 +18,7 @@ def catalogues_index(request):
 def catalogues_add(request):
     return render(request, 'admin_catalogues_add.html', {
         'page_title': 'Ajouter un catalogue',
-        'form': forms.CatalogueForm()
+        'form': CatalogueForm()
     })
 
 
@@ -25,5 +26,5 @@ def catalogues_add(request):
 def catalogues_edit(request, id):
     return render(request, 'admin_catalogues_edit.html', {
         'page_title': 'Editer un catalogue',
-        'form': forms.CatalogueForm(instance=Catalogue.objects.get(pk=id))
+        'form': CatalogueForm(instance=Catalogue.objects.get(pk=id))
     })

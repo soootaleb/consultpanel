@@ -1,5 +1,6 @@
 setup.py
 .vscode/
+db.sqlite3
 
 ### Django ###
 *.log
@@ -7,7 +8,7 @@ setup.py
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
+migrations/
 *.db
 media
 

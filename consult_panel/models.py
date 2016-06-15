@@ -33,7 +33,7 @@ class Cours(models.Model):
 
 class Catalogue(models.Model):
     nom = models.CharField(max_length=200)
-    liste_formations = models.ManyToManyField(Formation)
+    liste_formations = models.ManyToManyField(Formation, blank=True)
 
     def __str__(self):
         return self.nom
