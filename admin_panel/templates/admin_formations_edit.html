@@ -4,12 +4,10 @@
 {% block content %}
     <div class="box-typical box-typical-padding">
 
-        <form action="/consult/form/formations_add" method="post">
+        <form action="/consult/form/formations_edit" method="post">
+            <input type="hidden" name="formation_id" value="{{form.instance.id}}"/>
             {% csrf_token %}
             {% crispy form %}
-            <input type="hidden" name="formation_id" value="{{form.instance.id}}"/>
         </form>
-
-
     </div>
 {% endblock %}
