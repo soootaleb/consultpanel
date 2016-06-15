@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^catalogues/add/$', admin_catalogues.catalogues_add, name='catalogues_add'),
     url(r'^catalogues/edit/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_edit, name='catalogues_edit'),
+    url(r'^catalogues/detail/(?P<id>[0-9]+)$',
+        admin_catalogues.catalogues_detail, name='catalogues_detail'),
 
     url(r'^formations/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/index/$', admin_formations.formations_index,
