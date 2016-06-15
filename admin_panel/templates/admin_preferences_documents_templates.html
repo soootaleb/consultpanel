@@ -24,7 +24,7 @@
                     <div class="fm-file-grid">
 
                         {% for template in dg_templates %}
-                        <div class="fm-file hidden files-manager-1-tab-2" data-template-name="{{ template }}">
+                        <div class="fm-file hidden files-manager-1-tab-{{template.type.id}}" data-template-name="{{ template }}">
                             <div class="fm-file-icon">
                                 <img src="{% static 'main/img/file.png' %}" alt="">
                             </div>

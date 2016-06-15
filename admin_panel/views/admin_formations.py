@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from consult_panel.models import *
-from admin_panel.forms import forms
+from admin_panel.forms import *
 from admin_panel.user_tests import *
 from django.contrib.auth.decorators import user_passes_test
 
@@ -17,7 +17,7 @@ def formations_index(request):
 def formations_add(request):
     return render(request, 'admin_formations_add.html', {
                   'page_title': 'Ajouter une formation',
-                  'form': forms.FormationForm()
+                  'form': FormationForm()
                   })
 
 
@@ -25,5 +25,5 @@ def formations_add(request):
 def formations_edit(request, id):
     return render(request, 'admin_formations_edit.html', {
                   'page_title': 'Editer une formation',
-                  'form': forms.FormationForm(instance=Formation.objects.get(pk=id))
+                  'form': FormationForm(instance=Formation.objects.get(pk=id))
                   })

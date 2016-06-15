@@ -10,7 +10,9 @@ from .views import \
     admin_formations, \
     admin_catalogues, \
     admin_documents, \
-    admin_formateurs
+    admin_formateurs, \
+    admin_inscriptions
+
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
     url(r'^index/$', admin_pages.pages_index, name='admin_index'),
@@ -70,6 +72,11 @@ urlpatterns = [
     url(r'^clients/add/$', admin_clients.clients_add, name='clients_add'),
     url(r'^clients/edit/(?P<id>[0-9]+)$',
         admin_clients.clients_edit, name='clients_edit'),
+
+    url(r'^inscriptions/$', admin_inscriptions.inscriptions_index,
+        name='inscriptions_index'),
+    url(r'^inscriptions/index/$', admin_inscriptions.inscriptions_index,
+        name='inscriptions_index'),
 
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]
