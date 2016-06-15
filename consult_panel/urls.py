@@ -13,3 +13,5 @@ urlpatterns = [
     url(r'^consult/', include('admin_panel.urls')),
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+# Commit test
