@@ -9,6 +9,7 @@ from admin_panel.user_tests import *
 def sessions_index(request):
     return render(request, 'admin_sessions_index.html', context={
         'page_title': 'Gestion des sessions',
+        # .distinct('id') with MySQL (SQLite3 not supported)
         'sessions_list': Session.objects.filter(formation__catalogue__profile__user=request.user)
     })
 
