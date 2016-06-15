@@ -7,6 +7,8 @@ from consult_panel.settings import MEDIA_ROOT
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
+    prix_ht = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    prix_ttc = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     def __str__(self):
         return self.nom

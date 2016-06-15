@@ -34,6 +34,12 @@
                         <th>
                             Description
                         </th>
+                        <th>
+                            Prix H.T
+                        </th>
+                        <th>
+                            Prix T.T.C
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +57,11 @@
                         <td>
                             <b>{{ f.description }}</b>
                         </td>
+                        <td>
+                            <b>{{ f.prix_ht }}</b>
+                        </td>
+                        <td>
+                            <b>{{ f.prix_ttc }}</b>
                         </td>
                     </tr>
                     {% endfor %}
