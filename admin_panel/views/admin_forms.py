@@ -32,6 +32,12 @@ def formations_add(request):
     form.user = request.user
     if form.is_valid():
         form.save()
+        goc = Catalogue.objects.get_or_create(
+            profile__user=request.user, nom='main')
+        goc[0].liste_formations.add(
+            Formation.objects.get(pk=form.instance.id))
+        if goc[1]:
+            Profile.objects.get(user=request.user).liste_catalogues.add(goc[0])
         messages.success(request, 'La formation a bien été ajoutée')
         return redirect('/consult/formations')
     else:
@@ -81,7 +87,7 @@ def sessions_add(request):
     form = forms.SessionForm(request.POST)
     if form.is_valid():
         form.save()
-        messages.success(request, 'La formation a bien été ajoutée')
+        messages.success(request, 'La session a bien été ajoutée')
         return redirect('sessions_index')
     else:
         messages.warning(request, 'Merci de vérifier les informations')

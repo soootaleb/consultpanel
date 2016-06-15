@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import user_passes_test
 def formations_index(request):
     return render(request, 'admin_formations_index.html', context={
                   'page_title':   'Gestion des formations',
-                  'formations_list':   Formation.objects.all(),
+                  'formations_list':   Formation.objects.filter(catalogue__profile__user=request.user),
                   })
 
 
