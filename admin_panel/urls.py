@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^sessions/add/$', admin_sessions.sessions_add, name='sessions_add'),
     url(r'^sessions/edit/(?P<id>[0-9]+)$',
         admin_sessions.sessions_edit, name='sessions_edit'),
+    url(r'^sessions/detail/(?P<id>[0-9]+)$',
+        admin_sessions.sessions_detail, name='sessions_detail'),
 
     url(r'^catalogues/$', admin_catalogues.catalogues_index, name='catalogues_index'),
     url(r'^catalogues/index/$', admin_catalogues.catalogues_index,

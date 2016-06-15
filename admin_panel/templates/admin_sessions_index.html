@@ -31,6 +31,9 @@
                         <th>
                             Formation
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +47,14 @@
                         </td>
                         <td>
                             <b>{{ s }}</b>
+                        </td>
+                        <td>
+                            <a href={% url 'sessions_detail' s.id %} type="button" class="btn btn-inline btn-primary">
+                                Détail
+                            </a>
+                            <a href={% url 'sessions_edit' s.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
