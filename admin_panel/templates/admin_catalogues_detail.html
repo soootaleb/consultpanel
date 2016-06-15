@@ -2,6 +2,61 @@
 
 {% block content %}
 
-{{catalogue}}
+
+<section class="box-typical box-typical-max-screen">
+    <header class="box-typical-header">
+        <div class="tbl-row">
+            <div class="tbl-cell tbl-cell-title">
+                <h3>{{catalogue.liste_formations.count}} formations</h3>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
+            </div>
+        </div>
+    </header>
+    <div class="box-typical-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for formation in catalogue.liste_formations.all %}
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <b>{{ formation }}</b>
+                        </td>
+                        <td>
+                            <a href={% url 'formations_detail' formation.id %} type="button" class="btn btn-inline btn-primary">
+                                Détail
+                            </a>
+                            <a href={% url 'formations_edit' formation.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
