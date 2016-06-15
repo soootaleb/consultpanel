@@ -13,6 +13,12 @@ def formations_index(request):
                   })
 
 
+def formations_detail(request, id):
+    return render(request, 'admin_formations_detail.html', context={
+        'formation': Formation.objects.get(pk=id)
+    })
+
+
 @user_passes_test(is_formateur)
 def formations_add(request):
     return render(request, 'admin_formations_add.html', {

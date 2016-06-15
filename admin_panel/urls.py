@@ -50,6 +50,8 @@ urlpatterns = [
     url(r'^formations/add/$', admin_formations.formations_add, name='formations_add'),
     url(r'^formations/edit/(?P<id>[0-9]+)$',
         admin_formations.formations_edit, name='formations_edit'),
+    url(r'^formations/detail/(?P<id>[0-9]+)$',
+        admin_formations.formations_detail, name='formations_detail'),
 
     url(r'^formateurs/$', admin_formateurs.formateurs_index, name='formateurs_index'),
     url(r'^formateurs/index/$', admin_formateurs.formateurs_index,

@@ -40,6 +40,9 @@
                         <th>
                             Prix T.T.C
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +65,14 @@
                         </td>
                         <td>
                             <b>{{ f.prix_ttc }}</b>
+                        </td>
+                        <td>
+                            <a href={% url 'formations_detail' f.id %} type="button" class="btn btn-inline btn-primary">
+                                Détail
+                            </a>
+                            <a href={% url 'formations_edit' f.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
