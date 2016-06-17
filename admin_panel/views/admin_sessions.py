@@ -9,8 +9,7 @@ from admin_panel.user_tests import *
 def sessions_index(request):
     return render(request, 'admin_sessions_index.html', context={
         'page_title': 'Gestion des sessions',
-        # .distinct('id') with MySQL (SQLite3 not supported)
-        'sessions_list': Session.objects.filter(formation__catalogue__profile__user=request.user)
+        'sessions_list': Session.objects.filter(formation__catalogue__profile__user=request.user).distinct()
     })
 
 
@@ -19,7 +18,6 @@ def sessions_detail(request, id):
     session = Session.objects.get(pk=id)
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
-        # .distinct('id') with MySQL (SQLite3 not supported)
         'session': session
     })
 
