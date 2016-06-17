@@ -9,9 +9,7 @@ from .views import \
     admin_sessions, \
     admin_formations, \
     admin_catalogues, \
-    admin_documents, \
-    admin_formateurs, \
-    admin_inscriptions
+    admin_formateurs
 
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
