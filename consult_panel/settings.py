@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['consultpanel.fr', 'www.consultpanel.fr', 'localhost']
 
@@ -83,18 +83,18 @@ WSGI_APPLICATION = 'consult_panel.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'consultpanel',
-    #     'USER': 'master',
-    #     'PASSWORD': 'mastercraft',  # LOURD
-    #     'HOST': '163.172.28.152',
-    #     'PORT': '3306',
-    # },
     'default': {
-        'NAME': 'cpanel_local.db',
-        'ENGINE': 'django.db.backends.sqlite3'
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'consultpanel',
+        'USER': 'master',
+        'PASSWORD': 'mastercraft',  # LOURD
+        'HOST': '163.172.28.152',
+        'PORT': '3306',
+    },
+    # 'default': {
+    #     'NAME': 'cpanel_local.db',
+    #     'ENGINE': 'django.db.backends.sqlite3'
+    # }
 }
 
 
