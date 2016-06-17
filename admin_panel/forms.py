@@ -96,20 +96,6 @@ class SessionForm(ModelForm):
         fields = ['formation']
 
 
-class ProfileForm(ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-10'
-        self.helper.add_input(Submit('submit', 'Sauvegarder'))
-        super(ProfileForm, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = Profile
-        fields = ['user', 'liste_catalogues']
-
-
 class EntrepriseForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
