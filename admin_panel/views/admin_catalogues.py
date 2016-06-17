@@ -24,9 +24,12 @@ def catalogues_detail(request, id):
 
 @user_passes_test(is_formateur)
 def catalogues_add(request):
+    catalogue_form = CatalogueForm()
+    catalogue_form.fields['liste_formations'].queryset = Formation.objects.filter(
+        catalogue__profile__user=request.user).distinct()
     return render(request, 'admin_catalogues_add.html', {
         'page_title': 'Ajouter un catalogue',
-        'form': CatalogueForm()
+        'form': catalogue_form
     })
 
 
