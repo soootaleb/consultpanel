@@ -1,7 +1,10 @@
-from django.conf.urls import url, include
+from django.conf.urls import url, include, handler404, patterns
 from django.contrib import admin
 from django.conf.urls.static import static
-from consult_panel.settings import MEDIA_ROOT, MEDIA_URL
+from consult_panel.settings import MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, DEBUG
+
+handler404 = 'public_site.views.public_errors.error404'
+handler500 = 'public_site.views.public_errors.error500'
 
 urlpatterns = [
     url(r'^', include('public_site.urls')),
@@ -14,4 +17,10 @@ urlpatterns = [
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
-# Commit test
+# To make server serve static files while DEBUG = False
+# Done automaticaly if DEBUG is True)
+if DEBUG is False:
+    urlpatterns += patterns('',
+                            url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                                {'document_root': STATIC_ROOT}),
+                            )
