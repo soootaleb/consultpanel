@@ -173,3 +173,15 @@ def clients_edit(request):
     else:
         messages.warning(request, 'Merci de vérifier les informations')
         return render(request, 'admin_clients_edit.html', context={'form': form})
+
+
+def cours_add(request):
+    form = forms.CoursForm(request.POST)
+    form.instance.session = Session.objects.get(pk=request.POST["session_id"])
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Le cours a bien été ajouté')
+        return redirect('sessions_detail', id=request.POST["session_id"])
+    else:
+        messages.warning(request, 'Merci de vérifioer les informations')
+        return render(request, 'admin_session_detail.html', context={'form': form})

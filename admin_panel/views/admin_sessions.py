@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from admin_panel.forms import SessionForm
+from admin_panel.forms import SessionForm, CoursForm
 from admin_panel.user_tests import *
 
 
@@ -16,9 +16,11 @@ def sessions_index(request):
 @user_passes_test(is_formateur)
 def sessions_detail(request, id):
     session = Session.objects.get(pk=id)
+    session.cours = Cours.objects.filter(session=session)
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
-        'session': session
+        'session': session,
+        'form_add_cours': CoursForm()
     })
 
 

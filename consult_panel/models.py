@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 import os
 from consult_panel.settings import MEDIA_ROOT
 
+import datetime
+
 
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
@@ -26,11 +28,24 @@ class Localisation(models.Model):
     latitude = models.CharField(max_length=200)
     longitude = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.nom
+
 
 class Cours(models.Model):
-    date_cours = models.DateField(auto_now_add=True)
+    date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
+    date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
     session = models.ForeignKey(Session, default=1)
     localisation = models.ForeignKey(Localisation, default=1)
+
+    def get_date_debut(self):
+        return self.date_cours_debut.strftime('%d/%m/%y')
+
+    def get_heure_debut(self):
+        return self.date_cours_debut.strftime('%Hh%M')
+
+    def __str__(self):
+        return 'Cours de ' + str(self.session.formation.nom) + ' le ' + self.get_date_debut()
 
 
 class Catalogue(models.Model):

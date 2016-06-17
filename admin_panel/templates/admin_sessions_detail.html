@@ -1,4 +1,6 @@
-{% extends "admin_root.html" %} {% block content %}
+{% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
 
 <section class="tabs-section">
     <div class="tabs-section-nav tabs-section-nav-icons">
@@ -33,7 +35,19 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade {% if not flag %}in active{% endif %}" id="tabs-1-tab-1">
             <p><strong>Nom : </strong>{{session.formation.nom}}</p>
-            
+            <p><strong>Description : </strong>{{session.formation.description}}</p>
+            <p><strong>Cours : </strong></p>
+            <ul>
+                {% for cours in session.cours %}
+                <li>Le {{cours.get_date_debut}} à {{cours.get_heure_debut}}</li>
+                {% endfor %}
+            </ul>
+            <p><strong>Ajouter un cours : </strong></p>
+            <form action="/consult/form/cours_add" method="POST">
+                <input type="hidden" name="session_id" value="{{session.id}}"/>
+                {% csrf_token %}
+                {% crispy form_add_cours %}
+            </form>
         </div>
         <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
 

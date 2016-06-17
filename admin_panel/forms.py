@@ -23,6 +23,27 @@ class FileForm(ModelForm):
         labels = {'label': 'Titre : ', 'document': 'Fichier : '}
 
 
+class CoursForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.add_input(Submit('submit', 'Ajouter'))
+        super(CoursForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Cours
+        fields = ['date_cours_debut', 'date_cours_fin',
+                  'localisation']
+        labels = {
+            'date_cours_debut': 'Début : ',
+            'date_cours_fin': 'Fin : ',
+            'localisation': 'Localisation',
+            'session': 'Session de formation'
+        }
+
+
 class FormationForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
