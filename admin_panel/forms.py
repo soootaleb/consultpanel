@@ -83,7 +83,13 @@ class CatalogueForm(ModelForm):
 
 
 class SessionForm(ModelForm):
-    formation = ModelChoiceField(queryset=Formation.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-10'
+        self.helper.add_input(Submit('submit', 'Ajouter'))
+        super(SessionForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = Session
@@ -101,7 +107,7 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['user', 'liste_entreprises', 'liste_catalogues']
+        fields = ['user', 'liste_catalogues']
 
 
 class EntrepriseForm(ModelForm):
