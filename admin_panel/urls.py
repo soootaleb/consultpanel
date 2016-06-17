@@ -8,8 +8,7 @@ from .views import \
     admin_preferences, \
     admin_sessions, \
     admin_formations, \
-    admin_catalogues, \
-    admin_formateurs
+    admin_catalogues
 
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
@@ -50,13 +49,6 @@ urlpatterns = [
         admin_formations.formations_edit, name='formations_edit'),
     url(r'^formations/detail/(?P<id>[0-9]+)$',
         admin_formations.formations_detail, name='formations_detail'),
-
-    url(r'^formateurs/$', admin_formateurs.formateurs_index, name='formateurs_index'),
-    url(r'^formateurs/index/$', admin_formateurs.formateurs_index,
-        name='formateurs_index'),
-    url(r'^formateurs/add/$', admin_formateurs.formateurs_add, name='formateurs_add'),
-    url(r'^formateurs/edit/(?P<id>[0-9]+)$',
-        admin_formateurs.formateurs_edit, name='formateurs_edit'),
 
     url(r'^entreprises/$', admin_entreprises.entreprises_index,
         name='entreprises_index'),
