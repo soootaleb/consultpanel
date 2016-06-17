@@ -9,7 +9,7 @@ from admin_panel.user_tests import *
 def entreprises_index(request):
     return render(request, 'admin_entreprises_index.html', context={
                   'page_title':   'Gestion des entreprises',
-                  'entreprises_list':   Entreprise.objects.all(),
+                  'entreprises_list':   Entreprise.objects.filter(profile__user=request.user),
                   })
 
 
