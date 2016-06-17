@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from admin_panel.forms import forms
+from admin_panel.forms import *
 from admin_panel.user_tests import *
 
 
@@ -17,7 +17,7 @@ def formateurs_index(request):
 def formateurs_add(request):
     return render(request, 'admin_formateurs_add.html', {
                   'page_title': 'Ajouter une formation',
-                  'form': forms.ProfileForm()
+                  'form': ProfileForm()
                   })
 
 
@@ -25,5 +25,5 @@ def formateurs_add(request):
 def formateurs_edit(request, id):
     return render(request, 'admin_formateurs_edit.html', {
                   'page_title': 'Editer une formation',
-                  'form': forms.ProfileForm(instance=Profile.objects.get(pk=id))
+                  'form': ProfileForm(instance=Profile.objects.get(pk=id))
                   })

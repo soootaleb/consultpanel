@@ -79,10 +79,5 @@ urlpatterns = [
     url(r'^clients/edit/(?P<id>[0-9]+)$',
         admin_clients.clients_edit, name='clients_edit'),
 
-    url(r'^inscriptions/$', admin_inscriptions.inscriptions_index,
-        name='inscriptions_index'),
-    url(r'^inscriptions/index/$', admin_inscriptions.inscriptions_index,
-        name='inscriptions_index'),
-
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 ]
