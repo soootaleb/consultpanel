@@ -3,7 +3,6 @@
 
 {% block content %}
 <form action="/consult/form/sessions_add" method="post">
-    {% csrf_token %}
     {% crispy form %}    
 </form>
 {% endblock %}

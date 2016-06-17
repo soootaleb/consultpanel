@@ -6,7 +6,6 @@
 
         <form action="/consult/form/formations_edit" method="post">
             <input type="hidden" name="formation_id" value="{{form.instance.id}}"/>
-            {% csrf_token %}
             {% crispy form %}
         </form>
     </div>

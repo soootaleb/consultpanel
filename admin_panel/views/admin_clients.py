@@ -26,7 +26,10 @@ def clients_add(request):
 
 @user_passes_test(is_formateur)
 def clients_edit(request, id):
+    client_form = ClientForm(instance=Client.objects.get(pk=id))
+    client_form.fields['catalogue'].queryset = Catalogue.objects.filter(
+        profile__user=request.user).exclude(nom='main')
     return render(request, 'admin_clients_edit.html', {
-        'page_title': 'Editer un client',
-        'form': ProfileForm(instance=Profile.objects.get(pk=id))
+        'page_title': 'Modifier un client',
+        'form': client_form
     })

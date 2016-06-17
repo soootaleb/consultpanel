@@ -3,13 +3,16 @@ from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
 from admin_panel.forms import SessionForm, CoursForm
 from admin_panel.user_tests import *
+from django.db.models import Min
 
 
 @user_passes_test(is_formateur)
 def sessions_index(request):
+    session_list = Session.objects.filter(
+        formation__catalogue__profile__user=request.user).distinct()
     return render(request, 'admin_sessions_index.html', context={
         'page_title': 'Gestion des sessions',
-        'sessions_list': Session.objects.filter(formation__catalogue__profile__user=request.user).distinct()
+        'sessions_list': session_list
     })
 
 
@@ -37,7 +40,10 @@ def sessions_add(request):
 
 @user_passes_test(is_formateur)
 def sessions_edit(request, id):
+    session_form = SessionForm(instance=Session.objects.get(pk=id))
+    session_form.fields['formation'].queryset = Formation.objects.filter(
+        catalogue__profile__user=request.user).distinct()
     return render(request, 'admin_sessions_edit.html', {
         'page_title': 'Editer une session',
-        'form': SessionForm(instance=Session.objects.get(pk=id))
+        'form': session_form
     })

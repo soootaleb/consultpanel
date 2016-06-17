@@ -1,10 +1,9 @@
 {% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <form action="/consult/form/sessions_edit" method="post">
-    {% csrf_token %}
-    {{ form }}
     <input type="hidden" name="session_id" value="{{form.instance.id}}"/>
-    <input type="submit" value="Submit" />
+    {% crispy form %}
 </form>
 {% endblock %}

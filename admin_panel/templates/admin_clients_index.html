@@ -34,6 +34,9 @@
                         <th>
                             Catalogue associé
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +53,11 @@
                         </td>
                         <td>
                             <b>{{ c.catalogue }}</b>
+                        </td>
+                        <td>
+                            <a href={% url 'clients_edit' c.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}

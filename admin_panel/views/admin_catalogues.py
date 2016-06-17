@@ -35,7 +35,10 @@ def catalogues_add(request):
 
 @user_passes_test(is_formateur)
 def catalogues_edit(request, id):
+    catalogue_form = CatalogueForm(instance=Catalogue.objects.get(pk=id))
+    catalogue_form.fields['liste_formations'].queryset = Formation.objects.filter(
+        catalogue__profile__user=request.user).distinct()
     return render(request, 'admin_catalogues_edit.html', {
         'page_title': 'Editer un catalogue',
-        'form': CatalogueForm(instance=Catalogue.objects.get(pk=id))
+        'form': catalogue_form
     })

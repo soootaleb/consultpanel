@@ -143,7 +143,7 @@ def clients_add(request):
 
 
 def clients_edit(request):
-    form = forms.ProfileForm(request.POST or None, instance=Profile.objects.get(
+    form = forms.ClientForm(request.POST or None, instance=Client.objects.get(
         pk=request.POST["client_id"]))
     if form.is_valid() and form.instance is not None:
         form.save()

@@ -5,7 +5,6 @@
     <div class="box-typical box-typical-padding">
         <form action="/consult/form/catalogues_edit" method="post">
             <input type="hidden" name="catalogue_id" value="{{form.instance.id}}"/>
-            {% csrf_token %}
             {% crispy form %}  
         </form>
     </div>

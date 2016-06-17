@@ -45,7 +45,6 @@
             <p><strong>Ajouter un cours : </strong></p>
             <form action="/consult/form/cours_add" method="POST">
                 <input type="hidden" name="session_id" value="{{session.id}}"/>
-                {% csrf_token %}
                 {% crispy form_add_cours %}
             </form>
         </div>
