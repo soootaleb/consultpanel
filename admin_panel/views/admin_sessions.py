@@ -26,9 +26,12 @@ def sessions_detail(request, id):
 
 @user_passes_test(is_formateur)
 def sessions_add(request):
+    session_form = SessionForm()
+    session_form.fields['formation'].queryset = Formation.objects.filter(
+        catalogue__profile__user=request.user).distinct()
     return render(request, 'admin_sessions_add.html', {
         'page_title': 'Ajouter une session',
-        'form': SessionForm()
+        'form': session_form
     })
 
 

@@ -50,15 +50,6 @@ urlpatterns = [
     url(r'^formations/detail/(?P<id>[0-9]+)$',
         admin_formations.formations_detail, name='formations_detail'),
 
-    url(r'^entreprises/$', admin_entreprises.entreprises_index,
-        name='entreprises_index'),
-    url(r'^entreprises/index/$', admin_entreprises.entreprises_index,
-        name='entreprises_index'),
-    url(r'^entreprises/add/$', admin_entreprises.entreprises_add,
-        name='entreprises_add'),
-    url(r'^entreprises/edit/(?P<id>[0-9]+)$',
-        admin_entreprises.entreprises_edit, name='entreprises_edit'),
-
     url(r'^clients/$', admin_clients.clients_index, name='clients_index'),
     url(r'^clients/index/$', admin_clients.clients_index, name='clients_index'),
     url(r'^clients/add/$', admin_clients.clients_add, name='clients_add'),
@@ -66,4 +57,13 @@ urlpatterns = [
         admin_clients.clients_edit, name='clients_edit'),
 
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
+
+    # url(r'^entreprises/$', admin_entreprises.entreprises_index,
+    #     name='entreprises_index'),
+    # url(r'^entreprises/index/$', admin_entreprises.entreprises_index,
+    #     name='entreprises_index'),
+    # url(r'^entreprises/add/$', admin_entreprises.entreprises_add,
+    #     name='entreprises_add'),
+    # url(r'^entreprises/edit/(?P<id>[0-9]+)$',
+    #     admin_entreprises.entreprises_edit, name='entreprises_edit'),
 ]
