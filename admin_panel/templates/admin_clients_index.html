@@ -31,6 +31,9 @@
                         <th>
                             Client
                         </th>
+                        <th>
+                            Catalogue associé
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +46,10 @@
                             </div>
                         </td>
                         <td>
-                            <b>{{ c.user }}</b>
+                            <b>{{ c }}</b>
+                        </td>
+                        <td>
+                            <b>{{ c.catalogue }}</b>
                         </td>
                     </tr>
                     {% endfor %}

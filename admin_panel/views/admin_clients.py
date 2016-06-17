@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from consult_panel.forms import ProfileForm
+from admin_panel.forms import ClientForm
 from admin_panel.user_tests import *
 
 
@@ -9,15 +9,18 @@ from admin_panel.user_tests import *
 def clients_index(request):
     return render(request, 'admin_clients_index.html', context={
         'page_title': 'Gestion des clients',
-        'clients_list': Profile.objects.all()
+        'clients_list': Client.objects.filter(catalogue__profile__user=request.user)
     })
 
 
 @user_passes_test(is_formateur)
 def clients_add(request):
+    client_form = ClientForm()
+    client_form.fields['catalogue'].queryset = Catalogue.objects.filter(
+        profile__user=request.user).exclude(nom='main')
     return render(request, 'admin_clients_add.html', {
         'page_title': 'Ajouter un client',
-        'form': ProfileForm()
+        'form': client_form
     })
 
 

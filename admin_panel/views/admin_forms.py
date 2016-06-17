@@ -130,14 +130,16 @@ def formateurs_edit(request):
 
 
 def clients_add(request):
-    form = forms.ProfileForm(request.POST)
+    form = forms.ClientForm(request.POST)
     if form.is_valid() and form.instance is not None:
         form.save()
         messages.success(request, 'Le client a bien été ajouté')
         return redirect('clients_index')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
-        return render(request, 'admin_clients_edit.html', context={'form': form})
+        form.fields['catalogue'].queryset = Catalogue.objects.filter(
+            profile__user=request.user).exclude(nom='main')
+        return render(request, 'admin_clients_add.html', context={'form': form})
 
 
 def clients_edit(request):
