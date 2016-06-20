@@ -18,6 +18,8 @@ def clients_add(request):
     client_form = ClientForm()
     client_form.fields['catalogue'].queryset = Catalogue.objects.filter(
         profile__user=request.user).exclude(nom='main')
+    client_form.fields['entreprise'].queryset = Entreprise.objects.filter(
+        profile__user=request.user)
     return render(request, 'admin_clients_add.html', {
         'page_title': 'Ajouter un client',
         'form': client_form

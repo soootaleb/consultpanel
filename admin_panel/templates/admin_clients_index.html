@@ -29,6 +29,9 @@
                     <tr>
                         <th></th>
                         <th>
+                            Entreprise
+                        </th>
+                        <th>
                             Client
                         </th>
                         <th>
@@ -49,10 +52,13 @@
                             </div>
                         </td>
                         <td>
-                            <b>{{ c }}</b>
+                            <b>{{c.entreprise}}</b>
                         </td>
                         <td>
-                            <b>{{ c.catalogue }}</b>
+                            {{c.nom}}
+                        </td>
+                        <td>
+                            {{ c.catalogue }}
                         </td>
                         <td>
                             <a href={% url 'clients_edit' c.id %} type="button" class="btn btn-inline btn-info">

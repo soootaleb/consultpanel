@@ -56,16 +56,19 @@ class Catalogue(models.Model):
         return self.nom
 
 
-class Client(models.Model):
+class Entreprise(models.Model):
     nom = models.CharField(max_length=200)
-    catalogue = models.ForeignKey(Catalogue, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nom
 
 
-class Entreprise(models.Model):
+class Client(models.Model):
     nom = models.CharField(max_length=200)
+    catalogue = models.ForeignKey(
+        Catalogue, on_delete=models.CASCADE, default=1)
+    entreprise = models.ForeignKey(
+        Entreprise, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.nom
