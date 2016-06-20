@@ -31,6 +31,9 @@
                         <th>
                             Nom
                         </th>
+                        <th>
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +48,14 @@
                         <td>
                             <b>{{ e.nom }}</b>
                         </td>
+                         <td>
+                            <a href={% url 'entreprises_detail' e.id %} type="button" class="btn btn-inline btn-primary">
+                                Détail
+                            </a>
+                            <a href={% url 'entreprises_edit' e.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -53,31 +64,4 @@
     </div>
 </section>
 
-{% endblock %}
-
-{% block script %}
-<script>
-    $(document).ready(function(){
-        $(".btn-delete").click(function(){
-            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
-            $.ajax({
-                type: "GET", //rest Type
-                dataType: 'html', //mispelled
-                url: url,
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    var json = JSON.parse(msg);
-                    if(json['status'] === "OK") {
-                        document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
-                    } else {
-                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
-                    }
-                },
-                error : function(var1, var2, var3) {
-                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
-                }
-            });
-        });
-    });
-</script>
 {% endblock %}

@@ -75,8 +75,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # A ForeignKey would be okay (One entreprise == One formateur == One profile)
     # ManyToMany for entreprises account (with multiple formateurs)
-    # Entreprises are hidden for the moment
-    # liste_entreprises = models.ManyToManyField(Entreprise)
+    liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
 
     def __str__(self):

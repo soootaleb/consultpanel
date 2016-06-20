@@ -166,28 +166,28 @@ def cours_add(request):
         return render(request, 'admin_session_detail.html', context={'form': form})
 
 
-# def entreprises_add(request):
-#     form = forms.EntrepriseForm(request.POST)
-#     if form.is_valid() and form.instance is not None:
-#         form.save()
-#         Profile.objects.get(
-#             user=request.user).liste_entreprises.add(form.instance)
-#         messages.success(request, 'L\'entreprise a bien été ajoutée')
-#         return redirect('entreprises_index')
-#     else:
-#         messages.warning(request, 'Merci de vérifier les informations')
-# return render(request, 'admin_entreprises_edit.html', context={'form':
-# form})
+def entreprises_add(request):
+    form = forms.EntrepriseForm(request.POST)
+    if form.is_valid() and form.instance is not None:
+        form.save()
+        Profile.objects.get(
+            user=request.user).liste_entreprises.add(form.instance)
+        messages.success(request, 'L\'entreprise a bien été ajoutée')
+        return redirect('entreprises_index')
+    else:
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_entreprises_edit.html', context={'form':
+                                                                       form})
 
 
-# def entreprises_edit(request):
-#     form = forms.EntrepriseForm(request.POST or None, instance=Entreprise.objects.get(
-#         pk=request.POST["entreprise_id"]))
-#     if form.is_valid() and form.instance is not None:
-#         form.save()
-#         messages.success(request, 'L\'entreprise a bien été modifiée')
-#         return redirect('entreprises_index')
-#     else:
-#         messages.warning(request, 'Merci de vérifier les informations')
-# return render(request, 'admin_entreprises_edit.html', context={'form':
-# form})
+def entreprises_edit(request):
+    form = forms.EntrepriseForm(request.POST or None, instance=Entreprise.objects.get(
+        pk=request.POST["entreprise_id"]))
+    if form.is_valid() and form.instance is not None:
+        form.save()
+        messages.success(request, 'L\'entreprise a bien été modifiée')
+        return redirect('entreprises_index')
+    else:
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_entreprises_edit.html', context={'form':
+                                                                       form})

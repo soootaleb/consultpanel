@@ -27,3 +27,12 @@ def entreprises_edit(request, id):
                   'page_title': 'Editer une entreprise',
                   'form': EntrepriseForm(instance=Entreprise.objects.get(pk=id))
                   })
+
+
+@user_passes_test(is_formateur)
+def entreprises_detail(request, id):
+    entreprise = Entreprise.objects.get(pk=id)
+    return render(request, 'admin_entreprises_detail.html', context={
+        'page_title': entreprise.nom,
+        'entreprise': entreprise
+    })
