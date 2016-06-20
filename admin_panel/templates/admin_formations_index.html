@@ -55,16 +55,16 @@
                             </div>
                         </td>
                         <td>
-                            <b>{{ f.nom }}</b>
+                            {{ f.nom }}
                         </td>
                         <td>
-                            <b>{{ f.description }}</b>
+                            {{ f.description }}
                         </td>
                         <td>
-                            <b>{{ f.prix_ht }}</b>
+                            {{ f.prix_ht }}
                         </td>
                         <td>
-                            <b>{{ f.prix_ttc }}</b>
+                            {{ f.prix_ttc }}
                         </td>
                         <td>
                             <a href={% url 'formations_detail' f.id %} type="button" class="btn btn-inline btn-primary">
