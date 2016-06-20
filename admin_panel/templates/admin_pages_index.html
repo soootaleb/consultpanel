@@ -11,32 +11,32 @@
             <div class="col-xs-3">
                 <article class="statistic-box red">
                     <div>
-                        <div class="number">5</div>
-                        <div class="caption"><div>Sessions à venir</div></div>
+                        <div class="number">{{datas.head.sessions}}</div>
+                        <div class="caption"><div>Session{% if datas.head.sessions > 1%}s{%endif%} à venir</div></div>
                     </div>
                 </article>
             </div>
             <div class="col-xs-3">
                 <article class="statistic-box green">
                     <div>
-                        <div class="number">34</div>
-                        <div class="caption"><div>Inscrits</div></div>
+                        <div class="number">{{datas.head.inscrits}}</div>
+                        <div class="caption"><div>Inscrit{% if datas.head.inscrits > 1%}s{%endif%}</div></div>
                     </div>
                 </article>
             </div>
             <div class="col-xs-3">
                 <article class="statistic-box purple">
                     <div>
-                        <div class="number">9</div>
-                        <div class="caption"><div>Dossiers en cours</div></div>
+                        <div class="number">{{datas.head.formations}}</div>
+                        <div class="caption"><div>Formation{% if datas.head.formations > 1%}s{%endif%}</div></div>
                     </div>
                 </article>
             </div>
             <div class="col-xs-3">
                 <article class="statistic-box yellow">
                     <div>
-                        <div class="number">23</div>
-                        <div class="caption"><div>Clients</div></div>
+                        <div class="number">{{datas.head.clients}}</div>
+                        <div class="caption"><div>Client{% if datas.head.clients > 1%}s{%endif%}</div></div>
                     </div>
                 </article>
             </div>
@@ -84,72 +84,11 @@
                     prevYear: 'font-icon font-icon-arrow-left',
                     nextYear: 'font-icon font-icon-arrow-right'
                 },
-                defaultDate: '2016-01-12',
+                defaultDate: '{{datas.calendar_date}}',
                 editable: true,
                 selectable: true,
                 eventLimit: true,
-                events: [
-                    {
-                        title: 'Marketing Relationnel',
-                        start: '2016-01-01T08:30:00'
-                    },
-                    {
-                        title: 'Communication Digitale',
-                        start: '2016-01-07T10:40:00',
-                        end: '2016-01-10',
-                        className: 'event-green'
-                    },
-                    {
-                        title: 'Dinner d\'affaire',
-                        start: '2016-01-09T12:30:00',
-                        className: 'event-red'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2016-01-16T16:20:00',
-                        className: 'event-orange'
-                    },
-                    {
-                        title: 'Conference Viplo',
-                        start: '2016-01-11T14:30:00',
-                        end: '2016-01-13',
-                        className: 'event-coral'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2016-01-12T10:30:00',
-                        end: '2016-01-12T12:30:00',
-                        className: 'event-green'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2016-01-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2016-01-12T14:30:00',
-                        className: 'event-red'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2016-01-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2016-01-12T20:00:00',
-                        className: 'event-orange'
-                    },
-                    {
-                        title: 'Formation',
-                        start: '2016-01-13T10:40:00'
-                    },
-                    {
-                        title: 'Marketing Relationnel',
-                        start: '2016-01-28T14:30:00',
-                        className: 'event-coral'
-                    }
-                ],
+                events: JSON.parse('{{datas.calendar_content|safe}}'),
                 viewRender: function(view, element) {
                     if (!("ontouchstart" in document.documentElement)) {
                         $('.fc-scroller').jScrollPane({

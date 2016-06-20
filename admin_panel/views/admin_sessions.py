@@ -20,10 +20,13 @@ def sessions_index(request):
 def sessions_detail(request, id):
     session = Session.objects.get(pk=id)
     session.cours = Cours.objects.filter(session=session)
+    cours_form = CoursForm()
+    cours_form.fields['localisation'].queryset = Localisation.objects.filter(
+        profile__user=request.user).distinct()
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
         'session': session,
-        'form_add_cours': CoursForm()
+        'form_add_cours': cours_form
     })
 
 
