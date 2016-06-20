@@ -1,0 +1,103 @@
+{% extends "admin_root.html" %}
+
+{% block header_action %}
+<a href="{% url 'localisations_add' %}" class="btn btn-rounded btn-success">
+    <i class="font-icon-plus"> Ajouter un centre</i>
+</a>
+{% endblock %}
+
+{% block content %}
+
+<section class="box-typical box-typical-max-screen">
+    <header class="box-typical-header">
+        <div class="tbl-row">
+            <div class="tbl-cell tbl-cell-title">
+                <h3>{{centres_list.count}} Centre{% if centres_list.count > 1%}s{%endif%}</h3>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+            </div>
+            <div class="tbl-cell tbl-cell-action-bordered">
+                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
+            </div>
+        </div>
+    </header>
+    <div class="box-typical-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            Latitude
+                        </th>
+                        <th>
+                            Longitude
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in centres_list %}
+                    <tr>
+                        <td class="table-check">
+                            <div class="checkbox checkbox-only">
+                                <input type="checkbox" id="tbl-check-2-1">
+                                <label for="tbl-check-2-1"></label>
+                            </div>
+                        </td>
+                        <td>
+                            {{ c.nom }}
+                        </td>
+                        <td>
+                            {{ c.latitude }}
+                        </td>
+                        <td>
+                            {{ c.longitude }}
+                        </td>
+                        <td>
+                            <a href={% url 'localisations_edit' c.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $(".btn-delete").click(function(){
+            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
+            $.ajax({
+                type: "GET", //rest Type
+                dataType: 'html', //mispelled
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    var json = JSON.parse(msg);
+                    if(json['status'] === "OK") {
+                        document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
+                    } else {
+                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
+                    }
+                },
+                error : function(var1, var2, var3) {
+                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

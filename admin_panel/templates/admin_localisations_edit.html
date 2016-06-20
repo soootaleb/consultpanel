@@ -1,0 +1,11 @@
+{% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="box-typical box-typical-padding">
+        <form action="/consult/form/localisations_edit" method="post">
+            <input type="hidden" name="localisation_id" value="{{form.instance.id}}"/>
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock %}

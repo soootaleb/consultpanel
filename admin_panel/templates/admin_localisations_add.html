@@ -1,0 +1,10 @@
+{% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="box-typical box-typical-padding">
+        <form action="/consult/form/localisations_add" method="POST">
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock %}

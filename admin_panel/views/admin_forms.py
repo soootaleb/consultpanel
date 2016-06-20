@@ -7,6 +7,30 @@ from document_generator.models import *
 from django.contrib import messages
 
 
+def localisations_add(request):
+    form = forms.LocalisationForm(request.POST)
+    form.instance.profile = Profile.objects.get(user=request.user)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Le centre a bien été ajoutée')
+        return redirect('/consult/localisations/')
+    else:
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_localisations_add.html', context={'form': form})
+
+
+def localisations_edit(request):
+    form = forms.LocalisationForm(request.POST or None, instance=Localisation.objects.get(
+        pk=request.POST["localisation_id"]))
+    if form.is_valid() and form.instance is not None:
+        form.save()
+        messages.success(request, 'Le centre a bien été modifié')
+        return redirect('/consult/localisations/')
+    else:
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_localisations_edit.html', context={'form': form})
+
+
 def file_upload(request):
     form = forms.FileForm(request.POST, request.FILES)
     form.instance.profile = Profile.objects.get(user=request.user)
@@ -59,7 +83,6 @@ def formations_edit(request):
 
 def catalogues_add(request):
     form = forms.CatalogueForm(request.POST)
-    form.user = request.user
     if form.is_valid():
         form.save()
         Profile.objects.get(user=request.user).liste_catalogues.add(
