@@ -185,8 +185,20 @@ def cours_add(request):
         messages.success(request, 'Le cours a bien été ajouté')
         return redirect('sessions_detail', id=request.POST["session_id"])
     else:
-        messages.warning(request, 'Merci de vérifioer les informations')
-        return render(request, 'admin_session_detail.html', context={'form': form})
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_session_detail.html', context={'form_add_cours': form, 'form_add_inscription': forms.InscriptionForm()})
+
+
+def inscriptions_add(request):
+    form = forms.InscriptionForm(request.POST)
+    form.instance.session = Session.objects.get(pk=request.POST["session_id"])
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'L\'inscription a bien été ajoutée')
+        return redirect('sessions_detail', id=request.POST["session_id"])
+    else:
+        messages.warning(request, 'Merci de vérifier les informations')
+        return render(request, 'admin_session_detail.html', context={'form_add_inscription': form, 'form_add_cours': forms.CoursForm()})
 
 
 def entreprises_add(request):

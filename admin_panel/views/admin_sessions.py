@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
-from admin_panel.forms import SessionForm, CoursForm
+from admin_panel.forms import SessionForm, CoursForm, InscriptionForm
 from admin_panel.user_tests import *
 from django.db.models import Min
 
@@ -20,13 +20,16 @@ def sessions_index(request):
 def sessions_detail(request, id):
     session = Session.objects.get(pk=id)
     session.cours = Cours.objects.filter(session=session)
+    session.inscriptions = Inscription.objects.filter(session=session)
     cours_form = CoursForm()
     cours_form.fields['localisation'].queryset = Localisation.objects.filter(
         profile__user=request.user).distinct()
+    inscription_form = InscriptionForm()
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
         'session': session,
-        'form_add_cours': cours_form
+        'form_add_cours': cours_form,
+        'form_add_inscription': inscription_form
     })
 
 

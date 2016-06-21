@@ -33,7 +33,7 @@
     </div>
 
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade {% if not flag %}in active{% endif %}" id="tabs-1-tab-1">
+        <div role="tabpanel" class="tab-pane fade in active" id="tabs-1-tab-1">
             <p><strong>Nom : </strong>{{session.formation.nom}}</p>
             <p><strong>Description : </strong>{{session.formation.description}}</p>
             <p><strong>Cours : </strong></p>
@@ -48,8 +48,18 @@
                 {% crispy form_add_cours %}
             </form>
         </div>
-        <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
-
+        <div role="tabpanel" class="tab-pane fade in active" id="tabs-1-tab-2">
+            <p><strong>Liste : </strong></p>
+            <ul>
+                {% for i in session.inscriptions %}
+                <li>{{i.prenom}} {{i.nom}}</li>
+                {% endfor %}
+            </ul>
+            <p><strong>Ajouter une inscription : </strong></p>
+            <form action="/consult/form/inscriptions_add" method="POST">
+                <input type="hidden" name="session_id" value="{{session.id}}"/>
+                {% crispy form_add_inscription %}
+            </form>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
         </div>

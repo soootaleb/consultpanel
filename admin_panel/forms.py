@@ -8,6 +8,21 @@ from crispy_forms.layout import Submit
 from django.contrib.auth.models import User
 
 
+class InscriptionForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-6'
+        self.helper.add_input(Submit('submit', 'Envoyer'))
+        super(InscriptionForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Inscription
+        fields = ['nom', 'prenom']
+        labels = {'nom': 'Nom : ', 'prenom': 'Prénom : '}
+
+
 class LocalisationForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
