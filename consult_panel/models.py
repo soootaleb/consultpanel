@@ -32,7 +32,12 @@ class Catalogue(models.Model):
 
 
 class Entreprise(models.Model):
-    nom = models.CharField(max_length=200)
+    nom = models.CharField(max_length=255)
+    siret = models.CharField(
+        max_length=14, unique=True, default='DEFAULT_SIRET')
+    adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
+    code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
+    telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
 
     def __str__(self):
         return self.nom
@@ -105,6 +110,10 @@ class Preference(models.Model):
     value = models.CharField(max_length=255)
 
 
+class Inscription(models.Model):
+    nom = models.CharField(max_length=255)
+    prenom = models.CharField(max_length=255)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
 """
 Landing page models
 """
@@ -115,11 +124,3 @@ class EmailForBeta(models.Model):
 
     def __str__(self):
         return self.email
-
-
-#    nom_commercial = models.CharField(max_length=200, blank=True)
-#    siren = models.CharField(max_length=8, unique=True)
-#    siret = models.CharField(max_length=14, unique=True)
-#    adresse = models.CharField(max_length=250)
-#    code_postal = models.CharField(max_length=10)
-#    telephone = models.CharField(max_length=15)
