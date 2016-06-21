@@ -91,6 +91,8 @@ def catalogues_add(request):
         return redirect('/consult/catalogues/')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['liste_formations'].queryset = Formation.objects.filter(
+            catalogue__profile__user=request.user).distinct()
         return render(request, 'admin_catalogues_add.html', context={'form': form})
 
 
@@ -103,6 +105,8 @@ def catalogues_edit(request):
         return redirect('/consult/catalogues/')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['liste_formations'].queryset = Formation.objects.filter(
+            catalogue__profile__user=request.user).distinct()
         return render(request, 'admin_catalogues_edit.html', context={'form': form})
 
 
@@ -114,6 +118,8 @@ def sessions_add(request):
         return redirect('sessions_index')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['formation'].queryset = Formation.objects.filter(
+            catalogue__profile__user=request.user).distinct()
         return render(request, 'admin_formations_add.html', context={'form': form})
 
 
@@ -126,6 +132,8 @@ def sessions_edit(request):
         return redirect('sessions_index')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['formation'].queryset = Formation.objects.filter(
+            catalogue__profile__user=request.user).distinct()
         return render(request, 'admin_sessions_edit.html', context={'form': form})
 
 
@@ -162,6 +170,8 @@ def clients_add(request):
         messages.warning(request, 'Merci de vérifier les informations')
         form.fields['catalogue'].queryset = Catalogue.objects.filter(
             profile__user=request.user).exclude(nom='main')
+        form.fields['entreprise'].queryset = Entreprise.objects.filter(
+            profile__user=request.user)
         return render(request, 'admin_clients_add.html', context={'form': form})
 
 
@@ -174,6 +184,10 @@ def clients_edit(request):
         return redirect('clients_index')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['catalogue'].queryset = Catalogue.objects.filter(
+            profile__user=request.user).exclude(nom='main')
+        form.fields['entreprise'].queryset = Entreprise.objects.filter(
+            profile__user=request.user)
         return render(request, 'admin_clients_edit.html', context={'form': form})
 
 
@@ -198,6 +212,8 @@ def inscriptions_add(request):
         return redirect('sessions_detail', id=request.POST["session_id"])
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['localisation'].queryset = Localisation.objects.filter(
+            profile__user=request.user).distinct()
         form.fields['client'].queryset = Client.objects.filter(
             catalogue__profile__user=request.user)
         return render(request, 'admin_sessions_detail.html', context={'form_add_inscription': form, 'form_add_cours': forms.CoursForm()})
