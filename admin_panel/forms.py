@@ -19,8 +19,9 @@ class InscriptionForm(ModelForm):
 
     class Meta:
         model = Inscription
-        fields = ['nom', 'prenom']
-        labels = {'nom': 'Nom : ', 'prenom': 'Prénom : '}
+        fields = ['nom', 'prenom', 'client']
+        labels = {'nom': 'Nom : ', 'prenom': 'Prénom : ',
+                  'client': 'Client associé : '}
 
 
 class LocalisationForm(ModelForm):

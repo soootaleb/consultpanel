@@ -198,7 +198,9 @@ def inscriptions_add(request):
         return redirect('sessions_detail', id=request.POST["session_id"])
     else:
         messages.warning(request, 'Merci de vérifier les informations')
-        return render(request, 'admin_session_detail.html', context={'form_add_inscription': form, 'form_add_cours': forms.CoursForm()})
+        form.fields['client'].queryset = Client.objects.filter(
+            catalogue__profile__user=request.user)
+        return render(request, 'admin_sessions_detail.html', context={'form_add_inscription': form, 'form_add_cours': forms.CoursForm()})
 
 
 def entreprises_add(request):

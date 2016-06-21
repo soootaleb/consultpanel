@@ -119,6 +119,7 @@ class Inscription(models.Model):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
     session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
 """
 Landing page models
 """

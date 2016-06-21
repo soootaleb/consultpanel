@@ -25,6 +25,8 @@ def sessions_detail(request, id):
     cours_form.fields['localisation'].queryset = Localisation.objects.filter(
         profile__user=request.user).distinct()
     inscription_form = InscriptionForm()
+    inscription_form.fields['client'].queryset = Client.objects.filter(
+        catalogue__profile__user=request.user)
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
         'session': session,

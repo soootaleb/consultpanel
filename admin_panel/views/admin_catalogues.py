@@ -9,7 +9,7 @@ from admin_panel.user_tests import *
 def catalogues_index(request):
     return render(request, 'admin_catalogues_index.html', context={
         'page_title':   'Gestion des catalogues',
-        'catalogues_list':   Catalogue.objects.filter(profile__user=request.user).exclude(nom='main'),
+        'catalogues_list':   Catalogue.objects.filter(profile__user=request.user).exclude(nom='main').distinct(),
     })
 
 
