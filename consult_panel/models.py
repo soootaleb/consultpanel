@@ -22,6 +22,11 @@ class Session(models.Model):
     def __str__(self):
         return "Session de : " + self.formation.nom
 
+    def get_date_debut(self):
+        cours = Cours.objects.filter(
+            session=self.id).order_by('date_cours_debut')
+        return cours[0].date_cours_debut if cours.count() > 0 else 'Aucun cours dans cette session'
+
 
 class Catalogue(models.Model):
     nom = models.CharField(max_length=200)

@@ -31,7 +31,7 @@ def pages_index(request):
             'calendar_content': json.dumps(cours_list),
             'head': {
                 'sessions': Session.objects.filter(formation__catalogue__profile__user=request.user).distinct().count(),
-                'inscrits': 'ToDo',
+                'inscrits': Inscription.objects.filter(session__formation__catalogue__profile__user=request.user).distinct().count(),
                 'formations': Formation.objects.filter(catalogue__profile__user=request.user).distinct().count(),
                 'clients': Client.objects.filter(catalogue__profile__user=request.user).distinct().count()
             }

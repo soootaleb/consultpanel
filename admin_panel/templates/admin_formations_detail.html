@@ -15,7 +15,7 @@
                 <li class="nav-item">
                     <a class="nav-link {% if flag %} active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
-                                <span class="glyphicon glyphicon-music"></span> Inscriptions
+                                <span class="glyphicon glyphicon-music"></span> Sessions
                         </span>
                     </a>
                 </li>
@@ -39,7 +39,19 @@
             
         </div>
         <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
-
+            <ul>
+                {% for s in formation.sessions %}
+                    <li>
+                        {{ s.get_date_debut }}
+                        <a href={% url 'sessions_detail' s.id %} type="button" class="btn btn-inline btn-primary">
+                                Détail
+                            </a>
+                            <a href={% url 'sessions_edit' s.id %} type="button" class="btn btn-inline btn-info">
+                                Modifier
+                            </a>
+                    </li>
+             {% endfor %}
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
         </div>
