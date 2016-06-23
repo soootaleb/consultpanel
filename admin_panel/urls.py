@@ -20,7 +20,7 @@ urlpatterns = [
 
     url(r'^preferences/$', admin_preferences.preferences_index,
         name='preferences_index'),
-    url(r'^preferences/index/$', admin_preferences.preferences_index,
+    url(r'^preferences/index/(?P<tab>[a-z]+)?$', admin_preferences.preferences_index,
         name='preferences_index'),
 
     url(r'^sessions/$', admin_sessions.sessions_index, name='sessions_index'),
@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^sessions/add/$', admin_sessions.sessions_add, name='sessions_add'),
     url(r'^sessions/edit/(?P<id>[0-9]+)$',
         admin_sessions.sessions_edit, name='sessions_edit'),
-    url(r'^sessions/detail/(?P<id>[0-9]+)$',
+    url(r'^sessions/detail/(?P<id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_sessions.sessions_detail, name='sessions_detail'),
 
     url(r'^catalogues/$', admin_catalogues.catalogues_index, name='catalogues_index'),
@@ -48,7 +48,7 @@ urlpatterns = [
     url(r'^formations/add/$', admin_formations.formations_add, name='formations_add'),
     url(r'^formations/edit/(?P<id>[0-9]+)$',
         admin_formations.formations_edit, name='formations_edit'),
-    url(r'^formations/detail/(?P<id>[0-9]+)$',
+    url(r'^formations/detail/(?P<id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_formations.formations_detail, name='formations_detail'),
 
     url(r'^clients/$', admin_clients.clients_index, name='clients_index'),

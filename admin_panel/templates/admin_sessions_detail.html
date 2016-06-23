@@ -7,7 +7,7 @@
         <div class="tbl">
             <ul class="nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link {% if not flag %}active{% endif %}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <i class="font-icon glyphicon glyphicon-duplicate"></i>
                                 Détail
@@ -15,14 +15,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if flag %} active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'inscriptions' %}active{%endif%}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span> Inscriptions
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'docs' %}active{%endif%}" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span> Documents
                         </span>
@@ -31,9 +31,8 @@
             </ul>
         </div>
     </div>
-
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active" id="tabs-1-tab-1">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" id="tabs-1-tab-1">
             <p><strong>Nom : </strong>{{session.formation.nom}}</p>
             <p><strong>Description : </strong>{{session.formation.description}}</p>
             <p><strong>Cours : </strong></p>
@@ -48,7 +47,7 @@
                 {% crispy form_add_cours %}
             </form>
         </div>
-        <div role="tabpanel" class="tab-pane fade in active" id="tabs-1-tab-2">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{%endif%}" id="tabs-1-tab-2">
             <p><strong>Liste : </strong></p>
             <ul>
                 {% for i in session.inscriptions %}
@@ -61,7 +60,7 @@
                 {% crispy form_add_inscription %}
             </form>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
         </div>
     </div>
 </section>

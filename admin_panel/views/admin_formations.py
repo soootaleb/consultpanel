@@ -14,12 +14,13 @@ def formations_index(request):
 
 
 @user_passes_test(is_formateur)
-def formations_detail(request, id):
+def formations_detail(request, id, tab):
     formation = Formation.objects.get(pk=id)
     formation.sessions = Session.objects.filter(formation=formation)
     return render(request, 'admin_formations_detail.html', context={
         'page_title': formation.nom,
-        'formation': formation
+        'formation': formation,
+        'active_tab': tab if tab in ['detail', 'sessions', 'docs'] else 'detail'
     })
 
 

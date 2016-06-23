@@ -7,7 +7,7 @@
             <div class="tbl">
                 <ul class="nav" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link {% if not flag %}active{% endif %}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+                        <a class="nav-link {% if active_tab == 'docs' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                             <span class="nav-link-in">
                                 <i class="font-icon glyphicon glyphicon-duplicate"></i>
                                 Documents
@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if flag %} active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                        <a class="nav-link {% if active_tab == 'add' %}active{%endif%}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
                             <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span>
                                 Ajouter des documents
@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                        <a class="nav-link {% if active_tab == 'test' %}active{%endif%}" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
                             <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span>
                                 Test view
@@ -35,13 +35,13 @@
         </div>
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade {% if not flag %}in active{% endif %}" id="tabs-1-tab-1">
+            <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' or active_tab == None %}active{%endif%}}" id="tabs-1-tab-1">
                 {% include "admin_preferences_documents_templates.html" %}
             </div>
-            <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
+            <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'add' %}active{%endif%}" id="tabs-1-tab-2">
                 {% include "admin_preferences_documents_upload.html" %}
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
+            <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'test' %}active{%endif%}" id="tabs-1-tab-3">
                 {% include "admin_preferences_test_view.html" %}
             </div>
         </div>

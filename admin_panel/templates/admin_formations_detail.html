@@ -5,7 +5,7 @@
         <div class="tbl">
             <ul class="nav" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link {% if not flag %}active{% endif %}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <i class="font-icon glyphicon glyphicon-duplicate"></i>
                                 Détail
@@ -13,14 +13,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if flag %} active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'sessions' %}active{% endif %}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span> Sessions
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                    <a class="nav-link {% if active_tab == 'docs' %}active{% endif %}" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                                 <span class="glyphicon glyphicon-music"></span> Documents
                         </span>
@@ -31,14 +31,14 @@
     </div>
 
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade {% if not flag %}in active{% endif %}" id="tabs-1-tab-1">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" id="tabs-1-tab-1">
             <p><strong>Nom : </strong>{{formation.nom}}</p>
             <p><strong>Description : </strong>{{formation.description}}</p>
             <p><strong>Prix H.T (€) : </strong>{{formation.prix_ht}}</p>
             <p><strong>Prix T.T.C (€) : </strong>{{formation.prix_ttc}}</p>
             
         </div>
-        <div role="tabpanel" class="tab-pane fade {% if flag %}in active{% endif %}" id="tabs-1-tab-2">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'sessions' %}active{% endif %}" id="tabs-1-tab-2">
             <ul>
                 {% for s in formation.sessions %}
                     <li>
@@ -53,7 +53,7 @@
              {% endfor %}
             </ul>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-3">
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{% endif %}" id="tabs-1-tab-3">
         </div>
     </div>
 </section>

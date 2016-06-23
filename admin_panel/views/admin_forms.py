@@ -45,7 +45,7 @@ def file_upload(request):
             'user':   request.user,
             'page_title':   'Préférences',
             'form': form,
-            'flag': True,
+            'active_tab': 'add',
             'dg_types':   DocumentType.objects.all(),
             'dg_templates':   Template.objects.all()
         })
@@ -200,6 +200,8 @@ def cours_add(request):
         return redirect('sessions_detail', id=request.POST["session_id"])
     else:
         messages.warning(request, 'Merci de vérifier les informations')
+        form.fields['localisation'].queryset = Localisation.objects.filter(
+            profile__user=request.user).distinct()
         return render(request, 'admin_session_detail.html', context={'form_add_cours': form, 'form_add_inscription': forms.InscriptionForm()})
 
 
@@ -209,14 +211,15 @@ def inscriptions_add(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'L\'inscription a bien été ajoutée')
-        return redirect('sessions_detail', id=request.POST["session_id"])
+        return redirect('sessions_detail', id=request.POST["session_id"], tab='inscriptions')
     else:
         messages.warning(request, 'Merci de vérifier les informations')
-        form.fields['localisation'].queryset = Localisation.objects.filter(
-            profile__user=request.user).distinct()
         form.fields['client'].queryset = Client.objects.filter(
             catalogue__profile__user=request.user)
-        return render(request, 'admin_sessions_detail.html', context={'form_add_inscription': form, 'form_add_cours': forms.CoursForm()})
+        return render(request, 'admin_sessions_detail.html', context={'form_add_inscription': form,
+                                                                      'form_add_cours': forms.CoursForm(),
+                                                                      'active_tab': 'inscriptions'
+                                                                      })
 
 
 def entreprises_add(request):

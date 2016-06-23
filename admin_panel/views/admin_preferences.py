@@ -11,12 +11,13 @@ import os
 
 
 @user_passes_test(is_formateur)
-def preferences_index(request):
+def preferences_index(request, tab):
     profile = Profile.objects.get(user=request.user)
     return render(request, 'admin_preferences_index.html', context={
         'user':   request.user,
         'page_title':   'Préférences',
         'form': FileForm(),
         'dg_types':   DocumentType.objects.all(),
-        'dg_templates': Template.objects.filter(profile=profile)
+        'dg_templates': Template.objects.filter(profile=profile),
+        'active_tab': tab if tab in ['docs', 'add', 'test'] else 'docs'
     })

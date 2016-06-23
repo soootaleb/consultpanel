@@ -17,7 +17,7 @@ def sessions_index(request):
 
 
 @user_passes_test(is_formateur)
-def sessions_detail(request, id):
+def sessions_detail(request, id, tab):
     session = Session.objects.get(pk=id)
     session.cours = Cours.objects.filter(session=session)
     session.inscriptions = Inscription.objects.filter(session=session)
@@ -31,7 +31,8 @@ def sessions_detail(request, id):
         'page_title': session.formation.nom,
         'session': session,
         'form_add_cours': cours_form,
-        'form_add_inscription': inscription_form
+        'form_add_inscription': inscription_form,
+        'active_tab': tab if tab in ['detail', 'inscriptions', 'docs'] else 'detail'
     })
 
 
