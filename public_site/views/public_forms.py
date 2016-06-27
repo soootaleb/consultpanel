@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render
 # To avoid ambigous function name
 from django.contrib.auth import authenticate, login as lin
@@ -28,7 +29,7 @@ def login(request):
                     if user.groups.filter(name='consultants').exists():
                         return render(request, 'admin_pages_index.html', context=context)
                     else:
-                        return render(request, 'public_pages_index.html', context=context)
+                        return render(request, 'admin_pages_index.html', context=context)
                 else:
                     return HttpResponseForbidden("Désolé, mais votre compte n'est plus actif")
             else:
