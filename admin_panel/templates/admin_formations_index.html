@@ -3,6 +3,7 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'main/css/lib/datatables-net/datatables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/lib/bootstrap-sweetalert/sweetalert.css' %}">
 {% endblock %}
 
 {% block header_action %}
@@ -17,13 +18,23 @@
         <header class="box-typical-header">
             <div class="tbl-row">
                 <div class="tbl-cell tbl-cell-title datatable-custom-search">
-                    <input type="text" placeholder="Rechercher une formation" class="form-control" id="datatable-custom-search">
-                </div>
-                <div class="tbl-cell tbl-cell-action-bordered">Ë
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+                    <input type="text" placeholder="Rechercher une formation" class="form-control"
+                           id="datatable-custom-search">
                 </div>
                 <div class="tbl-cell tbl-cell-action-bordered">
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer
+                    <button type="button" id="action-edit" class="action-btn disabled"><i
+                            class="font-icon font-icon-pencil"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Sélectionnez une formation pour l'éditer"></i> Editer
+                    </button>
+                </div>
+                <div class="tbl-cell tbl-cell-action-bordered">
+                    <button type="button" id="action-delete" class="action-btn disabled"><i
+                            class="font-icon font-icon-trash"
+                            data-toggle="tooltip"
+                            data-placement="left"
+                            title="Sélectionnez une formation pour la supprimer"></i> Supprimer
                     </button>
                 </div>
             </div>
@@ -42,24 +53,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {%  for i in "xxxxxxxxxxxx" %}
+
                     {% for f in formations_list %}
-                        <tr>
+                        <tr data-id="{{ f.id }}"
+                            data-edit="{% url 'formations_edit' f.id %}"
+                            data-delete="{% url 'formations_delete' f.id %}">
                             <td>{{ f.nom }}</td>
-                            <td>{{ f.description }}</td>
+                            <td>{{ f.description|truncatechars_html:30 }}</td>
                             <td>{{ f.prix_ht }}</td>
                             <td>{{ f.prix_ttc }}</td>
                             <td>
                                 <a href={% url 'formations_detail' f.id %} type="button"
-                                   class="btn btn-inline btn-primary">
+                                   class="btn btn-sm btn-inline btn-primary">
                                     Détail
-                                </a>
-                                <a href={% url 'formations_edit' f.id %} type="button" class="btn btn-inline btn-info">
-                                    Modifier
                                 </a>
                             </td>
                         </tr>
-                    {% endfor %}
                     {% endfor %}
                     </tbody>
                 </table>
@@ -71,11 +80,20 @@
 
 {% block script %}
     <script src="{% static 'main/js/lib/datatables-net/datatables.min.js' %}"></script>
+    <script src="{% static 'main/js/lib/bootstrap-sweetalert/sweetalert.min.js' %}"></script>
     <script>
         $(function () {
+
+            var editBtn = $('#action-edit');
+            var deleteBtn = $('#action-delete');
+            var currentRow = {
+                row: null,
+                dataset: null
+            };
+
             var table = $('#formations').DataTable({
                 select: {
-                    style: 'multi'
+                    style: 'single'
                 },
                 bScrollInfinite: true,
                 bScrollCollapse: true,
@@ -85,9 +103,61 @@
                 sDom: 'lrtp',
                 pageLength: 8
             });
+
             $('#datatable-custom-search').on('keyup', function () {
                 table.search(this.value).draw();
             });
+
+            table
+            .on('select', function (e, dt, type, indexes) {
+                editBtn.removeClass('disabled');
+                deleteBtn.removeClass('disabled');
+                currentRow.row = table.row(indexes[0]);
+                currentRow.dataset = table.row(indexes[0]).node().dataset;
+            })
+            .on('deselect', function (e, dt, type, indexes) {
+                editBtn.addClass('disabled');
+                deleteBtn.addClass('disabled');
+                currentRow.row = null;
+                currentRow.dataset = null;
+            });
+
+            editBtn.click(function (event) {
+                if (!$(this).hasClass('disabled')) {
+                    location.href = currentRow.dataset.edit;
+                }
+            });
+
+            deleteBtn.click(function (event) {
+                if (!$(this).hasClass('disabled')) {
+
+                    swal({
+                                title: "Êtes-vous sûr ?",
+                                text: "Voulez-vous supprimer cette formation ?",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-danger",
+                                confirmButtonText: "Oui",
+                                cancelButtonText: "Non",
+                                closeOnConfirm: false,
+                                closeOnCancel: true
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.get(currentRow.dataset.delete, function () {
+                                        currentRow.row.remove().draw();
+                                        swal({
+                                            title: "Supprimée !",
+                                            text: "La formation a bien été supprimée.",
+                                            type: "success",
+                                            confirmButtonClass: "btn-success"
+                                        });
+                                    });
+                                }
+                            });
+                }
+            });
+
         });
     </script>
 {% endblock %}

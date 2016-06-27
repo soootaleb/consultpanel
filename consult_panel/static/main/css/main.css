@@ -23248,6 +23248,16 @@ table.dataTable.cp {
 .box-table.box-typical.box-typical-max-screen .tbl-cell.tbl-cell-title.datatable-custom-search {
   padding: 15px;
 }
+.box-table.box-typical.box-typical-max-screen .action-btn.disabled,
+.box-table.box-typical.box-typical-max-screen .action-btn:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+.box-table.box-typical.box-typical-max-screen .action-btn.disabled:hover,
+.box-table.box-typical.box-typical-max-screen .action-btn:disabled:hover {
+  opacity: .65;
+  color: #adb7be;
+}
 .box-table.box-typical.box-typical-max-screen .dataTables_paginate {
   padding-right: 15px;
 }

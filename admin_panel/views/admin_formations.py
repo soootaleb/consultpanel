@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from admin_panel.forms import FormationForm
 from consult_panel.models import *
 from admin_panel.forms import *
 from admin_panel.user_tests import *
