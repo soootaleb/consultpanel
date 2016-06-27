@@ -1,112 +1,93 @@
 {% extends "admin_root.html" %}
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'main/css/lib/datatables-net/datatables.min.css' %}">
+{% endblock %}
 
 {% block header_action %}
-<a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
-    <i class="font-icon-plus"> Ajouter une formation</i>
-</a>
+    <a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
+        <i class="font-icon-plus"> Ajouter une formation</i>
+    </a>
 {% endblock %}
 
 {% block content %}
 
-<section class="box-typical box-typical-max-screen">
-    <header class="box-typical-header">
-        <div class="tbl-row">
-            <div class="tbl-cell tbl-cell-title">
-                <h3>{{formations_list.count}} Formation{% if formations_list.count > 1%}s{%endif%}</h3>
+    <section class="box-typical box-typical-max-screen box-table">
+        <header class="box-typical-header">
+            <div class="tbl-row">
+                <div class="tbl-cell tbl-cell-title datatable-custom-search">
+                    <input type="text" placeholder="Rechercher une formation" class="form-control" id="datatable-custom-search">
+                </div>
+                <div class="tbl-cell tbl-cell-action-bordered">
+                    <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
+                </div>
+                <div class="tbl-cell tbl-cell-action-bordered">
+                    <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer
+                    </button>
+                </div>
             </div>
-            <div class="tbl-cell tbl-cell-action-bordered">
-                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
-            </div>
-            <div class="tbl-cell tbl-cell-action-bordered">
-                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
-            </div>
-        </div>
-    </header>
-    <div class="box-typical-body">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+        </header>
+        <div class="box-typical-body" style="min-height: 600px;">
+            <div class="table-responsive">
+
+                <table id="formations" class="display table cp" cellspacing="0" width="100%">
+                    <thead>
                     <tr>
-                        <th></th>
-                        <th>
-                            Nom
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                        <th>
-                            Prix H.T
-                        </th>
-                        <th>
-                            Prix T.T.C
-                        </th>
-                        <th>
-                            Actions
-                        </th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Prix H.T</th>
+                        <th>Prix T.T.C</th>
+                        <th>Actions</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
+                    {%  for i in "xxxxxxxxxxxx" %}
                     {% for f in formations_list %}
-                    <tr>
-                        <td class="table-check">
-                            <div class="checkbox checkbox-only">
-                                <input type="checkbox" id="tbl-check-2-1">
-                                <label for="tbl-check-2-1"></label>
-                            </div>
-                        </td>
-                        <td>
-                            {{ f.nom }}
-                        </td>
-                        <td>
-                            {{ f.description }}
-                        </td>
-                        <td>
-                            {{ f.prix_ht }}
-                        </td>
-                        <td>
-                            {{ f.prix_ttc }}
-                        </td>
-                        <td>
-                            <a href={% url 'formations_detail' f.id %} type="button" class="btn btn-inline btn-primary">
-                                Détail
-                            </a>
-                            <a href={% url 'formations_edit' f.id %} type="button" class="btn btn-inline btn-info">
-                                Modifier
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ f.nom }}</td>
+                            <td>{{ f.description }}</td>
+                            <td>{{ f.prix_ht }}</td>
+                            <td>{{ f.prix_ttc }}</td>
+                            <td>
+                                <a href={% url 'formations_detail' f.id %} type="button"
+                                   class="btn btn-inline btn-primary">
+                                    Détail
+                                </a>
+                                <a href={% url 'formations_edit' f.id %} type="button" class="btn btn-inline btn-info">
+                                    Modifier
+                                </a>
+                            </td>
+                        </tr>
                     {% endfor %}
-                </tbody>
-            </table>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock %}
 
 {% block script %}
-<script>
-    $(document).ready(function(){
-        $(".btn-delete").click(function(){
-            var url = "http://localhost:8000/ajax/formations/delete/" + event.target.id
-            $.ajax({
-                type: "GET", //rest Type
-                dataType: 'html', //mispelled
-                url: url,
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    var json = JSON.parse(msg);
-                    if(json['status'] === "OK") {
-                        document.getElementById('box_'+json['id']).parentNode.removeChild(document.getElementById('box_'+json['id']));
-                    } else {
-                        alert("Une erreur est survenue, la formation n'a pas été supprimée");
-                    }
+    <script src="{% static 'main/js/lib/datatables-net/datatables.min.js' %}"></script>
+    <script>
+        $(function () {
+            var table = $('#formations').DataTable({
+                select: {
+                    style: 'multi'
                 },
-                error : function(var1, var2, var3) {
-                    alert("Une erreur est survenue, la formation n'a pas été supprimée");
-                }
+                bScrollInfinite: true,
+                bScrollCollapse: true,
+                bLengthChange: false,
+                bAutoWidth: false,
+                searching: true,
+                sDom: 'lrtp',
+                pageLength: 8
+            });
+            $('#datatable-custom-search').on('keyup', function () {
+                table.search(this.value).draw();
             });
         });
-    });
-</script>
+    </script>
 {% endblock %}

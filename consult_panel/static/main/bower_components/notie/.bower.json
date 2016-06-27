@@ -25,12 +25,12 @@
     "test",
     "tests"
   ],
-  "version": "3.1.0",
-  "_release": "3.1.0",
+  "version": "3.2.0",
+  "_release": "3.2.0",
   "_resolution": {
     "type": "version",
-    "tag": "v3.1.0",
-    "commit": "804bf3508fc1a759535b93600dcb4ef301ae94a2"
+    "tag": "v3.2.0",
+    "commit": "7e601e781e624506adcdf56aaea70e6651f93dbb"
   },
   "_source": "https://github.com/jaredreich/notie.js.git",
   "_target": "*",

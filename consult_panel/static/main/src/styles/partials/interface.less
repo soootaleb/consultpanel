@@ -1,3 +1,8 @@
+@import '../partials/reset';
+@import '../partials/mixins';
+@import '../partials/vars';
+@import '../partials/icons';
+
 /* ==========================================================================
    Interface
    ========================================================================== */
@@ -184,6 +189,17 @@ a.btn {
    &:hover, &:focus { color: #fff; }
 }
 
+// Font Awesome Styled
+.btn-square-icon { min-width: 80px; height: 60px; border: solid 1px @color-border-light; background: @color-bg-grey-light; padding: 4px 10px 0; color: @color-grey-blue-txt; position: relative; margin: 0 6px 10px 0; vertical-align: middle; text-align: center;
+   .fa { display: block; margin: 0 0 2px; }
+   .label { padding-left: .5em; padding-right: .5em; position: absolute; right: -5px; top: -5px; }
+
+   &:hover { background-color: @color-bg-grey; }
+
+   &.btn-square-icon-rounded { border-radius: .25rem; }
+}
+a.btn-square-icon { display: inline-block; color: @color-grey-blue-txt; padding-top: 11px; }
+
 /* ==========================================================================
    Labels
    ========================================================================== */
@@ -230,7 +246,7 @@ a.label-light-grey:hover { color: #fff; background-color: @color-blue; }
 }
 
 // Bootstrap tables
-.table, .bootstrap-table .table, .fixed-table-body .table { font-size: .9375rem /*14/16*/; margin-bottom: 0;
+.table, .bootstrap-table .table, .fixed-table-body .table { font-size: .9375rem /*14/16*/; margin-bottom: 0; background: #fff;
    th, td { vertical-align: middle; border-top-color: @color-border-light; padding: 11px 10px 10px; }
    th { font-weight: 700; }
    td { height: 50px; }
@@ -827,7 +843,7 @@ a.label-light-grey:hover { color: #fff; background-color: @color-blue; }
    Sweet Alerts
    ========================================================================== */
 
-.sweet-alert { padding-left: 2rem; padding-right: 2rem; padding-bottom: 0;
+.sweet-alert { padding-left: 2rem; padding-right: 2rem;
    h2 { font-weight: 400; position: relative; margin: 2rem 0 1rem; }
    p { margin: 0 0 10px; }
    .lead { font-weight: 400; font-size: 1.25rem /*20/16*/; color: @color-text; margin-bottom: 20px; }
@@ -855,6 +871,10 @@ a.label-light-grey:hover { color: #fff; background-color: @color-blue; }
    }
    .icon.info { border-color: @color-blue;
       &:before, &:after { background-color: @color-blue; }
+   }
+
+   .form-group {
+      margin-bottom: 30px;
    }
 }
 
@@ -1176,10 +1196,10 @@ body.modal-open { overflow: hidden !important; position: relative; }
 
    // С иконками
    &.tabs-section-nav-icons {
-      .font-icon, .glyphicon { display: block; color: @color-grey; margin: 0 0 .2em; .hover_animate(); }
+      .font-icon, .glyphicon, .fa { display: block; color: @color-grey; margin: 0 0 .2em; .hover_animate(); }
       .nav-link-in { line-height: 1; }
       .nav-link.active { color: @color-blue;
-         .font-icon, .glyphicon { color: @color-blue; }
+         .font-icon, .glyphicon, .fa { color: @color-blue; }
       }
    }
 
@@ -1418,7 +1438,93 @@ body.modal-open { overflow: hidden !important; position: relative; }
    .dd-placeholder, .dd-empty { background-color: transparent; border-color: @color-red; }
 }
 
+.horizontal-navigation {
+   .page-content {
+      padding-top: 166px;
+   }
 
+   .main-nav {
+      position: fixed;
+      z-index: 10;
+      width: 100%;
+      top: 80px;
+      left: 0;
+      height: 56px;
+      padding: 0 15px;
+      background: #fff;
+      border-bottom: solid 1px #c5d6de;
 
+      .nav-link {
+         position: relative;
+         line-height: 56px;
+         color: #999;
+         font-weight: 600;
+      }
 
+      .nav-link:hover, .nav-link.active {
+         color: #343434;
+      }
 
+      .nav-link:hover:before, .nav-link.active:before {
+         content: '';
+         height: 4px;
+         background: #00A8FF;
+         position: absolute;
+         bottom: 1px;
+         width: 100%;
+         display: block;
+      }
+   }
+}
+
+@media (max-width: @md-max-width) {
+   .horizontal-navigation {
+      .page-content {
+         padding-top: 112px;
+      }
+
+      .main-nav {
+         left: -240px;
+         height: 100%;
+         width: 240px;
+         padding: 0;
+
+         .nav-item {
+            display: block;
+            margin-left: 0;
+         }
+
+         .nav-link {
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+            line-height: 46px;
+         }
+
+         .nav-link:hover:before, .nav-link.active:before {
+            content: '';
+            width: 4px;
+            background: #00A8FF;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 1px;
+            height: 100%;
+            display: block;
+         }
+      }
+   }
+
+   .horizontal-navigation.menu-left-opened {
+      .main-nav {
+         .hover_animate();
+
+         z-index: 60;
+         left: 0;
+      }
+
+      .mobile-menu-left-overlay {
+         display: block;
+      }
+   }
+}

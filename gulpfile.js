@@ -101,7 +101,7 @@ gulp.task('style:build', function () {
             browsers: ['last 30 versions', '> 1%', 'ie 8', 'ie 9'],
             cascade: true
         }))
-        .pipe(minifyCSS())
+        //.pipe(minifyCSS())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 });
@@ -112,7 +112,7 @@ gulp.task('styleLib:build', function () {
             browsers: ['last 30 versions', '> 1%', 'ie 8', 'ie 9'],
             cascade: true
         }))
-        .pipe(minifyCSS())
+        //.pipe(minifyCSS())
         .pipe(gulp.dest(path.build.cssLib))
         .pipe(reload({stream: true}));
 });

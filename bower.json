@@ -2,7 +2,7 @@
   "name": "project",
   "version": "1.0.0",
   "authors": [
-    "Christik <christik.lucid@gmail.com>"
+    "ThemesAnytime <support@themesanytime.com>"
   ],
   "ignore": [
     "**/.*",
@@ -43,6 +43,13 @@
     "summernote": "~0.8.1",
     "html.sortable": "~0.3.1",
     "c3js-chart": "~0.4.10",
-    "plottable": "~2.0.0"
+    "plottable": "~2.0.0",
+    "font-awesome": "~4.5.0",
+    "simplemde-markdown-editor": "~1.10.1",
+    "jquery.blockUI": "2.70",
+    "jstree": "~3.3.0",
+    "jQuery-contextMenu": "~2.1.1",
+    "jquery-tag-editor": "~1.0.18",
+    "bootstrap-daterangepicker": "~2.1.19"
   }
 }

@@ -1,3 +1,6 @@
+@import '../partials/mixins';
+@import '../partials/vars';
+
 /* ==========================================================================
    Faq
    ========================================================================== */
@@ -91,6 +94,12 @@
    }
    .flag { position: absolute; top: 0; bottom: 0; right: 0; left: 0; width: 100%; height: 100%; background-size: cover; }
    .flag-icon-background { background-size: contain; background-position: 50%; background-repeat: no-repeat; }
+}
+
+.fontawesome-icon-list {
+   >div { margin-bottom: 10px; }
+   a { .a_colored(@color-text, @color-link); }
+   .fa { color: @color-grey; }
 }
 
 

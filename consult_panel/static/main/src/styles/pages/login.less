@@ -1,3 +1,6 @@
+@import '../partials/mixins';
+@import '../partials/vars';
+
 /* ==========================================================================
    Login
    ========================================================================== */
@@ -20,6 +23,19 @@
    .reset { font-size: .875rem /*14/16*/; }
    .close { position: absolute; right: 10px; top: 4px; opacity: 1; color: @color-border;
       &:hover { color: @color-blue; }
+   }
+}
+
+.sign-box.reset-password-box {
+   .btn {
+      display: inline-block !important;
+      margin: 10px auto 12px;
+      margin-right: 10px;
+   }
+
+   a {
+      display: inline-block;
+      margin-left: 4px;
    }
 }
 
