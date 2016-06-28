@@ -13,6 +13,11 @@ table.dataTable.cp {
 .box-table {
   &.box-typical.box-typical-max-screen {
 
+    //Height box
+    .box-typical-body{
+      min-height: 250px;
+    }
+
     //Search bar
     .tbl-cell.tbl-cell-title.datatable-custom-search {
       padding: 15px;
@@ -29,11 +34,6 @@ table.dataTable.cp {
     .action-btn:disabled:hover{
       opacity: .65;
       color: @color-grey;
-    }
-
-    //Paginate
-    .dataTables_paginate {
-      padding-right: 15px;
     }
 
   }

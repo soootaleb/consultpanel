@@ -1,11 +1,6 @@
 {% extends "admin_root.html" %}
 {% load staticfiles %}
 
-{% block style %}
-    <link rel="stylesheet" href="{% static 'main/css/lib/datatables-net/datatables.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/lib/bootstrap-sweetalert/sweetalert.css' %}">
-{% endblock %}
-
 {% block header_action %}
     <a href="{% url 'formations_add' %}" class="btn btn-rounded btn-success">
         <i class="font-icon-plus"> Ajouter une formation</i>
@@ -39,7 +34,7 @@
                 </div>
             </div>
         </header>
-        <div class="box-typical-body" style="min-height: 600px;">
+        <div class="box-typical-body">
             <div class="table-responsive">
 
                 <table id="formations" class="display table cp" cellspacing="0" width="100%">
@@ -53,7 +48,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     {% for f in formations_list %}
                         <tr data-id="{{ f.id }}"
                             data-edit="{% url 'formations_edit' f.id %}"
@@ -63,13 +57,14 @@
                             <td>{{ f.prix_ht }}</td>
                             <td>{{ f.prix_ttc }}</td>
                             <td>
-                                <a href={% url 'formations_detail' f.id %} type="button"
-                                   class="btn btn-sm btn-inline btn-primary">
-                                    Détail
-                                </a>
+                                <button href={% url 'formations_detail' f.id %} type="button"
+                                        class="btn btn-sm btn-rounded btn-secondary-outline">
+                                    Détails
+                                </button>
                             </td>
                         </tr>
                     {% endfor %}
+
                     </tbody>
                 </table>
             </div>
@@ -79,85 +74,7 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'main/js/lib/datatables-net/datatables.min.js' %}"></script>
-    <script src="{% static 'main/js/lib/bootstrap-sweetalert/sweetalert.min.js' %}"></script>
     <script>
-        $(function () {
-
-            var editBtn = $('#action-edit');
-            var deleteBtn = $('#action-delete');
-            var currentRow = {
-                row: null,
-                dataset: null
-            };
-
-            var table = $('#formations').DataTable({
-                select: {
-                    style: 'single'
-                },
-                bScrollInfinite: true,
-                bScrollCollapse: true,
-                bLengthChange: false,
-                bAutoWidth: false,
-                searching: true,
-                sDom: 'lrtp',
-                pageLength: 8
-            });
-
-            $('#datatable-custom-search').on('keyup', function () {
-                table.search(this.value).draw();
-            });
-
-            table
-            .on('select', function (e, dt, type, indexes) {
-                editBtn.removeClass('disabled');
-                deleteBtn.removeClass('disabled');
-                currentRow.row = table.row(indexes[0]);
-                currentRow.dataset = table.row(indexes[0]).node().dataset;
-            })
-            .on('deselect', function (e, dt, type, indexes) {
-                editBtn.addClass('disabled');
-                deleteBtn.addClass('disabled');
-                currentRow.row = null;
-                currentRow.dataset = null;
-            });
-
-            editBtn.click(function (event) {
-                if (!$(this).hasClass('disabled')) {
-                    location.href = currentRow.dataset.edit;
-                }
-            });
-
-            deleteBtn.click(function (event) {
-                if (!$(this).hasClass('disabled')) {
-
-                    swal({
-                                title: "Êtes-vous sûr ?",
-                                text: "Voulez-vous supprimer cette formation ?",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonClass: "btn-danger",
-                                confirmButtonText: "Oui",
-                                cancelButtonText: "Non",
-                                closeOnConfirm: false,
-                                closeOnCancel: true
-                            },
-                            function (isConfirm) {
-                                if (isConfirm) {
-                                    $.get(currentRow.dataset.delete, function () {
-                                        currentRow.row.remove().draw();
-                                        swal({
-                                            title: "Supprimée !",
-                                            text: "La formation a bien été supprimée.",
-                                            type: "success",
-                                            confirmButtonClass: "btn-success"
-                                        });
-                                    });
-                                }
-                            });
-                }
-            });
-
-        });
+        createBoxTab('#formations');
     </script>
 {% endblock %}

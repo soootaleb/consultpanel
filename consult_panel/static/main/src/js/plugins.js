@@ -29,3 +29,7 @@
 
 //= vendor/jquery.clickout.js
 //= vendor/jquery-asPieProgress.min.js
+
+//= lib/datatables-net/datatables.min.js
+//= lib/bootstrap-sweetalert/sweetalert.min.js
+//= elements/createBoxTab.js
