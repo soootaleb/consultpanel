@@ -4,7 +4,7 @@ from .views import \
     admin_clients, \
     admin_entreprises, \
     admin_pages, \
-    admin_profile, \
+    admin_profil, \
     admin_preferences, \
     admin_sessions, \
     admin_formations, \
@@ -15,8 +15,8 @@ urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
     url(r'^index/$', admin_pages.pages_index, name='admin_index'),
 
-    url(r'^profile/$', admin_profile.profile_index, name='profile_index'),
-    url(r'^profile/index/$', admin_profile.profile_index, name='profile_index'),
+    url(r'^profil/$', admin_profil.profil_index, name='profil_index'),
+    url(r'^profil/index/$', admin_profil.profil_index, name='profil_index'),
 
     url(r'^preferences/$', admin_preferences.preferences_index,
         name='preferences_index'),

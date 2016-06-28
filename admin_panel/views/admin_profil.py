@@ -5,9 +5,9 @@ from admin_panel.user_tests import *
 
 
 @user_passes_test(is_formateur)
-def profile_index(request):
+def profil_index(request):
     #user = Profile.objects.get(user=request.user)
-    return render(request, 'admin_profile_index.html', context={
+    return render(request, 'admin_profil_index.html', context={
         'user':   request.user,
-        'page_title':   'Mon profile'
+        'page_title':   'Mon profil'
     })
