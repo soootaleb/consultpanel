@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Consult Panel DataTables
+   ========================================================================== */
+
+table.dataTable.cp {
+  margin-top: 0px !important;
+  -webkit-border-radius: 4px;
+  border-radius: 19px;
+}
+
+/* ==========================================================================
+   Consult Panel Box Tables
+   ========================================================================== */
+
+.box-table {
+
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  &.box-typical.box-typical-max-screen {
+
+    //Height box
+    .box-typical-body {
+      min-height: 250px;
+    }
+
+    //Search bar
+    .tbl-cell.tbl-cell-title.datatable-custom-search {
+      padding: 15px;
+    }
+
+    //Actions Buttons
+    .action-btn.disabled,
+    .action-btn:disabled {
+      cursor: not-allowed;
+      opacity: .65;
+    }
+
+    .action-btn.disabled:hover,
+    .action-btn:disabled:hover {
+      opacity: .65;
+      color: @color-grey;
+    }
+
+  }
+}
