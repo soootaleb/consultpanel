@@ -82,4 +82,6 @@ urlpatterns = [
         name='localisations_add'),
     url(r'^localisations/edit/(?P<id>[0-9]+)$',
         admin_localisations.localisations_edit, name='localisations_edit'),
+    url(r'^localisations/delete/(?P<id>[0-9]+)$',
+        admin_localisations.localisations_delete, name='localisations_delete'),
 ]
