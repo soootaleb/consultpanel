@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 # To avoid ambigous function name
-from django.contrib.auth import authenticate, login as lin, logout as lout
+from django.contrib.auth.models import Group
+from django.contrib import auth
 from public_site import forms
 from django.contrib import messages
 from formtools.wizard.views import SessionWizardView
-from consult_panel.forms import ProfileForm
-from public_site.forms import RegistrationForm
+from consult_panel.models import Profile, Catalogue, CentreFormation
 
 
 class RegistrationWizard(SessionWizardView):
@@ -13,18 +13,26 @@ class RegistrationWizard(SessionWizardView):
         return ['public_pages_register.html']
 
     def done(self, form_list, **kwargs):
+        if create_new_superformateur(self.request, form_list):
+            return redirect('admin_index')
         return redirect('public_index')
 
 
+def create_new_superformateur(request, form_list):
+    form_data = [form for form in form_list]
+    user = form_data[0].save()
+    superFormateurGroup, superFormateurGroupCreated = Group.objects.get_or_create(name='super_formateur')
+    superFormateurGroup.user_set.add(user)
+    centre_formation = form_data[1].save()
+    profile = Profile.objects.create(user=user, centre_formation=centre_formation)
+    profile.liste_catalogues.add(Catalogue.objects.create(nom="default"))
+    profile.save()
+    user.backend = 'django.contrib.auth.backends.ModelBackend'
+    auth.login(request, user)
+    return True
+
 def public_index(request):
     return render(request, 'public_pages_index.html')
-
-
-def register(request):
-    return render(request, 'public_pages_register', context={
-        'form': ProfileForm()
-    })
-
 
 def form(request, name):
     from . import public_forms

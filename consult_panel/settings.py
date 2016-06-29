@@ -84,17 +84,9 @@ WSGI_APPLICATION = 'consult_panel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'consultpanel',
-        'USER': 'master',
-        'PASSWORD': 'mastercraft',  # LOURD
-        'HOST': '163.172.28.152',
-        'PORT': '3306',
-    },
-    # 'default': {
-    #     'NAME': 'cpanel_local.db',
-    #     'ENGINE': 'django.db.backends.sqlite3'
-    # }
+        'NAME': 'cpanel_local.db',
+        'ENGINE': 'django.db.backends.sqlite3'
+    }
 }
 
 

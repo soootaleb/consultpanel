@@ -28,7 +28,7 @@ def localisations_edit(request, id):
                   })
 
 @user_passes_test(is_formateur)
-def localisation_delete(request, id):
+def localisations_delete(request, id):
     localisation = get_object_or_404(Localisation, id)
     localisation.delete()
     return redirect('localisations_index')

@@ -48,11 +48,31 @@ class RegistrationForm(forms.ModelForm):
             return cleaned_data
 
     def save(self, commit=True):
-        """
-        Processus de creation d'un compte utilisateur
-        """
-        return self.save()
+        user = super(RegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
 
+class CentreFormationForm(forms.ModelForm):
+
+    nom = forms.CharField(required=True, label="Nom :")
+    siret = forms.CharField(required=True, label="Numéro de siret :")
+    adresse = forms.CharField(required=True, label="Adresse :")
+    code_postal = forms.CharField(required=True, label="Code Postal :")
+    telephone =  forms.CharField(required=True, label="Téléphone :")
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.label_class = 'col-sm-3 text-right'
+        self.helper.field_class = 'col-sm-8'
+        super(CentreFormationForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = CentreFormation
+        fields = ['nom', 'siret', 'adresse',
+                  'code_postal', 'telephone']
 
 
 class LoginForm(forms.Form):

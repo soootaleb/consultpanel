@@ -47,6 +47,17 @@ class Entreprise(models.Model):
     def __str__(self):
         return self.nom
 
+class CentreFormation(models.Model):
+    nom = models.CharField(max_length=255)
+    siret = models.CharField(
+        max_length=14, unique=True, default='DEFAULT_SIRET')
+    adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
+    code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
+    telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
+
+    def __str__(self):
+        return self.nom
+
 
 class Client(models.Model):
     nom = models.CharField(max_length=200)
@@ -61,6 +72,7 @@ class Client(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    centre_formation = models.ForeignKey(CentreFormation)
     # A ForeignKey would be okay (One entreprise == One formateur == One profile)
     # ManyToMany for entreprises account (with multiple formateurs)
     liste_entreprises = models.ManyToManyField(Entreprise)
