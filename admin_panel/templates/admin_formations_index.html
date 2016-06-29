@@ -51,16 +51,17 @@
                     {% for f in formations_list %}
                         <tr data-id="{{ f.id }}"
                             data-edit="{% url 'formations_edit' f.id %}"
+                            data-details
                             data-delete="{% url 'formations_delete' f.id %}">
                             <td>{{ f.nom }}</td>
                             <td>{{ f.description|truncatechars_html:30 }}</td>
                             <td>{{ f.prix_ht }}</td>
                             <td>{{ f.prix_ttc }}</td>
-                            <td>
-                                <button href={% url 'formations_detail' f.id %} type="button"
-                                        class="btn btn-sm btn-rounded btn-secondary-outline">
+                            <td class="no-seletion">
+                                <a href={% url 'formations_detail' f.id %} type="button"
+                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
                                     Détails
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}

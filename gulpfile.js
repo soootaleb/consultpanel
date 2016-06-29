@@ -76,7 +76,7 @@ gulp.task('jsPlugins:build', function () {
 
 gulp.task('jsLib:build', function () {
     return gulp.src(path.src.jsLib)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(path.build.jsLib))
         .pipe(reload({stream: true}));
 });
@@ -84,7 +84,7 @@ gulp.task('jsLib:build', function () {
 gulp.task('js:build', function () {
     return gulp.src(path.src.js)
         .pipe(rigger())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });

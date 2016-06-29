@@ -1,7 +1,1 @@
-$(document).ready(function() {
-    $('.clockpicker').clockpicker({
-        autoclose: true,
-        donetext: 'Done',
-        'default': 'now'
-    });
-});
+$(document).ready(function(){$(".clockpicker").clockpicker({autoclose:!0,donetext:"Done","default":"now"})});

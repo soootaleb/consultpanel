@@ -53,10 +53,14 @@ var createBoxTab = function (idTab) {
 
     table
     .on('select', function (e, dt, type, indexes) {
+        var node;
+
         editBtn.removeClass('disabled');
         deleteBtn.removeClass('disabled');
         currentRow.row = table.row(indexes[0]);
-        currentRow.dataset = table.row(indexes[0]).node().dataset;
+        node = table.row(indexes[0]).node();
+        console.log(node);
+        currentRow.dataset = node.dataset;
     })
     .on('deselect', function (e, dt, type, indexes) {
         editBtn.addClass('disabled');
