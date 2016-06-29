@@ -41,6 +41,7 @@ class Entreprise(models.Model):
     siret = models.CharField(
         max_length=14, unique=True, default='DEFAULT_SIRET')
     adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
+    ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
     code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
     telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
 
@@ -52,6 +53,7 @@ class CentreFormation(models.Model):
     siret = models.CharField(
         max_length=14, unique=True, default='DEFAULT_SIRET')
     adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
+    ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
     code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
     telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
 

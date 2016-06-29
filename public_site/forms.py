@@ -56,9 +56,10 @@ class RegistrationForm(forms.ModelForm):
 
 class CentreFormationForm(forms.ModelForm):
 
-    nom = forms.CharField(required=True, label="Nom :")
+    nom = forms.CharField(required=True, label="Nom de l'entreprise:")
     siret = forms.CharField(required=True, label="Numéro de siret :")
     adresse = forms.CharField(required=True, label="Adresse :")
+    ville = forms.CharField(required=True, label="Ville :")
     code_postal = forms.CharField(required=True, label="Code Postal :")
     telephone =  forms.CharField(required=True, label="Téléphone :")
 
@@ -71,7 +72,7 @@ class CentreFormationForm(forms.ModelForm):
 
     class Meta:
         model = CentreFormation
-        fields = ['nom', 'siret', 'adresse',
+        fields = ['nom', 'siret', 'adresse', 'ville',
                   'code_postal', 'telephone']
 
 
