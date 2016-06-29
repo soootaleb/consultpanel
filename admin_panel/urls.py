@@ -58,6 +58,8 @@ urlpatterns = [
     url(r'^clients/add/$', admin_clients.clients_add, name='clients_add'),
     url(r'^clients/edit/(?P<id>[0-9]+)$',
         admin_clients.clients_edit, name='clients_edit'),
+    url(r'^clients/delete/(?P<id>[0-9]+)$',
+        admin_clients.clients_delete, name='clients_delete'),
 
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 
