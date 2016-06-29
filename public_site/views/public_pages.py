@@ -9,7 +9,6 @@ from public_site.forms import RegistrationForm
 
 
 class RegistrationWizard(SessionWizardView):
-
     def get_template_names(self):
         return ['public_pages_register.html']
 
@@ -52,6 +51,6 @@ def logout(request):
     if not request.user.is_authenticated():
         messages.info(request, "Vous n'êtes pas connecté")
         return redirect('public_index')
-    lout(request)
+    logout(request)
     messages.success(request, "Vous êtes maintenant déconnecté")
     return redirect('public_index')

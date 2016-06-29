@@ -1,5 +1,6 @@
+# coding: utf-8
+
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from consult_panel.models import *
 from django import forms
 from django.contrib.auth.models import User
@@ -7,10 +8,10 @@ from django.contrib.auth.models import User
 
 class RegistrationForm(forms.ModelForm):
 
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    passwordConfirm = forms.CharField(widget=forms.PasswordInput)
-    password = forms.CharField(widget=forms.PasswordInput)
+    first_name = forms.CharField(required=True, label="Prénom :")
+    last_name = forms.CharField(required=True, label="Nom :")
+    passwordConfirm = forms.CharField(widget=forms.PasswordInput, label="Confirmation :")
+    password = forms.CharField(widget=forms.PasswordInput, label="Mot de passe :")
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -24,15 +25,9 @@ class RegistrationForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username',
                   'email', 'password', 'passwordConfirm']
         labels = {
-            'first_name': 'Prénom :',
-            'last_name': 'Nom :',
             'username': 'Adresse E-mail :',
             'email': 'Confirmation :',
-            'password': 'Mot de passe :',
-            'passwordConfirm': 'Confirmation :',
-
         }
-
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
@@ -57,6 +52,7 @@ class RegistrationForm(forms.ModelForm):
         Processus de creation d'un compte utilisateur
         """
         return self.save()
+
 
 
 class LoginForm(forms.Form):

@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^catalogues/add/$', admin_catalogues.catalogues_add, name='catalogues_add'),
     url(r'^catalogues/edit/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_edit, name='catalogues_edit'),
+    url(r'^catalogues/delete/(?P<id>[0-9]+)$',
+        admin_catalogues.catalogues_delete, name='catalogues_delete'),
     url(r'^catalogues/detail/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_detail, name='catalogues_detail'),
 
