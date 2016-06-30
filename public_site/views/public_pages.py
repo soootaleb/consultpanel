@@ -9,6 +9,7 @@ from consult_panel.models import Profile, Catalogue, CentreFormation
 
 
 class RegistrationWizard(SessionWizardView):
+
     def get_template_names(self):
         return ['public_pages_register.html']
 
@@ -21,18 +22,22 @@ class RegistrationWizard(SessionWizardView):
 def create_new_superformateur(request, form_list):
     form_data = [form for form in form_list]
     user = form_data[0].save()
-    superFormateurGroup, superFormateurGroupCreated = Group.objects.get_or_create(name='super_formateur')
+    superFormateurGroup, superFormateurGroupCreated = Group.objects.get_or_create(
+        name='super_formateur')
     superFormateurGroup.user_set.add(user)
     centre_formation = form_data[1].save()
-    profile = Profile.objects.create(user=user, centre_formation=centre_formation)
+    profile = Profile.objects.create(
+        user=user, centre_formation=centre_formation)
     profile.liste_catalogues.add(Catalogue.objects.create(nom="default"))
     profile.save()
     user.backend = 'django.contrib.auth.backends.ModelBackend'
     auth.login(request, user)
     return True
 
+
 def public_index(request):
     return render(request, 'public_pages_index.html')
+
 
 def form(request, name):
     from . import public_forms
@@ -59,6 +64,6 @@ def logout(request):
     if not request.user.is_authenticated():
         messages.info(request, "Vous n'êtes pas connecté")
         return redirect('public_index')
-    logout(request)
+    auth.logout(request)
     messages.success(request, "Vous êtes maintenant déconnecté")
     return redirect('public_index')
