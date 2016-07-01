@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from consult_panel.models import *
 from admin_panel.forms import *
 from admin_panel.user_tests import *
@@ -26,3 +26,9 @@ def localisations_edit(request, id):
                   'page_title': 'Editer un centre',
                   'form': LocalisationForm(instance=Localisation.objects.get(pk=id))
                   })
+
+@user_passes_test(is_formateur)
+def localisations_delete(request, id):
+    localisation = get_object_or_404(Localisation, id)
+    localisation.delete()
+    return redirect('localisations_index')

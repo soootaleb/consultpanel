@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
 from admin_panel.forms import ClientForm
@@ -37,3 +37,9 @@ def clients_edit(request, id):
         'page_title': 'Modifier un client',
         'form': client_form
     })
+
+@user_passes_test(is_formateur)
+def clients_delete(request, id):
+    client = get_object_or_404(Client, id)
+    client.delete()
+    return redirect('clients_index')

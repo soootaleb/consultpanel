@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^catalogues/add/$', admin_catalogues.catalogues_add, name='catalogues_add'),
     url(r'^catalogues/edit/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_edit, name='catalogues_edit'),
+    url(r'^catalogues/delete/(?P<id>[0-9]+)$',
+        admin_catalogues.catalogues_delete, name='catalogues_delete'),
     url(r'^catalogues/detail/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_detail, name='catalogues_detail'),
 
@@ -56,6 +58,8 @@ urlpatterns = [
     url(r'^clients/add/$', admin_clients.clients_add, name='clients_add'),
     url(r'^clients/edit/(?P<id>[0-9]+)$',
         admin_clients.clients_edit, name='clients_edit'),
+    url(r'^clients/delete/(?P<id>[0-9]+)$',
+        admin_clients.clients_delete, name='clients_delete'),
 
     url(r'^form/(?P<name>[a-z_]+)', admin_pages.form),
 
@@ -78,4 +82,6 @@ urlpatterns = [
         name='localisations_add'),
     url(r'^localisations/edit/(?P<id>[0-9]+)$',
         admin_localisations.localisations_edit, name='localisations_edit'),
+    url(r'^localisations/delete/(?P<id>[0-9]+)$',
+        admin_localisations.localisations_delete, name='localisations_delete'),
 ]

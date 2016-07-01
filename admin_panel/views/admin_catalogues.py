@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
 from admin_panel.forms import *
@@ -42,3 +42,9 @@ def catalogues_edit(request, id):
         'page_title': 'Editer un catalogue',
         'form': catalogue_form
     })
+
+@user_passes_test(is_formateur)
+def catalogues_delete(request, id):
+    catalogue = get_object_or_404(Catalogue, id)
+    catalogue.delete()
+    return redirect('catalogues_index')

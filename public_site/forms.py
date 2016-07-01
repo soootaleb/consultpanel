@@ -1,5 +1,6 @@
+# coding: utf-8
+
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from consult_panel.models import *
 from django import forms
 from django.contrib.auth.models import User
@@ -7,10 +8,10 @@ from django.contrib.auth.models import User
 
 class RegistrationForm(forms.ModelForm):
 
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    passwordConfirm = forms.CharField(widget=forms.PasswordInput)
-    password = forms.CharField(widget=forms.PasswordInput)
+    first_name = forms.CharField(required=True, label="Prénom :")
+    last_name = forms.CharField(required=True, label="Nom :")
+    passwordConfirm = forms.CharField(widget=forms.PasswordInput, label="Confirmation :")
+    password = forms.CharField(widget=forms.PasswordInput, label="Mot de passe :")
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -24,15 +25,9 @@ class RegistrationForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username',
                   'email', 'password', 'passwordConfirm']
         labels = {
-            'first_name': 'Prénom :',
-            'last_name': 'Nom :',
             'username': 'Adresse E-mail :',
             'email': 'Confirmation :',
-            'password': 'Mot de passe :',
-            'passwordConfirm': 'Confirmation :',
-
         }
-
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
@@ -53,10 +48,32 @@ class RegistrationForm(forms.ModelForm):
             return cleaned_data
 
     def save(self, commit=True):
-        """
-        Processus de creation d'un compte utilisateur
-        """
-        return self.save()
+        user = super(RegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
+
+class CentreFormationForm(forms.ModelForm):
+
+    nom = forms.CharField(required=True, label="Nom de l'entreprise:")
+    siret = forms.CharField(required=True, label="Numéro de siret :")
+    adresse = forms.CharField(required=True, label="Adresse :")
+    ville = forms.CharField(required=True, label="Ville :")
+    code_postal = forms.CharField(required=True, label="Code Postal :")
+    telephone =  forms.CharField(required=True, label="Téléphone :")
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.label_class = 'col-sm-3 text-right'
+        self.helper.field_class = 'col-sm-8'
+        super(CentreFormationForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = CentreFormation
+        fields = ['nom', 'siret', 'adresse', 'ville',
+                  'code_postal', 'telephone']
 
 
 class LoginForm(forms.Form):
