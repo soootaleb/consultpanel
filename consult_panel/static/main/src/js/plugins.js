@@ -26,10 +26,11 @@
 //= ../../bower_components/blueimp-file-upload/js/jquery.fileupload-video.js
 //= ../../bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js
 //= ../../bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js
+//= ../../bower_components/fullcalendar/dist/fullcalendar.min.js
+//= ../../bower_components/fullcalendar/dist/lang/fr.js
 
 //= vendor/jquery.clickout.js
 //= vendor/jquery-asPieProgress.min.js
 
 //= lib/datatables-net/datatables.min.js
 //= lib/bootstrap-sweetalert/sweetalert.min.js
-//= elements/createBoxTab.js

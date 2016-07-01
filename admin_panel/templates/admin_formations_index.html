@@ -57,7 +57,7 @@
                             <td>{{ f.description|truncatechars_html:30 }}</td>
                             <td>{{ f.prix_ht }}</td>
                             <td>{{ f.prix_ttc }}</td>
-                            <td class="no-seletion">
+                            <td>
                                 <a href={% url 'formations_detail' f.id %} type="button"
                                         class="btn btn-sm btn-rounded btn-secondary-outline ">
                                     Détails

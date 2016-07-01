@@ -21,7 +21,9 @@
                 <![endif]-->
         
         {% block style %} {% endblock %}
-        <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/libs.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/template.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/consult-panel.css' %}">
         
     </head>
     <body class='with-side-menu'>
@@ -65,6 +67,7 @@
         
         
         <script src="{% static 'main/js/plugins.js' %}"></script>
+        <script src="{% static 'main/js/consult-panel.js' %}"></script>
         <script src="{% static 'main/js/app.js' %}"></script>
         
         {% block script %}{% endblock %}
