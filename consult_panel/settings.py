@@ -78,17 +78,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'consult_panel.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'consultpanel',
+        'USER': 'master',
+        'PASSWORD': 'mastercraft',  # LOURD
+        'HOST': '163.172.28.152',
+        'PORT': '3306',
+    },
+    'local': {
         'NAME': 'cpanel_local.db',
         'ENGINE': 'django.db.backends.sqlite3'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -108,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -121,7 +127,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -176,6 +181,5 @@ EMAIL_HOST_USER = 'support'
 EMAIL_HOST_PASSWORD = 'mastercraft'
 DEFAULT_FROM_EMAIL = 'support@consultpanel.fr'
 EMAIL_USE_TLS = True
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

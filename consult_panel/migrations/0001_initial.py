@@ -115,6 +115,18 @@ class Migration(migrations.Migration):
                 ('formation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='consult_panel.Formation')),
             ],
         ),
+        migrations.CreateModel(
+            name='CentreFormation',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('nom', models.CharField(max_length=255)),
+                ('siret', models.CharField(default='DEFAULT_SIRET', max_length=14, unique=True)),
+                ('adresse', models.CharField(default='DEFAULT_ADDR', max_length=255)),
+                ('ville', models.CharField(default='DEFAULT_VILLE', max_length=255)),
+                ('code_postal', models.CharField(default='DEFAULT_CP', max_length=10)),
+                ('telephone', models.CharField(default='DEFAULT_PHONE', max_length=15)),
+            ],
+        ),
         migrations.AddField(
             model_name='preference',
             name='type',
@@ -149,5 +161,21 @@ class Migration(migrations.Migration):
             model_name='catalogue',
             name='liste_formations',
             field=models.ManyToManyField(blank=True, to='consult_panel.Formation'),
+        ),
+        migrations.AddField(
+            model_name='inscription',
+            name='client',
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='consult_panel.Client'),
+        ),
+        migrations.AddField(
+            model_name='entreprise',
+            name='ville',
+            field=models.CharField(default='DEFAULT_VILLE', max_length=255),
+        ),
+        migrations.AddField(
+            model_name='profile',
+            name='centre_formation',
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE,
+                                    to='consult_panel.CentreFormation'),
         ),
     ]
