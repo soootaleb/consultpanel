@@ -1,5 +1,399 @@
 {% extends "admin_root.html" %}
 
 {% block content %}
-    {{user}}
+    <section class="tabs-section">
+        <div class="tabs-section-nav tabs-section-nav-left">
+            <ul class="nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#tabs-2-tab-1" role="tab" data-toggle="tab" aria-expanded="true">
+                        <span class="nav-link-in">Informations</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tabs-2-tab-2" role="tab" data-toggle="tab" aria-expanded="false">
+                        <span class="nav-link-in">Documents</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tabs-2-tab-3" role="tab" data-toggle="tab" aria-expanded="false">
+                        <span class="nav-link-in">Centre de formation</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tabs-2-tab-4" role="tab" data-toggle="tab" aria-expanded="false">
+                        <span class="nav-link-in">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!--.tabs-section-nav-->
+
+        <div class="tab-content no-styled profile-tabs">
+            <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-1" aria-expanded="true">
+                <section class="box-typical box-typical-padding">
+                    <section class="box-typical-section">
+                        <h5 class="with-border">Info
+                            <a href="{% url 'profil_edit' profil.centre_formation.id %}" class="btn btn-xs btn-rounded">
+                                <i class="font-icon-left font-icon-upload-2"></i>Modifier</a>
+                        </h5>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Nom</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ user.last_name }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Prénom</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ user.first_name }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Email</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ user.email }}
+                            </div>
+                        </div>
+                        <h5 class="with-border">Centre de formation</h5>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Nom du centre</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.nom }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Numéro siret</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.siret }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Adresse</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.adresse }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Ville</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.ville }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Code Postal</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.code_postal }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label semibold">Téléphone</label>
+                            </div>
+                            <div class="col-xl-4">
+                                {{ profil.centre_formation.telephone }}
+                            </div>
+                        </div>
+
+                    </section>
+                </section>
+
+
+            </div><!--.tab-pane-->
+            <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2" aria-expanded="false">
+                <section class="box-typical box-typical-padding">
+                    <h5 class="with-border">Votre signature
+                    </h5>
+                    <img src="http://placehold.it/350x150">
+                </section>
+            </div><!--.tab-pane-->
+            <div role="tabpanel" class="tab-pane" id="tabs-2-tab-3" aria-expanded="false">
+                <section class="box-typical box-typical-padding">
+                    Projects
+                </section>
+            </div><!--.tab-pane-->
+            <div role="tabpanel" class="tab-pane" id="tabs-2-tab-4" aria-expanded="false">
+                <section class="box-typical profile-settings">
+                    <section class="box-typical-section">
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">Name</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="Dan Counsell">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">Position</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="Company founder">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">About</label>
+                            </div>
+                            <div class="col-xl-6">
+												<textarea rows="2" class="form-control">Maecenas sed diam eget risus varius blandit sit amet non magna.
+Vestibulum id ligula porta felis euismod semper.</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">Recomendation</label>
+                            </div>
+                            <div class="col-xl-6">
+                                <input class="form-control" type="text"
+                                       value="All stream, Connected Apps, Photos, Most recent">
+                            </div>
+                        </div>
+                    </section>
+                    <section class="box-typical-section">
+                        <header class="box-typical-header-sm">Info</header>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-pin-2"></i>
+                                    City
+                                </label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="New York">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-users-two"></i>
+                                    Group
+                                </label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="Group1, Group2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-case-3"></i>
+                                    Code
+                                </label>
+                            </div>
+                            <div class="col-xl-6">
+                                <input class="form-control" type="text"
+                                       value="Symfony, PHP, JavaScript, Java, Android, SQL, OOP, OOD">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-learn"></i>
+                                    Edication
+                                </label>
+                            </div>
+                            <div class="col-xl-6">
+                                <input class="form-control" type="text" value="VSU, Compiter Science, Master">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-github"></i>
+                                    Github
+                                </label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="Nickname">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <i class="font-icon font-icon-earth"></i>
+                                    Web
+                                </label>
+                            </div>
+                            <div class="col-xl-4">
+                                <input class="form-control" type="text" value="example.com">
+                            </div>
+                        </div>
+                    </section>
+                    <section class="box-typical-section">
+                        <header class="box-typical-header-sm">Skills</header>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">AngularJS</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="range-settings range-slider-simple range-slider-aquamarine">
+                                    <span class="irs js-irs-0"><span class="irs"><span class="irs-line"
+                                                                                       tabindex="-1"><span
+                                            class="irs-line-left"></span><span class="irs-line-mid"></span><span
+                                            class="irs-line-right"></span></span><span class="irs-min"
+                                                                                       style="display: none;">0</span><span
+                                            class="irs-max" style="display: none;">1</span><span class="irs-from"
+                                                                                                 style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-to" style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-single" style="display: none; left: 0%;">0</span></span><span
+                                            class="irs-grid"></span><span class="irs-bar"
+                                                                          style="left: 3.67647%; width: 27.7941%;"></span><span
+                                            class="irs-bar-edge"></span><span class="irs-shadow shadow-single"
+                                                                              style="display: none;"></span><span
+                                            class="irs-slider single" style="left: 27.7941%;"></span></span><input
+                                        type="text" id="range-slider-1" name="example_name" value=""
+                                        class="irs-hidden-input" readonly="">
+                                    <div class="range-settings-percent">30%</div>
+                                    <div class="range-setting-actions">
+                                        <button type="button">
+                                            <i class="font-icon font-icon-pencil"></i>
+                                        </button>
+                                        <button type="button" class="del">
+                                            <i class="font-icon font-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">Javascript</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="range-settings range-slider-simple range-slider-red">
+                                    <span class="irs js-irs-1"><span class="irs"><span class="irs-line"
+                                                                                       tabindex="-1"><span
+                                            class="irs-line-left"></span><span class="irs-line-mid"></span><span
+                                            class="irs-line-right"></span></span><span class="irs-min"
+                                                                                       style="display: none;">0</span><span
+                                            class="irs-max" style="display: none;">1</span><span class="irs-from"
+                                                                                                 style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-to" style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-single" style="display: none; left: 0%;">0</span></span><span
+                                            class="irs-grid"></span><span class="irs-bar"
+                                                                          style="left: 3.67647%; width: 27.7941%;"></span><span
+                                            class="irs-bar-edge"></span><span class="irs-shadow shadow-single"
+                                                                              style="display: none;"></span><span
+                                            class="irs-slider single" style="left: 27.7941%;"></span></span><input
+                                        type="text" id="range-slider-2" name="example_name" value=""
+                                        class="irs-hidden-input" readonly="">
+                                    <div class="range-settings-percent">30%</div>
+                                    <div class="range-setting-actions">
+                                        <button type="button">
+                                            <i class="font-icon font-icon-pencil"></i>
+                                        </button>
+                                        <button type="button" class="del">
+                                            <i class="font-icon font-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">Wordpress</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="range-settings range-slider-simple range-slider-purple">
+                                    <span class="irs js-irs-2"><span class="irs"><span class="irs-line"
+                                                                                       tabindex="-1"><span
+                                            class="irs-line-left"></span><span class="irs-line-mid"></span><span
+                                            class="irs-line-right"></span></span><span class="irs-min"
+                                                                                       style="display: none;">0</span><span
+                                            class="irs-max" style="display: none;">1</span><span class="irs-from"
+                                                                                                 style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-to" style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-single" style="display: none; left: 0%;">0</span></span><span
+                                            class="irs-grid"></span><span class="irs-bar"
+                                                                          style="left: 3.67647%; width: 27.7941%;"></span><span
+                                            class="irs-bar-edge"></span><span class="irs-shadow shadow-single"
+                                                                              style="display: none;"></span><span
+                                            class="irs-slider single" style="left: 27.7941%;"></span></span><input
+                                        type="text" id="range-slider-3" name="example_name" value=""
+                                        class="irs-hidden-input" readonly="">
+                                    <div class="range-settings-percent">30%</div>
+                                    <div class="range-setting-actions">
+                                        <button type="button">
+                                            <i class="font-icon font-icon-pencil"></i>
+                                        </button>
+                                        <button type="button" class="del">
+                                            <i class="font-icon font-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">HTML &amp; CSS</label>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="range-settings range-slider-simple">
+                                    <span class="irs js-irs-3"><span class="irs"><span class="irs-line"
+                                                                                       tabindex="-1"><span
+                                            class="irs-line-left"></span><span class="irs-line-mid"></span><span
+                                            class="irs-line-right"></span></span><span class="irs-min"
+                                                                                       style="display: none;">0</span><span
+                                            class="irs-max" style="display: none;">1</span><span class="irs-from"
+                                                                                                 style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-to" style="visibility: hidden; display: none;">0</span><span
+                                            class="irs-single" style="display: none; left: 0%;">0</span></span><span
+                                            class="irs-grid"></span><span class="irs-bar"
+                                                                          style="left: 3.67647%; width: 27.7941%;"></span><span
+                                            class="irs-bar-edge"></span><span class="irs-shadow shadow-single"
+                                                                              style="display: none;"></span><span
+                                            class="irs-slider single" style="left: 27.7941%;"></span></span><input
+                                        type="text" id="range-slider-4" name="example_name" value=""
+                                        class="irs-hidden-input" readonly="">
+                                    <div class="range-settings-percent">30%</div>
+                                    <div class="range-setting-actions">
+                                        <button type="button">
+                                            <i class="font-icon font-icon-pencil"></i>
+                                        </button>
+                                        <button type="button" class="del">
+                                            <i class="font-icon font-icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-2">
+                                <label class="form-label">
+                                    <a href="#">Add new skill</a>
+                                </label>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="Logo design">
+													<span class="input-group-btn">
+														<button class="btn btn-grey" type="button">Add</button>
+													</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="box-typical-section profile-settings-btns">
+                        <button type="submit" class="btn btn-rounded">Save Changes</button>
+                        <button type="button" class="btn btn-rounded btn-grey">Cancel</button>
+                    </section>
+                </section>
+            </div><!--.tab-pane-->
+        </div><!--.tab-content-->
+    </section>
 {% endblock %}

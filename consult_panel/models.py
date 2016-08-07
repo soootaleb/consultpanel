@@ -76,8 +76,6 @@ class Client(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     centre_formation = models.ForeignKey(CentreFormation, default=1)
-    # A ForeignKey would be okay (One entreprise == One formateur == One profile)
-    # ManyToMany for entreprises account (with multiple formateurs)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
 

@@ -156,3 +156,25 @@ class EntrepriseForm(ModelForm):
     class Meta:
         model = Entreprise
         fields = ['nom']
+
+class CentreFormationForm(ModelForm):
+
+    nom = CharField(required=True, label="Nom de l'entreprise :")
+    siret = CharField(required=True, label="Numéro de siret :")
+    adresse = CharField(required=True, label="Adresse :")
+    ville = CharField(required=True, label="Ville :")
+    code_postal = CharField(required=True, label="Code Postal :")
+    telephone =  CharField(required=True, label="Téléphone :")
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.label_class = 'col-sm-3'
+        self.helper.field_class = 'col-sm-9'
+        self.helper.add_input(Submit('submit', 'Sauvegarder'))
+        super(CentreFormationForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = CentreFormation
+        fields = ['nom', 'siret', 'adresse', 'ville',
+                  'code_postal', 'telephone']
+

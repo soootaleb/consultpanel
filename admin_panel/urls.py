@@ -17,6 +17,7 @@ urlpatterns = [
 
     url(r'^profil/$', admin_profil.profil_index, name='profil_index'),
     url(r'^profil/index/$', admin_profil.profil_index, name='profil_index'),
+    url(r'^profil/edit/(?P<id>[0-9]+)$', admin_profil.profil_edit, name='profil_edit'),
 
     url(r'^preferences/$', admin_preferences.preferences_index,
         name='preferences_index'),
@@ -27,8 +28,7 @@ urlpatterns = [
     url(r'^sessions/index/$', admin_sessions.sessions_index, name='sessions_index'),
 
     url(r'^sessions/add/$', admin_sessions.sessions_add, name='sessions_add'),
-    url(r'^sessions/edit/(?P<id>[0-9]+)$',
-        admin_sessions.sessions_edit, name='sessions_edit'),
+    url(r'^sessions/edit/(?P<id>[0-9]+)$', admin_sessions.sessions_edit, name='sessions_edit'),
     url(r'^sessions/detail/(?P<id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_sessions.sessions_detail, name='sessions_detail'),
 
