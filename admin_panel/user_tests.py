@@ -1,17 +1,17 @@
 def is_classique_client(user):
-    return user.groups.all().filter(name="classique_client").exists()
+    return user.groups.filter(name="classique_client").exists()
 
 
 def is_classique_formateur(user):
-    return user.groups.all().filter(name="classique_formateur").exists()
+    return user.groups.filter(name="classique_formateur").exists()
 
 
 def is_super_formateur(user):
-    return user.groups.all().filter(name="super_formateur").exists()
+    return user.groups.filter(name="super_formateur").exists()
 
 
 def is_super_client(user):
-    return user.groups.all().filter(name="super_client").exists()
+    return user.groups.filter(name="super_client").exists()
 
 
 def is_formateur(user):

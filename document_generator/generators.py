@@ -8,14 +8,20 @@ import pdfkit
 
 class DocumentGenerator():
 
+    do_save = False
+    context = dict()
+
+    profile = None
+    filename = None
+    file = None
+    template = None
+    html = None
+
     def __init__(self, user):
         if user is None:
             raise Exception("You must give a user to the generator")
         self.profile = Profile.objects.get(user=user)
-        self.do_save = False
-        self.context = {
-            'profile': self.profile
-        }
+        self.context['profile'] = self.profile
 
     def generate(self, document):
         self.filename = document
@@ -51,4 +57,10 @@ class DocumentGenerator():
 
 
 class ConventionGenerator(DocumentGenerator):
-    pass
+
+    client = None
+    session = None
+
+    def __init__(self, client, session):
+        self.client = client
+        self.session = session

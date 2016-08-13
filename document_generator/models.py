@@ -4,7 +4,6 @@ from consult_panel.models import Profile
 
 
 def upload_destination(instance, filename):
-    print(instance.profile)
     return os.path.join('admin_documents', instance.profile.get_medias_directory(), instance.label + '.pdf')
 
 
