@@ -69,6 +69,8 @@ class Client(models.Model):
     entreprise = models.ForeignKey(
         Entreprise, on_delete=models.CASCADE, default=1)
 
+    convention_url = ''
+
     def __str__(self):
         return self.nom
 
@@ -90,7 +92,10 @@ class Profile(models.Model):
         directory = os.path.join(MEDIA_ROOT, 'admin_documents', user_folder)
         if not os.path.isdir(directory):
             os.mkdir(directory)
-        return directory
+        return directory + os.sep
+
+    def get_conventions_directory(self):
+        return self.get_medias_directory() + 'conventions' + os.sep
 
 
 class Localisation(models.Model):
