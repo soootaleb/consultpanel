@@ -28,7 +28,6 @@ class AdminDocumentManager(DocumentManager):
             .annotate(inscriptions=Count('inscription')) \
             .distinct()
         for client in clients:
-            client.convention_url = self.admin.get_conventions_directory()
-            client.convention_url += 'client_' + \
+            client.convention_url += 'convention_client_' + \
                 str(client.id) + '_session_' + str(session.id) + '.pdf'
         return clients

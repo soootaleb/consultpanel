@@ -94,9 +94,6 @@ class Profile(models.Model):
             os.mkdir(directory)
         return directory + os.sep
 
-    def get_conventions_directory(self):
-        return self.get_medias_directory() + 'conventions' + os.sep
-
 
 class Localisation(models.Model):
     nom = models.CharField(max_length=200)
