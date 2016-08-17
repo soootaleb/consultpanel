@@ -33,7 +33,7 @@ class DocumentGenerator():
         return self
 
     def with_context(self, context):
-        self.context = {**self.context, **context}
+        # self.context = {**self.context, **context}
         self.context['profile'] = self.profile
         return self
 
