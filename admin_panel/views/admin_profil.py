@@ -20,3 +20,10 @@ def profil_edit(request, id):
         'page_title': 'Modifier le profil',
         'form': centre_form
     })
+
+@user_passes_test(is_formateur)
+def profil_signature_edit(request, id):
+    return render(request, 'admin_profil_signature_edit.html', {
+        'page_title': 'Modifier votre signature',
+    })
+
