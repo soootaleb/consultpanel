@@ -1,9 +1,11 @@
-from django.db import models
-from django.contrib.auth.models import User
-import os
-from consult_panel.settings import MEDIA_ROOT
-
 import datetime
+import os
+
+from django.contrib.auth.models import User
+from django.db import models
+from django.http import HttpResponse
+
+from consult_panel.settings import MEDIA_ROOT
 
 
 class Formation(models.Model):
@@ -135,6 +137,8 @@ class Inscription(models.Model):
     prenom = models.CharField(max_length=255)
     session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
+
+
 """
 Landing page models
 """
@@ -145,3 +149,41 @@ class EmailForBeta(models.Model):
 
     def __str__(self):
         return self.email
+
+
+"""
+Debug models
+"""
+
+
+class DebugValidateEmail(models.Model):
+    email = models.EmailField(unique=False)
+    is_valid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "{} ({})".format(self.email, 'VALID' if self.is_valid else 'UNVALID')
+
+    @staticmethod
+    def valid(**kwargs):
+        id = kwargs.get('id', None)  # Récupération de l'idée (envoyé dans les params)
+
+        # Récupération de l'objet unique
+        # L'objet unique est injecté automatiquement dans les kwargs par le linker.
+        unique = kwargs.get('unique', None)
+
+        if id is None:
+            return HttpResponse('<pre>Param \'id\' requis.</pre>')
+
+        # À faire seulement si vous désirez que le lien ne soit plus
+        # utilisable par la suite
+        unique.perime = True
+        unique.save()
+
+        # Récupération de l'objet DebugValidateEmail
+        obj = DebugValidateEmail.objects.get(id=id)
+
+        # Validation de l'email
+        obj.is_valid = True
+        obj.save()
+
+        return HttpResponse('<pre>{} is now valid and {} obsolete.</pre>'.format(obj.email, unique.jeton))

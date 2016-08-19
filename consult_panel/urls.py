@@ -1,6 +1,7 @@
-from django.conf.urls import url, include, handler404, patterns
-from django.contrib import admin
+from django.conf.urls import url, include, patterns
 from django.conf.urls.static import static
+from django.contrib import admin
+
 from consult_panel.settings import MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, DEBUG
 
 handler404 = 'public_site.views.public_errors.error404'
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'^client/', include('client_panel.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^consult/', include('admin_panel.urls')),
+                  url(r'^u/', include('unique_linker.urls'))
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'public_site',
     'consult_panel',
     'crispy_forms',
-    'document_generator'
+    'document_generator',
+    'unique_linker'
 ]
 
 MIDDLEWARE_CLASSES = [

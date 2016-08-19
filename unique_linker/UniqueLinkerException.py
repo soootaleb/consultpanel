@@ -1,0 +1,2 @@
+class UniqueLinkerException(Exception):
+    pass
