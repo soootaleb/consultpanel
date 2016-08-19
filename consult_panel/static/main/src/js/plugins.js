@@ -28,6 +28,7 @@
 //= ../../bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js
 //= ../../bower_components/fullcalendar/dist/fullcalendar.min.js
 //= ../../bower_components/fullcalendar/dist/lang/fr.js
+//= ../../bower_components/Croppie/croppie.min.js
 
 //= vendor/jquery.clickout.js
 //= vendor/jquery-asPieProgress.min.js

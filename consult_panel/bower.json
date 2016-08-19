@@ -51,5 +51,8 @@
     "jQuery-contextMenu": "~2.1.1",
     "jquery-tag-editor": "~1.0.18",
     "bootstrap-daterangepicker": "~2.1.19"
+  },
+  "resolutions": {
+    "jquery": ">=1.8.0"
   }
 }
