@@ -34,7 +34,7 @@ def sessions_detail(request, id, tab):
         'form_add_cours': cours_form,
         'form_add_inscription': inscription_form,
         'active_tab': tab if tab in ['detail', 'inscriptions', 'docs'] else 'detail',
-        'clients_list': doc_manager.get_conventions_by_client(session),
+        'docs_list': doc_manager.get_conventions(session),
     })
 
 

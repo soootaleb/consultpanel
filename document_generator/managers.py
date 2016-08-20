@@ -1,7 +1,8 @@
 from django.db.models import Count
 from consult_panel.models import Client, Profile
 from consult_panel.settings import MEDIA_ROOT
-from .generators import DocumentGenerator
+from .generators import ConventionGenerator
+import os
 
 
 class DocumentManager(object):
@@ -19,15 +20,27 @@ class AdminDocumentManager(DocumentManager):
     admin = None
 
     def __init__(self, user):
-        super().__init__(user, DocumentGenerator(user))
+        super().__init__(user, ConventionGenerator(user))
         self.admin = Profile.objects.get(user=user)
 
-    def get_conventions_by_client(self, session):
+    def get_conventions(self, session):
+        self.generator.session = session
+        compiled = []
         clients = Client.objects \
             .filter(inscription__session=session) \
             .annotate(inscriptions=Count('inscription')) \
-            .distinct()
+            .distinct() \
+
         for client in clients:
-            client.convention_url += 'convention_client_' + \
-                str(client.id) + '_session_' + str(session.id) + '.pdf'
-        return clients
+            self.generator.client = client
+            document = self.generator \
+                .generate(os.path.join(Profile.get_admin_medias_directory(), 'convention_base.html')) \
+                .save() \
+                .with_context({
+                    'message': 'Hello World'
+                }).as_pdf()
+            compiled.append({
+                'client': client,
+                'doc': document
+            })
+        return compiled
