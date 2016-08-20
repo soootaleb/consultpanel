@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="box-typical box-typical-padding">
+    <div class="box-typical box-typical-padding" xmlns="http://www.w3.org/1999/html">
         <div class="form-group">
             <label for="signature_file_input">Selectionner une image :</label>
             <small class="form-text text-muted">
@@ -13,21 +13,21 @@
             <br>
             <button type="button" class="btn btn-rounded" id="signature_file_input_button">
                 <i class="font-icon-left font-icon-upload-2"></i>
-                {% if profile.signature %}Modifier{% else %}
-                Ajouter{% endif %}
+                Modifier
             </button>
-            <input type="file" style="display:none;" id="signature_file_input" accept="image/jpeg"/>
+            <input type="file" style="display:none;" id="signature_file_input" accept="image/*"/>
         </div>
         <div id="signature-cropp-div" class="croppie-container"></div>
-        <button type="button" class="btn btn-rounded" style="display: none" id="save_button">Sauvegarder</button>
+
+        <form action="{% url 'profil_signature_edit' profil.id %}" method="POST" style="display: none" id="form_save_siganture">
+            {% csrf_token %}
+            <input type="text" id="input_image_base64" name="url_base64" style="display:none;"></input>
+            <button type="button" class="btn btn-rounded" id="signature_save_button">Sauvegarder</button>
+        </form>
     </div>
 {% endblock %}
 {% block script %}
     <script>
-        {% if profile.signature %}
-            cropSignatureImage('signature-cropp-div');
-        {% else %}
-            signatureEdition('#signature-cropp-div');
-        {% endif %}
+        signatureEdition('signature-cropp-div');
     </script>
 {% endblock %}
