@@ -7,6 +7,8 @@ from django.http import HttpResponse
 
 from consult_panel.settings import MEDIA_ROOT
 
+def get_signature_path(instance, filename):
+    return os.path.join(instance.get_medias_directory, "signature.jpg")
 
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
@@ -82,6 +84,7 @@ class Profile(models.Model):
     centre_formation = models.ForeignKey(CentreFormation, default=1)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
+    signature = models.ImageField(upload_to=get_signature_path , blank=True)
 
     def __str__(self):
         return self.user.first_name
@@ -95,6 +98,7 @@ class Profile(models.Model):
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
+
 
 
 class Localisation(models.Model):
