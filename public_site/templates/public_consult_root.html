@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+{% comment "Head" %}{% endcomment %}
+{% include "admin_head.html" %}
+
+<body>
+
+{% block page_content %}{% endblock %}
+
+{% comment "Scripts" %}{% endcomment %}
+{% include "admin_scripts.html" %}
+
+</body>
+</html>

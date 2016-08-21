@@ -1,0 +1,12 @@
+{% extends "public_consult_root.html" %}
+
+{% block page_content %}
+    <div class="page-center">
+        <div class="page-center-in">
+            <div class="container-fluid">
+                {% include "admin_alert.html" %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

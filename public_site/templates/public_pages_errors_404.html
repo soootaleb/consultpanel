@@ -1,0 +1,12 @@
+{% extends "public_pages_root_center.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="page-error-box">
+        <div class="error-code">404</div>
+        <div class="error-title">Page innexistante</div>
+        <a href="{% url 'public_root' %}" class="btn btn-rounded">Page d'accueil</a>
+    </div>
+
+{% endblock %}

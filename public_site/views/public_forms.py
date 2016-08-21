@@ -1,9 +1,9 @@
+from django.contrib import messages
+from django.contrib.auth import authenticate, login as lin
 from django.http import HttpResponseForbidden
 from django.shortcuts import render
-# To avoid ambigous function name
-from django.contrib.auth import authenticate, login as lin
+
 from public_site import forms
-from django.contrib import messages
 
 
 def register(request):
