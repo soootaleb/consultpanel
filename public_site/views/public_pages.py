@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from formtools.wizard.views import SessionWizardView
 
-from consult_panel.models import Profile, Catalogue
+from consult_panel.models import Profile
 from public_site import forms
 
 
@@ -70,7 +70,3 @@ def logout(request):
 
 def forgot_password(request):
     return render(request, 'public_pages_forgot_password.html')
-
-
-def e404(request):
-    return render(request, 'public_pages_errors_500.html')
