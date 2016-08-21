@@ -20,7 +20,7 @@ def convention_sign(request, id):
 
     return JsonResponse({
         "model":   "Convention",
-        "message":   message
+        "message":   message,
         "status":   status,
         "id":   id,
         "action":   'sign'
