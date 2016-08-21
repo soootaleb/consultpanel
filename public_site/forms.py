@@ -1,9 +1,10 @@
 # coding: utf-8
 
 from crispy_forms.helper import FormHelper
-from consult_panel.models import *
 from django import forms
 from django.contrib.auth.models import User
+
+from consult_panel.models import *
 
 
 class RegistrationForm(forms.ModelForm):
@@ -55,7 +56,6 @@ class RegistrationForm(forms.ModelForm):
         return user
 
 class CentreFormationForm(forms.ModelForm):
-
     nom = forms.CharField(required=True, label="Nom de l'entreprise:")
     siret = forms.CharField(required=True, label="Numéro de siret :")
     adresse = forms.CharField(required=True, label="Adresse :")

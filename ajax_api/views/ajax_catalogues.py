@@ -1,6 +1,7 @@
 from django.http import JsonResponse
+
 from consult_panel.models import *
-from django.contrib.auth.decorators import permission_required
+
 
 def catalogues_delete(request, id):
     status = "OK"
@@ -10,4 +11,4 @@ def catalogues_delete(request, id):
         "status"    :   status,
         "id"        :   id,
         "action"    :   'delete'
-    });
+    })

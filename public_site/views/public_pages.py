@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-# To avoid ambigous function name
-from django.contrib.auth.models import Group
 from django.contrib import auth
-from public_site import forms
 from django.contrib import messages
+from django.contrib.auth.models import Group
+from django.shortcuts import render, redirect
 from formtools.wizard.views import SessionWizardView
-from consult_panel.models import Profile, Catalogue, CentreFormation
+
+from consult_panel.models import Profile, Catalogue
+from public_site import forms
 
 
 class RegistrationWizard(SessionWizardView):
@@ -36,7 +36,7 @@ def create_new_superformateur(request, form_list):
 
 
 def public_index(request):
-    return render(request, 'public_pages_index.html')
+    return render(request, 'public_pages_landing.html')
 
 
 def form(request, name):
@@ -67,3 +67,11 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "Vous êtes maintenant déconnecté")
     return redirect('public_index')
+
+
+def forgot_password(request):
+    return render(request, 'public_pages_forgot_password.html')
+
+
+def e404(request):
+    return render(request, 'public_pages_errors_500.html')

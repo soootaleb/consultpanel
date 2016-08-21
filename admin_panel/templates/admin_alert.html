@@ -1,0 +1,8 @@
+{% load staticfiles %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags | default_if_none:'success' }} flash-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
