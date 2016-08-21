@@ -1,5 +1,12 @@
 ## Changelog
 
+##### v.3.0.17 - 2016-7-25
+* Fixed Chromium issue where getComputedStyle pixel value did not exactly match the style pixel value.  Fixes #306.
+* Removed undocumented argument, minor refactoring, more comments.
+
+##### v.3.0.16 - 2016-7-13
+* Fixed issue with overflowing parent elements. Fixes #298.
+
 ##### v.3.0.15 - 2016-1-26
 * Used newer Event constructor, when available. Fixes #280.
 

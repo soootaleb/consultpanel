@@ -26,17 +26,15 @@ try {
 	};
 }
 
-function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
+function assign(ta) {
 	if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
 
 	let heightOffset = null;
-	let overflowY = null;
 	let clientWidth = ta.clientWidth;
+	let cachedHeight = null;
 
 	function init() {
 		const style = window.getComputedStyle(ta, null);
-
-		overflowY = style.overflowY;
 
 		if (style.resize === 'vertical') {
 			ta.style.resize = 'none';
@@ -71,19 +69,31 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 			ta.style.width = width;
 		}
 
-		overflowY = value;
-
-		if (setOverflowY) {
-			ta.style.overflowY = value;
-		}
+		ta.style.overflowY = value;
 
 		resize();
 	}
 
+	function getParentOverflows(el) {
+		const arr = [];
+
+		while (el && el.parentNode && el.parentNode instanceof Element) {
+			if (el.parentNode.scrollTop) {
+				arr.push({
+					node: el.parentNode,
+					scrollTop: el.parentNode.scrollTop,
+				})
+			}
+			el = el.parentNode;
+		}
+
+		return arr;
+	}
+
 	function resize() {
-		const htmlTop = window.pageYOffset;
-		const bodyTop = document.body.scrollTop;
 		const originalHeight = ta.style.height;
+		const overflows = getParentOverflows(ta);
+		const docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
 
 		ta.style.height = 'auto';
 
@@ -101,28 +111,37 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 		clientWidth = ta.clientWidth;
 
 		// prevents scroll-position jumping
-		document.documentElement.scrollTop = htmlTop;
-		document.body.scrollTop = bodyTop;
+		overflows.forEach(el => {
+			el.node.scrollTop = el.scrollTop
+		});
+
+		if (docTop) {
+			document.documentElement.scrollTop = docTop;
+		}
 	}
 
 	function update() {
-		const startHeight = ta.style.height;
-
 		resize();
 
-		const style = window.getComputedStyle(ta, null);
+		const computed = window.getComputedStyle(ta, null);
+		const computedHeight = Math.round(parseFloat(computed.height));
+		const styleHeight = Math.round(parseFloat(ta.style.height));
 
-		if (style.height !== ta.style.height) {
-			if (overflowY !== 'visible') {
+		// The computed height not matching the height set via resize indicates that 
+		// the max-height has been exceeded, in which case the overflow should be set to visible.
+		if (computedHeight !== styleHeight) {
+			if (computed.overflowY !== 'visible') {
 				changeOverflow('visible');
 			}
 		} else {
-			if (overflowY !== 'hidden') {
+			// Normally keep overflow set to hidden, to avoid flash of scrollbar as the textarea expands.
+			if (computed.overflowY !== 'hidden') {
 				changeOverflow('hidden');
 			}
 		}
 
-		if (startHeight !== ta.style.height) {
+		if (cachedHeight !== computedHeight) {
+			cachedHeight = computedHeight;
 			const evt = createEvent('autosize:resized');
 			ta.dispatchEvent(evt);
 		}
@@ -166,11 +185,8 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 	ta.addEventListener('input', update, false);
 	ta.addEventListener('autosize:update', update, false);
 	set.add(ta);
-
-	if (setOverflowX) {
-		ta.style.overflowX = 'hidden';
-		ta.style.wordWrap = 'break-word';
-	}
+	ta.style.overflowX = 'hidden';
+	ta.style.wordWrap = 'break-word';
 
 	init();
 }

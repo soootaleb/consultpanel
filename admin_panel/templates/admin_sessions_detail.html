@@ -47,33 +47,55 @@
                 {% crispy form_add_cours %}
             </form>
         </div>
+        {% block detail_content %}{% endblock %}
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{%endif%}" id="tabs-1-tab-2">
-            <p><strong>Liste : </strong></p>
-            <ul>
-                {% for i in session.inscriptions %}
-                <li>{{i.prenom}} {{i.nom}}</li>
-                {% endfor %}
-            </ul>
-            <p><strong>Ajouter une inscription : </strong></p>
-            <form action="/consult/form/inscriptions_add" method="POST">
-                <input type="hidden" name="session_id" value="{{session.id}}"/>
-                {% crispy form_add_inscription %}
-            </form>
+            <div class="row">
+                <div class="col-xs-7">
+                    <form action="/consult/form/inscriptions_add" method="POST">
+                        <input type="hidden" name="session_id" value="{{session.id}}"/>
+                        {% crispy form_add_inscription %}
+                    </form>
+                </div>
+                {% if session.inscriptions %}
+                <div class="col-xs-5">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Prénom
+                                    </th>
+                                    <th>
+                                        Nom
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in session.inscriptions %}
+                                <tr>
+                                    <td>
+                                        {{i.prenom}}
+                                    </td>
+                                    <td>
+                                        {{i.nom}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
+            {% if conventions_list %}
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>
-                                Client
-                            </th>
-                            <th>
-                                Entreprise
-                            </th>
-                            <th>
-                                Inscriptions
+                                Entreprise (Inscriptions)
                             </th>
                             <th>
                                 Actions
@@ -81,31 +103,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for client in clients_list %}
+                        {% for doc in conventions_list %}
                         <tr>
-                            <td class="table-check">
-                                <div class="checkbox checkbox-only">
-                                    <input type="checkbox" id="tbl-check-2-1">
-                                    <label for="tbl-check-2-1"></label>
-                                </div>
+                            <td>
+                                <strong>{{ doc.client.nom }}</strong> <small>({{ doc.client.entreprise }})</small>
                             </td>
                             <td>
-                                {{ client }}
-                            </td>
-                            <td>
-                                {{ client.entreprise }}
-                            </td>
-                            <td>
-                                {{ client.inscriptions }}
-                            </td>
-                            <td>
-                                {{ client.convention_url }}
+                                <a href="#" type="button" class="btn btn-inline btn-primary">
+                                    Signer
+                                </a>
+                                <a href="Call ajax to send mail to client" type="button" class="btn btn-inline btn-info">
+                                    Envoyer au client
+                                </a>
+                                <a href="{% url 'show_convention' doc.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
+                                    Imprimer
+                                </a>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            {% else %}
+                <p>Il n'y a aucune inscription pour le moment...</p>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -195,4 +216,5 @@
 
         });
 
-    </script> {% endblock %}
+    </script>
+{% endblock %}

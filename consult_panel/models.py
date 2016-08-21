@@ -82,6 +82,7 @@ class Profile(models.Model):
     centre_formation = models.ForeignKey(CentreFormation, default=1)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
+    signature = models.ImageField(upload_to="signatures", blank=True)
 
     def __str__(self):
         return self.user.first_name
@@ -95,6 +96,10 @@ class Profile(models.Model):
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
+
+    @staticmethod
+    def get_admin_medias_directory():
+        return os.path.join(MEDIA_ROOT, 'admin_documents')
 
 
 class Localisation(models.Model):
@@ -165,10 +170,12 @@ class DebugValidateEmail(models.Model):
 
     @staticmethod
     def valid(**kwargs):
-        id = kwargs.get('id', None)  # Récupération de l'idée (envoyé dans les params)
+        # Récupération de l'idée (envoyé dans les params)
+        id = kwargs.get('id', None)
 
         # Récupération de l'objet unique
-        # L'objet unique est injecté automatiquement dans les kwargs par le linker.
+        # L'objet unique est injecté automatiquement dans les kwargs par le
+        # linker.
         unique = kwargs.get('unique', None)
 
         if id is None:

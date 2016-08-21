@@ -1,0 +1,33 @@
+{% extends "admin_root.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="box-typical box-typical-padding" xmlns="http://www.w3.org/1999/html">
+        <div class="form-group">
+            <label for="signature_file_input">Selectionner une image :</label>
+            <small class="form-text text-muted">
+                1 - Selectionner une image au format jpg<br>
+                2 - Zoomer puis déplacer l'image pour que votre signature soit centrer dans le rectangle<br>
+                3 - Sauvegarder !<br>
+            </small>
+            <br>
+            <button type="button" class="btn btn-rounded" id="signature_file_input_button">
+                <i class="font-icon-left font-icon-upload-2"></i>
+                Modifier
+            </button>
+            <input type="file" style="display:none;" id="signature_file_input" accept="image/*"/>
+        </div>
+        <div id="signature-cropp-div" class="croppie-container"></div>
+
+        <form action="{% url 'profil_signature_edit' profil.id %}" method="POST" style="display: none" id="form_save_siganture">
+            {% csrf_token %}
+            <input type="text" id="input_image_base64" name="url_base64" style="display:none;"></input>
+            <button type="button" class="btn btn-rounded" id="signature_save_button">Sauvegarder</button>
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        signatureEdition('signature-cropp-div');
+    </script>
+{% endblock %}

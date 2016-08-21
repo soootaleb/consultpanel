@@ -34,3 +34,5 @@
 
 //= lib/datatables-net/datatables.min.js
 //= lib/bootstrap-sweetalert/sweetalert.min.js
+
+//= ../../bower_components/Croppie/croppie.min.js

@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from consult_panel.models import *
-from document_generator.managers import AdminDocumentManager
+from documents.models import Convention
+from documents.managers import AdminDocumentManager
 from admin_panel.forms import SessionForm, CoursForm, InscriptionForm
 from admin_panel.user_tests import *
 
@@ -34,7 +35,8 @@ def sessions_detail(request, id, tab):
         'form_add_cours': cours_form,
         'form_add_inscription': inscription_form,
         'active_tab': tab if tab in ['detail', 'inscriptions', 'docs'] else 'detail',
-        'clients_list': doc_manager.get_conventions_by_client(session),
+        #'docs_list': doc_manager.get_conventions(session),
+        'conventions_list': Convention.objects.filter(client__inscription__session__id=id).distinct()
     })
 
 

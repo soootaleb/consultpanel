@@ -1,5 +1,4 @@
 from django.conf.urls import url
-
 from unique_linker import views
 
 urlpatterns = [

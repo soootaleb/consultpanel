@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as lin
 from admin_panel import forms
 from consult_panel.models import *
-from document_generator.models import *
+from documents.models import Convention
+from documents.models import *
 from django.contrib import messages
 
 
@@ -210,6 +211,10 @@ def inscriptions_add(request):
     form.instance.session = Session.objects.get(pk=request.POST["session_id"])
     if form.is_valid():
         form.save()
+        Convention.objects.get_or_create(
+            session=form.instance.session,
+            client=form.instance.client
+        )
         messages.success(request, 'L\'inscription a bien été ajoutée')
         return redirect('sessions_detail', id=request.POST["session_id"], tab='inscriptions')
     else:
@@ -247,6 +252,7 @@ def entreprises_edit(request):
         messages.warning(request, 'Merci de vérifier les informations')
         return render(request, 'admin_entreprises_edit.html', context={'form':
                                                                        form})
+
 
 def profil_edit(request):
     form = forms.CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(

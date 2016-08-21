@@ -16,6 +16,7 @@ class DocumentGenerator():
     file = None
     template = None
     html = None
+    location = None
 
     def __init__(self, user):
         if user is None:
@@ -61,6 +62,10 @@ class ConventionGenerator(DocumentGenerator):
     client = None
     session = None
 
-    def __init__(self, client, session):
-        self.client = client
-        self.session = session
+    def get_location(self):
+        return 'convention_client_' + str(self.client.id) + '_session_' + str(self.session.id) + '.pdf'
+
+    def as_pdf(self):
+        self.compile()
+        pdfkit.from_string(self.html, self.file[:-5] + '_new.pdf')
+        return os.path.join(self.profile.get_medias_directory(), self.filename[:-5] + '_client_' + str(self.client.id) + '_session_' + str(self.session.id) + '.pdf')

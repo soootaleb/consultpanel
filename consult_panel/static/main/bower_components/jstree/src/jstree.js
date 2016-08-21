@@ -261,7 +261,7 @@
 	 * @name $(':jstree')
 	 * @return {jQuery}
 	 */
-	$.expr[':'].jstree = $.expr.createPseudo(function(search) {
+	$.expr.pseudos.jstree = $.expr.createPseudo(function(search) {
 		return function(a) {
 			return $(a).hasClass('jstree') &&
 				$(a).data('jstree') !== undefined;
@@ -1332,6 +1332,9 @@
 		 */
 		_load_node : function (obj, callback) {
 			var s = this.settings.core.data, t;
+			var notTextOrCommentNode = function notTextOrCommentNode () {
+				return this.nodeType !== 3 && this.nodeType !== 8;
+			};
 			// use original HTML
 			if(!s) {
 				if(obj.id === $.jstree.root) {
@@ -1350,7 +1353,7 @@
 						callback.call(this, false);
 					}
 					else {
-						this[typeof d === 'string' ? '_append_html_data' : '_append_json_data'](obj, typeof d === 'string' ? $($.parseHTML(d)).filter(function () { return this.nodeType !== 3; }) : d, function (status) {
+						this[typeof d === 'string' ? '_append_html_data' : '_append_json_data'](obj, typeof d === 'string' ? $($.parseHTML(d)).filter(notTextOrCommentNode) : d, function (status) {
 							callback.call(this, status);
 						});
 					}
@@ -1374,7 +1377,7 @@
 									//return callback.call(this, this._append_json_data(obj, d));
 								}
 								if((type && type.indexOf('html') !== -1) || typeof d === "string") {
-									return this._append_html_data(obj, $($.parseHTML(d)).filter(function () { return this.nodeType !== 3; }), function (status) { callback.call(this, status); });
+									return this._append_html_data(obj, $($.parseHTML(d)).filter(notTextOrCommentNode), function (status) { callback.call(this, status); });
 									// return callback.call(this, this._append_html_data(obj, $(d)));
 								}
 								this._data.core.last_error = { 'error' : 'ajax', 'plugin' : 'core', 'id' : 'core_04', 'reason' : 'Could not load node', 'data' : JSON.stringify({ 'id' : obj.id, 'xhr' : x }) };
@@ -1402,7 +1405,7 @@
 			}
 			if(typeof s === 'string') {
 				if(obj.id === $.jstree.root) {
-					return this._append_html_data(obj, $($.parseHTML(s)).filter(function () { return this.nodeType !== 3; }), function (status) {
+					return this._append_html_data(obj, $($.parseHTML(s)).filter(notTextOrCommentNode), function (status) {
 						callback.call(this, status);
 					});
 				}
@@ -3380,7 +3383,7 @@
 								this.open_node(nodes, false, 0);
 								delete state.core.open;
 								this.set_state(state, callback);
-							}, true);
+							});
 						}
 						return false;
 					}
@@ -3606,6 +3609,8 @@
 		 * @param  {Boolean} options.no_id do not return ID
 		 * @param  {Boolean} options.no_children do not include children
 		 * @param  {Boolean} options.no_data do not include node data
+		 * @param  {Boolean} options.no_li_attr do not include LI attributes
+		 * @param  {Boolean} options.no_a_attr do not include A attributes
 		 * @param  {Boolean} options.flat return flat JSON instead of nested
 		 * @return {Object}
 		 */
@@ -3635,6 +3640,14 @@
 						tmp.state[i] = obj.state[i];
 					}
 				}
+			} else {
+				delete tmp.state;
+			}
+			if(options && options.no_li_attr) {
+				delete tmp.li_attr;
+			}
+			if(options && options.no_a_attr) {
+				delete tmp.a_attr;
 			}
 			if(options && options.no_id) {
 				delete tmp.id;
