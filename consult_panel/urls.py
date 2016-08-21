@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^client/', include('client_panel.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^consult/', include('admin_panel.urls')),
-                  url(r'^u/', include('unique_linker.urls'))
+    url(r'^u/', include('unique_linker.urls')),
+    url(r'docs/', include('documents.urls'))
 
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
