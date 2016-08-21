@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from consult_panel.models import *
-from document_generator.models import *
+from documents.models import *
 from django.forms import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit

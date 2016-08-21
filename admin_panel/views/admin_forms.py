@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as lin
 from admin_panel import forms
 from consult_panel.models import *
-from document_generator.models import *
+from documents.models import *
 from django.contrib import messages
 
 
@@ -247,6 +247,7 @@ def entreprises_edit(request):
         messages.warning(request, 'Merci de vérifier les informations')
         return render(request, 'admin_entreprises_edit.html', context={'form':
                                                                        form})
+
 
 def profil_edit(request):
     form = forms.CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(
