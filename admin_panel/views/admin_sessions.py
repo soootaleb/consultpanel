@@ -28,14 +28,12 @@ def sessions_detail(request, id, tab):
     inscription_form = InscriptionForm()
     inscription_form.fields['client'].queryset = Client.objects.filter(
         catalogue__profile__user=request.user)
-    doc_manager = AdminDocumentManager(request.user)
     return render(request, 'admin_sessions_detail.html', context={
         'page_title': session.formation.nom,
         'session': session,
         'form_add_cours': cours_form,
         'form_add_inscription': inscription_form,
         'active_tab': tab if tab in ['detail', 'inscriptions', 'docs'] else 'detail',
-        #'docs_list': doc_manager.get_conventions(session),
         'conventions_list': Convention.objects.filter(client__inscription__session__id=id).distinct()
     })
 
