@@ -12,8 +12,8 @@ class InscriptionForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-6'
+        self.helper.label_class = 'col-sm-4'
+        self.helper.field_class = 'col-sm-8'
         self.helper.add_input(Submit('submit', 'Envoyer'))
         super(InscriptionForm, self).__init__(*args, **kwargs)
 
@@ -157,6 +157,7 @@ class EntrepriseForm(ModelForm):
         model = Entreprise
         fields = ['nom']
 
+
 class CentreFormationForm(ModelForm):
 
     nom = CharField(required=True, label="Nom de l'entreprise :")
@@ -164,7 +165,7 @@ class CentreFormationForm(ModelForm):
     adresse = CharField(required=True, label="Adresse :")
     ville = CharField(required=True, label="Ville :")
     code_postal = CharField(required=True, label="Code Postal :")
-    telephone =  CharField(required=True, label="Téléphone :")
+    telephone = CharField(required=True, label="Téléphone :")
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -177,4 +178,3 @@ class CentreFormationForm(ModelForm):
         model = CentreFormation
         fields = ['nom', 'siret', 'adresse', 'ville',
                   'code_postal', 'telephone']
-
