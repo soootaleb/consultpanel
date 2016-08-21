@@ -1,21 +1,24 @@
-from django.contrib import auth
-from django.contrib import messages
-from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-from formtools.wizard.views import SessionWizardView
-
-from consult_panel.models import Profile
+from django.contrib.auth.models import Group
+from django.contrib import auth
 from public_site import forms
+from django.contrib import messages
+from formtools.wizard.views import SessionWizardView
+from consult_panel.models import Profile
 
 
 class RegistrationWizard(SessionWizardView):
 
     def get_template_names(self):
+        if  self.request.user.is_authenticated():
+            return redirect('admin_index')
         return ['public_pages_register.html']
 
     def done(self, form_list, **kwargs):
         if create_new_superformateur(self.request, form_list):
+            messages.info(self.request, "Vous etes inscrit sur Consult Panel :)")
             return redirect('admin_index')
+        messages.warning(self.request, "Une erreur est survenue durant l'inscription. Réessayez plus tard.")
         return redirect('public_index')
 
 
@@ -29,8 +32,6 @@ def create_new_superformateur(request, form_list):
     profile = Profile.objects.create(
         user=user, centre_formation=centre_formation)
     profile.save()
-    user.backend = 'django.contrib.auth.backends.ModelBackend'
-    auth.login(request, user)
     return True
 
 
