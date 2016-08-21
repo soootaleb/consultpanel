@@ -52,7 +52,7 @@
                         <tr data-id="{{ f.id }}"
                             data-edit="{% url 'formations_edit' f.id %}"
                             data-details
-                            data-delete="{% url 'formations_delete' f.id %}">
+                            data-delete="{% url 'ajax_formations_delete' f.id %}">
                             <td>{{ f.nom }}</td>
                             <td>{{ f.description|truncatechars_html:30 }}</td>
                             <td>{{ f.prix_ht }}</td>
