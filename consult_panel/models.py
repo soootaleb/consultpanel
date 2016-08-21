@@ -1,5 +1,6 @@
 import datetime
 import os
+import base64
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -77,12 +78,14 @@ class Client(models.Model):
         return self.nom
 
 
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     centre_formation = models.ForeignKey(CentreFormation, default=1)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
-    signature = models.ImageField(upload_to="signatures", blank=True)
+    signature_base64 = models.TextField(blank=True)
 
     def __str__(self):
         return self.user.first_name
@@ -96,6 +99,16 @@ class Profile(models.Model):
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
+
+    def save_signature_as_image(self):
+        filepath = None
+        if self.signatue_base64 != "":
+            head, data = self.signature_base64.split(',', 1)
+            filepath = os.path.join(self.get_medias_directory(), str(self.user_id)+"_signature.png")
+            with open(filepath, "wb") as fh:
+                fh.write(base64.decode(data))
+                fh.close()
+        return filepath
 
     @staticmethod
     def get_admin_medias_directory():

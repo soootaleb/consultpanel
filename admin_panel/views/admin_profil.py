@@ -29,15 +29,11 @@ def profil_edit(request, id):
 def profil_signature_edit(request, id):
     profil = Profile.objects.get(user=request.user)
     if request.method == "POST":
-        url = request.POST.get("url_base64", "")
-        head, data = url.split(',',1)
-        print("POST URL : "+data)
-        if url != "":
-            url_decoded = base64.b64decode(data)
-            content = ContentFile(url_decoded)
-            profil.signature.save(str(profil.user_id)+"_signature.png", content)
+        image_base64 = request.POST.get("url_base64", "")
+        if image_base64 != "":
+            profil.signature_base64 = image_base64
             profil.save()
-            messages.success(request, 'Votre signature a bien été modifié.');
+            messages.success(request, 'Votre signature a bien été modifié.')
             return redirect('profil_index')
         else :
             messages.warning(request, 'Une erreur est survenu, merci de reessayer.')
