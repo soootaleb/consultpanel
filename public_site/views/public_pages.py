@@ -28,7 +28,6 @@ def create_new_superformateur(request, form_list):
     centre_formation = form_data[1].save()
     profile = Profile.objects.create(
         user=user, centre_formation=centre_formation)
-    profile.liste_catalogues.add(Catalogue.objects.create(nom="default"))
     profile.save()
     user.backend = 'django.contrib.auth.backends.ModelBackend'
     auth.login(request, user)
