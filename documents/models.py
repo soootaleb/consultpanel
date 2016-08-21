@@ -12,6 +12,8 @@ class Convention(models.Model):
     session = models.ForeignKey(Session)
     signed_by_client = models.BooleanField(default=False)
     signed_by_formateur = models.BooleanField(default=False)
+    document = models.FileField(
+        upload_to=upload_destination, default="DEFAULT_CONVENTION_DOCUMENT")
 
 
 class DocumentType(models.Model):

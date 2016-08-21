@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from consult_panel.models import *
 from documents.models import Convention
-from documents.managers import AdminDocumentManager
 from admin_panel.forms import SessionForm, CoursForm, InscriptionForm
 from admin_panel.user_tests import *
 
