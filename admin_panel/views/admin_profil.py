@@ -16,8 +16,7 @@ def profil_index(request):
 
 @user_passes_test(is_formateur)
 def profil_edit(request, id):
-    form = CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(
-        pk=request.POST["centre_formation_id"]))
+    form = CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(pk=id))
     if request.method == "POST":
         if form.is_valid() and form.instance is not None:
             form.save()
@@ -42,7 +41,7 @@ def profil_password_edit(request):
 
 
 @user_passes_test(is_formateur)
-def profil_signature_edit(request, id):
+def profil_signature_edit(request):
     profil = Profile.objects.get(user=request.user)
     if request.method == "POST":
         image_base64 = request.POST.get("url_base64", "")

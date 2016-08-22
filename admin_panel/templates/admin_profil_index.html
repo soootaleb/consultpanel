@@ -121,7 +121,7 @@
                     {% if profil.signature_base64 != "" %}
                         <img src="{{ profil.signature_base64 }}"><br>
                     {% endif %}
-                    <a href="{% url "profil_signature_edit" profil.id %}" class="btn btn-md btn-warning">Modifier</a>
+                    <a href="{% url "profil_signature_edit" %}" class="btn btn-md btn-warning">Modifier</a>
                 </section>
             </div><!--.tab-pane-->
             <div role="tabpanel" class="tab-pane" id="tabs-2-tab-3" aria-expanded="false">

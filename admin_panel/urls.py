@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^profil/$', admin_profil.profil_index, name='profil_index'),
     url(r'^profil/index/$', admin_profil.profil_index, name='profil_index'),
     url(r'^profil/edit/(?P<id>[0-9]+)$', admin_profil.profil_edit, name='profil_edit'),
-    url(r'^profil/signature/edit/(?P<id>[0-9]+)$', admin_profil.profil_signature_edit, name='profil_signature_edit'),
+    url(r'^profil/signature/edit/$', admin_profil.profil_signature_edit, name='profil_signature_edit'),
     url(r'^profil/password/edit/$', admin_profil.profil_password_edit, name='profil_password_edit'),
 
     url(r'^preferences/$', admin_preferences.preferences_index,
