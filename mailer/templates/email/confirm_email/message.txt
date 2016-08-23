@@ -1,0 +1,9 @@
+Bonjour {{ first_name }},
+
+Votre inscription chez ConsultPanel est presque terminé.
+Afin de pouvoir utiliser dès à présent nos services, vous devez valider votre adresse email en cliquant sur le lien ci-dessous.
+
+Confirmer votre email : {{ unique_url }}
+
+L'équipe ConsultPanel vous remercie et reste à votre disposition.
+À très bientôt sur ConsultPanel.

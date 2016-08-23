@@ -5,21 +5,40 @@ from public_site import forms
 from django.contrib import messages
 from formtools.wizard.views import SessionWizardView
 from consult_panel.models import Profile
-
+from unique_linker.models import Unique
+from mailer.mailer import EmailTemplate
+from datetime import datetime
 
 class RegistrationWizard(SessionWizardView):
-
     def get_template_names(self):
         if  self.request.user.is_authenticated():
             return redirect('admin_index')
+
         return ['public_pages_register.html']
 
     def done(self, form_list, **kwargs):
         if create_new_superformateur(self.request, form_list):
-            messages.info(self.request, "Vous etes inscrit sur Consult Panel :)")
+            messages.info(self.request, "Un email vous a été envoyé. Confirmez nous votre adresse email.")
             return redirect('admin_index')
+
         messages.warning(self.request, "Une erreur est survenue durant l'inscription. Réessayez plus tard.")
         return redirect('public_index')
+
+def send_confirm_email_request(profile):
+    if profile is not None:
+        methode = 'consult_panel.models/Profile/validemail'
+        #on check si il n'y a pas deja un lien actif:
+        try:
+            unique = Unique.objects.get(auteur=profile.user, methode=methode, params=profile.id)
+            unique.delete()
+        except:
+            pass
+        # creation du unique linker pour valider l'email:
+        unique = Unique(auteur=profile.user, methode=methode, params=profile.id)
+        unique.save()
+        url = unique.get_url()
+        email = EmailTemplate('confirm_email', {'date', datetime.now().date})
+        email.send([profile.user.email], context={'first_name': profile.user.first_name, 'unique_url': url})
 
 
 def create_new_superformateur(request, form_list):
@@ -32,6 +51,7 @@ def create_new_superformateur(request, form_list):
     profile = Profile.objects.create(
         user=user, centre_formation=centre_formation)
     profile.save()
+    send_confirm_email_request(profile)
     return True
 
 

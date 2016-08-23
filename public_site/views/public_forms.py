@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as lin
 from django.http import HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from public_site import forms
 
@@ -31,7 +31,8 @@ def login(request):
                     else:
                         return render(request, 'admin_pages_index.html', context=context)
                 else:
-                    return HttpResponseForbidden("Désolé, mais votre compte n'est plus actif")
+                    messages.warning(request, "Votre compte n'est pas activé.")
+                    return redirect('public_login')
             else:
                 context = {
                     'page_title':   'Connexion',

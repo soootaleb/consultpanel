@@ -4,7 +4,9 @@ import base64
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.http import HttpResponse
+from django.contrib import messages
+from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 
 from consult_panel.settings import MEDIA_ROOT
 
@@ -113,6 +115,24 @@ class Profile(models.Model):
     @staticmethod
     def get_admin_medias_directory():
         return os.path.join(MEDIA_ROOT, 'admin_documents')
+
+    @staticmethod
+    def validemail(**kwargs):
+        id = kwargs.get('id', None)  # Récupération de l'id (envoyé dans les params)
+        # Récupération de l'objet unique
+        # L'objet unique est injecté automatiquement dans les kwargs par le linker.
+        unique = kwargs.get('unique', None)
+        if id is None:
+            raise Http404
+        unique.perime = True
+        unique.save()
+        # Récupération du profil
+        profil = Profile.objects.get(id=id)
+
+        # Validation de l'email
+        profil.user.is_active = True
+        profil.user.save()
+        return redirect('login')
 
 
 class Localisation(models.Model):

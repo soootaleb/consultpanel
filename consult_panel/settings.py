@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'consult_panel',
     'crispy_forms',
     'documents',
-    'unique_linker'
+    'unique_linker',
+    'mailer'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -182,5 +183,7 @@ EMAIL_HOST_USER = 'support'
 EMAIL_HOST_PASSWORD = 'mastercraft'
 DEFAULT_FROM_EMAIL = 'support@consultpanel.fr'
 EMAIL_USE_TLS = True
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import TemplateDoesNotExist
 from django.template.loader import render_to_string
+from datetime import datetime
 
 
 logger = logging.getLogger(__name__)
@@ -14,9 +15,9 @@ class EmailTemplate(object):
     """Provide pattern to organize and send your common email messages.
 
     All Emails should be stored on these paths:
-    <your_template_dir>/email/<template_name>/subject.txt
-    <your_template_dir>/email/<template_name>/message.html
-    <your_template_dir>/email/<template_name>/message.txt
+    templates/email/<template_name>/subject.txt
+    templates/email/<template_name>/message.html
+    templates/email/<template_name>/message.txt
 
     Examples:
     >>> email = EmailTemplate('<template_name>', {'date', datetime.now().date})
@@ -43,7 +44,7 @@ class EmailTemplate(object):
     >>> connection.send_messages(messages)
     """
 
-    template_base_dir = 'email'
+    template_base_dir = "email"
     template_subject = 'subject.txt'
     template_message_html = 'message.html'
     template_message_txt = 'message.txt'
@@ -75,23 +76,22 @@ class EmailTemplate(object):
         return os.path.join(self.template_dir, self.template_message_txt)
 
     def _get_template(self, template, context=None):
-        _context = self.default_context.copy()
-        if context:
-            _context.update(context)
-
         try:
-            return render_to_string(template, _context)
+            return render_to_string(template, context)
         except TemplateDoesNotExist:
             logger.debug("Email template {} doesn't exists.".format(template))
             return None
 
     def get_subject(self, context=None):
+        print("Subject : " + self.subject)
         return self._get_template(self.subject, context)
 
     def get_message_html(self, context=None):
+        print("Message : " + self.message_html)
         return self._get_template(self.message_html, context)
 
     def get_message_txt(self, context=None):
+        print("Message TXT : " + self.message_txt)
         return self._get_template(self.message_txt, context)
 
     def send(self, recipient_list, context=None, commit=True, **kwargs):
@@ -123,7 +123,6 @@ class EmailTemplate(object):
             message.attach_alternative(msg_html, 'text/html')
 
         if commit:
-            sent = message.send(
-                fail_silently=kwargs.get('fail_silently', False))
+            message.send(fail_silently=kwargs.get('fail_silently', False))
 
         return message

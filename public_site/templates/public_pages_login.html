@@ -9,13 +9,6 @@
             <img src="{% static 'main/img/consultpanel_logo_blue.png' %}" alt="Logo Consult Panel">
         </div>
         <header class="sign-title">Consult Panel</header>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags | default_if_none:'success' }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
         <div class="form-group">
             {{ login_form.username }}
         </div>
