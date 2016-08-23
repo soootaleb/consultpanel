@@ -9,6 +9,7 @@ from consult_panel.models import *
 
 class RegistrationForm(forms.ModelForm):
 
+    username = forms.EmailField(required=True, label="Adresse E-mail :")
     first_name = forms.CharField(required=True, label="Prénom :")
     last_name = forms.CharField(required=True, label="Nom :")
     passwordConfirm = forms.CharField(widget=forms.PasswordInput, label="Confirmation :")
@@ -23,24 +24,13 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username',
-                  'email', 'password', 'passwordConfirm']
-        labels = {
-            'username': 'Adresse E-mail :',
-            'email': 'Confirmation :',
-        }
+        fields = ['first_name', 'last_name',
+                  'username', 'password', 'passwordConfirm']
+
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
         password = cleaned_data.get('password')
         passwordConfirm = cleaned_data.get('passwordConfirm')
-        email = cleaned_data.get('email')
-        username = cleaned_data.get('username')
-
-        if email != username:
-            msg_email = "Les deux emails ne correspondent pas."
-            self.add_error('email', msg_email)
-            self.add_error('username', msg_email)
-            return cleaned_data
 
         if password != passwordConfirm:
             msg_password = "Les deux mots de passes ne correspondent pas."
@@ -51,6 +41,7 @@ class RegistrationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
+        user.email = user.username
         user.is_active = False
         if commit:
             user.save()
