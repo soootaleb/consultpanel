@@ -74,7 +74,7 @@ class Client(models.Model):
     convention_url = ''
 
     def __str__(self):
-        return self.nom
+        return "{} - {}".format(self.entreprise, self.nom)
 
 
 class Profile(models.Model):

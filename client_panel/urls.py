@@ -1,9 +1,7 @@
-from django.conf.urls import url, include
-from django.contrib import admin
+from django.conf.urls import url
 
 from .views import client_pages
 
 urlpatterns = [
-    url(r'^$', client_pages.pages_index, name='client_index'),
-    url(r'^index/', client_pages.pages_index, name='client_index'),
+    url(r'^debug/', client_pages.pages_document_inscriptions, name='client_document_inscriptions'),
 ]
