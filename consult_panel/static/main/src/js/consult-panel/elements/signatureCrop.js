@@ -1,6 +1,7 @@
 var signatureEdition = function (idTab) {
+    console.log("Signature function");
     var uploadCropElement = document.getElementById(idTab);
-    var image_url = uploadCropElement.getAttribute('image-url');
+    var isImage = uploadCropElement.hasAttribute('data-image64');
     var uploadButton = $("#signature_file_input_button");
     var fileInput = $("#signature_file_input");
     var formSiganture = $("#form_save_siganture");
@@ -31,12 +32,16 @@ var signatureEdition = function (idTab) {
         showZoomer: true,
         enableOrientation: true
     });
-    /*
-    if(typeof image_url  !== typeof undefined && image_url !== false){
+
+    if(isImage){
+        var image64URL = uploadCropElement.getAttribute('data-image64');
         uploadCrop.bind({
-            url: image_url
+            url: image64URL
+        }).then(function(){
+            uploadCrop.setZoom(0);
         });
-    }*/
+
+    }
 
     uploadButton.click( function (e) {
         fileInput.click();
@@ -57,25 +62,5 @@ var signatureEdition = function (idTab) {
             formSiganture.submit();
         });
 
-    });
-};
-
-var cropSignatureImage = function (idTab) {
-    console.log("CRooping function");
-    var uploadCropElement = document.getElementById(idTab);
-    var vanilla = new Croppie(el, {
-        viewport: {width: 300, height: 180},
-        boundary: {width: 600, height: 380},
-        showZoomer: true,
-        enableOrientation: true
-    });
-    console.log("CRooping function 1");
-    vanilla.bind({
-        url: '/static/main/img/video-preview.jpg',
-        orientation: 1
-    });
-//on button click
-    vanilla.result('canvas').then(function (base64Image) {
-        // do something with cropped base64 image here
     });
 };

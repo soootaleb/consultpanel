@@ -17,11 +17,12 @@
             </button>
             <input type="file" style="display:none;" id="signature_file_input" accept="image/*"/>
         </div>
-        <div id="signature-cropp-div" class="croppie-container"></div>
+        <div id="signature-cropp-div" class="croppie-container"
+                {% if profil.signature_base64 != "" %} data-image64="{{ profil.signature_base64 }}" {% endif %}></div>
 
-        <form action="{% url 'profil_signature_edit' profil.id %}" method="POST" style="display: none" id="form_save_siganture">
+        <form action="{% url 'profil_signature_edit' %}" method="POST" style="display: none" id="form_save_siganture">
             {% csrf_token %}
-            <input type="text" id="input_image_base64" name="url_base64" style="display:none;"></input>
+            <input type="text" id="input_image_base64" name="url_base64" style="display:none;"/>
             <button type="button" class="btn btn-rounded" id="signature_save_button">Sauvegarder</button>
         </form>
     </div>

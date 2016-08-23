@@ -253,14 +253,3 @@ def entreprises_edit(request):
         return render(request, 'admin_entreprises_edit.html', context={'form':
                                                                        form})
 
-
-def profil_edit(request):
-    form = forms.CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(
-        pk=request.POST["centre_formation_id"]))
-    if form.is_valid() and form.instance is not None:
-        form.save()
-        messages.success(request, 'Les informations ont bien été modifiées')
-        return redirect('profil_index')
-    else:
-        messages.warning(request, 'Merci de vérifier les informations')
-        return render(request, 'admin_profil_edit.html', context={'form': form})

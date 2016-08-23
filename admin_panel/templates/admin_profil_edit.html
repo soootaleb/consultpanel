@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="box-typical box-typical-padding">
-        <form action="/consult/form/profil_edit" method="post">
+        <form method="post">
             <input type="hidden" name="centre_formation_id" value="{{ form.instance.id }}"/>
             {% crispy form %}
         </form>
