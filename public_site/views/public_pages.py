@@ -34,7 +34,8 @@ def send_confirm_email_request(profile):
         except:
             pass
         # creation du unique linker pour valider l'email:
-        unique = Unique(auteur=profile.user, methode=methode, params=profile.id)
+        params = {"id": profile.id}
+        unique = Unique(auteur=profile.user, methode=methode, params=params)
         unique.save()
         url = unique.get_url()
         email = EmailTemplate('confirm_email', {'date', datetime.now().date})

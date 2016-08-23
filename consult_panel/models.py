@@ -132,7 +132,7 @@ class Profile(models.Model):
         # Validation de l'email
         profil.user.is_active = True
         profil.user.save()
-        return redirect('login')
+        return redirect('public_login')
 
 
 class Localisation(models.Model):
