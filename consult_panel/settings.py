@@ -85,15 +85,15 @@ WSGI_APPLICATION = 'consult_panel.wsgi.application'
 
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'consultpanel',
+    #     'USER': 'master',
+    #     'PASSWORD': 'mastercraft',  # LOURD
+    #     'HOST': '163.172.28.152',
+    #     'PORT': '3306',
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'consultpanel',
-        'USER': 'master',
-        'PASSWORD': 'mastercraft',  # LOURD
-        'HOST': '163.172.28.152',
-        'PORT': '3306',
-    },
-    'local': {
         'NAME': 'cpanel_local.db',
         'ENGINE': 'django.db.backends.sqlite3'
     }
@@ -142,38 +142,38 @@ MEDIA_URL = '/medias/'
 AUTH_PROFILE_MODULE = 'consult_panel.models.Profile'
 
 # LOGGING
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt': "%d/%b/%Y %H:%M:%S"
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logger/debug.log'),
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'DEBUG',
-        },
-        'MYAPP': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#             'datefmt': "%d/%b/%Y %H:%M:%S"
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logger/debug.log'),
+#             'formatter': 'verbose'
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': 'DEBUG',
+#         },
+#         'MYAPP': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#         },
+#     }
+# }
 
 #   MAILING
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

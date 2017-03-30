@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-import logging
+# import logging
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import TemplateDoesNotExist
@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 from datetime import datetime
 
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 class EmailTemplate(object):
@@ -79,7 +79,7 @@ class EmailTemplate(object):
         try:
             return render_to_string(template, context)
         except TemplateDoesNotExist:
-            logger.debug("Email template {} doesn't exists.".format(template))
+            # logger.debug("Email template {} doesn't exists.".format(template))
             return None
 
     def get_subject(self, context=None):
