@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class MasterPanelConfig(AppConfig):
-    name = 'mailer'
+    name = 'master_panel'

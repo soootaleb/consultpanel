@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PublicAPIConfig(AppConfig):
-    name = 'mailer'
+    name = 'public_api'
