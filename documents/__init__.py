@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.DocumentGeneratorConfig'
+default_app_config = 'documents.apps.DocumentGeneratorConfig'

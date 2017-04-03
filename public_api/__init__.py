@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.PublicAPIConfig'
+default_app_config = 'public_api.apps.PublicAPIConfig'

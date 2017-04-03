@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.AjaxAPIConfig'
+default_app_config = 'ajax_api.apps.AjaxAPIConfig'

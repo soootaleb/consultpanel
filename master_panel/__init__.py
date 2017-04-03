@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.MasterPanelConfig'
+default_app_config = 'master_panel.apps.MasterPanelConfig'

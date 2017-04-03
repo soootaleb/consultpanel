@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.MailerConfig'
+default_app_config = 'mailer.apps.MailerConfig'

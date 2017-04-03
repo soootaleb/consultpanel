@@ -1,1 +1,1 @@
-default_app_config = 'public_site.apps.UniqueLinkerConfig'
+default_app_config = 'unique_linker.apps.UniqueLinkerConfig'
