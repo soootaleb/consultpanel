@@ -1,6 +1,6 @@
 # Consult Panel
 
-[Essayez gratuitement !](https://consultpanel.fr/)
+[Essayez gratuitement !](https://consultpanel.info/)
 
 ## Un outil de gestion simplifié pour les formateurs indépendants.
 
@@ -13,4 +13,4 @@ Chez Consult Panel, nous mettons un point d'honneur quant à la relation que nou
 Que vous aillez une question sur l'outil, ou simplement pour aller boire un café,
 l'équipe de Consult Panel se tient à votre disposition tous les jours de la semaine par Skype, mail, téléphone, et pigeon voyageur.
 
-[Essayez gratuitement !](https://consultpanel.fr/)
+[Essayez gratuitement !](https://consultpanel.info/)
