@@ -52,7 +52,7 @@ def create_new_superformateur(request, form_list):
     profile = Profile.objects.create(
         user=user, centre_formation=centre_formation)
     profile.save()
-    send_confirm_email_request(profile)
+    # send_confirm_email_request(profile)
     return True
 
 

@@ -42,7 +42,8 @@ class RegistrationForm(forms.ModelForm):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password'])
         user.email = user.username
-        user.is_active = False
+        # user.is_active = False
+        user.is_active = True # Disable email activation
         if commit:
             user.save()
         return user
