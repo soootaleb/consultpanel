@@ -2,7 +2,7 @@ from django.conf.urls import url, include, patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from consult_panel.settings import MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, DEBUG
+from consult_panel.settings.base import MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, DEBUG
 
 handler404 = 'public_site.views.public_errors.error404'
 handler500 = 'public_site.views.public_errors.error500'

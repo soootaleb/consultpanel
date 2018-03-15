@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 
-from consult_panel.settings import MEDIA_ROOT
+from consult_panel.settings.base import MEDIA_ROOT
 
 
 class Formation(models.Model):
