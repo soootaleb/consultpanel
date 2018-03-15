@@ -14,12 +14,14 @@
             <div class="tbl-cell tbl-cell-title">
                 <h3>{{sessions_list.count}} Session{% if sessions_list.count > 1%}s{%endif%}</h3>
             </div>
+            {% comment "Actions" %}
             <div class="tbl-cell tbl-cell-action-bordered">
                 <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
             </div>
             <div class="tbl-cell tbl-cell-action-bordered">
                 <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
             </div>
+            {% endcomment %}
         </div>
     </header>
     <div class="box-typical-body">
