@@ -17,7 +17,6 @@ class RegistrationWizard(SessionWizardView):
     def render(self, form=None, **kwargs):
 
         if self.request.user.is_authenticated():
-            print("user authentificated and redirect to admin index")
             return redirect('admin_index')
 
         form = form or self.get_form()

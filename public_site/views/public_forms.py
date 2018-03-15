@@ -23,13 +23,7 @@ def login(request):
                     message = "Bienvenue, " + \
                         user.first_name if user.first_name != '' else "Bienvenue, " + user.username
                     messages.success(request, message)
-                    context = {
-                        'page_title':   'Connexion',
-                    }
-                    if user.groups.filter(name='consultants').exists():
-                        return render(request, 'admin_pages_index.html', context=context)
-                    else:
-                        return render(request, 'admin_pages_index.html', context=context)
+                    return redirect('admin_index')
                 else:
                     messages.warning(request, "Votre compte n'est pas activé.")
                     return redirect('public_login')
