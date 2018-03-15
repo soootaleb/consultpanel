@@ -1,1 +1,43 @@
-!function(t){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs","datatables.net-autofill"],function(e){return t(e,window,document)}):"object"==typeof exports?module.exports=function(e,n){return e||(e=window),n&&n.fn.dataTable||(n=require("datatables.net-bs")(e,n).$),n.fn.dataTable.AutoFill||require("datatables.net-autofill")(e,n),t(n,e,e.document)}:t(jQuery,window,document)}(function(t,e,n,a){"use strict";var o=t.fn.dataTable;return o.AutoFill.classes.btn="btn btn-primary",o});
+/*! Bootstrap integration for DataTables' AutoFill
+ * ©2015 SpryMedia Ltd - datatables.net/license
+ */
+
+(function( factory ){
+	if ( typeof define === 'function' && define.amd ) {
+		// AMD
+		define( ['jquery', 'datatables.net-bs', 'datatables.net-autofill'], function ( $ ) {
+			return factory( $, window, document );
+		} );
+	}
+	else if ( typeof exports === 'object' ) {
+		// CommonJS
+		module.exports = function (root, $) {
+			if ( ! root ) {
+				root = window;
+			}
+
+			if ( ! $ || ! $.fn.dataTable ) {
+				$ = require('datatables.net-bs')(root, $).$;
+			}
+
+			if ( ! $.fn.dataTable.AutoFill ) {
+				require('datatables.net-autofill')(root, $);
+			}
+
+			return factory( $, root, root.document );
+		};
+	}
+	else {
+		// Browser
+		factory( jQuery, window, document );
+	}
+}(function( $, window, document, undefined ) {
+'use strict';
+var DataTable = $.fn.dataTable;
+
+
+DataTable.AutoFill.classes.btn = 'btn btn-primary';
+
+
+return DataTable;
+}));

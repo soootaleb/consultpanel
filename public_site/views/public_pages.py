@@ -11,7 +11,8 @@ from datetime import datetime
 
 class RegistrationWizard(SessionWizardView):
     def get_template_names(self):
-        if  self.request.user.is_authenticated():
+        print(self.request.user)
+        if self.request.user.is_authenticated():
             return redirect('admin_index')
 
         return ['public_pages_register.html']

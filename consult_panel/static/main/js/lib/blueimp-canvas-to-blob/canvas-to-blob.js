@@ -1,1 +1,111 @@
-!function(t){"use strict";var e=t.HTMLCanvasElement&&t.HTMLCanvasElement.prototype,o=t.Blob&&function(){try{return Boolean(new Blob)}catch(t){return!1}}(),n=o&&t.Uint8Array&&function(){try{return 100===new Blob([new Uint8Array(100)]).size}catch(t){return!1}}(),r=t.BlobBuilder||t.WebKitBlobBuilder||t.MozBlobBuilder||t.MSBlobBuilder,a=/^data:((.*?)(;charset=.*?)?)(;base64)?,/,i=(o||r)&&t.atob&&t.ArrayBuffer&&t.Uint8Array&&function(t){var e,i,l,u,b,c,d,B,f;if(e=t.match(a),!e)throw new Error("invalid data URI");for(i=e[2]?e[1]:"text/plain"+(e[3]||";charset=US-ASCII"),l=!!e[4],u=t.slice(e[0].length),b=l?atob(u):decodeURIComponent(u),c=new ArrayBuffer(b.length),d=new Uint8Array(c),B=0;B<b.length;B+=1)d[B]=b.charCodeAt(B);return o?new Blob([n?d:c],{type:i}):(f=new r,f.append(c),f.getBlob(i))};t.HTMLCanvasElement&&!e.toBlob&&(e.mozGetAsFile?e.toBlob=function(t,o,n){t(n&&e.toDataURL&&i?i(this.toDataURL(o,n)):this.mozGetAsFile("blob",o))}:e.toDataURL&&i&&(e.toBlob=function(t,e,o){t(i(this.toDataURL(e,o)))})),"function"==typeof define&&define.amd?define(function(){return i}):"object"==typeof module&&module.exports?module.exports=i:t.dataURLtoBlob=i}(window);
+/*
+ * JavaScript Canvas to Blob
+ * https://github.com/blueimp/JavaScript-Canvas-to-Blob
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ *
+ * Based on stackoverflow user Stoive's code snippet:
+ * http://stackoverflow.com/q/4998908
+ */
+
+/*global window, atob, Blob, ArrayBuffer, Uint8Array, define, module */
+
+;(function (window) {
+  'use strict'
+
+  var CanvasPrototype = window.HTMLCanvasElement &&
+                          window.HTMLCanvasElement.prototype
+  var hasBlobConstructor = window.Blob && (function () {
+    try {
+      return Boolean(new Blob())
+    } catch (e) {
+      return false
+    }
+  }())
+  var hasArrayBufferViewSupport = hasBlobConstructor && window.Uint8Array &&
+    (function () {
+      try {
+        return new Blob([new Uint8Array(100)]).size === 100
+      } catch (e) {
+        return false
+      }
+    }())
+  var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder ||
+                      window.MozBlobBuilder || window.MSBlobBuilder
+  var dataURIPattern = /^data:((.*?)(;charset=.*?)?)(;base64)?,/
+  var dataURLtoBlob = (hasBlobConstructor || BlobBuilder) && window.atob &&
+    window.ArrayBuffer && window.Uint8Array &&
+    function (dataURI) {
+      var matches,
+        mediaType,
+        isBase64,
+        dataString,
+        byteString,
+        arrayBuffer,
+        intArray,
+        i,
+        bb
+      // Parse the dataURI components as per RFC 2397
+      matches = dataURI.match(dataURIPattern)
+      if (!matches) {
+        throw new Error('invalid data URI')
+      }
+      // Default to text/plain;charset=US-ASCII
+      mediaType = matches[2]
+        ? matches[1]
+        : 'text/plain' + (matches[3] || ';charset=US-ASCII')
+      isBase64 = !!matches[4]
+      dataString = dataURI.slice(matches[0].length)
+      if (isBase64) {
+        // Convert base64 to raw binary data held in a string:
+        byteString = atob(dataString)
+      } else {
+        // Convert base64/URLEncoded data component to raw binary:
+        byteString = decodeURIComponent(dataString)
+      }
+      // Write the bytes of the string to an ArrayBuffer:
+      arrayBuffer = new ArrayBuffer(byteString.length)
+      intArray = new Uint8Array(arrayBuffer)
+      for (i = 0; i < byteString.length; i += 1) {
+        intArray[i] = byteString.charCodeAt(i)
+      }
+      // Write the ArrayBuffer (or ArrayBufferView) to a blob:
+      if (hasBlobConstructor) {
+        return new Blob(
+          [hasArrayBufferViewSupport ? intArray : arrayBuffer],
+          {type: mediaType}
+        )
+      }
+      bb = new BlobBuilder()
+      bb.append(arrayBuffer)
+      return bb.getBlob(mediaType)
+    }
+  if (window.HTMLCanvasElement && !CanvasPrototype.toBlob) {
+    if (CanvasPrototype.mozGetAsFile) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        if (quality && CanvasPrototype.toDataURL && dataURLtoBlob) {
+          callback(dataURLtoBlob(this.toDataURL(type, quality)))
+        } else {
+          callback(this.mozGetAsFile('blob', type))
+        }
+      }
+    } else if (CanvasPrototype.toDataURL && dataURLtoBlob) {
+      CanvasPrototype.toBlob = function (callback, type, quality) {
+        callback(dataURLtoBlob(this.toDataURL(type, quality)))
+      }
+    }
+  }
+  if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return dataURLtoBlob
+    })
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = dataURLtoBlob
+  } else {
+    window.dataURLtoBlob = dataURLtoBlob
+  }
+}(window))

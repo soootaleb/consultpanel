@@ -1,1 +1,3 @@
-$(document).ready(function(){$("#hide-show-password").password()});
+$(document).ready(function() {
+    $('#hide-show-password').password();
+});
