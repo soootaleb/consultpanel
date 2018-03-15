@@ -10,14 +10,22 @@ from mailer.mailer import EmailTemplate
 from datetime import datetime
 
 class RegistrationWizard(SessionWizardView):
+    
     def get_template_names(self):
-        print(self.request.user)
-        if self.request.user.is_authenticated():
-            return redirect('admin_index')
-
         return ['public_pages_register.html']
 
+    def render(self, form=None, **kwargs):
+
+        if self.request.user.is_authenticated():
+            print("user authentificated and redirect to admin index")
+            return redirect('admin_index')
+
+        form = form or self.get_form()
+        context = self.get_context_data(form=form, **kwargs)
+        return self.render_to_response(context)
+
     def done(self, form_list, **kwargs):
+
         if create_new_superformateur(self.request, form_list):
             messages.info(self.request, "Un email vous a été envoyé. Confirmez nous votre adresse email.")
             return redirect('admin_index')
