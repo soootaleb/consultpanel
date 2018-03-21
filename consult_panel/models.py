@@ -10,7 +10,6 @@ from django.shortcuts import redirect
 
 from consult_panel.settings.base import MEDIA_ROOT
 
-
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
