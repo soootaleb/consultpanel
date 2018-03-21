@@ -16,13 +16,7 @@ urlpatterns = [
     url(r'^consult/', include('admin_panel.urls')),
     url(r'^u/', include('unique_linker.urls')),
     url(r'docs/', include('documents.urls'))
+]
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# To make server serve static files while DEBUG = False
-# Done automaticaly if DEBUG is True)
-if settings.DEBUG is False:
-    urlpatterns += patterns('',
-                            url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-                                {'document_root': settings.STATIC_ROOT}),
-                            )
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_ROOT, document_root=settings.STATIC_ROOT)
