@@ -1,8 +1,7 @@
+from django.conf import settings
+from django.contrib import admin
 from django.conf.urls import url, include, patterns
 from django.conf.urls.static import static
-from django.contrib import admin
-
-from consult_panel.settings.base import MEDIA_ROOT, MEDIA_URL, STATIC_ROOT, DEBUG
 
 handler404 = 'public_site.views.public_errors.error404'
 handler500 = 'public_site.views.public_errors.error500'
@@ -18,12 +17,12 @@ urlpatterns = [
     url(r'^u/', include('unique_linker.urls')),
     url(r'docs/', include('documents.urls'))
 
-] + static(MEDIA_URL, document_root=MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # To make server serve static files while DEBUG = False
 # Done automaticaly if DEBUG is True)
-if DEBUG is False:
+if settings.DEBUG is False:
     urlpatterns += patterns('',
                             url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-                                {'document_root': STATIC_ROOT}),
+                                {'document_root': settings.STATIC_ROOT}),
                             )

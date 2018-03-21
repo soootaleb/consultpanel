@@ -1,14 +1,11 @@
-import datetime
-import os
-import base64
-
-from django.contrib.auth.models import User
 from django.db import models
-from django.contrib import messages
+from django.conf import settings
 from django.http import HttpResponse, Http404
+from django.contrib import messages
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
 
-from consult_panel.settings.base import MEDIA_ROOT
+import datetime, os, base64
 
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
@@ -95,7 +92,7 @@ class Profile(models.Model):
 
     def get_medias_directory(self):
         user_folder = str(self.user.id) + '_' + self.user.username
-        directory = os.path.join(MEDIA_ROOT, 'admin_documents', user_folder)
+        directory = os.path.join(settings.MEDIA_ROOT, 'admin_documents', user_folder)
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
@@ -112,7 +109,7 @@ class Profile(models.Model):
 
     @staticmethod
     def get_admin_medias_directory():
-        return os.path.join(MEDIA_ROOT, 'admin_documents')
+        return os.path.join(settings.MEDIA_ROOT, 'admin_documents')
 
     @staticmethod
     def validemail(**kwargs):
