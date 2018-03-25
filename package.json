@@ -87,8 +87,8 @@
     "popper.js": "^1.12.5"
   },
   "scripts": {
-    "start": "npx gulp watch",
-    "build": "npx gulp build",
+    "start": "npm gulp watch",
+    "build": "npm gulp build",
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
   "engines": {
