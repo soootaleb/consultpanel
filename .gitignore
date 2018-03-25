@@ -378,7 +378,7 @@ fabric.properties
 .idea/
 
 node_modules/
-bower_components/
+bower_components
 
 consult_panel/static/main/css/
 consult_panel/static/main/fonts/
