@@ -4,13 +4,13 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     autoprefix = require('gulp-autoprefixer'),
     less = require('gulp-less'),
-    minifyCSS = require('gulp-minify-css'),
+    cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     gulpIgnore = require('gulp-ignore'),
     rigger = require('gulp-rigger'),
-    imageop = require('gulp-image-optimization'),
+    imageop = require('gulp-imagemin'),
     rimraf = require('rimraf');
 
 var path = {
@@ -105,7 +105,7 @@ gulp.task('styleTemplate:build', function () {
             browsers: ['last 30 versions', '> 1%', 'ie 8', 'ie 9'],
             cascade: true
         }))
-        .pipe(minifyCSS())
+        .pipe(cleanCSS())
         .pipe(gulp.dest(path.build.css));
 });
 
@@ -116,7 +116,7 @@ gulp.task('styleLib:build', function () {
             browsers: ['last 30 versions', '> 1%', 'ie 8', 'ie 9'],
             cascade: true
         }))
-        .pipe(minifyCSS())
+        .pipe(cleanCSS())
         .pipe(gulp.dest(path.build.css));
 });
 
@@ -127,7 +127,7 @@ gulp.task('styleConsultPanel:build', function () {
             browsers: ['last 30 versions', '> 1%', 'ie 8', 'ie 9'],
             cascade: true
         }))
-        .pipe(minifyCSS())
+        .pipe(cleanCSS())
         .pipe(gulp.dest(path.build.css));
 });
 
