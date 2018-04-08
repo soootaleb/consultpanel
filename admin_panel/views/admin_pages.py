@@ -1,15 +1,11 @@
 # coding: utf8
 
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from consult_panel.models import *
-from django.contrib import messages
+from admin_panel.user_tests import *
 from django.contrib.auth.decorators import login_required, user_passes_test
-from admin_panel.user_tests import *
-from admin_panel.user_tests import *
-
-import time
-import json
-
+import time, json
 
 @user_passes_test(is_formateur)
 def pages_index(request):
@@ -23,18 +19,26 @@ def pages_index(request):
             'end': c.date_cours_fin.strftime('%Y-%m-%d'),
             'className': 'event-orange'
         })
+    head = {
+        'sessions': Session.objects.filter(formation__catalogue__profile__user=request.user).distinct().count(),
+        'inscrits': Inscription.objects.filter(session__formation__catalogue__profile__user=request.user).distinct().count(),
+        'formations': Formation.objects.filter(catalogue__profile__user=request.user).distinct().count(),
+        'clients': Client.objects.filter(catalogue__profile__user=request.user).distinct().count(),
+        'catalogues': Catalogue.objects.filter(profile__user=request.user).distinct().count(),
+        'entreprises': Profile.objects.get(user=request.user).liste_entreprises.count(),
+        'centres': Localisation.objects.filter(profile__user=request.user).distinct().count()
+    }
+    
+    for key, value in head.items():
+        if key != 'inscrits' and value == 0:
+            messages.info(request, 'Pensez à rentrer toutes les données du menu sur la gauche afin de pouvoir générer vos convention')
     return render(request, 'admin_pages_index.html', context={
         'page_title':   'Tableau de bord',
         'header':   False,
         'datas':   {
             'calendar_date': time.strftime('%Y-%m-%d'),
             'calendar_content': json.dumps(cours_list),
-            'head': {
-                'sessions': Session.objects.filter(formation__catalogue__profile__user=request.user).distinct().count(),
-                'inscrits': Inscription.objects.filter(session__formation__catalogue__profile__user=request.user).distinct().count(),
-                'formations': Formation.objects.filter(catalogue__profile__user=request.user).distinct().count(),
-                'clients': Client.objects.filter(catalogue__profile__user=request.user).distinct().count()
-            }
+            'head': head
         },
     })
 
