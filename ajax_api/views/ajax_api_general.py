@@ -1,4 +1,11 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 
-def test(request):
-    return render(request, 'ajax_api_container.html', context={'response':"Hey this is a test"});
+def get_entites_count(request):
+    return JsonResponse({
+        'formations': 10,
+        'catalogues': 5,
+        'sessions': 0,
+        'centres': 19,
+        'entreprises': 1,
+        'clients': 12
+    })

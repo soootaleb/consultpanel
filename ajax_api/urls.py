@@ -4,7 +4,7 @@ from django.contrib import admin
 from .views import ajax_api_general, ajax_documents, ajax_formations, ajax_catalogues, ajax_catalogues, ajax_sessions, ajax_landingpage
 
 urlpatterns = [
-    url(r'^$', ajax_api_general.test),
+    url(r'^entities/count', ajax_api_general.get_entites_count),
     url(r'^documents/sign/(?P<id>[0-9]+)$',
         ajax_documents.convention_sign, name='ajax_documents_convention_sign'),
     url(r'^documents/send/(?P<id>[0-9]+)$',
