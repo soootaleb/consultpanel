@@ -32,6 +32,8 @@ def pages_index(request):
     for key, value in head.items():
         if key != 'inscrits' and value == 0:
             messages.info(request, 'Pensez à rentrer toutes les données du menu sur la gauche afin de pouvoir générer vos convention')
+            break
+
     return render(request, 'admin_pages_index.html', context={
         'page_title':   'Tableau de bord',
         'header':   False,

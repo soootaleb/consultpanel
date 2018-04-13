@@ -4,7 +4,11 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-        'NAME': 'cpanel_local.db',
-        'ENGINE': 'django.db.backends.sqlite3'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'cpanel-prod.cwokdcfhoyig.eu-west-1.rds.amazonaws.com',
+        'NAME': 'cpanel',
+        'USER': 'dbuser',
+        'PASSWORD': 'mastercraft',
+        'PORT': '5432'
     }
 }
