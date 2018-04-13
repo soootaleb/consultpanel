@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from documents.models import Convention
 from consult_panel.models import *
 from admin_panel.user_tests import *
 from django.template.loader import render_to_string
