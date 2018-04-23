@@ -384,3 +384,6 @@ consult_panel/static/main/css/
 consult_panel/static/main/fonts/
 consult_panel/static/main/img/
 consult_panel/static/main/js/
+
+# Doxc
+~$*.docx
