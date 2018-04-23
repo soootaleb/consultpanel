@@ -1,8 +1,8 @@
 from .models import Template
 from django.template import Template as DjangoTemplate, Context
 from consult_panel.models import Profile
+import os
 
-import os, pdfkit
 
 class DocumentGenerator():
 

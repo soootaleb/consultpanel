@@ -4,7 +4,12 @@ from consult_panel.models import Profile, Client, Session
 
 
 def upload_destination(instance, filename):
-    return os.path.join('admin_documents', instance.profile.get_medias_directory(), instance.label + '.pdf')
+    return os.path.join(
+        'admin_documents',
+        instance.profile.get_medias_directory(),
+        instance.label,
+        '.pdf'
+    )
 
 
 class Convention(models.Model):
@@ -13,7 +18,9 @@ class Convention(models.Model):
     signed_by_client = models.BooleanField(default=False)
     signed_by_formateur = models.BooleanField(default=False)
     document = models.FileField(
-        upload_to=upload_destination, default="DEFAULT_CONVENTION_DOCUMENT")
+        upload_to=upload_destination,
+        default="DEFAULT_CONVENTION_DOCUMENT"
+    )
 
 
 class DocumentType(models.Model):
