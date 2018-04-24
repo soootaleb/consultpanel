@@ -75,7 +75,7 @@ class LoginForm(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Nom'
+            'placeholder': 'Email'
         })
     )
     password = forms.CharField(
