@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['consultpanel.fr', 'www.consultpanel.fr', 'consultpanel.info', 'www.consultpanel.info', 'localhost']
 
@@ -117,6 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -140,6 +142,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'consult_panel', 'medias')
 MEDIA_URL = '/medias/'
 
 AUTH_PROFILE_MODULE = 'consult_panel.models.Profile'
+
+PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 # LOGGING
 # LOGGING = {

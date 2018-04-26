@@ -2,8 +2,7 @@
 
 from crispy_forms.helper import FormHelper
 from django import forms
-from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate
 from consult_panel.models import *
 
 
@@ -46,6 +45,7 @@ class RegistrationForm(forms.ModelForm):
         user.is_active = True # Disable email activation
         if commit:
             user.save()
+            user = authenticate(username=user.username, password=self.cleaned_data['password'])
         return user
 
 class CentreFormationForm(forms.ModelForm):
@@ -71,8 +71,7 @@ class CentreFormationForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     username = forms.CharField(
-        label='Username',
-        max_length=100,
+        max_length=255,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Email'
@@ -82,5 +81,24 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
             'placeholder': 'Mot de Passe'
+        })
+    )
+
+
+class PasswordForgotForm(forms.Form):
+    username = forms.CharField(
+        label='Enail',
+        max_length=255,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Email'
+        })
+    )
+
+class PasswordResetForm(forms.Form):
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nouveau mot de Passe'
         })
     )

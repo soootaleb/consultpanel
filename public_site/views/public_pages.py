@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib import auth
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from public_site import forms
 from django.contrib import messages
 from formtools.wizard.views import SessionWizardView
@@ -8,6 +10,7 @@ from consult_panel.models import Profile
 from unique_linker.models import Unique
 from mailer.mailer import EmailTemplate
 from datetime import datetime
+from django.http import Http404
 
 class RegistrationWizard(SessionWizardView):
     
@@ -52,7 +55,9 @@ def send_confirm_email_request(profile):
 
 def create_new_superformateur(request, form_list):
     form_data = [form for form in form_list]
-    user = form_data[0].save()
+    user = form_data[0].save(commit=True)
+    if user.is_active :
+        auth.login(request, user)
     superFormateurGroup, superFormateurGroupCreated = Group.objects.get_or_create(
         name='super_formateur')
     superFormateurGroup.user_set.add(user)
@@ -81,7 +86,7 @@ def form(request, name):
 def login(request):
     if request.user.is_authenticated():
         messages.info(request, "Vous êtes déjà connecté !")
-        return redirect('public_index')
+        return redirect('admin_index')
     context = {
         'page_title':   'Connexion',
         'login_form':   forms.LoginForm(auto_id=False),
@@ -99,4 +104,27 @@ def logout(request):
 
 
 def forgot_password(request):
-    return render(request, 'public_pages_forgot_password.html')
+    if request.user.is_authenticated():
+        messages.info(request, "Vous êtes déjà connecté !")
+        return redirect('admin_index')
+    context = {
+        'page_title':   'Mot de passe oublie',
+        'password_reset_form':   forms.PasswordForgotForm(),
+    }
+    return render(request, 'public_pages_forgot_password.html', context=context)
+
+def password_reset(request):
+    email = request.GET.get('email', None)
+    token = request.GET.get('token', None)
+    if email is None or token is None:
+        raise Http404
+    user = User.objects.get(username=email)
+    generator = PasswordResetTokenGenerator()
+    if user is not None and generator.check_token(user,token):
+        context = {
+            'page_title':   'Nouveau mot de passe',
+            'password_reset_form':   forms.PasswordResetForm(),
+            'username': email
+        }
+        return render(request, 'public_pages_password_reset.html', context=context)
+    raise Http404
