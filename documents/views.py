@@ -11,7 +11,7 @@ from docxtpl import DocxTemplate
 @user_passes_test(user_tests.is_formateur)
 def convention_show(request, convention_id):
 
-    convention = Convention.objects.get(pk=convention_id)
+    convention = Convention.objects.select_related('cours').get(pk=convention_id)
     profile = Profile.objects.filter(user=request.user).get()
     inscriptions = Inscription.objects.filter(session=convention.session)
 
