@@ -37,8 +37,8 @@
             <p><strong>Description : </strong>{{session.formation.description}}</p>
             <p><strong>Cours : </strong></p>
             <ul>
-                {% for cours in session.cours %}
-                <li>Le {{cours.get_date_debut}} à {{cours.get_heure_debut}}</li>
+                {% for cour in cours %}
+                <li>{{cour.get_interval}}</li>
                 {% endfor %}
             </ul>
             <p><strong>Ajouter un cours : </strong></p>
@@ -89,44 +89,50 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
-            {% if conventions_list %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                Entreprise (Inscriptions)
-                            </th>
-                            <th>
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for doc in conventions_list %}
-                        <tr>
-                            <td>
-                                <strong>{{ doc.client.nom }}</strong> <small>({{ doc.client.entreprise }})</small>
-                            </td>
-                            <td>
-                                <button id="btn-sign" class="btn btn-inline btn-primary" data-url="{% url 'ajax_documents_convention_sign' doc.id %}">
-                                    Signer
-                                </button>
-                                <button id="btn-send" type="button" class="btn btn-inline btn-info" data-url="{% url 'ajax_documents_convention_send' doc.id %}">
-                                    Envoyer au client
-                                </button>
-                                <a href="{% url 'document_convention_show' doc.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
-                                    Télécharger
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-                <p>Il n'y a aucune inscription pour le moment...</p>
-            {% endif %}
+
+            {% for cbc in conventions_by_client %}
+
+            <h3>{{ cbc.client.nom }}</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Cours
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for convention in cbc.conventions %}
+                            <tr>
+                                <td>
+                                    <strong>{{ convention.cours.get_interval }}</strong>
+                                </td>
+                                <td>
+                                    {% if not convention.signed_by_formateur %}
+                                    <button class="btn btn-inline btn-primary btn-sign" data-url="{% url 'ajax_documents_convention_sign' convention.id %}">
+                                        Signer
+                                    </button>
+                                    {% endif %}
+                                    <button type="button" class="btn btn-inline btn-info btn-send" data-url="{% url 'ajax_documents_convention_send' convention.id %}">
+                                        Envoyer au Client
+                                    </button>
+                                    <a href="{% url 'document_convention_show' convention.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
+                                        Télécharger
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% endfor %}
+            
         </div>
     </div>
 </section>
@@ -134,128 +140,131 @@
 {% endblock %} {% block script %}
 
 <script type="text/javascript">
-        "use strict";
+    "use strict";
 
-        $(document).ready(function() {
+    $(document).ready(function() {
 
-            /* ===============
-            Ajax
-            =================*/
-            $("#btn-sign").click(function(){
+        /* ===============
+        Ajax
+        =================*/
+        $(".btn-sign").click(function(){
 
-                var url = $(this).data().url;
+            var button = $(this);
+            var url = button.data().url;
 
-                $.ajax({
-                    type: "GET", //rest Type
-                    dataType: 'html', //mispelled
-                    url: url,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        var json = JSON.parse(msg);
-                        alert(json.message);
-                    },
-                    error : function(var1, var2, var3) {
-                        alert("Une erreur est survenue, la convention n'a pas été signée");
-                    }
-                });
-            });
-
-            $("#btn-send").click(function(){
-
-                var url = $(this).data().url;
-
-                $.ajax({
-                    type: "GET", //rest Type
-                    dataType: 'html', //mispelled
-                    url: url,
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        var json = JSON.parse(msg);
-                        alert(json.message);
-                    },
-                    error : function(var1, var2, var3) {
-                        alert("Une erreur est survenue, la convention n'a pas été envoyée");
-                    }
-                });
-            });
-
-            /* ==========================================================================
-             Documents templates
-             ========================================================================== */
-            var filterBtn = $('.files-manager-side-list a');
-            var templates = $('.fm-file');
-            var aside = {
-                'title': $('.files-manager-aside-section .box-typical-header-sm'),
-                'preveiw': $('.files-manager-aside-section .preview')
-            };
-            var filterClass;
-            var useBtn = $('#file-use');
-            var useAlreadyBtn = $('#file-already-used');
-
-
-            // Use
-            var canUse = function (templateSelector) {
-                if (templateSelector.hasClass('used')) {
-                    useBtn.addClass('hidden');
-                    useAlreadyBtn.removeClass('hidden');
-                } else {
-                    useBtn.removeClass('hidden');
-                    useAlreadyBtn.addClass('hidden');
+            $.ajax({
+                type: "GET", //rest Type
+                dataType: 'html', //mispelled
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                success: function (msg) {
+                    button.hide();
+                    var json = JSON.parse(msg);
+                    alert(json.message);
+                },
+                error : function(var1, var2, var3) {
+                    alert("Une erreur est survenue, la convention n'a pas été signée.");
                 }
-            };
-
-            var useTemplate = function (templateSelector) {
-                var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
-                classTab.removeClass('used');
-                templateSelector.addClass('used');
-                canUse(templateSelector);
-            };
-
-            useBtn.click(function (event) {
-                var selectedTemplate = $(".fm-file.current");
-                useTemplate(selectedTemplate);
-                //console.log(selectedTemplate.data('template-name'));
-                alert('TODO :\n- Sending to server\n- Modal')
             });
-
-
-            //Aside
-            var refreshAside = function (templateSelector) {
-                aside['title'].text(templateSelector.find($('.fm-file-name')).text());
-                canUse(templateSelector);
-            };
-
-
-            //Selection
-            var selectTemplate = function (templateSelector) {
-                templates.removeClass('current');
-                templateSelector.addClass('current');
-                refreshAside(templateSelector);
-            };
-
-            templates.click(function (event) {
-                selectTemplate($(this));
-            });
-
-
-            //Filtering
-            filterBtn.click(function (event) {
-                event.preventDefault();
-                filterClass = $('.' + $(this).attr('href'));
-
-                filterBtn.removeClass('active');
-                $(this).addClass('active');
-
-                templates.addClass('hidden');
-                $.each(filterClass, function(key, val){
-                    $(val).removeClass('hidden');
-                });
-                selectTemplate($(filterClass[0]));
-            });
-
-            $(filterBtn[0]).trigger('click');
-
         });
 
-    </script>
+        $(".btn-send").click(function(){
+            alert('Cette fonctionnalité arrivera bientôt..');
+
+            // var url = $(this).data().url;
+
+            // $.ajax({
+            //     type: "GET", //rest Type
+            //     dataType: 'html', //mispelled
+            //     url: url,
+            //     contentType: "application/json; charset=utf-8",
+            //     success: function (msg) {
+            //         var json = JSON.parse(msg);
+            //         alert(json.message);
+            //     },
+            //     error : function(var1, var2, var3) {
+            //         alert("Une erreur est survenue, la convention n'a pas été envoyée");
+            //     }
+            // });
+        });
+
+        /* ==========================================================================
+            Documents templates
+            ========================================================================== */
+        var filterBtn = $('.files-manager-side-list a');
+        var templates = $('.fm-file');
+        var aside = {
+            'title': $('.files-manager-aside-section .box-typical-header-sm'),
+            'preveiw': $('.files-manager-aside-section .preview')
+        };
+        var filterClass;
+        var useBtn = $('#file-use');
+        var useAlreadyBtn = $('#file-already-used');
+
+
+        // Use
+        var canUse = function (templateSelector) {
+            if (templateSelector.hasClass('used')) {
+                useBtn.addClass('hidden');
+                useAlreadyBtn.removeClass('hidden');
+            } else {
+                useBtn.removeClass('hidden');
+                useAlreadyBtn.addClass('hidden');
+            }
+        };
+
+        var useTemplate = function (templateSelector) {
+            var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
+            classTab.removeClass('used');
+            templateSelector.addClass('used');
+            canUse(templateSelector);
+        };
+
+        useBtn.click(function (event) {
+            var selectedTemplate = $(".fm-file.current");
+            useTemplate(selectedTemplate);
+            //console.log(selectedTemplate.data('template-name'));
+            alert('TODO :\n- Sending to server\n- Modal')
+        });
+
+
+        //Aside
+        var refreshAside = function (templateSelector) {
+            aside['title'].text(templateSelector.find($('.fm-file-name')).text());
+            canUse(templateSelector);
+        };
+
+
+        //Selection
+        var selectTemplate = function (templateSelector) {
+            templates.removeClass('current');
+            templateSelector.addClass('current');
+            refreshAside(templateSelector);
+        };
+
+        templates.click(function (event) {
+            selectTemplate($(this));
+        });
+
+
+        //Filtering
+        filterBtn.click(function (event) {
+            event.preventDefault();
+            filterClass = $('.' + $(this).attr('href'));
+
+            filterBtn.removeClass('active');
+            $(this).addClass('active');
+
+            templates.addClass('hidden');
+            $.each(filterClass, function(key, val){
+                $(val).removeClass('hidden');
+            });
+            selectTemplate($(filterClass[0]));
+        });
+
+        $(filterBtn[0]).trigger('click');
+
+    });
+
+</script>
 {% endblock %}
