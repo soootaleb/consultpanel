@@ -13,7 +13,6 @@ def convention_show(request, convention_id):
 
     convention = Convention.objects.get(pk=convention_id)
     profile = Profile.objects.filter(user=request.user).get()
-    cours = Cours.objects.get(session=convention.session)
     inscriptions = Inscription.objects.filter(session=convention.session)
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -21,7 +20,7 @@ def convention_show(request, convention_id):
 
     convention_title = 'Convention {} - {}'.format(
         convention.client.nom,
-        cours.get_date_debut()
+        convention.cours.get_date_debut()
     )
 
     jinja_env = jinja2.Environment(autoescape=True)
@@ -33,7 +32,6 @@ def convention_show(request, convention_id):
         'session': convention.session,
         'profile': profile,
         'centre_formation': profile.centre_formation,
-        'cours': cours,
         'inscriptions': inscriptions,
     }
     doc.render(context, jinja_env)

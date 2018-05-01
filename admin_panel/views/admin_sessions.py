@@ -17,9 +17,27 @@ def sessions_index(request):
 
 
 @user_passes_test(is_formateur)
-def sessions_detail(request, id, tab):
-    session = Session.objects.get(pk=id)
-    session.cours = Cours.objects.filter(session=session)
+def sessions_detail(request, session_id, tab):
+
+    distincted_inscriptions = Inscription.objects \
+        .filter(session__pk=session_id) \
+        .distinct('client')
+
+    cours = Cours.objects.filter(session__pk=session_id)
+
+    conventions_by_client = [
+        {
+            'client': inscription.client,
+            'conventions': Convention.objects.filter(
+                session__pk=session_id,
+                client=inscription.client,
+                cours__in=cours
+            )
+        }
+        for inscription in distincted_inscriptions
+    ]
+
+    session = Session.objects.get(pk=session_id)
     session.inscriptions = Inscription.objects.filter(session=session)
     cours_form = CoursForm()
     cours_form.fields['localisation'].queryset = Localisation.objects.filter(
@@ -28,15 +46,18 @@ def sessions_detail(request, id, tab):
     inscription_form.fields['client'].queryset = Client.objects.filter(
         catalogue__profile__user=request.user)
     tabs = ['detail', 'inscriptions', 'docs']
+
+    # conventions = Convention.objects \
+    #   .filter(client__inscription__session__id=session_id)
+
     return render(request, 'admin_sessions_detail.html', context={
+        'cours': cours,
         'page_title': session.formation.nom,
         'session': session,
         'form_add_cours': cours_form,
         'form_add_inscription': inscription_form,
         'active_tab': tab if tab in tabs else 'detail',
-        'conventions_list': Convention.objects.filter(
-            client__inscription__session__id=id
-        ).distinct()
+        'conventions_by_client': conventions_by_client
     })
 
 

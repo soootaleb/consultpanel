@@ -37,8 +37,8 @@
             <p><strong>Description : </strong>{{session.formation.description}}</p>
             <p><strong>Cours : </strong></p>
             <ul>
-                {% for cours in session.cours %}
-                <li>Le {{cours.get_date_debut}} à {{cours.get_heure_debut}}</li>
+                {% for cour in cours %}
+                <li>{{cour.get_interval}}</li>
                 {% endfor %}
             </ul>
             <p><strong>Ajouter un cours : </strong></p>
@@ -89,44 +89,48 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
-            {% if conventions_list %}
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                Entreprise (Inscriptions)
-                            </th>
-                            <th>
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for doc in conventions_list %}
-                        <tr>
-                            <td>
-                                <strong>{{ doc.client.nom }}</strong> <small>({{ doc.client.entreprise }})</small>
-                            </td>
-                            <td>
-                                <button id="btn-sign" class="btn btn-inline btn-primary" data-url="{% url 'ajax_documents_convention_sign' doc.id %}">
-                                    Signer
-                                </button>
-                                <button id="btn-send" type="button" class="btn btn-inline btn-info" data-url="{% url 'ajax_documents_convention_send' doc.id %}">
-                                    Envoyer au client
-                                </button>
-                                <a href="{% url 'document_convention_show' doc.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
-                                    Télécharger
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-                <p>Il n'y a aucune inscription pour le moment...</p>
-            {% endif %}
+
+            {% for cbc in conventions_by_client %}
+
+            <h3>{{ cbc.client.nom }}</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Cours
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for convention in cbc.conventions %}
+                            <tr>
+                                <td>
+                                    <strong>{{ convention.cours.get_interval }}</strong>
+                                </td>
+                                <td>
+                                    <button id="btn-sign" class="btn btn-inline btn-primary" data-url="{% url 'ajax_documents_convention_sign' convention.id %}">
+                                        Signer
+                                    </button>
+                                    <button id="btn-send" type="button" class="btn btn-inline btn-info" data-url="{% url 'ajax_documents_convention_send' convention.id %}">
+                                        Envoyer au Client
+                                    </button>
+                                    <a href="{% url 'document_convention_show' convention.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
+                                        Télécharger
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% endfor %}
+            
         </div>
     </div>
 </section>

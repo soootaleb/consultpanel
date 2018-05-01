@@ -164,6 +164,13 @@ class Cours(models.Model):
         return Cours._get_formated_heure(self.date_cours_debut)
 
     def get_interval(self):
+        if self.date_cours_debut.date() == self.date_cours_fin.date():
+            return 'Le {} de {} à {}'.format(
+                Cours._get_formated_date(self.date_cours_debut),
+                Cours._get_formated_heure(self.date_cours_debut),
+                Cours._get_formated_heure(self.date_cours_fin)
+            )
+
         return 'Du {} {} au {} {}'.format(
             Cours._get_formated_date(self.date_cours_debut),
             Cours._get_formated_heure(self.date_cours_debut),
@@ -193,6 +200,12 @@ class Inscription(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return 'Inscription: {} {} ({})'.format(
+            self.prenom,
+            self.nom,
+            self.client
+        )
 
 """
 Landing page models

@@ -198,7 +198,7 @@ def cours_add(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Le cours a bien été ajouté')
-        return redirect('sessions_detail', id=request.POST["session_id"])
+        return redirect('sessions_detail', session_id=request.POST["session_id"])
     else:
         messages.warning(request, 'Merci de vérifier les informations')
         form.fields['localisation'].queryset = Localisation.objects.filter(
@@ -207,24 +207,37 @@ def cours_add(request):
 
 
 def inscriptions_add(request):
+    session_id = request.POST["session_id"]
     form = forms.InscriptionForm(request.POST)
-    form.instance.session = Session.objects.get(pk=request.POST["session_id"])
+    form.instance.session = Session.objects.get(pk=session_id)
+    cours = Cours.objects.filter(session__pk=session_id)
     if form.is_valid():
         form.save()
-        Convention.objects.get_or_create(
-            session=form.instance.session,
-            client=form.instance.client
-        )
+        for cour in cours:
+            Convention.objects.get_or_create(
+                session=form.instance.session,
+                client=form.instance.client,
+                cours=cour
+            )
         messages.success(request, 'L\'inscription a bien été ajoutée')
-        return redirect('sessions_detail', id=request.POST["session_id"], tab='inscriptions')
+        return redirect(
+            'sessions_detail',
+            session_id=session_id,
+            tab='inscriptions'
+        )
     else:
         messages.warning(request, 'Merci de vérifier les informations')
         form.fields['client'].queryset = Client.objects.filter(
             catalogue__profile__user=request.user)
-        return render(request, 'admin_sessions_detail.html', context={'form_add_inscription': form,
-                                                                      'form_add_cours': forms.CoursForm(),
-                                                                      'active_tab': 'inscriptions'
-                                                                      })
+        return render(
+            request,
+            'admin_sessions_detail.html',
+            context={
+                'form_add_inscription': form,
+                'form_add_cours': forms.CoursForm(),
+                'active_tab': 'inscriptions'
+            }
+        )
 
 
 def entreprises_add(request):
@@ -252,4 +265,3 @@ def entreprises_edit(request):
         messages.warning(request, 'Merci de vérifier les informations')
         return render(request, 'admin_entreprises_edit.html', context={'form':
                                                                        form})
-

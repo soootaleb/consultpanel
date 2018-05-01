@@ -1,6 +1,6 @@
-from django.db import models
 import os
-from consult_panel.models import Profile, Client, Session
+from django.db import models
+from consult_panel.models import Profile, Client, Session, Cours
 
 
 def upload_destination(instance, filename):
@@ -15,6 +15,7 @@ def upload_destination(instance, filename):
 class Convention(models.Model):
     client = models.ForeignKey(Client)
     session = models.ForeignKey(Session)
+    cours = models.ForeignKey(Cours)
     signed_by_client = models.BooleanField(default=False)
     signed_by_formateur = models.BooleanField(default=False)
     document = models.FileField(
