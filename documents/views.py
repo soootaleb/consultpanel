@@ -11,9 +11,14 @@ from docxtpl import DocxTemplate
 @user_passes_test(user_tests.is_formateur)
 def convention_show(request, convention_id):
 
-    convention = Convention.objects.select_related('cours').get(pk=convention_id)
+    convention = Convention.objects \
+        .select_related('cours') \
+        .get(pk=convention_id)
     profile = Profile.objects.filter(user=request.user).get()
-    inscriptions = Inscription.objects.filter(session=convention.session)
+    inscriptions = Inscription.objects.filter(
+        session=convention.session,
+        client=convention.client
+    )
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
     template_path = os.path.join(current_dir, 'templates', 'convention.docx')
