@@ -5,6 +5,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^convention/(?P<id>[0-9]+)$',
+    url(r'^convention/(?P<convention_id>[0-9]+)$',
         views.convention_show, name='document_convention_show'),
 ]

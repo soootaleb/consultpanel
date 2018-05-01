@@ -5,7 +5,10 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
-import datetime, os, base64
+import datetime
+import os
+import base64
+
 
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
@@ -26,7 +29,9 @@ class Session(models.Model):
     def get_date_debut(self):
         cours = Cours.objects.filter(
             session=self.id).order_by('date_cours_debut')
-        return cours[0].date_cours_debut if cours.count() > 0 else 'Aucun cours dans cette session'
+        if cours.count() > 0:
+            return cours[0].get_date_debut()
+        return 'Aucun cours dans cette session'
 
 
 class Catalogue(models.Model):
@@ -39,7 +44,7 @@ class Catalogue(models.Model):
 
 class Entreprise(models.Model):
     nom = models.CharField(max_length=255)
-    #siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
+    # siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
     adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
     ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
     code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
@@ -73,8 +78,6 @@ class Client(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.entreprise, self.nom)
-
-
 
 
 class Profile(models.Model):
@@ -146,14 +149,33 @@ class Cours(models.Model):
     session = models.ForeignKey(Session, default=1)
     localisation = models.ForeignKey(Localisation, default=1)
 
+    @staticmethod
+    def _get_formated_date(date):
+        return date.strftime('%d/%m/%y')
+
+    @staticmethod
+    def _get_formated_heure(date):
+        return date.strftime('%Hh%M')
+
     def get_date_debut(self):
-        return self.date_cours_debut.strftime('%d/%m/%y')
+        return Cours._get_formated_date(self.date_cours_debut)
 
     def get_heure_debut(self):
-        return self.date_cours_debut.strftime('%Hh%M')
+        return Cours._get_formated_heure(self.date_cours_debut)
+
+    def get_interval(self):
+        return 'Du {} {} au {} {}'.format(
+            Cours._get_formated_date(self.date_cours_debut),
+            Cours._get_formated_heure(self.date_cours_debut),
+            Cours._get_formated_date(self.date_cours_fin),
+            Cours._get_formated_heure(self.date_cours_fin)
+        )
 
     def __str__(self):
-        return 'Cours de ' + str(self.session.formation.nom) + ' le ' + self.get_date_debut()
+        return 'Cours de {} le {}'.format(
+            self.session.formation.nom,
+            self.get_date_debut()
+        )
 
 
 class PreferenceType(models.Model):
