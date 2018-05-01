@@ -1,12 +1,25 @@
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
+
+# Load varenvs from .env
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['consultpanel.fr', 'www.consultpanel.fr', 'consultpanel.info', 'www.consultpanel.info', 'localhost']
+ALLOWED_HOSTS = [
+    'consultpanel.fr',
+    'www.consultpanel.fr',
+    'consultpanel.info',
+    'www.consultpanel.info',
+    'localhost'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,8 +75,12 @@ WSGI_APPLICATION = 'consult_panel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'cpanel_local.db',
-        'ENGINE': 'django.db.backends.sqlite3'
+        'ENGINE': os.getenv('DATABASES_DEFAULT_ENGINE') or 'django.db.backends.postgresql_psycopg2',
+        'HOST': os.getenv('DATABASES_DEFAULT_HOST'),
+        'NAME': os.getenv('DATABASES_DEFAULT_NAME'),
+        'USER': os.getenv('DATABASES_DEFAULT_USER'),
+        'PASSWORD': os.getenv('DATABASES_DEFAULT_PASSWORD'),
+        'PORT': os.getenv('DATABASES_DEFAULT_PORT'),
     }
 }
 
@@ -141,16 +158,13 @@ AUTH_PROFILE_MODULE = 'consult_panel.models.Profile'
 # }
 
 #   MAILING
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'consultpanel.fr'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'support'
-EMAIL_HOST_PASSWORD = 'mastercraft'
-DEFAULT_FROM_EMAIL = 'support@consultpanel.fr'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND') or 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 EMAIL_USE_TLS = True
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
