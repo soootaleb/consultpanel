@@ -83,6 +83,7 @@
     "@bower_components/tableExport.jquery.plugin": "hhurz/tableExport.jquery.plugin#~1.3.2",
     "@bower_components/tether": "HubSpot/tether#~1.1.1",
     "@bower_components/va-clockpicker": "VyTacka/clockpicker#~0.0.9",
+    "flatpickr": "^4.4.4",
     "jquery": "^1.11.1",
     "popper.js": "^1.12.5"
   },
