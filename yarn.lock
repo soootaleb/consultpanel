@@ -104,9 +104,9 @@
     jquery ">=1.8.0"
     moment ">=2.5.0"
 
-"@bower_components/fullcalendar@fullcalendar/fullcalendar#~2.6.0":
-  version "2.6.1"
-  resolved "https://codeload.github.com/fullcalendar/fullcalendar/tar.gz/4a15df42d12edd56b6b9df24e18c90349c649f53"
+"@bower_components/fullcalendar@fullcalendar/fullcalendar#~2.9.1":
+  version "2.9.1"
+  resolved "https://codeload.github.com/fullcalendar/fullcalendar/tar.gz/07a680b2349cfa7c7f2b05c979295447f04ef426"
   dependencies:
     jquery ">=1.7.1"
     moment ">=2.5.0"
@@ -2446,6 +2446,10 @@ flatnest@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/flatnest/-/flatnest-1.0.0.tgz#20421ad05b46c63cad30ef14a8ec625f86b3f1c5"
 
+flatpickr@^4.4.4:
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.4.4.tgz#fdeb083ca3d580eecb822a4080f67b06f0294fc7"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2550,6 +2554,13 @@ fullcalendar@>=2.6.1:
   dependencies:
     jquery "2 - 3"
     moment "^2.20.1"
+
+fullcalendar@~2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-2.9.1.tgz#dd2a84469b627749e47c5dd9fd71f56146e0651b"
+  dependencies:
+    jquery ">=1.7.1"
+    moment ">=2.5.0"
 
 function-bind@^1.0.2, function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"

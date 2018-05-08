@@ -25,9 +25,10 @@
 //= ../../../../../node_modules/@bower_components/blueimp-file-upload/js/jquery.fileupload-video.js
 //= ../../../../../node_modules/@bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js
 //= ../../../../../node_modules/@bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js
-//= ../../../../../node_modules/@bower_components/fullcalendar/dist/fullcalendar.min.js
-//= ../../../../../node_modules/@bower_components/fullcalendar/dist/lang/fr.js
 //= ../../../../../node_modules/@bower_components/croppie/dist/cropper.min.js
+//= ../../../../../node_modules/fullcalendar/dist/fullcalendar.min.js
+//= ../../../../../node_modules/fullcalendar/dist/lang/fr.js
+//= ../../../../../node_modules/flatpickr/dist/flatpickr.min.js
 
 //= vendor/jquery.clickout.js
 //= vendor/jquery-asPieProgress.min.js

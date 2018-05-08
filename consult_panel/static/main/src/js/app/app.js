@@ -307,7 +307,12 @@ $(document).ready(function(){
 		},
 		format: 'LT',
 		debug: false
-	});
+    });
+    
+    $('.datetimeinput').flatpickr({
+        enableTime: true,
+        time_24hr: true,
+    });
 
 /* ==========================================================================
 	Tooltips

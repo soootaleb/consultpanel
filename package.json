@@ -53,7 +53,6 @@
     "@bower_components/file-saver.js": "Teleborder/FileSaver.js#*",
     "@bower_components/flag-icon-css": "lipis/flag-icon-css#~1.1.0",
     "@bower_components/font-awesome": "FortAwesome/Font-Awesome#~4.5.0",
-    "@bower_components/fullcalendar": "fullcalendar/fullcalendar#~2.6.0",
     "@bower_components/fullcalendar-scheduler": "fullcalendar/fullcalendar-scheduler#~1.2.0",
     "@bower_components/html.sortable": "voidberg/html5sortable#~0.3.1",
     "@bower_components/html2canvas": "niklasvh/html2canvas#*",
@@ -83,6 +82,8 @@
     "@bower_components/tableExport.jquery.plugin": "hhurz/tableExport.jquery.plugin#~1.3.2",
     "@bower_components/tether": "HubSpot/tether#~1.1.1",
     "@bower_components/va-clockpicker": "VyTacka/clockpicker#~0.0.9",
+    "flatpickr": "^4.4.4",
+    "fullcalendar": "~2.9.1",
     "jquery": "^1.11.1",
     "popper.js": "^1.12.5"
   },
