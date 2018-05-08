@@ -12,6 +12,7 @@ from admin_panel import user_tests
 from django.contrib.auth.decorators import user_passes_test
 from docxtpl import DocxTemplate, InlineImage
 from docx.image.image import Image
+from docx.shared import Mm
 
 
 @user_passes_test(user_tests.is_formateur)
@@ -44,7 +45,11 @@ def convention_show(request, convention_id):
         formateur_sign_img.write(img_blob)
         formateur_sign_img.close()
 
-        formateur_sign = InlineImage(doc, formateur_sign_img.name)
+        formateur_sign = InlineImage(
+            doc,
+            formateur_sign_img.name,
+            width=Mm(50)
+        )
 
     jinja_env = jinja2.Environment(autoescape=True)
 
