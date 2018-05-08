@@ -162,8 +162,19 @@
                     var json = JSON.parse(msg);
                     alert(json.message);
                 },
-                error : function(var1, var2, var3) {
-                    alert("Une erreur est survenue, la convention n'a pas été signée.");
+                error : function(response) {
+                    var message;
+                    try {
+                        var json = JSON.parse(response.responseText)
+                        if (json.message) {
+                            message = json.message
+                        } else {
+                            throw 'No message';
+                        }
+                    } catch (error) {
+                        message = "Une erreur est survenue, la convention n'a pas été signée.";
+                    }
+                    alert(message);
                 }
             });
         });
