@@ -1,10 +1,10 @@
 import jinja2
 import os
-import tempfile
-import base64
 import re
 import io
 
+from base64 import urlsafe_b64decode
+from tempfile import NamedTemporaryFile
 from django.http import HttpResponse
 from documents.models import Convention
 from consult_panel.models import Profile, Inscription
@@ -36,15 +36,15 @@ def convention_show(request, convention_id):
 
     doc = DocxTemplate(template_path)
 
-    signature = None
-    tmp_img_file = None
-    if profile.signature_base64:
-        tmp_img_file = tempfile.NamedTemporaryFile(delete=None, suffix='.jpg')
-        img_blob = base64.urlsafe_b64decode(profile.signature_base64)
-        tmp_img_file.write(img_blob)
-        tmp_img_file.close()
+    formateur_sign = None
+    formateur_sign_img = None
+    if convention.signed_by_formateur and profile.signature_base64:
+        formateur_sign_img = NamedTemporaryFile(delete=None, suffix='.png')
+        img_blob = urlsafe_b64decode(profile.signature_base64)
+        formateur_sign_img.write(img_blob)
+        formateur_sign_img.close()
 
-        signature = InlineImage(doc, tmp_img_file.name)
+        formateur_sign = InlineImage(doc, formateur_sign_img.name)
 
     jinja_env = jinja2.Environment(autoescape=True)
 
@@ -55,13 +55,10 @@ def convention_show(request, convention_id):
         'profile': profile,
         'centre_formation': profile.centre_formation,
         'inscriptions': inscriptions,
-        'signature': signature,
+        'formateur_sign': formateur_sign,
     }
 
     doc.render(context, jinja_env)
-
-    if tmp_img_file:
-        os.unlink(tmp_img_file.name)
 
     content_type = 'application/vnd.openxmlformats-officedocument'
     content_type += '.wordprocessingml.document'
@@ -70,6 +67,9 @@ def convention_show(request, convention_id):
         convention_title
     )
 
-    doc.get_docx().save("/Users/quentinbrosse/Desktop/file.docx")
+    doc.get_docx().save(response)
+
+    if formateur_sign_img:
+        os.unlink(formateur_sign_img.name)
 
     return response
