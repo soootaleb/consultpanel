@@ -1,7 +1,7 @@
 //= ../../../../../node_modules/jquery/dist/jquery.min.js
+//= lib/moment/moment.min.js
 //= ../../../../../node_modules/@bower_components/tether/dist/js/tether.min.js
 //= ../../../../../node_modules/@bower_components/bootstrap/dist/js/bootstrap.min.js
-//= ../../../../../node_modules/@bower_components/moment/min/moment-with-locales.min.js
 //= ../../../../../node_modules/@bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min.js
 //= ../../../../../node_modules/@bower_components/matchHeight/jquery.matchHeight-min.js
 //= ../../../../../node_modules/@bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js

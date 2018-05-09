@@ -96,21 +96,6 @@
   version "4.5.0"
   resolved "https://codeload.github.com/FortAwesome/Font-Awesome/tar.gz/fddd2c240452e6c8990c4ef75e0265b455aa7968"
 
-"@bower_components/fullcalendar-scheduler@fullcalendar/fullcalendar-scheduler#~1.2.0":
-  version "1.2.1"
-  resolved "https://codeload.github.com/fullcalendar/fullcalendar-scheduler/tar.gz/ec5c51040efd02d3b850e27256a92646334f5220"
-  dependencies:
-    fullcalendar ">=2.6.1"
-    jquery ">=1.8.0"
-    moment ">=2.5.0"
-
-"@bower_components/fullcalendar@fullcalendar/fullcalendar#~2.9.1":
-  version "2.9.1"
-  resolved "https://codeload.github.com/fullcalendar/fullcalendar/tar.gz/07a680b2349cfa7c7f2b05c979295447f04ef426"
-  dependencies:
-    jquery ">=1.7.1"
-    moment ">=2.5.0"
-
 "@bower_components/html.sortable@voidberg/html5sortable#~0.3.1":
   version "0.3.1"
   resolved "https://codeload.github.com/voidberg/html5sortable/tar.gz/238f168757cc41d92fa4517a0968f03432791987"
@@ -174,10 +159,6 @@
 "@bower_components/matchHeight@liabru/jquery-match-height#~0.6.0":
   version "0.0.0"
   resolved "https://codeload.github.com/liabru/jquery-match-height/tar.gz/aef80dfb9c31c6bfb530f4c39ec9dead97c92bb4"
-
-"@bower_components/moment@moment/moment#>=2.5.0":
-  version "2.21.0"
-  resolved "https://codeload.github.com/moment/moment/tar.gz/7c4c091bedb86ca6c1a5c5419ad5204ef3926347"
 
 "@bower_components/notie@jaredreich/notie.js#*":
   version "4.3.1"
@@ -2548,13 +2529,6 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
-fullcalendar@>=2.6.1:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-3.9.0.tgz#b608a9989f3416f0b1d526c6bdfeeaf2ac79eda5"
-  dependencies:
-    jquery "2 - 3"
-    moment "^2.20.1"
-
 fullcalendar@~2.9.1:
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-2.9.1.tgz#dd2a84469b627749e47c5dd9fd71f56146e0651b"
@@ -3797,7 +3771,7 @@ jquery-mousewheel@~3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
-"jquery@2 - 3", jquery@>=1.10, jquery@>=1.6.0, jquery@>=1.7.1, jquery@>=1.7.2, jquery@>=1.8, jquery@>=1.8.0, jquery@>=1.9.1, "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.1.1:
+jquery@>=1.10, jquery@>=1.6.0, jquery@>=1.7.1, jquery@>=1.7.2, jquery@>=1.8, jquery@>=1.9.1, "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.1.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
@@ -4924,7 +4898,7 @@ moment-timezone@^0.4.0:
   dependencies:
     moment ">= 2.6.0"
 
-"moment@>= 2.6.0", moment@>=2.5.0, moment@^2.10, moment@^2.20.1, moment@^2.9.0:
+"moment@>= 2.6.0", moment@>=2.5.0, moment@^2.10, moment@^2.9.0:
   version "2.21.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
 
