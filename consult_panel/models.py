@@ -21,7 +21,7 @@ class Formation(models.Model):
 
 
 class Session(models.Model):
-    formation = models.ForeignKey(Formation)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
 
     def __str__(self):
         return "Session de : " + self.formation.nom
@@ -82,7 +82,7 @@ class Client(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    centre_formation = models.ForeignKey(CentreFormation, default=1)
+    centre_formation = models.ForeignKey(CentreFormation, default=1, on_delete=models.CASCADE)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
@@ -146,8 +146,8 @@ class Localisation(models.Model):
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
-    session = models.ForeignKey(Session, default=1)
-    localisation = models.ForeignKey(Localisation, default=1)
+    session = models.ForeignKey(Session, default=1, on_delete=models.CASCADE)
+    localisation = models.ForeignKey(Localisation, default=1, on_delete=models.CASCADE)
 
     @staticmethod
     def _get_formated_date(date):

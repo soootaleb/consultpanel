@@ -13,9 +13,9 @@ def upload_destination(instance, filename):
 
 
 class Convention(models.Model):
-    client = models.ForeignKey(Client)
-    session = models.ForeignKey(Session)
-    cours = models.ForeignKey(Cours)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
     signed_by_client = models.BooleanField(default=False)
     signed_by_formateur = models.BooleanField(default=False)
     document = models.FileField(
