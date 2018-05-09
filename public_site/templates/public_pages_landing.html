@@ -311,23 +311,26 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="text-white">Inscrivez-vous ! Il vous suffit d'un email.</h2>
-                            <p class="large text-white">Votre compte sera créé automatiquement lors de la sortie de Consult Panel.</p>
+                            <p class="large text-white">ConsultPanel est gratuit pour une durée indéterminée</p>
                         </div>
                     </div>
                     <div class="row contact">
-                        <form method="GET" class="ask-for-beta">
+                        <span class="input-group-btn">
+                            <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-1')" class="btn btn-white">
+                                Essayer ConsultPanel gratuitement
+                            </a>
+                        </span>
+                        <!-- <form method="GET" class="ask-for-beta">
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="thanks hidden">Nous préparons votre arrivée...</div>
                                 <div class="input-group text-white">
-                                    <!-- Input Form -->
                                     <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                    <!-- Submit Button -->
                                 <span class="input-group-btn">
                                     <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
                                 </span>
-                                </div><!-- /End Input Group -->
+                                </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
@@ -588,24 +591,27 @@
                 <div class="wrapper-sm">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-white">Vous êtes intéressé ? Laissez-nous votre email !</h2>
+                            <h2 class="text-white">Venez découvrir ConsultPanel</h2>
                             <p class="large text-white">Nous serons heureux de répondre à vos questions, suggestions, remarques, ...</p>
                         </div>
                     </div>
                     <div class="row contact">
-                        <form method="GET" class="ask-for-beta">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="thanks hidden">Prêt... Feu... Formez !</div>
-                                <div class="input-group text-white">
-                                    <!-- Input Form -->
-                                    <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                    <!-- Submit Button -->
-                                <span class="input-group-btn">
-                                    <button onclick="ga('send', 'event', 'landing', 'subscribe-email-2')" class="btn btn-white">Envoyer</button>
+                            <span class="input-group-btn">
+                                    <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-2')" class="btn btn-white">
+                                        Découvrir ConsultPanel gratuitement
+                                    </a>
                                 </span>
-                                </div><!-- /End Input Group -->
-                            </div>
-                        </form>
+                                <!-- <form method="GET" class="ask-for-beta">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="thanks hidden">Nous préparons votre arrivée...</div>
+                                        <div class="input-group text-white">
+                                            <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
+                                        <span class="input-group-btn">
+                                            <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </form> -->
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
