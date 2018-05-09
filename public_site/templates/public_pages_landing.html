@@ -115,6 +115,11 @@
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
                                         <!-- Menu Items -->
+                                        {% if is_authenticated %}
+                                            <li><a href="{% url 'admin_index' %}" title="">Espace formateur</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'public_login' %}" title="">Connexion</a></li>
+                                        {% endif %}
                                         <li><a href="#about" title="" class="scrollto">Quoi ?</a></li>
                                         <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
                                         <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
