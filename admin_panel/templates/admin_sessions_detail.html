@@ -113,17 +113,17 @@
                                     <strong>{{ convention.cours.get_interval }}</strong>
                                 </td>
                                 <td>
-                                    {% if not convention.signed_by_formateur %}
-                                    <button class="btn btn-inline btn-primary btn-sign" data-url="{% url 'ajax_documents_convention_sign' convention.id %}">
-                                        Signer
-                                    </button>
-                                    {% endif %}
-                                    <button type="button" class="btn btn-inline btn-info btn-send" data-url="{% url 'ajax_documents_convention_send' convention.id %}">
-                                        Envoyer au Client
-                                    </button>
                                     <a href="{% url 'document_convention_show' convention.id %}" target="_blank" type="button" class="btn btn-inline btn-warning">
                                         Télécharger
                                     </a>
+                                    {% if not convention.signed_by_formateur %}
+                                    <button class="btn btn-inline btn-primary btn-sign" {# data-url="{% url 'ajax_documents_convention_sign' convention.id %}" #} disabled>
+                                        Signer <span class="badge badge-white" style="color: #00a8ff; background-color: #FFFFFF">Bientôt</span>
+                                    </button>
+                                    {% endif %}
+                                    <button type="button" class="btn btn-inline btn-info btn-send" {# data-url="{% url 'ajax_documents_convention_send' convention.id %}" #} disabled>
+                                        Envoyer au Client <span class="badge badge-white" style="color: #ac6bec; background-color: #FFFFFF">Bientôt</span>
+                                    </button>
                                 </td>
                             </tr>
                             {% endfor %}

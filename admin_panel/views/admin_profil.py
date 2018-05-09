@@ -53,9 +53,7 @@ def profil_signature_edit(request):
         else :
             messages.warning(request, 'Une erreur est survenu, merci de reessayer.')
 
-
     return render(request, 'admin_profil_signature_edit.html', {
         'profil' : profil,
         'page_title': 'Modifier votre signature',
     })
-
