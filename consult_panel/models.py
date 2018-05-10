@@ -165,13 +165,13 @@ class Cours(models.Model):
 
     def get_interval(self):
         if self.date_cours_debut.date() == self.date_cours_fin.date():
-            return 'Le {} de {} à {}'.format(
+            return 'Le {} de {} à {} (UTC)'.format(
                 Cours._get_formated_date(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_fin)
             )
 
-        return 'Du {} {} au {} {}'.format(
+        return 'Du {} {} au {} {} (UTC)'.format(
             Cours._get_formated_date(self.date_cours_debut),
             Cours._get_formated_heure(self.date_cours_debut),
             Cours._get_formated_date(self.date_cours_fin),

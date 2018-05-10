@@ -309,8 +309,11 @@ $(document).ready(function(){
 		debug: false
     });
     
+    flatpickr.localize(flatpickr.l10ns.fr);
+
     $('.datetimeinput').flatpickr({
         enableTime: true,
+        dateFormat: 'd/m/Y H:i:S',
         time_24hr: true,
     });
 

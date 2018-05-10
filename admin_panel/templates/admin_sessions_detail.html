@@ -9,8 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
-                                <i class="font-icon glyphicon glyphicon-duplicate"></i>
-                                Détail
+                                <i class="font-icon glyphicon glyphicon-duplicate"></i> Détail
                         </span>
                     </a>
                 </li>
@@ -38,7 +37,13 @@
             <p><strong>Cours : </strong></p>
             <ul>
                 {% for cour in cours %}
-                <li>{{cour.get_interval}}</li>
+                <li>
+                    {% if cour.date_cours_debut.date == cour.date_cours_fin.date %}
+                        Le {{cour.date_cours_debut|date:"SHORT_DATE_FORMAT"}}, de {{cour.date_cours_debut|time:"TIME_FORMAT"}} à {{cour.date_cours_fin|time:"TIME_FORMAT"}}
+                    {% else %}
+                        Du {{cour.date_cours_debut|date:"SHORT_DATETIME_FORMAT"}} au {{cour.date_cours_fin|date:"SHORT_DATETIME_FORMAT"}}
+                    {% endif %}
+                </li>
                 {% endfor %}
             </ul>
             <p><strong>Ajouter un cours : </strong></p>

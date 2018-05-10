@@ -29,6 +29,7 @@
 //= ../../../../../node_modules/fullcalendar/dist/fullcalendar.min.js
 //= ../../../../../node_modules/fullcalendar/dist/lang/fr.js
 //= ../../../../../node_modules/flatpickr/dist/flatpickr.min.js
+//= ../../../../../node_modules/flatpickr/dist/l10n/fr.js
 
 //= vendor/jquery.clickout.js
 //= vendor/jquery-asPieProgress.min.js
