@@ -65,7 +65,9 @@ def create_new_superformateur(request, form_list):
 
 
 def public_index(request):
-    return render(request, 'public_pages_landing.html')
+    return render(request, 'public_pages_landing.html', {
+        'is_authenticated': request.user.is_authenticated
+    })
 
 
 def form(request, name):
