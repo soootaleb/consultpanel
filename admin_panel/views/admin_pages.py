@@ -20,9 +20,11 @@ def pages_index(request):
     for c in cours:
         cours_list.append({
             'title': c.session.formation.nom,
-            'start': c.date_cours_debut.strftime('%Y-%m-%dT%H:%M%S'),
-            'end': c.date_cours_fin.strftime('%Y-%m-%d'),
-            'className': 'event-orange'
+            'start': c.date_cours_debut.isoformat(),
+            'end': c.date_cours_fin.isoformat(),
+            'location': c.localisation.nom,
+            'sessionId': c.session.id,
+            'className': 'event-orange',
         })
     head = {
         'sessions': Session.objects.filter(
