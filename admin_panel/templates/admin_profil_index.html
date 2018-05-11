@@ -10,8 +10,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#tabs-2-tab-2" role="tab" data-toggle="tab" aria-expanded="false">
-                        <span class="nav-link-in">Documents</span>
+                    <a class="nav-link disabled" href="#tabs-2-tab-2" role="tab" data-toggle="tab" aria-expanded="false">
+                        <span class="nav-link-in">Signature <span class="badge badge-primary">Bientôt</span></span> 
                     </a>
                 </li>
                 {% comment "Centre de formation" %}
@@ -118,6 +118,7 @@
 
 
             </div><!--.tab-pane-->
+            {% comment "Signature Tab" %}
             <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2" aria-expanded="false">
                 <section class="box-typical box-typical-padding">
                     <h5 class="with-border">Votre signature
@@ -128,6 +129,7 @@
                     <a href="{% url "profil_signature_edit" %}" class="btn btn-md btn-warning">Modifier</a>
                 </section>
             </div><!--.tab-pane-->
+            {% endcomment %}
             <div role="tabpanel" class="tab-pane" id="tabs-2-tab-3" aria-expanded="false">
                 <section class="box-typical box-typical-padding">
                     Projects

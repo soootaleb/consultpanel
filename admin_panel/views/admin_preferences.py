@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from consult_panel.models import *
-from consult_panel.settings import *
 from django.contrib.auth.decorators import user_passes_test
 from documents.models import *
 from documents.generators import ConventionGenerator
 from admin_panel.forms import FileForm
 from admin_panel.user_tests import *
-from consult_panel.settings import MEDIA_ROOT
 import os
 
 

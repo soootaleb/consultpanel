@@ -11,7 +11,7 @@ from unique_linker.UniqueLinkerException import UniqueLinkerException
 
 class Unique(models.Model):
     jeton = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    auteur = models.ForeignKey(to=User)
+    auteur = models.ForeignKey(to=User, on_delete=models.CASCADE)
     methode = models.CharField(max_length=255) #module/object/method
     params = models.TextField()
     date_creation = models.DateTimeField(default=datetime.now)

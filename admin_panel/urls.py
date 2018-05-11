@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^profil/$', admin_profil.profil_index, name='profil_index'),
     url(r'^profil/index/$', admin_profil.profil_index, name='profil_index'),
     url(r'^profil/edit/(?P<id>[0-9]+)$', admin_profil.profil_edit, name='profil_edit'),
-    url(r'^profil/signature/edit/$', admin_profil.profil_signature_edit, name='profil_signature_edit'),
+    # url(r'^profil/signature/edit/$', admin_profil.profil_signature_edit, name='profil_signature_edit'),
     url(r'^profil/password/edit/$', admin_profil.profil_password_edit, name='profil_password_edit'),
 
     url(r'^preferences/$', admin_preferences.preferences_index,
@@ -31,7 +31,7 @@ urlpatterns = [
 
     url(r'^sessions/add/$', admin_sessions.sessions_add, name='sessions_add'),
     url(r'^sessions/edit/(?P<id>[0-9]+)$', admin_sessions.sessions_edit, name='sessions_edit'),
-    url(r'^sessions/detail/(?P<id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
+    url(r'^sessions/detail/(?P<session_id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_sessions.sessions_detail, name='sessions_detail'),
 
     url(r'^catalogues/$', admin_catalogues.catalogues_index, name='catalogues_index'),

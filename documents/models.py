@@ -1,19 +1,27 @@
-from django.db import models
 import os
-from consult_panel.models import Profile, Client, Session
+from django.db import models
+from consult_panel.models import Profile, Client, Session, Cours
 
 
 def upload_destination(instance, filename):
-    return os.path.join('admin_documents', instance.profile.get_medias_directory(), instance.label + '.pdf')
+    return os.path.join(
+        'admin_documents',
+        instance.profile.get_medias_directory(),
+        instance.label,
+        '.pdf'
+    )
 
 
 class Convention(models.Model):
-    client = models.ForeignKey(Client)
-    session = models.ForeignKey(Session)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
     signed_by_client = models.BooleanField(default=False)
     signed_by_formateur = models.BooleanField(default=False)
     document = models.FileField(
-        upload_to=upload_destination, default="DEFAULT_CONVENTION_DOCUMENT")
+        upload_to=upload_destination,
+        default="DEFAULT_CONVENTION_DOCUMENT"
+    )
 
 
 class DocumentType(models.Model):

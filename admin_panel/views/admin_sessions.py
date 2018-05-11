@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
-from consult_panel.models import *
+from consult_panel.models import Session, Inscription, Formation
+from consult_panel.models import Localisation, Client, Cours
 from documents.models import Convention
 from admin_panel.forms import SessionForm, CoursForm, InscriptionForm
-from admin_panel.user_tests import *
+from admin_panel.user_tests import is_formateur
 
 
 @user_passes_test(is_formateur)
@@ -17,9 +18,29 @@ def sessions_index(request):
 
 
 @user_passes_test(is_formateur)
-def sessions_detail(request, id, tab):
-    session = Session.objects.get(pk=id)
-    session.cours = Cours.objects.filter(session=session)
+def sessions_detail(request, session_id, tab):
+
+    distincted_inscriptions = Inscription.objects \
+        .filter(session__pk=session_id) \
+        .distinct('client')
+
+    cours = Cours.objects \
+        .filter(session__pk=session_id) \
+        .order_by('date_cours_debut')
+
+    conventions_by_client = [
+        {
+            'client': inscription.client,
+            'conventions': Convention.objects.filter(
+                session__pk=session_id,
+                client=inscription.client,
+                cours__in=cours
+            )
+        }
+        for inscription in distincted_inscriptions
+    ]
+
+    session = Session.objects.get(pk=session_id)
     session.inscriptions = Inscription.objects.filter(session=session)
     cours_form = CoursForm()
     cours_form.fields['localisation'].queryset = Localisation.objects.filter(
@@ -27,13 +48,16 @@ def sessions_detail(request, id, tab):
     inscription_form = InscriptionForm()
     inscription_form.fields['client'].queryset = Client.objects.filter(
         catalogue__profile__user=request.user)
+    tabs = ['detail', 'inscriptions', 'docs']
+
     return render(request, 'admin_sessions_detail.html', context={
+        'cours': cours,
         'page_title': session.formation.nom,
         'session': session,
         'form_add_cours': cours_form,
         'form_add_inscription': inscription_form,
-        'active_tab': tab if tab in ['detail', 'inscriptions', 'docs'] else 'detail',
-        'conventions_list': Convention.objects.filter(client__inscription__session__id=id).distinct()
+        'active_tab': tab if tab in tabs else 'detail',
+        'conventions_by_client': conventions_by_client
     })
 
 

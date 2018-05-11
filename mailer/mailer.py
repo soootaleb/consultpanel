@@ -83,15 +83,12 @@ class EmailTemplate(object):
             return None
 
     def get_subject(self, context=None):
-        print("Subject : " + self.subject)
         return self._get_template(self.subject, context)
 
     def get_message_html(self, context=None):
-        print("Message : " + self.message_html)
         return self._get_template(self.message_html, context)
 
     def get_message_txt(self, context=None):
-        print("Message TXT : " + self.message_txt)
         return self._get_template(self.message_txt, context)
 
     def send(self, recipient_list, context=None, commit=True, **kwargs):

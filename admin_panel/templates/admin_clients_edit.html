@@ -2,8 +2,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form action="/consult/form/clients_edit" method="post">
-    <input type="hidden" name="client_id" value="{{form.instance.id}}"/>
-    {% crispy form %}
-</form>
+<div class="box-typical box-typical-padding">
+    <form action="/consult/form/clients_edit" method="post">
+        <input type="hidden" name="client_id" value="{{form.instance.id}}"/>
+        {% crispy form %}
+    </form>
+</div>
 {% endblock %}

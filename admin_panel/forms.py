@@ -178,11 +178,15 @@ class CentreFormationForm(ModelForm):
         fields = ['nom', 'siret', 'adresse', 'ville',
                   'code_postal', 'telephone']
 
+
 class ChangeUserPasswordForm(Form):
 
-    old_password = CharField(required=True, widget=PasswordInput, label="Ancien mot de passe :")
-    new_password = CharField(required=True, widget=PasswordInput, label="Nouveau mot de passe :")
-    confirm_new_password = CharField(required=True, widget=PasswordInput, label="Confirmation du mot de passe :")
+    old_password = CharField(required=True, widget=PasswordInput,
+        label="Ancien mot de passe :")
+    new_password = CharField(required=True, widget=PasswordInput,
+        label="Nouveau mot de passe :")
+    confirm_new_password = CharField(required=True, widget=PasswordInput,
+        label="Confirmation du mot de passe :")
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -201,12 +205,12 @@ class ChangeUserPasswordForm(Form):
         if self.user is None:
             self.add_error("old_password", "Impossible de verifier le mot de passe. Reesayer plus tard.")
 
-        if new_password != confirm_new_password :
+        if new_password != confirm_new_password:
             msg = "Les deux emails ne correspondent pas."
             self.add_error("new_password", msg)
             self.add_error("confirm_new_password", msg)
 
-        if len(new_password) < 6 :
+        if len(new_password) < 6:
             self.add_error("new_password", "Le mot de passe doit contenir au moins 6 caractères.")
 
         if not self.user.check_password(old_password):
@@ -220,4 +224,3 @@ class ChangeUserPasswordForm(Form):
         if commit:
             self.user.save()
         return self.user
-

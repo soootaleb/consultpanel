@@ -4,11 +4,11 @@ from django.contrib import admin
 from .views import ajax_api_general, ajax_documents, ajax_formations, ajax_catalogues, ajax_catalogues, ajax_sessions, ajax_landingpage
 
 urlpatterns = [
-    url(r'^$', ajax_api_general.test),
-    url(r'^documents/sign/(?P<id>[0-9]+)$',
-        ajax_documents.convention_sign, name='ajax_documents_convention_sign'),
-    url(r'^documents/send/(?P<id>[0-9]+)$',
-        ajax_documents.convention_send, name='ajax_documents_convention_send'),
+    url(r'^entities/count', ajax_api_general.get_entites_count),
+    # url(r'^documents/sign/(?P<id>[0-9]+)$',
+    #     ajax_documents.convention_sign, name='ajax_documents_convention_sign'),
+    # url(r'^documents/send/(?P<id>[0-9]+)$',
+    #     ajax_documents.convention_send, name='ajax_documents_convention_send'),
     url(r'^formations/delete/(?P<id>[0-9]+)$',
         ajax_formations.formations_delete, name='ajax_formations_delete'),
     url(r'^catalogues/delete/(?P<id>[0-9]+)$',

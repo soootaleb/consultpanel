@@ -2,13 +2,12 @@ import datetime
 import os
 import base64
 
-from django.contrib.auth.models import User
 from django.db import models
-from django.contrib import messages
+from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
-
-from consult_panel.settings import MEDIA_ROOT
+from django.contrib.auth.models import User
+from django.utils.timezone import make_aware
 
 
 class Formation(models.Model):
@@ -22,7 +21,7 @@ class Formation(models.Model):
 
 
 class Session(models.Model):
-    formation = models.ForeignKey(Formation)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
 
     def __str__(self):
         return "Session de : " + self.formation.nom
@@ -30,7 +29,9 @@ class Session(models.Model):
     def get_date_debut(self):
         cours = Cours.objects.filter(
             session=self.id).order_by('date_cours_debut')
-        return cours[0].date_cours_debut if cours.count() > 0 else 'Aucun cours dans cette session'
+        if cours.count() > 0:
+            return cours[0].get_date_debut()
+        return 'Aucun cours dans cette session'
 
 
 class Catalogue(models.Model):
@@ -43,7 +44,7 @@ class Catalogue(models.Model):
 
 class Entreprise(models.Model):
     nom = models.CharField(max_length=255)
-    #siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
+    # siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
     adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
     ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
     code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
@@ -79,11 +80,9 @@ class Client(models.Model):
         return "{} - {}".format(self.entreprise, self.nom)
 
 
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    centre_formation = models.ForeignKey(CentreFormation, default=1)
+    centre_formation = models.ForeignKey(CentreFormation, default=1, on_delete=models.CASCADE)
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
@@ -96,7 +95,7 @@ class Profile(models.Model):
 
     def get_medias_directory(self):
         user_folder = str(self.user.id) + '_' + self.user.username
-        directory = os.path.join(MEDIA_ROOT, 'admin_documents', user_folder)
+        directory = os.path.join(settings.MEDIA_ROOT, 'admin_documents', user_folder)
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
@@ -113,7 +112,7 @@ class Profile(models.Model):
 
     @staticmethod
     def get_admin_medias_directory():
-        return os.path.join(MEDIA_ROOT, 'admin_documents')
+        return os.path.join(settings.MEDIA_ROOT, 'admin_documents')
 
     @staticmethod
     def validemail(**kwargs):
@@ -147,17 +146,47 @@ class Localisation(models.Model):
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
-    session = models.ForeignKey(Session, default=1)
-    localisation = models.ForeignKey(Localisation, default=1)
+    session = models.ForeignKey(Session, default=1, on_delete=models.CASCADE)
+    localisation = models.ForeignKey(Localisation, default=1, on_delete=models.CASCADE)
+
+    @staticmethod
+    def _get_formated_date(date):
+        return date.strftime('%d/%m/%y')
+
+    @staticmethod
+    def _get_formated_heure(date):
+        return date.strftime('%Hh%M')
 
     def get_date_debut(self):
-        return self.date_cours_debut.strftime('%d/%m/%y')
+        return Cours._get_formated_date(self.date_cours_debut)
 
     def get_heure_debut(self):
-        return self.date_cours_debut.strftime('%Hh%M')
+        return Cours._get_formated_heure(self.date_cours_debut)
+
+    def get_interval(self):
+        if self.date_cours_debut.date() == self.date_cours_fin.date():
+            return 'Le {} de {} à {} (UTC)'.format(
+                Cours._get_formated_date(self.date_cours_debut),
+                Cours._get_formated_heure(self.date_cours_debut),
+                Cours._get_formated_heure(self.date_cours_fin)
+            )
+
+        return 'Du {} {} au {} {} (UTC)'.format(
+            Cours._get_formated_date(self.date_cours_debut),
+            Cours._get_formated_heure(self.date_cours_debut),
+            Cours._get_formated_date(self.date_cours_fin),
+            Cours._get_formated_heure(self.date_cours_fin)
+        )
+    
+    @property
+    def is_past(self):
+        return make_aware(datetime.datetime.today()) > self.date_cours_fin
 
     def __str__(self):
-        return 'Cours de ' + str(self.session.formation.nom) + ' le ' + self.get_date_debut()
+        return 'Cours de {} le {}'.format(
+            self.session.formation.nom,
+            self.get_date_debut()
+        )
 
 
 class PreferenceType(models.Model):
@@ -175,6 +204,12 @@ class Inscription(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
     client = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return 'Inscription: {} {} ({})'.format(
+            self.prenom,
+            self.nom,
+            self.client
+        )
 
 """
 Landing page models

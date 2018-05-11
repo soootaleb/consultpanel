@@ -2,7 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form action="/consult/form/sessions_add" method="post">
-    {% crispy form %}    
-</form>
+<div class="box-typical box-typical-padding">
+    <form action="/consult/form/sessions_add" method="post">
+        {% crispy form %}    
+    </form>
+</div>
 {% endblock %}

@@ -1,0 +1,129 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "ef6a7e8969bd4fef8d86edac2dc1f1e928ddba043a8c4cecd30c6cfc7b25f699"
+        },
+        "host-environment-markers": {
+            "implementation_name": "cpython",
+            "implementation_version": "3.6.4",
+            "os_name": "posix",
+            "platform_machine": "x86_64",
+            "platform_python_implementation": "CPython",
+            "platform_release": "17.5.0",
+            "platform_system": "Darwin",
+            "platform_version": "Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018; root:xnu-4570.51.1~1/RELEASE_X86_64",
+            "python_full_version": "3.6.4",
+            "python_version": "3.6",
+            "sys_platform": "darwin"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.6"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "django": {
+            "hashes": [],
+            "version": "==2.0.5"
+        },
+        "django-crispy-forms": {
+            "hashes": [],
+            "version": "==1.7.2"
+        },
+        "django-formtools": {
+            "hashes": [],
+            "version": "==2.1"
+        },
+        "docxtpl": {
+            "hashes": [],
+            "version": "==0.4.10"
+        },
+        "jinja2": {
+            "hashes": [],
+            "version": "==2.10"
+        },
+        "lxml": {
+            "hashes": [],
+            "version": "==4.2.1"
+        },
+        "markupsafe": {
+            "hashes": [],
+            "version": "==1.0"
+        },
+        "psycopg2-binary": {
+            "hashes": [],
+            "version": "==2.7.4"
+        },
+        "python-docx": {
+            "hashes": [],
+            "version": "==0.8.6"
+        },
+        "pytz": {
+            "hashes": [],
+            "version": "==2018.4"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.11.0"
+        }
+    },
+    "develop": {
+        "astroid": {
+            "hashes": [],
+            "version": "==1.6.3"
+        },
+        "backports.functools-lru-cache": {
+            "hashes": [],
+            "version": "==1.5"
+        },
+        "configparser": {
+            "hashes": [],
+            "markers": "python_version == '2.7'",
+            "version": "==3.5.0"
+        },
+        "enum34": {
+            "hashes": [],
+            "markers": "python_version < '3.4'",
+            "version": "==1.1.6"
+        },
+        "futures": {
+            "hashes": [],
+            "version": "==3.1.1"
+        },
+        "isort": {
+            "hashes": [],
+            "version": "==4.3.4"
+        },
+        "lazy-object-proxy": {
+            "hashes": [],
+            "version": "==1.3.1"
+        },
+        "mccabe": {
+            "hashes": [],
+            "version": "==0.6.1"
+        },
+        "pylint": {
+            "hashes": [],
+            "version": "==1.8.4"
+        },
+        "singledispatch": {
+            "hashes": [],
+            "version": "==3.4.0.3"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.11.0"
+        },
+        "wrapt": {
+            "hashes": [],
+            "version": "==1.10.11"
+        }
+    }
+}

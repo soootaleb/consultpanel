@@ -39,7 +39,6 @@
         </div>
 
         <div class="row">
-
             <div class="box-typical">
                 <div class="calendar-page">
                     <div class="calendar-page-content">
@@ -52,6 +51,7 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block script %}
@@ -64,7 +64,7 @@
              ========================================================================== */
 
             $('#calendar').fullCalendar({
-                timezone: 'Europe/Paris',
+                timezone: 'local',
                 lang: 'fr',
                 header: {
                     left: '',
@@ -78,7 +78,7 @@
                     nextYear: 'font-icon font-icon-arrow-right'
                 },
                 defaultDate: '{{datas.calendar_date}}',
-                editable: true,
+                editable: false,
                 selectable: true,
                 eventLimit: true,
                 events: JSON.parse('{{datas.calendar_content|safe}}'),
@@ -103,74 +103,32 @@
                         $(this).addClass('event-clicked');
                     }
 
+                    var start = moment(calEvent.start);
+                    var end = moment(calEvent.end);
+                    var duration = moment.duration(end.diff(start)).asHours();
+                    var durationFormated = duration + ' heure' + ((duration > 1) ? 's' : '');
+
+                    var sessionURL = "{% url 'sessions_detail' session_id=1234 %}".replace(/1234/, calEvent.sessionId);
+
                     // Add popover
                     $('body').append(
-                            '<div class="fc-popover click">' +
+                        '<div class="fc-popover click">' +
                             '<div class="fc-header">' +
-                            moment(calEvent.start).format('dddd • D') +
-                            '<button type="button" class="cl"><i class="font-icon-close-2"></i></button>' +
+                                calEvent.title +
+                                '<button type="button" class="cl"><i class="font-icon-close-2"></i></button>' +
                             '</div>' +
 
                             '<div class="fc-body main-screen">' +
-                            '<p>' +
-                            moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
-                            '</p>' +
-                            '<p class="color-blue-grey">Name Surname Patient<br/>Surgey ACL left knee</p>' +
-                            '<ul class="actions">' +
-                            '<li><a href="#">More details</a></li>' +
-                            '<li><a href="#" class="fc-event-action-edit">Edit event</a></li>' +
-                            '<li><a href="#" class="fc-event-action-remove">Remove</a></li>' +
-                            '</ul>' +
+                                '<ul class="m-b-md">' +
+                                    '<li><strong>Durée: </strong>' + durationFormated + '</li>'+
+                                    '<li><strong>Centre: </strong>' + calEvent.location + '</li>'+
+                                '</ul>' +
+                                '<ul class="actions">' +
+                                    '<li><a href="' + sessionURL + '" target="_blanck">Voir la Session</a></li>' +
+                                '</ul>' +
                             '</div>' +
-
-                            '<div class="fc-body remove-confirm">' +
-                            '<p>Are you sure to remove event?</p>' +
-                            '<div class="text-center">' +
-                            '<button type="button" class="btn btn-rounded btn-sm">Yes</button>' +
-                            '<button type="button" class="btn btn-rounded btn-sm btn-default remove-popover">No</button>' +
-                            '</div>' +
-                            '</div>' +
-
-                            '<div class="fc-body edit-event">' +
-                            '<p>Edit event</p>' +
-                            '<div class="form-group">' +
-                            '<div class="input-group date datetimepicker">' +
-                            '<input type="text" class="form-control" />' +
-                            '<span class="input-group-addon"><i class="font-icon font-icon-calend"></i></span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="form-group">' +
-                            '<div class="input-group date datetimepicker-2">' +
-                            '<input type="text" class="form-control" />' +
-                            '<span class="input-group-addon"><i class="font-icon font-icon-clock"></i></span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="form-group">' +
-                            '<textarea class="form-control" rows="2">Name Surname Patient Surgey ACL left knee</textarea>' +
-                            '</div>' +
-                            '<div class="text-center">' +
-                            '<button type="button" class="btn btn-rounded btn-sm">Save</button>' +
-                            '<button type="button" class="btn btn-rounded btn-sm btn-default remove-popover">Cancel</button>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>'
+                        '</div>'
                     );
-
-                    // Datepicker init
-                    $('.fc-popover.click .datetimepicker').datetimepicker({
-                        widgetPositioning: {
-                            horizontal: 'right'
-                        }
-                    });
-
-                    $('.fc-popover.click .datetimepicker-2').datetimepicker({
-                        widgetPositioning: {
-                            horizontal: 'right'
-                        },
-                        format: 'LT',
-                        debug: true
-                    });
-
 
                     // Position popover
                     function posPopover(){
@@ -190,6 +148,10 @@
                         posPopover();
                     });
 
+                    // Close buttons
+                    $('.fc-popover.click .cl').click(function(){
+                        $('.fc-popover.click').remove();
+                    });
 
                     // Remove old popover
                     if ($('.fc-popover.click').length > 1) {
@@ -198,26 +160,6 @@
                         }
                     }
 
-                    // Close buttons
-                    $('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function(){
-                        $('.fc-popover.click').remove();
-                        $('.fc-event').removeClass('event-clicked');
-                    });
-
-                    // Actions link
-                    $('.fc-event-action-edit').click(function(e){
-                        e.preventDefault();
-
-                        $('.fc-popover.click .main-screen').hide();
-                        $('.fc-popover.click .edit-event').show();
-                    });
-
-                    $('.fc-event-action-remove').click(function(e){
-                        e.preventDefault();
-
-                        $('.fc-popover.click .main-screen').hide();
-                        $('.fc-popover.click .remove-confirm').show();
-                    });
                 }
             });
 
@@ -234,11 +176,11 @@
 
                     // Execute code each time window size changes
                     $(window).resize(
-                            viewport.changed(function() {
-                                if(viewport.is('<lg')) {
-                                    $('.calendar-page-content, .calendar-page-side').matchHeight({ remove: true });
-                                }
-                            })
+                        viewport.changed(function() {
+                            if(viewport.is('<lg')) {
+                                $('.calendar-page-content, .calendar-page-side').matchHeight({ remove: true });
+                            }
+                        })
                     );
                 });
             })(jQuery, ResponsiveBootstrapToolkit);

@@ -2,8 +2,6 @@
 <html lang="fr">
     {% load staticfiles %}
     <head>
-        <meta name="google-site-verification" content="2B13C_eOqo3l7b5QZSLkd6oMOBUd8flf7RK86pR9J6E" />
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -117,6 +115,11 @@
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
                                         <!-- Menu Items -->
+                                        {% if is_authenticated %}
+                                            <li><a href="{% url 'admin_index' %}" title="">Espace formateur</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'public_login' %}" title="">Connexion</a></li>
+                                        {% endif %}
                                         <li><a href="#about" title="" class="scrollto">Quoi ?</a></li>
                                         <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
                                         <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
@@ -228,7 +231,7 @@
                                 {% endif %}
 
                                 <!-- Welcome - Hero Message -->
-                                <h1 class="text-white">Gagnez du temps, donc de l'argent.</h1>
+                                <h1 class="text-white">Générez vos conventions automatiquement</h1>
                                 <p class="text-white">Consult Panel, c'est un outil adapté aux petits organismes de formation.<br>Gérez vos formations et générez vos documents, simplement.</p>
 
                                 <!-- Learn More & Video Buttons -->
@@ -312,24 +315,27 @@
                 <div class="wrapper-sm">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-white">Inscrivez-vous ! Il vous suffit d'un email.</h2>
-                            <p class="large text-white">Votre compte sera créé automatiquement lors de la sortie de Consult Panel.</p>
+                            <h2 class="text-white">Inscrivez-vous</h2>
+                            <p class="large text-white">ConsultPanel est gratuit pour une durée indéterminée</p>
                         </div>
                     </div>
                     <div class="row contact">
-                        <form method="GET" class="ask-for-beta">
+                        <span class="input-group-btn">
+                            <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-1')" class="btn btn-white">
+                                Essayer ConsultPanel gratuitement
+                            </a>
+                        </span>
+                        <!-- <form method="GET" class="ask-for-beta">
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="thanks hidden">Nous préparons votre arrivée...</div>
                                 <div class="input-group text-white">
-                                    <!-- Input Form -->
                                     <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                    <!-- Submit Button -->
                                 <span class="input-group-btn">
                                     <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
                                 </span>
-                                </div><!-- /End Input Group -->
+                                </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
@@ -347,7 +353,8 @@
                 <div class="wrapper-lg">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>29€ <small>/ mois,</small> c'est tout.</h2>
+                            <h2>Gratuit</h2>
+                            <!-- <h2>99€ <small>/ mois,</small> c'est tout.</h2> -->
                             <p class="large">Quelque soit le nombre de formateurs, ou de clients.</p>
                         </div>
                     </div>
@@ -589,24 +596,27 @@
                 <div class="wrapper-sm">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-white">Vous êtes intéressé ? Laissez-nous votre email !</h2>
+                            <h2 class="text-white">Venez découvrir ConsultPanel</h2>
                             <p class="large text-white">Nous serons heureux de répondre à vos questions, suggestions, remarques, ...</p>
                         </div>
                     </div>
                     <div class="row contact">
-                        <form method="GET" class="ask-for-beta">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="thanks hidden">Prêt... Feu... Formez !</div>
-                                <div class="input-group text-white">
-                                    <!-- Input Form -->
-                                    <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                    <!-- Submit Button -->
-                                <span class="input-group-btn">
-                                    <button onclick="ga('send', 'event', 'landing', 'subscribe-email-2')" class="btn btn-white">Envoyer</button>
+                            <span class="input-group-btn">
+                                    <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-2')" class="btn btn-white">
+                                        Découvrir ConsultPanel gratuitement
+                                    </a>
                                 </span>
-                                </div><!-- /End Input Group -->
-                            </div>
-                        </form>
+                                <!-- <form method="GET" class="ask-for-beta">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="thanks hidden">Nous préparons votre arrivée...</div>
+                                        <div class="input-group text-white">
+                                            <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
+                                        <span class="input-group-btn">
+                                            <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </form> -->
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
@@ -844,7 +854,7 @@
                                     <i class="icon icon_mail"></i>
                                 </div>
                                 <div class="contact-content">
-                                    <a href="mailto:talebs@icloud.com?body=Bonjour,">talebs@icloud.com</a>
+                                    <a href="mailto:contact@consultpanel.fr?body=Bonjour,">contact@consultpanel.fr</a>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -871,9 +881,6 @@
         </footer>
     </div><!-- /End Main Wrapper -->
 
-    <p id="call-chat" class="hidden-cta">Une question ?</p>
-    <div id="chat"></div>
-
     </body>
     <!-- =========================
          SCRIPTS
@@ -883,40 +890,24 @@
     <script src="{% static 'public_site/js/plugins/jquery.easing.1.3.min.js' %}"></script>
     <script src="{% static 'public_site/js/plugins/modernizr.custom.min.js' %}"></script>
     <script src="{% static 'public_site/js/plugins/plugins.min.js' %}"></script>
+
     <!-- Custom Script -->
     <script src="{% static 'public_site/js/custom.js' %}"></script>
+
+    {# Global site tag (gtag.js) - Google Analytics #}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116398966-1"></script>
     <script>
-
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-52021309-3', 'auto');
-        ga('send', 'pageview');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-116398966-1');
     </script>
+    
+    {# Crisp #}
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="2e93e6a7-192a-415d-b6fd-b4efb3c1b8cd";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <script type="text/javascript">
-
-        /*
-         ** Chatra
-         */
-        // var ChatraID = 'Ym4qTFhw6CMYZ4bNE';
-        // (function(d, w, c) {
-        //     var n = d.getElementsByTagName('script')[0],
-        //             s = d.createElement('script');
-        //     w[c] = w[c] || function() {
-        //                 (w[c].q = w[c].q || []).push(arguments);
-        //             };
-        //     s.async = true;
-        //     s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
-        //             + '//call.chatra.io/chatra.js';
-        //     n.parentNode.insertBefore(s, n);
-        // })(document, window, 'Chatra');
-
-        // window.ChatraSetup = {
-        //     colors: ['#ffffff', '#46c35f']
-        // };
-
-
 
         $(document).ready(function(){
 
@@ -1004,23 +995,6 @@
                     win.resize();
                 }
             });
-
-
-            /*
-             ** Chatra call to action
-             */
-            // var chatraCTA = $('#call-chat');
-            // var assistance = $('#assistance');
-            // var assistanceTopOffset = assistance.offset().top - 300;
-            // var assistanceBottomOffset = assistanceTopOffset + assistance.outerHeight() + 300;
-
-            // win.scroll(function(elem){
-            //     if ((win.scrollTop() >= assistanceTopOffset && win.scrollTop() <= assistanceBottomOffset)){
-            //         chatraCTA.removeClass("hidden-cta");
-            //     }else{
-            //         chatraCTA.addClass("hidden-cta");
-            //     }
-            // });
 
         });
 

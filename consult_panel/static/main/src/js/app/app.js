@@ -307,7 +307,15 @@ $(document).ready(function(){
 		},
 		format: 'LT',
 		debug: false
-	});
+    });
+    
+    flatpickr.localize(flatpickr.l10ns.fr);
+
+    $('.datetimeinput').flatpickr({
+        enableTime: true,
+        dateFormat: 'd/m/Y H:i:S',
+        time_24hr: true,
+    });
 
 /* ==========================================================================
 	Tooltips
@@ -846,3 +854,9 @@ $(document).ready(function(){
 		}
 	});
 });
+
+/* ==========================================================================
+	Moment
+	========================================================================== */
+
+moment.locale('fr');
