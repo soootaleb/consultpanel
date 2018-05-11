@@ -50,9 +50,18 @@ class ClientForm(ModelForm):
 
     class Meta:
         model = Client
-        fields = ['nom', 'catalogue', 'entreprise']
-        labels = {'label': 'Nom : ', 'catalogue': 'Catalogue associé : ',
-                  'entreprise': 'Entreprise associée : '}
+        fields = [
+            'nom',
+            'catalogue',
+            'entreprise',
+            'representant_prenom',
+            'representant_nom'
+        ]
+        labels = {
+            'label': 'Nom : ',
+            'catalogue': 'Catalogue Associé : ',
+            'entreprise': 'Entreprise Associée : '
+        }
 
 
 class FileForm(ModelForm):

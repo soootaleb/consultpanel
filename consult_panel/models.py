@@ -73,6 +73,8 @@ class Client(models.Model):
         Catalogue, on_delete=models.CASCADE, default=1)
     entreprise = models.ForeignKey(
         Entreprise, on_delete=models.CASCADE, default=1)
+    representant_prenom = models.CharField(max_length=200)
+    representant_nom = models.CharField(max_length=200)
 
     convention_url = ''
 
