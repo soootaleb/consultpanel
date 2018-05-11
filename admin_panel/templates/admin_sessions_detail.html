@@ -31,38 +31,64 @@
         </div>
     </div>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" id="tabs-1-tab-1">
-            <p><strong>Nom : </strong>{{session.formation.nom}}</p>
-            <p><strong>Description : </strong>{{session.formation.description}}</p>
-            <p><strong>Cours : </strong></p>
-            <ul>
-                {% for cour in cours %}
-                <li>
-                    {% if cour.date_cours_debut.date == cour.date_cours_fin.date %}
-                        Le {{cour.date_cours_debut|date:"SHORT_DATE_FORMAT"}}, de {{cour.date_cours_debut|time:"TIME_FORMAT"}} à {{cour.date_cours_fin|time:"TIME_FORMAT"}}
-                    {% else %}
-                        Du {{cour.date_cours_debut|date:"SHORT_DATETIME_FORMAT"}} au {{cour.date_cours_fin|date:"SHORT_DATETIME_FORMAT"}}
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            <p><strong>Ajouter un cours : </strong></p>
+        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %} active {% endif %}" id="tabs-1-tab-1">
+            
+            <h4>Session</h4>
+            
+            <dl class="row m-b-lg">
+                <dt class="col-sm-3">Nom</dt>
+                <dd class="col-sm-8">{{session.formation.nom}}</dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-8">{{session.formation.description}}</dd>
+            </dl>
+
+            <h4>Cours de la Session</h4>
+            
+            <div class="table-responsive m-b-lg">
+
+                <table id="formations" class="display table cp" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th>Passé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for cour in cours %}
+                        <tr>
+                            <td><strong>{{ forloop.counter }}</strong></td>
+                            <td>{{cour.date_cours_debut|date:"SHORT_DATETIME_FORMAT"}}</td>
+                            <td>{{cour.date_cours_fin|date:"SHORT_DATETIME_FORMAT"}}</td>
+                            <td>
+                                {% if cour.is_past %}
+                                    <i class="fa fa-check-circle text-success fa-lg"></i>
+                                {% else %}
+                                    <i class="fa fa-times-circle text-primary fa-lg"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Ajouter un Cours</h4>
+
             <form action="/consult/form/cours_add" method="POST">
-                <input type="hidden" name="session_id" value="{{session.id}}"/>
+                <input type="hidden" name="session_id" value="{{ session.id }}"/>
                 {% crispy form_add_cours %}
             </form>
         </div>
         {% block detail_content %}{% endblock %}
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{%endif%}" id="tabs-1-tab-2">
             <div class="row">
-                <div class="col-xs-7">
-                    <form action="/consult/form/inscriptions_add" method="POST">
-                        <input type="hidden" name="session_id" value="{{session.id}}"/>
-                        {% crispy form_add_inscription %}
-                    </form>
-                </div>
                 {% if session.inscriptions %}
-                <div class="col-xs-5">
+                <div class="col-sm-5">
+                    <h4>Inscrits</h4>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -91,13 +117,20 @@
                     </div>
                 </div>
                 {% endif %}
+                <div class="col-sm-7">
+                    <h4>Ajouter un Participant</h4>
+                    <form action="/consult/form/inscriptions_add" method="POST">
+                        <input type="hidden" name="session_id" value="{{session.id}}"/>
+                        {% crispy form_add_inscription %}
+                    </form>
+                </div>
             </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
 
             {% for cbc in conventions_by_client %}
 
-            <h3>{{ cbc.client.nom }}</h3>
+            <h4>{{ cbc.client.nom }}</h4>
 
                 <div class="table-responsive">
                     <table class="table table-hover">

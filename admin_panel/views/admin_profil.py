@@ -14,6 +14,7 @@ def profil_index(request):
         'page_title':   'Mon profil'
     })
 
+
 @user_passes_test(is_formateur)
 def profil_edit(request, id):
     form = CentreFormationForm(request.POST or None, instance=CentreFormation.objects.get(pk=id))
@@ -25,6 +26,7 @@ def profil_edit(request, id):
         else:
             messages.warning(request, 'Merci de vérifier les informations')
     return render(request, 'admin_profil_edit.html', context={'form': form, 'page_title': 'Modifier le profil'})
+
 
 @user_passes_test(is_formateur)
 def profil_password_edit(request):
@@ -50,7 +52,7 @@ def profil_signature_edit(request):
             profil.save()
             messages.success(request, 'Votre signature a bien été modifié.')
             return redirect('profil_index')
-        else :
+        else:
             messages.warning(request, 'Une erreur est survenu, merci de reessayer.')
 
     return render(request, 'admin_profil_signature_edit.html', {

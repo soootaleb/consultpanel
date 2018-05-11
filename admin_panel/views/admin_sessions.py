@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
-from consult_panel.models import *
+from consult_panel.models import Session, Inscription, Formation
+from consult_panel.models import Localisation, Client, Cours
 from documents.models import Convention
 from admin_panel.forms import SessionForm, CoursForm, InscriptionForm
-from admin_panel.user_tests import *
+from admin_panel.user_tests import is_formateur
 
 
 @user_passes_test(is_formateur)
@@ -23,7 +24,9 @@ def sessions_detail(request, session_id, tab):
         .filter(session__pk=session_id) \
         .distinct('client')
 
-    cours = Cours.objects.filter(session__pk=session_id)
+    cours = Cours.objects \
+        .filter(session__pk=session_id) \
+        .order_by('date_cours_debut')
 
     conventions_by_client = [
         {
@@ -46,9 +49,6 @@ def sessions_detail(request, session_id, tab):
     inscription_form.fields['client'].queryset = Client.objects.filter(
         catalogue__profile__user=request.user)
     tabs = ['detail', 'inscriptions', 'docs']
-
-    # conventions = Convention.objects \
-    #   .filter(client__inscription__session__id=session_id)
 
     return render(request, 'admin_sessions_detail.html', context={
         'cours': cours,

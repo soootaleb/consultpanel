@@ -1,13 +1,13 @@
-from django.db import models
-from django.conf import settings
-from django.http import HttpResponse, Http404
-from django.contrib import messages
-from django.shortcuts import redirect
-from django.contrib.auth.models import User
-
 import datetime
 import os
 import base64
+
+from django.db import models
+from django.conf import settings
+from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
+from django.contrib.auth.models import User
+from django.utils.timezone import make_aware
 
 
 class Formation(models.Model):
@@ -177,6 +177,10 @@ class Cours(models.Model):
             Cours._get_formated_date(self.date_cours_fin),
             Cours._get_formated_heure(self.date_cours_fin)
         )
+    
+    @property
+    def is_past(self):
+        return make_aware(datetime.datetime.today()) > self.date_cours_fin
 
     def __str__(self):
         return 'Cours de {} le {}'.format(
