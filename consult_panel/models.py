@@ -99,7 +99,7 @@ class Profile(models.Model):
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
-    tva = models.FloatField(
+    tva = models.FloatField(  # Non applicable: value = 0 
         default=19.6,
         validators=[MinValueValidator(0.9), MaxValueValidator(58)]
     )

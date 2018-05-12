@@ -1,7 +1,6 @@
 import jinja2
 import os
-import re
-import io
+import datetime
 
 from base64 import urlsafe_b64decode
 from tempfile import NamedTemporaryFile
@@ -13,6 +12,7 @@ from django.contrib.auth.decorators import user_passes_test
 from docxtpl import DocxTemplate, InlineImage
 from docx.image.image import Image
 from docx.shared import Mm
+from django.utils.formats import date_format
 
 
 @user_passes_test(user_tests.is_formateur)
@@ -51,6 +51,16 @@ def convention_show(request, convention_id):
             width=Mm(50)
         )
 
+    total_general = '{:.2f}'.format(
+        float(convention.session.formation.prix_ht) * (profile.tva / 100 + 1)
+    )
+
+    document_date = date_format(
+        datetime.date.today(),
+        format='SHORT_DATE_FORMAT',
+        use_l10n=True
+    )
+
     jinja_env = jinja2.Environment(autoescape=True)
 
     context = {
@@ -61,6 +71,8 @@ def convention_show(request, convention_id):
         'centre_formation': profile.centre_formation,
         'inscriptions': inscriptions,
         'formateur_sign': formateur_sign,
+        'total_general': total_general,
+        'document_date': document_date,
     }
 
     doc.render(context, jinja_env)
