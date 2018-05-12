@@ -10,11 +10,21 @@ import os
 import base64
 
 
+# cf. article L.6313-1 du Code du travail
+class ActionFormation(models.Model):
+    code = models.SmallIntegerField(unique=True)
+    label = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.label
+
+
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
     prix_ht = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     prix_ttc = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    action_formation = models.ForeignKey(ActionFormation, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nom
@@ -208,6 +218,7 @@ class Inscription(models.Model):
             self.nom,
             self.client
         )
+
 
 """
 Landing page models
