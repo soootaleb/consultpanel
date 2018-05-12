@@ -111,7 +111,7 @@ class FormationForm(ModelForm):
 
     class Meta:
         model = Formation
-        fields = ['nom', 'description', 'prix_ht', 'prix_ttc']
+        fields = ['nom', 'description', 'prix_ht', 'prix_ttc', 'action_formation']
         labels = {
             'nom': 'Nom : ',
             'description': 'Description : ',
@@ -163,7 +163,7 @@ class EntrepriseForm(ModelForm):
 
     class Meta:
         model = Entreprise
-        fields = ['nom']
+        fields = ['nom', 'adresse', 'ville', 'code_postal', 'telephone']
 
 
 class CentreFormationForm(ModelForm):
