@@ -25,7 +25,6 @@ class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
     prix_ht = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    prix_ttc = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     action_formation = models.ForeignKey(ActionFormation, on_delete=models.PROTECT)
 
     def __str__(self):

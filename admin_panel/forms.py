@@ -111,12 +111,11 @@ class FormationForm(ModelForm):
 
     class Meta:
         model = Formation
-        fields = ['nom', 'description', 'prix_ht', 'prix_ttc', 'action_formation']
+        fields = ['nom', 'description', 'prix_ht', 'action_formation']
         labels = {
             'nom': 'Nom : ',
             'description': 'Description : ',
             'prix_ht': 'Prix H.T (€) : ',
-            'prix_ttc': 'Prix T.T.C (€) : '
         }
 
 
