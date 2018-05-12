@@ -12,6 +12,14 @@ admin.site.register(Localisation)
 admin.site.register(Cours)
 admin.site.register(Inscription)
 
+
+class ActionFormationAdmin(admin.ModelAdmin):
+    list_display = ('code', 'label')
+    list_display_links = ('code', 'label')
+    ordering = ['code', 'label']
+
+admin.site.register(ActionFormation, ActionFormationAdmin)
+
 admin.site.register(PreferenceType)
 admin.site.register(Preference)
 

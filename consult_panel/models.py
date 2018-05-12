@@ -8,13 +8,26 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.utils.timezone import make_aware
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+
+# cf. article L.6313-1 du Code du travail
+class ActionFormation(models.Model):
+    code = models.SmallIntegerField(unique=True)
+    label = models.CharField(max_length=255)
+
+    def __str__(self):
+        return '{:02d}. {}'.format(self.code, self.label)
 
 
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
     prix_ht = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    prix_ttc = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    action_formation = models.ForeignKey(
+        ActionFormation,
+        on_delete=models.PROTECT
+    )
 
     def __str__(self):
         return self.nom
@@ -73,6 +86,8 @@ class Client(models.Model):
         Catalogue, on_delete=models.CASCADE, default=1)
     entreprise = models.ForeignKey(
         Entreprise, on_delete=models.CASCADE, default=1)
+    representant_prenom = models.CharField(max_length=200)
+    representant_nom = models.CharField(max_length=200)
 
     convention_url = ''
 
@@ -82,10 +97,18 @@ class Client(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    centre_formation = models.ForeignKey(CentreFormation, default=1, on_delete=models.CASCADE)
+    centre_formation = models.ForeignKey(
+        CentreFormation, 
+        default=1, 
+        on_delete=models.CASCADE
+    )
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
+    tva = models.FloatField(  # Non applicable: value = 0 
+        default=19.6,
+        validators=[MinValueValidator(0.9), MaxValueValidator(58)]
+    )
 
     def __str__(self):
         return self.user.first_name
@@ -95,7 +118,11 @@ class Profile(models.Model):
 
     def get_medias_directory(self):
         user_folder = str(self.user.id) + '_' + self.user.username
-        directory = os.path.join(settings.MEDIA_ROOT, 'admin_documents', user_folder)
+        directory = os.path.join(
+            settings.MEDIA_ROOT,
+            'admin_documents',
+            user_folder
+        )
         if not os.path.isdir(directory):
             os.mkdir(directory)
         return directory + os.sep
@@ -104,9 +131,12 @@ class Profile(models.Model):
         filepath = None
         if self.signatue_base64 != "":
             head, data = self.signature_base64.split(',', 1)
-            filepath = os.path.join(self.get_medias_directory(), str(self.user_id)+"_signature.png")
+            filepath = os.path.join(
+                self.get_medias_directory(),
+                str(self.user_id)+"_signature.png"
+            )
             with open(filepath, "wb") as fh:
-                fh.write(base64.decode(data))
+                base64.decode(data, fh)
                 fh.close()
         return filepath
 
@@ -116,18 +146,13 @@ class Profile(models.Model):
 
     @staticmethod
     def validemail(**kwargs):
-        id = kwargs.get('id', None)  # Récupération de l'id (envoyé dans les params)
-        # Récupération de l'objet unique
-        # L'objet unique est injecté automatiquement dans les kwargs par le linker.
+        id = kwargs.get('id', None)
         unique = kwargs.get('unique', None)
         if id is None:
             raise Http404
         unique.perime = True
         unique.save()
-        # Récupération du profil
         profil = Profile.objects.get(id=id)
-
-        # Validation de l'email
         profil.user.is_active = True
         profil.user.save()
         return redirect('public_login')
@@ -147,7 +172,11 @@ class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
     session = models.ForeignKey(Session, default=1, on_delete=models.CASCADE)
-    localisation = models.ForeignKey(Localisation, default=1, on_delete=models.CASCADE)
+    localisation = models.ForeignKey(
+        Localisation,
+        default=1,
+        on_delete=models.CASCADE
+    )
 
     @staticmethod
     def _get_formated_date(date):
@@ -211,6 +240,7 @@ class Inscription(models.Model):
             self.client
         )
 
+
 """
 Landing page models
 """
@@ -233,7 +263,10 @@ class DebugValidateEmail(models.Model):
     is_valid = models.BooleanField(default=False)
 
     def __str__(self):
-        return "{} ({})".format(self.email, 'VALID' if self.is_valid else 'UNVALID')
+        return "{} ({})".format(
+            self.email,
+            'VALID' if self.is_valid else 'UNVALID'
+        )
 
     @staticmethod
     def valid(**kwargs):
@@ -260,4 +293,9 @@ class DebugValidateEmail(models.Model):
         obj.is_valid = True
         obj.save()
 
-        return HttpResponse('<pre>{} is now valid and {} obsolete.</pre>'.format(obj.email, unique.jeton))
+        return HttpResponse(
+            '<pre>{} is now valid and {} obsolete.</pre>'.format(
+                obj.email,
+                unique.jeton
+            )
+        )
