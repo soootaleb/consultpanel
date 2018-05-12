@@ -4,6 +4,8 @@ from django.http import HttpResponse, Http404
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 import datetime
 import os
@@ -16,7 +18,7 @@ class ActionFormation(models.Model):
     label = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.label
+        return '{:02d}. {}'.format(self.code, self.label)
 
 
 class Formation(models.Model):
@@ -98,6 +100,10 @@ class Profile(models.Model):
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
+    tva = models.FloatField(
+        default=19.6,
+        validators=[MinValueValidator(0.9), MaxValueValidator(58)]
+    )
 
     def __str__(self):
         return self.user.first_name
