@@ -11,8 +11,8 @@ class InscriptionForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-4'
-        self.helper.field_class = 'col-sm-8'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Envoyer'))
         super(InscriptionForm, self).__init__(*args, **kwargs)
 
@@ -28,7 +28,7 @@ class LocalisationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-6'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Envoyer'))
         super(LocalisationForm, self).__init__(*args, **kwargs)
 
@@ -69,7 +69,7 @@ class FileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-6'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Envoyer'))
         super(FileForm, self).__init__(*args, **kwargs)
 
@@ -84,7 +84,7 @@ class CoursForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-6'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Ajouter'))
         super(CoursForm, self).__init__(*args, **kwargs)
 
@@ -176,8 +176,8 @@ class CentreFormationForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-3'
-        self.helper.field_class = 'col-sm-9'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Sauvegarder'))
         super(CentreFormationForm, self).__init__(*args, **kwargs)
 
@@ -207,8 +207,8 @@ class ChangeUserPasswordForm(Form):
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-3'
-        self.helper.field_class = 'col-sm-9'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Sauvegarder'))
         self.user = kwargs.pop('user')
         super(ChangeUserPasswordForm, self).__init__(*args, **kwargs)
