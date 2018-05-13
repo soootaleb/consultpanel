@@ -57,7 +57,7 @@ class Catalogue(models.Model):
 
 class Entreprise(models.Model):
     nom = models.CharField(max_length=255)
-    # siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
+    siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
     adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
     ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
     code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
@@ -98,14 +98,14 @@ class Client(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     centre_formation = models.ForeignKey(
-        CentreFormation, 
+        CentreFormation,
         default=1, 
         on_delete=models.CASCADE
     )
     liste_entreprises = models.ManyToManyField(Entreprise)
     liste_catalogues = models.ManyToManyField(Catalogue)
     signature_base64 = models.TextField(blank=True)
-    tva = models.FloatField(  # Non applicable: value = 0 
+    tva = models.FloatField(  # Non applicable: value = 0
         default=19.6,
         validators=[MinValueValidator(0.9), MaxValueValidator(58)]
     )
