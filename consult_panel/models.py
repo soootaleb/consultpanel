@@ -23,7 +23,7 @@ class ActionFormation(models.Model):
 class Formation(models.Model):
     nom = models.CharField(max_length=200)
     description = models.TextField()
-    prix_ht = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    prix_ht = models.DecimalField(max_digits=8, decimal_places=2)
     action_formation = models.ForeignKey(
         ActionFormation,
         on_delete=models.PROTECT
@@ -57,11 +57,11 @@ class Catalogue(models.Model):
 
 class Entreprise(models.Model):
     nom = models.CharField(max_length=255)
-    siret = models.CharField(max_length=14, unique=True, default='DEFAULT_SIRET')
-    adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
-    ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
-    code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
-    telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
+    siret = models.CharField(max_length=14, unique=True)
+    adresse = models.CharField(max_length=255)
+    ville = models.CharField(max_length=255)
+    code_postal = models.CharField(max_length=10)
+    telephone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.nom
@@ -70,11 +70,11 @@ class Entreprise(models.Model):
 class CentreFormation(models.Model):
     nom = models.CharField(max_length=255)
     siret = models.CharField(
-        max_length=14, unique=True, default='DEFAULT_SIRET')
-    adresse = models.CharField(max_length=255, default='DEFAULT_ADDR')
-    ville = models.CharField(max_length=255, default='DEFAULT_VILLE')
-    code_postal = models.CharField(max_length=10, default='DEFAULT_CP')
-    telephone = models.CharField(max_length=15, default='DEFAULT_PHONE')
+        max_length=14, unique=True)
+    adresse = models.CharField(max_length=255)
+    ville = models.CharField(max_length=255)
+    code_postal = models.CharField(max_length=10)
+    telephone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.nom
@@ -83,9 +83,9 @@ class CentreFormation(models.Model):
 class Client(models.Model):
     nom = models.CharField(max_length=200)
     catalogue = models.ForeignKey(
-        Catalogue, on_delete=models.CASCADE, default=1)
+        Catalogue, on_delete=models.CASCADE)
     entreprise = models.ForeignKey(
-        Entreprise, on_delete=models.CASCADE, default=1)
+        Entreprise, on_delete=models.CASCADE)
     representant_prenom = models.CharField(max_length=200)
     representant_nom = models.CharField(max_length=200)
 
@@ -99,7 +99,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     centre_formation = models.ForeignKey(
         CentreFormation,
-        default=1, 
         on_delete=models.CASCADE
     )
     liste_entreprises = models.ManyToManyField(Entreprise)
@@ -162,7 +161,7 @@ class Localisation(models.Model):
     nom = models.CharField(max_length=200)
     latitude = models.CharField(max_length=200)
     longitude = models.CharField(max_length=200)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=2)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nom
@@ -171,10 +170,9 @@ class Localisation(models.Model):
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
-    session = models.ForeignKey(Session, default=1, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
     localisation = models.ForeignKey(
         Localisation,
-        default=1,
         on_delete=models.CASCADE
     )
 
@@ -230,8 +228,8 @@ class Preference(models.Model):
 class Inscription(models.Model):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE, default=1)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
     def __str__(self):
         return 'Inscription: {} {} ({})'.format(
