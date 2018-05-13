@@ -44,7 +44,7 @@ class ClientForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-6'
+        self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Envoyer'))
         super(ClientForm, self).__init__(*args, **kwargs)
 
@@ -189,12 +189,21 @@ class CentreFormationForm(ModelForm):
 
 class ChangeUserPasswordForm(Form):
 
-    old_password = CharField(required=True, widget=PasswordInput,
-        label="Ancien mot de passe :")
-    new_password = CharField(required=True, widget=PasswordInput,
-        label="Nouveau mot de passe :")
-    confirm_new_password = CharField(required=True, widget=PasswordInput,
-        label="Confirmation du mot de passe :")
+    old_password = CharField(
+        required=True,
+        widget=PasswordInput,
+        label="Ancien mot de passe :"
+    )
+    new_password = CharField(
+        required=True,
+        widget=PasswordInput,
+        label="Nouveau mot de passe :"
+    )
+    confirm_new_password = CharField(
+        required=True,
+        widget=PasswordInput,
+        label="Confirmation du mot de passe :"
+    )
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
