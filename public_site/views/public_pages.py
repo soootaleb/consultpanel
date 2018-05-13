@@ -19,7 +19,7 @@ class RegistrationWizard(SessionWizardView):
 
     def render(self, form=None, **kwargs):
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             return redirect('admin_index')
 
         form = form or self.get_form()
@@ -86,7 +86,7 @@ def form(request, name):
 
 
 def login(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         messages.info(request, "Vous êtes déjà connecté !")
         return redirect('admin_index')
     context = {
@@ -97,7 +97,7 @@ def login(request):
 
 
 def logout(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(request, "Vous n'êtes pas connecté")
         return redirect('public_index')
     auth.logout(request)
@@ -106,7 +106,7 @@ def logout(request):
 
 
 def forgot_password(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         messages.info(request, "Vous êtes déjà connecté !")
         return redirect('admin_index')
     context = {
