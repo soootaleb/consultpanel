@@ -6,7 +6,7 @@ SECRET_KEY = 'or_9e-x+xji0k8p6f@z02r%v#d8&c*2z+w+46)!s-x!4#y0am6'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['consultpanel.fr', 'consultpanel.info', 'localhost']
+ALLOWED_HOSTS = ['consultpanel.fr', 'consultpanel.info']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
