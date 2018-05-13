@@ -7,8 +7,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from admin_panel.views import admin_forms
 from admin_panel.user_tests import is_formateur
-from consult_panel.models import Session, Inscription, Formation, Client, \
-    Cours, Catalogue, Profile, Localisation
+from consult_panel.models import Session, Inscription, Formation, Client
+from consult_panel.models import Cours, Catalogue, Profile
 
 
 @user_passes_test(is_formateur)
@@ -22,7 +22,6 @@ def pages_index(request):
             'title': c.session.formation.nom,
             'start': c.date_cours_debut.isoformat(),
             'end': c.date_cours_fin.isoformat(),
-            'location': c.localisation.nom,
             'sessionId': c.session.id,
             'className': 'event-orange',
         })
@@ -43,8 +42,6 @@ def pages_index(request):
                        .distinct().count()),
         'entreprises': (Profile.objects.get(user=request.user)
                         .liste_entreprises.count()),
-        'centres': (Localisation.objects.filter(profile__user=request.user)
-                    .distinct().count())
     }
 
     for key, value in head.items():

@@ -8,7 +8,6 @@ admin.site.register(Catalogue)
 admin.site.register(Entreprise)
 admin.site.register(Client)
 admin.site.register(Profile)
-admin.site.register(Localisation)
 admin.site.register(Cours)
 admin.site.register(Inscription)
 

@@ -8,8 +8,7 @@ from .views import \
     admin_preferences, \
     admin_sessions, \
     admin_formations, \
-    admin_catalogues, \
-    admin_localisations
+    admin_catalogues
 
 urlpatterns = [
     url(r'^$', admin_pages.pages_index, name='admin_index'),
@@ -76,14 +75,4 @@ urlpatterns = [
     url(r'^entreprises/detail/(?P<id>[0-9]+)$',
         admin_entreprises.entreprises_detail, name='entreprises_detail'),
 
-    url(r'^localisations/$', admin_localisations.localisations_index,
-        name='localisations_index'),
-    url(r'^localisations/index/$', admin_localisations.localisations_index,
-        name='localisations_index'),
-    url(r'^localisations/add/$', admin_localisations.localisations_add,
-        name='localisations_add'),
-    url(r'^localisations/edit/(?P<id>[0-9]+)$',
-        admin_localisations.localisations_edit, name='localisations_edit'),
-    url(r'^localisations/delete/(?P<id>[0-9]+)$',
-        admin_localisations.localisations_delete, name='localisations_delete'),
 ]

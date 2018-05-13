@@ -8,30 +8,6 @@ from documents.models import *
 from django.contrib import messages
 
 
-def localisations_add(request):
-    form = forms.LocalisationForm(request.POST)
-    form.instance.profile = Profile.objects.get(user=request.user)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Le centre a bien été ajoutée')
-        return redirect('/consult/localisations/')
-    else:
-        messages.warning(request, 'Merci de vérifier les informations')
-        return render(request, 'admin_localisations_add.html', context={'form': form})
-
-
-def localisations_edit(request):
-    form = forms.LocalisationForm(request.POST or None, instance=Localisation.objects.get(
-        pk=request.POST["localisation_id"]))
-    if form.is_valid() and form.instance is not None:
-        form.save()
-        messages.success(request, 'Le centre a bien été modifié')
-        return redirect('/consult/localisations/')
-    else:
-        messages.warning(request, 'Merci de vérifier les informations')
-        return render(request, 'admin_localisations_edit.html', context={'form': form})
-
-
 def file_upload(request):
     form = forms.FileForm(request.POST, request.FILES)
     form.instance.profile = Profile.objects.get(user=request.user)
@@ -201,8 +177,6 @@ def cours_add(request):
         return redirect('sessions_detail', session_id=request.POST["session_id"])
     else:
         messages.warning(request, 'Merci de vérifier les informations')
-        form.fields['localisation'].queryset = Localisation.objects.filter(
-            profile__user=request.user).distinct()
         return render(request, 'admin_session_detail.html', context={'form_add_cours': form, 'form_add_inscription': forms.InscriptionForm()})
 
 

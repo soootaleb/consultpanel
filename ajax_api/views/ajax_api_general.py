@@ -8,5 +8,4 @@ def get_entites_count(request):
         'clients': Client.objects.filter(catalogue__profile__user=request.user).distinct().count(),
         'catalogues': Catalogue.objects.filter(profile__user=request.user).exclude(nom='main').distinct().count(),
         'entreprises': Profile.objects.get(user=request.user).liste_entreprises.count(),
-        'centres': Localisation.objects.filter(profile__user=request.user).distinct().count()
     })

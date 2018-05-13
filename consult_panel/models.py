@@ -157,24 +157,10 @@ class Profile(models.Model):
         return redirect('public_login')
 
 
-class Localisation(models.Model):
-    nom = models.CharField(max_length=200)
-    latitude = models.CharField(max_length=200)
-    longitude = models.CharField(max_length=200)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nom
-
-
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
-    localisation = models.ForeignKey(
-        Localisation,
-        on_delete=models.CASCADE
-    )
 
     @staticmethod
     def _get_formated_date(date):

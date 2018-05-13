@@ -23,22 +23,6 @@ class InscriptionForm(ModelForm):
                   'client': 'Client associé : '}
 
 
-class LocalisationForm(ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.label_class = 'col-sm-2'
-        self.helper.field_class = 'col-sm-10'
-        self.helper.add_input(Submit('submit', 'Envoyer'))
-        super(LocalisationForm, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = Localisation
-        fields = ['nom', 'latitude', 'longitude']
-        labels = {'label': 'Nom : ', 'latitude': 'Latitude : ',
-                  'longitude': 'Longitude : '}
-
-
 class ClientForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -90,12 +74,10 @@ class CoursForm(ModelForm):
 
     class Meta:
         model = Cours
-        fields = ['date_cours_debut', 'date_cours_fin',
-                  'localisation']
+        fields = ['date_cours_debut', 'date_cours_fin']
         labels = {
             'date_cours_debut': 'Début : ',
             'date_cours_fin': 'Fin : ',
-            'localisation': 'Localisation',
             'session': 'Session de formation'
         }
 
