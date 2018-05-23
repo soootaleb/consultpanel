@@ -29,7 +29,7 @@ class RegistrationWizard(SessionWizardView):
     def done(self, form_list, **kwargs):
 
         if create_new_superformateur(self.request, form_list):
-            # messages.info(self.request, "Un email vous a été envoyé. Confirmez nous votre adresse email.")
+            messages.info(self.request, "Bienvenue sur ConsultPanel. Pour commencer, ajoutez une formations")
             return redirect('admin_index')
 
         messages.warning(self.request, "Une erreur est survenue durant l'inscription. Réessayez plus tard.")
