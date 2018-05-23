@@ -43,6 +43,8 @@
                 <dd class="col-sm-8">{{session.formation.description}}</dd>
             </dl>
 
+            {% if cours %}
+
             <h4>Cours de la Session</h4>
             
             <div class="table-responsive m-b-lg">
@@ -75,6 +77,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {% endif %}            
 
             <h4>Ajouter un Cours</h4>
 
