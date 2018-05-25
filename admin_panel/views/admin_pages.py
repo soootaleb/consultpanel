@@ -50,7 +50,7 @@ def pages_index(request):
                 request,
                 (
                     'Pensez à rentrer toutes les données du menu sur la '
-                    'gauche afin de pouvoir générer vos convention'
+                    'gauche afin de pouvoir générer vos conventions'
                 )
             )
             break
