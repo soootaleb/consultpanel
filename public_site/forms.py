@@ -7,7 +7,6 @@ from consult_panel.models import *
 
 
 class RegistrationForm(forms.ModelForm):
-
     username = forms.EmailField(required=True, label="Adresse E-mail :")
     first_name = forms.CharField(required=True, label="Prénom :")
     last_name = forms.CharField(required=True, label="Nom :")
@@ -18,7 +17,7 @@ class RegistrationForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.label_class = 'col-sm-3 text-right'
-        self.helper.field_class = 'col-sm-8'
+        self.helper.field_class = 'col-sm-9'
         super(RegistrationForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -60,7 +59,7 @@ class CentreFormationForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.label_class = 'col-sm-3 text-right'
-        self.helper.field_class = 'col-sm-8'
+        self.helper.field_class = 'col-sm-9'
         super(CentreFormationForm, self).__init__(*args, **kwargs)
 
     class Meta:

@@ -5,43 +5,43 @@
 
 {% block content %}
     <div class="col-xs-12 col-md-offset-1 col-md-10">
-                <section class="box-typical steps-icon-block">
-                    <div class="row text-center" style="padding: 20px;">
-                        <h1>Inscription</h1>
-                    </div>
-                    <div class="steps-icon-progress">
-                        <ul style="margin-left: 45px; margin-right: 45px;">
-                            <li class="active">
-                                <div class="icon">
-                                    <i class="font-icon font-icon-user"></i>
-                                </div>
-                                <div class="caption">Informations</div>
-                            </li>
-                            <li {%  if wizard.steps.step1 > 1%}class="active"{% endif %}>
-                                <div class="icon">
-                                    <i class="font-icon font-icon-home"></i>
-                                </div>
-                                <div class="caption">Votre entreprise</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ wizard.management_form }}
-
-                        {% crispy wizard.form %}
-
-                        <div class="col-xs-6 text-left">
-                        {% if wizard.steps.prev %}
-                            <button name="wizard_goto_step" class="btn btn-rounded btn-grey" type="submit"
-                                    value="{{ wizard.steps.prev }}">← Précédent
-                            </button>
-                        {% endif %}
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <input type="submit" class="btn btn-rounded" value="Suivant →"/>
-                        </div>
-                    </form>
-                </section>
+        <section class="box-typical steps-icon-block">
+            <div class="row text-center" style="padding: 20px;">
+                <h1>Inscription</h1>
             </div>
+            <div class="steps-icon-progress">
+                <ul style="display: flex; justify-content: center;">
+                    <li class="active">
+                        <div class="icon">
+                            <i class="font-icon font-icon-user"></i>
+                        </div>
+                        <div class="caption">Vous</div>
+                    </li>
+                    <li {%  if wizard.steps.step1 > 1%}class="active"{% endif %}>
+                        <div class="icon">
+                            <i class="font-icon font-icon-home"></i>
+                        </div>
+                        <div class="caption">Votre entreprise</div>
+                    </li>
+                </ul>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+
+                {% crispy wizard.form %}
+
+                <div class="col-xs-6 text-left">
+                {% if wizard.steps.prev %}
+                    <button name="wizard_goto_step" class="btn btn-rounded btn-grey" type="submit"
+                            value="{{ wizard.steps.prev }}">← Précédent
+                    </button>
+                {% endif %}
+                </div>
+                <div class="col-xs-6 text-right">
+                    <input type="submit" class="btn btn-rounded" value="Suivant →"/>
+                </div>
+            </form>
+        </section>
+    </div>
 {% endblock %}

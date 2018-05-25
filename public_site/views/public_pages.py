@@ -12,8 +12,8 @@ from mailer.mailer import EmailTemplate
 from datetime import datetime
 from django.http import Http404
 
+
 class RegistrationWizard(SessionWizardView):
-    
     def get_template_names(self):
         return ['public_pages_register.html']
 
@@ -34,6 +34,7 @@ class RegistrationWizard(SessionWizardView):
 
         messages.warning(self.request, "Une erreur est survenue durant l'inscription. Réessayez plus tard.")
         return redirect('public_index')
+
 
 def send_confirm_email_request(profile):
     if profile is not None:
