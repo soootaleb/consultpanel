@@ -144,7 +144,7 @@ class EntrepriseForm(ModelForm):
 
     class Meta:
         model = Entreprise
-        fields = ['nom', 'adresse', 'ville', 'code_postal', 'telephone']
+        fields = ['nom', 'adresse', 'ville', 'code_postal', 'telephone', 'siret']
 
 
 class CentreFormationForm(ModelForm):
