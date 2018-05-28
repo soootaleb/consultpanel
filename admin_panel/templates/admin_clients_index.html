@@ -66,6 +66,9 @@
                             <a href={% url 'clients_edit' c.id %} type="button" class="btn btn-inline btn-info">
                                 Modifier
                             </a>
+                            <a href={% url 'clients_delete' c.id %} type="button" class="btn btn-inline btn-danger">
+                                Supprimer
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
