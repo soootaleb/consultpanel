@@ -60,6 +60,9 @@
                             <a href="{% url 'sessions_detail' s.id 'docs' %}" type="button" class="btn btn-inline btn-warning">
                                 Documents
                             </a>
+                            <a href="{% url 'sessions_delete' s.id %}" type="button" class="btn btn-inline btn-danger">
+                                Supprimer
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}

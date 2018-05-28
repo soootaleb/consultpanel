@@ -30,6 +30,7 @@ urlpatterns = [
 
     url(r'^sessions/add/$', admin_sessions.sessions_add, name='sessions_add'),
     url(r'^sessions/edit/(?P<id>[0-9]+)$', admin_sessions.sessions_edit, name='sessions_edit'),
+    url(r'^sessions/delete/(?P<id>[0-9]+)$', admin_sessions.sessions_delete, name='sessions_delete'),
     url(r'^sessions/detail/(?P<session_id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_sessions.sessions_detail, name='sessions_detail'),
 

@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from consult_panel.models import Session, Inscription, Formation
 from consult_panel.models import Client, Cours
 from documents.models import Convention
@@ -79,3 +79,10 @@ def sessions_edit(request, id):
         'page_title': 'Editer une session',
         'form': session_form
     })
+
+@user_passes_test(is_formateur)
+def sessions_delete(request, id):
+    session = get_object_or_404(Session, pk=id)
+    session.delete()
+    return redirect('sessions_index')
+
