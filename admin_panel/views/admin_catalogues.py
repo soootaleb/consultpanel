@@ -45,6 +45,6 @@ def catalogues_edit(request, id):
 
 @user_passes_test(is_formateur)
 def catalogues_delete(request, id):
-    catalogue = get_object_or_404(Catalogue, id)
+    catalogue = get_object_or_404(Catalogue, pk=id)
     catalogue.delete()
     return redirect('catalogues_index')

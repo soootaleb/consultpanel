@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from admin_panel.forms import FormationForm
 from consult_panel.models import *
@@ -43,5 +43,6 @@ def formations_edit(request, id):
 
 @user_passes_test(is_formateur)
 def formations_delete(request, id):
-    Formation.objects.get(pk=id).delete()
+    formation = get_object_or_404(Formation, pk=id)
+    formation.delete()
     return redirect('formations_index')
