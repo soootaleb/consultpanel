@@ -15,6 +15,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class ActionFormation(models.Model):
     code = models.SmallIntegerField(unique=True)
     label = models.CharField(max_length=255)
+    public = models.CharField(max_length=255)
+    objectif = models.TextField()
 
     def __str__(self):
         return '{:02d}. {}'.format(self.code, self.label)
