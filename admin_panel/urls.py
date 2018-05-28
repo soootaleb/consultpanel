@@ -53,6 +53,8 @@ urlpatterns = [
         admin_formations.formations_edit, name='formations_edit'),
     url(r'^formations/detail/(?P<id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_formations.formations_detail, name='formations_detail'),
+    url(r'^formations/delete/(?P<id>[0-9]+)$',
+        admin_formations.formations_delete, name='formations_delete'),
 
     url(r'^clients/$', admin_clients.clients_index, name='clients_index'),
     url(r'^clients/index/$', admin_clients.clients_index, name='clients_index'),

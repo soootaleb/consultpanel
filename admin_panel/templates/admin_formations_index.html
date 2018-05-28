@@ -62,6 +62,14 @@
                                         class="btn btn-sm btn-rounded btn-secondary-outline ">
                                     Détails
                                 </a>
+                                <a href={% url 'formations_edit' f.id %} type="button"
+                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
+                                    Modifier
+                                </a>
+                                <a href={% url 'formations_delete' f.id %} type="button"
+                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
+                                    Supprimer
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}

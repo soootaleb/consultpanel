@@ -40,3 +40,8 @@ def formations_edit(request, id):
                   'page_title': 'Editer une formation',
                   'form': FormationForm(instance=Formation.objects.get(pk=id))
                   })
+
+@user_passes_test(is_formateur)
+def formations_delete(request, id):
+    Formation.objects.get(pk=id).delete()
+    return redirect('formations_index')
