@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from consult_panel.models import *
 from django.contrib.auth.decorators import user_passes_test
 from admin_panel.forms import *
@@ -36,3 +36,9 @@ def entreprises_detail(request, id):
         'page_title': entreprise.nom,
         'entreprise': entreprise
     })
+
+@user_passes_test(is_formateur)
+def entreprises_delete(request, id):
+    entreprise = get_object_or_404(Entreprise, pk=id)
+    entreprise.delete()
+    return redirect('entreprises_index')

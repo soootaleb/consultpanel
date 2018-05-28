@@ -75,6 +75,8 @@ urlpatterns = [
         name='entreprises_add'),
     url(r'^entreprises/edit/(?P<id>[0-9]+)$',
         admin_entreprises.entreprises_edit, name='entreprises_edit'),
+    url(r'^entreprises/delete/(?P<id>[0-9]+)$',
+        admin_entreprises.entreprises_delete, name='entreprises_delete'),
     url(r'^entreprises/detail/(?P<id>[0-9]+)$',
         admin_entreprises.entreprises_detail, name='entreprises_detail'),
 
