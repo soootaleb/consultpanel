@@ -1,16 +1,15 @@
-import json
-import os
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from consult_panel.models import ActionFormation
-from consult_panel.settings.base import BASE_DIR
 
+import os, json
 
 class Command(BaseCommand):
     help = 'Create or update the actions formation (cf. /data).'
 
     def add_arguments(self, parser):
         default_actions_formation_path = \
-            os.path.join(BASE_DIR, 'data', 'actions_formation.json')
+            os.path.join(settings.BASE_DIR, 'data', 'actions_formation.json')
 
         parser.add_argument(
             '--file',
