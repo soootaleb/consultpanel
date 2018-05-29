@@ -44,11 +44,26 @@
                             {{ formation }}
                         </td>
                         <td>
-                            <a href={% url 'formations_detail' formation.id %} type="button" class="btn btn-inline btn-primary">
-                                Détail
+                            <a
+                                href={% url 'formations_detail' formation.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-primary"
+                            >
+                                Détails
                             </a>
-                            <a href={% url 'formations_edit' formation.id %} type="button" class="btn btn-inline btn-info">
+                            <a
+                                href={% url 'formations_edit' formation.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-info"
+                            >
                                 Modifier
+                            </a>
+                            <a
+                                href="#"
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-secondary-outline"
+                            >
+                                Retirer du Catalogue <span class="text-danger">#todo</span>
                             </a>
                         </td>
                     </tr>

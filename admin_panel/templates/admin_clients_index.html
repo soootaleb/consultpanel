@@ -63,10 +63,18 @@
                             {{ c.catalogue }}
                         </td>
                         <td>
-                            <a href={% url 'clients_edit' c.id %} type="button" class="btn btn-inline btn-info">
+                            <a
+                                href={% url 'clients_edit' c.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-info"
+                            >
                                 Modifier
                             </a>
-                            <a href={% url 'clients_delete' c.id %} type="button" class="btn btn-inline btn-danger">
+                            <a
+                                href={% url 'clients_delete' c.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-secondary-outline"
+                            >
                                 Supprimer
                             </a>
                         </td>

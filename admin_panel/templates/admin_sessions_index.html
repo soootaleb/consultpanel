@@ -51,16 +51,32 @@
                             {{ s.formation }}
                         </td>
                         <td>
-                            <a href="{% url 'sessions_detail' s.id %}" type="button" class="btn btn-inline btn-primary">
-                                Détail
+                            <a
+                                href="{% url 'sessions_detail' s.id %}"
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-primary"
+                            >
+                                Détails
                             </a>
-                            <a href="{% url 'sessions_edit' s.id %}" type="button" class="btn btn-inline btn-info">
+                            <a
+                                href="{% url 'sessions_edit' s.id %}"
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-info"
+                            >
                                 Modifier
                             </a>
-                            <a href="{% url 'sessions_detail' s.id 'docs' %}" type="button" class="btn btn-inline btn-warning">
+                            <a
+                                href="{% url 'sessions_detail' s.id 'docs' %}"
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-warning"
+                            >
                                 Documents
                             </a>
-                            <a href="{% url 'sessions_delete' s.id %}" type="button" class="btn btn-inline btn-danger">
+                            <a
+                                href="{% url 'sessions_delete' s.id %}"
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-secondary-outline"
+                            >
                                 Supprimer
                             </a>
                         </td>

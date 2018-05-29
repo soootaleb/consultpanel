@@ -7,9 +7,9 @@
                 <li class="nav-item">
                     <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
-                                <i class="font-icon glyphicon glyphicon-duplicate"></i>
-                                Détail
-                            </span>
+                            <i class="font-icon glyphicon glyphicon-duplicate"></i>
+                            Détails
+                        </span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -42,12 +42,20 @@
                 {% for s in formation.sessions %}
                     <li>
                         {{ s.get_date_debut }}
-                        <a href={% url 'sessions_detail' s.id %} type="button" class="btn btn-inline btn-primary">
-                                Détail
-                            </a>
-                            <a href={% url 'sessions_edit' s.id %} type="button" class="btn btn-inline btn-info">
-                                Modifier
-                            </a>
+                        <a
+                            href={% url 'sessions_detail' s.id %}
+                            type="button"
+                            class="btn btn-sm btn-rounded btn-primary"
+                        >
+                            Détails
+                        </a>
+                        <a
+                            href={% url 'sessions_edit' s.id %}
+                            type="button"
+                            class="btn btn-sm btn-rounded btn-info"
+                        >
+                            Modifier
+                        </a>
                     </li>
              {% endfor %}
             </ul>
