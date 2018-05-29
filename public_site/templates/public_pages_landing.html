@@ -124,20 +124,17 @@
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
                                         <!-- Menu Items -->
-                                        {% if is_authenticated %}
-                                            <li><a href="{% url 'admin_index' %}" title="">Espace formateur</a></li>
-                                        {% else %}
-                                            <li><a href="{% url 'public_login' %}" title="">Connexion</a></li>
-                                        {% endif %}
-                                        <li><a href="#about" title="" class="scrollto">Quoi ?</a></li>
-                                        <li><a href="#features" title="" class="scrollto">Comment ?</a></li>
-                                        <li><a href="#testimonials" title="" class="scrollto">Témoignages</a></li>
-                                        <li><a href="#team" title="" class="scrollto">L'équipe</a></li>
-                                        {% comment "Login" %}
+                                        <li><a href="#about" title="Quoi ?" class="scrollto">Quoi ?</a></li>
+                                        <li><a href="#features" title="Comment ?" class="scrollto">Comment ?</a></li>
+                                        <li><a href="#testimonials" title="Témoignages" class="scrollto">Témoignages</a></li>
+                                        <li><a href="#team" title="L'équipe" class="scrollto">L'équipe</a></li>
                                         <!-- Login and Signup Modal on click -->
-                                        <!-- <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li> -->
-                                        <!-- <li><a class="btn btn-nav btn-white" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
-                                        {% endcomment %}
+                                        {% if is_authenticated %}
+                                        <li><a class="btn btn-nav btn-white" title="Espace formateur" href="{% url 'admin_index' %}">Espace Formateur</a></li>
+                                        {% else %}
+                                        <li><a class="btn btn-nav" title="Connexion" href="{% url 'public_login' %}">Connexion</a></li>
+                                        <li><a class="btn btn-nav btn-white" title="Inscription" href="{% url 'public_register' %}">Inscription</a></li>
+                                        {% endif %}
                                     </ul>
                                 </div><!-- /End Navbar-Collapse -->
                             </div><!-- /End Col -->
