@@ -1,8 +1,9 @@
+import os
+import json
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from consult_panel.models import ActionFormation
 
-import os, json
 
 class Command(BaseCommand):
     help = 'Create or update the actions formation (cf. /data).'
