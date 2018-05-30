@@ -162,7 +162,7 @@ class Profile(models.Model):
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, related_name="course_list", on_delete=models.CASCADE)
 
     @staticmethod
     def _get_formated_date(date):
