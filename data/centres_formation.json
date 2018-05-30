@@ -1,0 +1,14 @@
+[
+  {
+    "model": "consult_panel.centreformation",
+    "pk": 1,
+    "fields": {
+      "nom": "JDoe Consulting & Co",
+      "siret": "12345678901",
+      "adresse": "4416 Donald Avenue",
+      "ville": "San Diego",
+      "code_postal": "92117",
+      "telephone": "4156197644"
+    }
+  }
+]
