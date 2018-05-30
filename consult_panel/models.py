@@ -216,8 +216,8 @@ class Preference(models.Model):
 class Inscription(models.Model):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, related_name="incription_list", on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, related_name="incription_list", on_delete=models.CASCADE)
 
     def __str__(self):
         return 'Inscription: {} {} ({})'.format(
