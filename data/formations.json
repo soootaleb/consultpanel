@@ -1,0 +1,72 @@
+[
+  {
+    "model": "consult_panel.formation",
+    "pk": 1,
+    "fields": {
+      "nom": "Formation N\u00e9gociation commerciale",
+      "description": "Objectifs :\r\nD\u00e9velopper votre capacit\u00e9 \u00e0 construire un accord gagnant-gagnant dans une d\u00e9marche de partenariat\r\n\r\nVente et communication positive\r\nD\u00e9finition et calcul du potentiel client\r\nL\u2019analyse de la performance: les ratios de gestion\r\nDiff\u00e9rence entre vente et n\u00e9gociation\r\nLME: le cadre l\u00e9gal comme levier de la n\u00e9gociation\r\n\r\nLes 5 \u00e9tapes de la n\u00e9gociation:\r\nPr\u00e9paration (d\u00e9finir un objectif SMART)\r\nRecherche d\u2019une ZIC (zone d\u2019int\u00e9r\u00eats communs)\r\nArgumentation chiffr\u00e9e et traitement des objections\r\nJeu des concessions et contreparties\r\nConclusion de l\u2019accord et contractualisation",
+      "prix_ht": "200.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 2,
+    "fields": {
+      "nom": "Formation Prospection Commerciale",
+      "description": "Objectifs :\r\nApprendre \u00e0 g\u00e9rer sa prospection commerciale en d\u00e9couvrant les techniques de prise de contact et de suivi de sa client\u00e8le.\r\n\r\nLes types de prospection:\r\nLes techniques classiques\r\nLes solutions technologiques\r\nLes tendances du moment.\r\n\r\nQualifier simplement et durablement vos contacts par une saisie rapide et simplifi\u00e9e sur Excel ou votre logiciel interne.\r\nSavoir segmenter : identifier vos contacts en quelques clics pour d\u00e9finir les actions \u00e0 mener \u00e0 court et moyen terme. Identifier les types de vente (r\u00e9tention, p\u00e9n\u00e9tration, acquisition)\r\n\r\nObjectifs vis\u00e9s:\r\nParam\u00e9trez vous-m\u00eame les crit\u00e8res de ventes et d\u2019achats de vos clients en vu d\u2019une recherche de clients potentiellement acheteurs.\r\nCr\u00e9er vos sc\u00e9narios de prospection et d\u00e9terminer l\u2019organisation la plus appropri\u00e9e et en mettant en place vos crit\u00e8res de s\u00e9lection (g\u00e9ographique, stock en cours, fin d\u2019amortissement\u2026)\r\n \r\nMa\u00eetrisez votre temps:\r\nGardez le contact avec vos clients gr\u00e2ce \u00e0 votre agenda.\r\nPlanifier vos RDV et ins\u00e9rer des alertes automatiques de relance (ne laissez passer aucun appel)\r\n \r\nP\u00e9dagogie mise en \u0153uvre :\r\nConservez et stocker l\u2019historique de vos RDV et d\u00e9terminez les ratios d\u2019efficacit\u00e9 de votre prospection.\r\n \r\nLa prospection t\u00e9l\u00e9phonique:\r\nPr\u00e9parer et baliser les \u00e9tapes de l\u2019entretien.\r\nSe pr\u00e9parer aux barrages (standard, secr\u00e9taire\u2026)\r\nSavoir r\u00e9pondre aux objections d\u2019indisponibilit\u00e9 et d\u2019absence d\u2019int\u00e9r\u00eat.\r\nLes premi\u00e8res phrases cl\u00e9s pour susciter l\u2019attention du client.\r\nSavoir conclure positivement un entretien.\r\n\r\nLa prospection physique:\r\nComp\u00e9tences acquises\r\nLes stagiaires sauront s\u2019organiser sur son territoire\r\nLes circuits de prospection\r\nSavoir saisir les opportunit\u00e9s de rencontres imm\u00e9diates par votre image et votre professionnalisme.\r\n \r\nTechniques de prospection :\r\n2 jours soit 14 heures de face \u00e0 face en salle et en pr\u00e9sentiel\r\nEn interaction avec le formateur et la vid\u00e9o projection les stagiaires d\u00e9couvrent les techniques de prospection\r\nPr\u00e9sentation pratique et dynamique du suivi de la gestion client via l\u2019exploitation d\u2019un  logiciel\r\nMise en situation de cas concrets v\u00e9cus par les stagiaires\r\nD\u00e9finir un plan prospection sur leur territoire\r\nPlanifier leur activit\u00e9 sur le court et moyen terme\r\nAm\u00e9liorer leur organisation pour consacrer plus de temps \u00e0 la relation client .\r\nObtenir des RDV parfois difficiles\r\nG\u00e9rer et Optimiser votre prospection pour gagner en efficacit\u00e9 et en rendement pour  le suivi des affaires.\r\nFaire vivre son fichier et obtenir une r\u00e9elle visibilit\u00e9 du potentiel de vente du secteur d\u2019activit\u00e9.\r\nAm\u00e9liorer la planification de l\u2019activit\u00e9 de l\u2019entreprise.",
+      "prix_ht": "300.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 3,
+    "fields": {
+      "nom": "Formation Identification des besoins et d\u00e9couverte client",
+      "description": "Objectifs :\r\nUn trop  grand nombre de nos commerciaux n\u00e9gligent une des phases la plus importantes dans les 7 phases d\u2019une vente : conna\u00eetre.\r\nC\u2019est \u00e0 dire la phase d\u00e9couverte client, le diagnostic, qui permet de comprendre et ainsi acc\u00e9der apr\u00e8s \u00e0 la phase n\u00e9gociation.",
+      "prix_ht": "250.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 4,
+    "fields": {
+      "nom": "Ma\u00eetriser et enrichir sa relation client",
+      "description": "Objectifs :\r\nAssurer une relation client saine et constructive.  Adopter les attitudes de service appropri\u00e9es. Garder la ma\u00eetrise de l'entretien. D\u00e9velopper sa proactivit\u00e9.\r\n\r\nAssurer les conditions favorables \u00e0 une bonne \u00ab relation client \u00bb au t\u00e9l\u00e9phone:\r\nD\u00e9velopper assertivit\u00e9 et dynamisme au t\u00e9l\u00e9phone en s\u2019appuyant sur sa l\u00e9gitimit\u00e9, sur le vocabulaire et les m\u00e9thodes d\u00e9velopp\u00e9s au cours de la formation\r\nSe d\u00e9tacher de son propre cadre de r\u00e9f\u00e9rences pour \u00e9viter jugements de valeurs, \u00e9nervements et pertes de temps\r\nUtiliser un vocabulaire rassurant et constructif, et \u00e9viter les mots \u00ab qui f\u00e2chent \u00bb\r\nAdopter les attitudes de service appropri\u00e9es (s\u00e9curiser, rassurer, \u00e9couter, personnaliser, \u00eatre pr\u00e9cis, s\u2019affirmer sans agresser\u2026)\r\nG\u00e9rer la limite entre \u00ab \u00e9coute n\u00e9cessaire et indispensable \u00bb et \u00ab \u00e9coute sociale \u00bb qui sort du champ d\u2019intervention\r\nUtiliser les types de questions appropri\u00e9es pour d\u00e9couvrir la situation, valider les informations, verrouiller les faits, faire progresser l\u2019entretien, le cl\u00f4turer\u2026\r\nGarder la ma\u00eetrise de l\u2019entretien en le structurant\r\nG\u00e9rer les situations difficiles ou conflictuelles\r\n\r\nIdentifier et int\u00e9grer les attentes et les motivations de l\u2019interlocuteur\r\nComprendre et mieux d\u00e9jouer les m\u00e9canismes du conflit\r\nAdopter une posture relationnelle constructive et professionnelle\r\nCommuniquer de fa\u00e7on adapt\u00e9e les informations d\u00e9licates (d\u00e9lais, erreurs, refus, impay\u00e9s\u2026)\r\nRester factuel pour aider l\u2019interlocuteur \u00e0 rester rationnel\r\nAdopter un sch\u00e9ma de r\u00e9ponse pertinent face au m\u00e9contentement et \u00e0 l\u2019agressivit\u00e9",
+      "prix_ht": "500.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 5,
+    "fields": {
+      "nom": "G\u00e9rer les conflits au t\u00e9l\u00e9phone",
+      "description": "Objectifs :\r\nRester professionnel et maintenir une relation efficace lorsque la r\u00e9clamation se fait virulente et l'appel conflictuel.\r\n\r\nComprendre l\u2019interlocuteur et la situation:\r\nIdentifier les diff\u00e9rents profils comportementaux\r\nComprendre les motivations de l\u2019interlocuteur\r\nD\u00e9velopper son assertivit\u00e9\r\n\r\nCr\u00e9er ou ramener un climat favorable\r\nS\u2019affirmer sans agresser\r\nCommuniquer les informations difficiles\r\nAdopter une position constructive et professionnelle\r\nEtre capable de diriger, \u00e9courter, si n\u00e9cessaire, et conclure un entretien\r\nG\u00e9rer la situation conflictuelle\r\n\r\nG\u00e9rer ses \u00e9motions\r\nInt\u00e9grer le mode de fonctionnement de l\u2019autre dans la r\u00e9ponse\r\nS\u2019adapter au profil du client\r\nG\u00e9rer les remarques n\u00e9gatives ou d\u00e9sobligeantes du client\r\nAdopter un sch\u00e9ma de r\u00e9ponse pertinent face \u00e0 la col\u00e8re et au m\u00e9contentement\r\nG\u00e9rer les incivilit\u00e9s, les insultes",
+      "prix_ht": "350.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 6,
+    "fields": {
+      "nom": "Formation pr\u00e9parer sa visite commerciale",
+      "description": "Objectifs :\r\nSavoir organiser une visite commerciale, g\u00e9rer son d\u00e9roulement, fixer ses priorit\u00e9s, s'informer sur le client \u00e0 visiter.\r\n\r\nBien pr\u00e9parer sa visite commerciale:\r\nAdopter le bon \u00e9tat d\u2019esprit\r\nPr\u00e9parer son dossier\r\nD\u00e9finir ses objectifs et\r\nconstruire son plan d\u2019action\r\nPr\u00e9parer son intervention\r\nOrganisation\r\nOrganiser les informations\r\nPr\u00e9parer les documents \u00e0 utiliser\r\nD\u00e9finir un ordre du jour\r\nR\u00e9pertorier les arguments en fonction de l\u2019objectif de visite\r\nHi\u00e9rarchiser les priorit\u00e9s de la visite\r\nPrioriser\r\nFixer des priorit\u00e9s et s\u2019y tenir\r\nDistinguer l\u2019urgent de l\u2019important dans sa pr\u00e9paration Ouvrir l\u2019entretien\r\nEn client\u00e8le\r\nProposer un ordre du jour\r\nMentionner les b\u00e9n\u00e9fices pour le client\r\nV\u00e9rifier l\u2019acceptation du client\r\nPositionner l\u2019avantage g\u00e9n\u00e9ral ou besoin probable en ouverture\r\nSonder pour mieux comprendre *\r\nS\u2019informer\r\nAvoir une compr\u00e9hension claire, compl\u00e8te et commune des besoins\r\nObtenir des informations compl\u00e9mentaires de la part du client\r\nUtiliser les sondages non directifs et directifs pour d\u00e9couvrir la situation et les besoins du client",
+      "prix_ht": "200.00",
+      "action_formation": 1
+    }
+  },
+  {
+    "model": "consult_panel.formation",
+    "pk": 7,
+    "fields": {
+      "nom": "Techniques de vente",
+      "description": "Objectifs :\r\nConna\u00eetre les techniques de communication orale, comportementale et \u00e9crite pour apprendre \u00e0 adapter son langage \u00e0 sa client\u00e8le.\r\n\r\nRappel des grands principes de communication\r\nLes codes de la communication ( gestes, voix, mots)\r\nLa phrase d\u2019accueil positive\r\nLes distances de communication\r\nD\u00e9terminer les besoins d\u2019ordre technique et les motivations d\u2019achat ( SONCAS)\r\nManier avec aisance les 3 grands types de questions ( ouvertes, ferm\u00e9es, alternatives)\r\nMettre en place un arbre de d\u00e9couverte\r\nReformuler\r\nR\u00e9ussir l\u2019\u00e9coute active\r\nConna\u00eetre et pr\u00e9senter les caract\u00e9ristiques d\u2019un produit\r\nConna\u00eetre et pr\u00e9senter les avantages client\r\nConstruire un argument de vente percutant\r\nChoisir le ou les arguments r\u00e9pondant aux motivations d\u2019achat\r\nAdapter son langage et son attitude\r\nConclure la vente\r\nQu\u2019est-ce qu\u2019une objection ?\r\nPourquoi une objection ?\r\nPourquoi faut-il traiter les objections ?\r\nComment traiter les objections ? ( technique du diapason, faire pr\u00e9ciser, att\u00e9nuer, retourner, pr\u00e9venir, cas particulier de l\u2019objection du prix)",
+      "prix_ht": "200.00",
+      "action_formation": 6
+    }
+  }
+]
