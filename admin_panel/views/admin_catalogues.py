@@ -48,3 +48,10 @@ def catalogues_delete(request, id):
     catalogue = get_object_or_404(Catalogue, pk=id)
     catalogue.delete()
     return redirect('catalogues_index')
+
+@user_passes_test(is_formateur)
+def catalogues_remove_formation(request, id_catalogue, id_formation):
+    catalogue = get_object_or_404(Catalogue, pk=id_catalogue)
+    formation = get_object_or_404(Formation, pk=id_formation)
+    catalogue.liste_formations.remove(formation)
+    return redirect('catalogues_detail', id_catalogue)

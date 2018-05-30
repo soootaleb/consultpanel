@@ -45,6 +45,8 @@ urlpatterns = [
         admin_catalogues.catalogues_delete, name='catalogues_delete'),
     url(r'^catalogues/detail/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_detail, name='catalogues_detail'),
+    url(r'^catalogues/detail/(?P<id_catalogue>[0-9]+)/remove/(?P<id_formation>[0-9]+)$',
+        admin_catalogues.catalogues_remove_formation, name='catalogues_remove_formation'),
 
     url(r'^formations/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/index/$', admin_formations.formations_index,
