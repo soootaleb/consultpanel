@@ -44,7 +44,9 @@ ROOT_URLCONF = 'consult_panel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'consult_panel', 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -52,6 +54,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'consult_panel.context_processors.debug_mode',
             ],
         },
     },

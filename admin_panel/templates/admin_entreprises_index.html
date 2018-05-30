@@ -51,13 +51,25 @@
                             {{ e.nom }}
                         </td>
                          <td>
-                            <a href={% url 'entreprises_detail' e.id %} type="button" class="btn btn-inline btn-primary">
+                            <a
+                                href={% url 'entreprises_detail' e.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-primary"
+                            >
                                 Détail
                             </a>
-                            <a href={% url 'entreprises_edit' e.id %} type="button" class="btn btn-inline btn-info">
+                            <a
+                                href={% url 'entreprises_edit' e.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-info"
+                            >
                                 Modifier
                             </a>
-                            <a href={% url 'entreprises_delete' e.id %} type="button" class="btn btn-inline btn-danger">
+                            <a
+                                href={% url 'entreprises_delete' e.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-secondary-outline"
+                            >
                                 Supprimer
                             </a>
                         </td>

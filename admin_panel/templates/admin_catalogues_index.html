@@ -51,13 +51,25 @@
                             {{ c.nom }}
                         </td>
                         <td>
-                            <a href={% url 'catalogues_detail' c.id %} type="button" class="btn btn-inline btn-primary">
-                                Détail
+                            <a
+                                href={% url 'catalogues_detail' c.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-primary"
+                            >
+                                Détails
                             </a>
-                            <a href={% url 'catalogues_edit' c.id %} type="button" class="btn btn-inline btn-info">
+                            <a
+                                href={% url 'catalogues_edit' c.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-info"
+                            >
                                 Modifier
                             </a>
-                            <a href={% url 'catalogues_delete' c.id %} type="button" class="btn btn-inline btn-danger">
+                            <a
+                                href={% url 'catalogues_delete' c.id %}
+                                type="button"
+                                class="btn btn-sm btn-rounded btn-secondary-outline"
+                            >
                                 Supprimer
                             </a>
                         </td>

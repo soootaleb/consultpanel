@@ -58,16 +58,25 @@
                             <td>{{ f.description|truncatechars_html:30 }}</td>
                             <td>{{ f.prix_ht }}</td>
                             <td>
-                                <a href={% url 'formations_detail' f.id %} type="button"
-                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
+                                <a
+                                    href={% url 'formations_detail' f.id %}
+                                    type="button"
+                                    class="btn btn-sm btn-rounded btn-primary"
+                                >
                                     Détails
                                 </a>
-                                <a href={% url 'formations_edit' f.id %} type="button"
-                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
+                                <a
+                                    href={% url 'formations_edit' f.id %}
+                                    type="button"
+                                    class="btn btn-sm btn-rounded btn-info"
+                                >
                                     Modifier
                                 </a>
-                                <a href={% url 'formations_delete' f.id %} type="button"
-                                        class="btn btn-sm btn-rounded btn-secondary-outline ">
+                                <a
+                                    href={% url 'formations_delete' f.id %}
+                                    type="button"
+                                    class="btn btn-sm btn-rounded btn-secondary-outline"
+                                >
                                     Supprimer
                                 </a>
                             </td>

@@ -15,9 +15,15 @@
         <div class="form-group">
             {{ login_form.password }}
         </div>
+        <div class="form-group">
+            <div class="float-right reset">
+                <a href="{% url "public_forgot_password" %}">Mot de passe oublié</a>
+            </div>
+        </div>
         <button type="submit" class="btn btn-rounded">Connexion</button>
-        <!--TODO Mot de passe oublie-->
-        <p class="sign-note"><a href="{% url "public_forgot_password" %}">Mot de passe oublié</a></p>
+        <p class="sign-note">
+            Vous être nouveau ? <a href="{% url "public_register" %}">Inscrivez-vous</a>
+        </p>
     </form>
 
 {% endblock %}
