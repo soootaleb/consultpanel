@@ -112,6 +112,8 @@ MEDIA_URL = '/medias/'
 
 AUTH_PROFILE_MODULE = 'consult_panel.models.Profile'
 
+UNIQUE_LINKER_BASE_URL = "https://consultpanel.fr"
+
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND') or 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')

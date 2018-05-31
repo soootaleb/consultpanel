@@ -5,6 +5,7 @@ from importlib import import_module
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
 
 from unique_linker.UniqueLinkerException import UniqueLinkerException
 
@@ -32,12 +33,15 @@ class Unique(models.Model):
     def exec_methode(self):
         refs = self.methode.split('/')
 
-        if len(refs) != 3:
-            raise UniqueLinkerException("Invalid 'methode' fideld. (Format: module/object/method)")
-
-        module = import_module(refs[0])
-        object = getattr(module, refs[1])
-        method = getattr(object, refs[2])
+        if len(refs) == 3:
+            module = import_module(refs[0])
+            object = getattr(module, refs[1])
+            method = getattr(object, refs[2])
+        elif len(refs) == 2:
+            module = import_module(refs[0])
+            method = getattr(module, refs[1])
+        else :
+            raise UniqueLinkerException("Invalid 'methode' fideld. (Format: module/object/method or module/method)")
 
         params = json.loads(self.params)
 
@@ -46,4 +50,4 @@ class Unique(models.Model):
         return method(**params)
 
     def get_url(self):
-        return '/u/{}'.format(self.jeton.hex)
+        return '{}/u/{}'.format(settings.UNIQUE_LINKER_BASE_URL, self.jeton.hex)

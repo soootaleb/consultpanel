@@ -13,3 +13,6 @@ DATABASES = {
         'PORT': 5432
     }
 }
+
+UNIQUE_LINKER_BASE_URL = "http://localhost:8000"
+CONSOLE_MAILER = True
