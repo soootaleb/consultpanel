@@ -1,0 +1,9 @@
+Bonjour {{ first_name }},
+
+Vous souhaitez rénitialiser votre mot de passe sur la plateforme ConsultPanel.
+Cliquez sur le lien ci-dessous afin de configurer votre nouveau mot de passe. Ce lien unique est valable 48h à partir de maintenant. Passé ce délai, le lien sera désactivé.
+
+Rénitialiser votre mot de passe : {{ unique_url }}
+
+L'équipe ConsultPanel vous remercie et reste à votre disposition.
+À très bientôt sur ConsultPanel.
