@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ef6a7e8969bd4fef8d86edac2dc1f1e928ddba043a8c4cecd30c6cfc7b25f699"
+            "sha256": "1d63f06956d6a82631d759c82b4abdeed26bf11c2cc5cfd2e56902e150787547"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -11,7 +11,7 @@
             "platform_python_implementation": "CPython",
             "platform_release": "17.5.0",
             "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST 2018; root:xnu-4570.51.1~1/RELEASE_X86_64",
+            "platform_version": "Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT 2018; root:xnu-4570.51.2~1/RELEASE_X86_64",
             "python_full_version": "3.6.4",
             "python_version": "3.6",
             "sys_platform": "darwin"
@@ -29,6 +29,19 @@
         ]
     },
     "default": {
+        "backports.ssl-match-hostname": {
+            "hashes": [],
+            "markers": "python_version < '3.5'",
+            "version": "==3.5.0.1"
+        },
+        "certifi": {
+            "hashes": [],
+            "version": "==2018.4.16"
+        },
+        "chardet": {
+            "hashes": [],
+            "version": "==3.0.4"
+        },
         "django": {
             "hashes": [],
             "version": "==2.0.5"
@@ -41,9 +54,26 @@
             "hashes": [],
             "version": "==2.1"
         },
+        "docker": {
+            "hashes": [],
+            "version": "==3.3.0"
+        },
+        "docker-pycreds": {
+            "hashes": [],
+            "version": "==0.2.3"
+        },
         "docxtpl": {
             "hashes": [],
-            "version": "==0.4.10"
+            "version": "==0.4.11"
+        },
+        "idna": {
+            "hashes": [],
+            "version": "==2.6"
+        },
+        "ipaddress": {
+            "hashes": [],
+            "markers": "python_version < '3.3'",
+            "version": "==1.0.22"
         },
         "jinja2": {
             "hashes": [],
@@ -69,23 +99,35 @@
             "hashes": [],
             "version": "==2018.4"
         },
+        "requests": {
+            "hashes": [],
+            "version": "==2.18.4"
+        },
         "six": {
             "hashes": [],
             "version": "==1.11.0"
+        },
+        "urllib3": {
+            "hashes": [],
+            "version": "==1.22"
+        },
+        "websocket-client": {
+            "hashes": [],
+            "version": "==0.48.0"
         }
     },
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==1.6.3"
+            "version": "==1.6.4"
         },
         "backports.functools-lru-cache": {
             "hashes": [],
+            "markers": "python_version < '3.4'",
             "version": "==1.5"
         },
         "configparser": {
             "hashes": [],
-            "markers": "python_version == '2.7'",
             "version": "==3.5.0"
         },
         "enum34": {
@@ -111,10 +153,11 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==1.8.4"
+            "version": "==1.9.1"
         },
         "singledispatch": {
             "hashes": [],
+            "markers": "python_version < '3.4'",
             "version": "==3.4.0.3"
         },
         "six": {
