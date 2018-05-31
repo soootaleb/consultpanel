@@ -86,3 +86,15 @@ def sessions_delete(request, id):
     session.delete()
     return redirect('sessions_index')
 
+@user_passes_test(is_formateur)
+def sessions_remove_course(request, session_id, tab, course_id):
+    cours = get_object_or_404(Cours, pk=course_id)
+    cours.delete()
+    return redirect('sessions_detail', session_id, tab) if tab else redirect('sessions_detail', session_id)
+
+@user_passes_test(is_formateur)
+def sessions_remove_inscription(request, session_id, tab, inscription_id):
+    inscription = get_object_or_404(Inscription, pk=inscription_id)
+    inscription.delete()
+    return redirect('sessions_detail', session_id, tab) if tab else redirect('sessions_detail', session_id)
+
