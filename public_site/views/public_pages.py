@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import Group
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.views.decorators.csrf import csrf_exempt
 from public_site import forms
 from django.contrib import messages
 from formtools.wizard.views import SessionWizardView
@@ -75,7 +75,7 @@ def public_index(request):
         'is_authenticated': request.user.is_authenticated
     })
 
-
+@csrf_exempt
 def form(request, name):
     from . import public_forms
     if request.method == 'POST':
@@ -112,22 +112,20 @@ def forgot_password(request):
         return redirect('admin_index')
     context = {
         'page_title':   'Mot de passe oublie',
-        'password_reset_form':   forms.PasswordForgotForm(),
+        'password_forgot_form':   forms.PasswordForgotForm(),
     }
     return render(request, 'public_pages_forgot_password.html', context=context)
 
-def password_reset(request):
-    email = request.GET.get('email', None)
-    token = request.GET.get('token', None)
-    if email is None or token is None:
-        raise Http404
-    user = User.objects.get(username=email)
-    generator = PasswordResetTokenGenerator()
-    if user is not None and generator.check_token(user,token):
+def password_reset(**kwargs):
+    id = kwargs.get('user_id', None)
+    unique = kwargs.get('unique', None)
+    user = get_object_or_404(User, id=id)
+    if user is not None and id is not None:
         context = {
             'page_title':   'Nouveau mot de passe',
             'password_reset_form':   forms.PasswordResetForm(),
-            'username': email
+            'username': user.email,
+            'token': unique.jeton
         }
-        return render(request, 'public_pages_password_reset.html', context=context)
+        return render(None, 'public_pages_password_reset.html', context=context)
     raise Http404

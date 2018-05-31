@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^logout/', public_pages.logout, name='public_logout'),
     url(r'^register/', public_pages.RegistrationWizard.as_view([RegistrationForm, CentreFormationForm]), name='public_register'),
     url(r'^forgot-password', public_pages.forgot_password, name="public_forgot_password"),
-    url(r'^password-reset', public_pages.password_reset, name="public_password_reset"),
     url(r'^form/(?P<name>[a-z_]+)', public_pages.form, name="public_form"),
 ]
