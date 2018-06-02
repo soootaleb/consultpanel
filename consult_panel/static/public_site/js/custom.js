@@ -191,7 +191,9 @@ $("#owl-carousel-shots-phone").owlCarousel({
 /* ==========================================
     VENOBOX - LIGHTBOX FOR GALLERY AND VIDEOS
 ============================================= */
-$('.venobox').venobox();
+$('.venobox').venobox({
+    autoplay: true,
+});
 
 
 /* =================================
