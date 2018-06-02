@@ -8,6 +8,7 @@ from django.forms import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+import pytz
 
 class InscriptionForm(ModelForm):
 
@@ -73,8 +74,8 @@ class CoursForm(ModelForm):
         self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Ajouter'))
         super(CoursForm, self).__init__(*args, **kwargs)
-        self.fields['date_cours_debut'].initial = dt.now() + timedelta(days=1)
-        self.fields['date_cours_fin'].initial = dt.now() + timedelta(days=1, hours=8)
+        self.fields['date_cours_debut'].initial = (dt.now() + timedelta(days=1)).replace(hour=9, minute=0, second=0)
+        self.fields['date_cours_fin'].initial = (dt.now() + timedelta(days=1)).replace(hour=17, minute=0, second=0)
 
     class Meta:
         model = Cours
