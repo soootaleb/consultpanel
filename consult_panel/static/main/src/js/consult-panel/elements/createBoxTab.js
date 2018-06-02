@@ -38,7 +38,7 @@ var createBoxTab = function (idTab) {
         searching: true,
         sDom: 'lrt',
         language: {
-            zeroRecords: "Aucune formation n'a été trouvé.",
+            zeroRecords: "Aucune formation n'a été trouvée.",
             infoEmpty: "Aucune formation.."
         }
     });
