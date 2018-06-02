@@ -110,56 +110,67 @@
             {% block detail_content %}{% endblock %}
             <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{% endif %}"
                  id="tabs-1-tab-2">
-                <div class="row">
-                    {% if session.inscriptions %}
-                        <div class="col-sm-5">
-                            <h4>Participants</h4>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            Prénom
-                                        </th>
-                                        <th>
-                                            Nom
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for inscription in session.inscriptions %}
+                
+                {% if session.course_list.count > 0 %}
+                    <div class="row">
+                        {% if session.inscriptions %}
+                            <div class="col-sm-5">
+                                <h4>Participants</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
                                         <tr>
-                                            <td>
-                                                {{ inscription.prenom }}
-                                            </td>
-                                            <td>
-                                                {{ inscription.nom }}
-                                            </td>
-                                            <td>
-                                                <a
-                                                        href={% url 'sessions_remove_inscription' session.id active_tab inscription.id %}
-                                                        type="button"
-                                                        class="btn btn-sm btn-rounded btn-secondary-outline"
-                                                >
-                                                    <i class="glyphicon glyphicon-trash"></i> Supprimer
-                                                </a>
-                                            </td>
+                                            <th>
+                                                Prénom
+                                            </th>
+                                            <th>
+                                                Nom
+                                            </th>
+                                            <th></th>
                                         </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        {% for inscription in session.inscriptions %}
+                                            <tr>
+                                                <td>
+                                                    {{ inscription.prenom }}
+                                                </td>
+                                                <td>
+                                                    {{ inscription.nom }}
+                                                </td>
+                                                <td>
+                                                    <a
+                                                            href={% url 'sessions_remove_inscription' session.id active_tab inscription.id %}
+                                                            type="button"
+                                                            class="btn btn-sm btn-rounded btn-secondary-outline"
+                                                    >
+                                                        <i class="glyphicon glyphicon-trash"></i> Supprimer
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        {% endif %}
+                        <div class="col-sm-7">
+                            <h4>Ajouter un Participant</h4>
+                            <form action="/consult/form/inscriptions_add" method="POST">
+                                <input type="hidden" name="session_id" value="{{ session.id }}"/>
+                                {% crispy form_add_inscription %}
+                            </form>
                         </div>
-                    {% endif %}
-                    <div class="col-sm-7">
-                        <h4>Ajouter un Participant</h4>
-                        <form action="/consult/form/inscriptions_add" method="POST">
-                            <input type="hidden" name="session_id" value="{{ session.id }}"/>
-                            {% crispy form_add_inscription %}
-                        </form>
                     </div>
-                </div>
+                {% else %}
+
+                    <h4>Vous devez ajouter un cours avant d'inscrire des participants</h4>
+
+                    <form action="/consult/form/cours_add" method="POST">
+                        <input type="hidden" name="session_id" value="{{ session.id }}"/>
+                        {% crispy form_add_cours %}
+                    </form>
+                {% endif %}
             </div>
             <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{% endif %}"
                  id="tabs-1-tab-3">
