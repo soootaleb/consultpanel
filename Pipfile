@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
 django = "*"
 "django-crispy-forms" = "*"
 "django-formtools" = "*"
@@ -12,11 +11,10 @@ django = "*"
 docxtpl = "*"
 "psycopg2-binary" = "*"
 docker = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"
-
-
 
 [requires]
 python_version = "3.6"

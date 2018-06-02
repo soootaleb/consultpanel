@@ -11,7 +11,9 @@ from unique_linker.models import Unique
 from mailer.mailer import EmailTemplate
 from datetime import datetime
 from django.http import Http404
+from django.conf import settings
 
+import requests
 
 class RegistrationWizard(SessionWizardView):
     def get_template_names(self):
@@ -30,6 +32,13 @@ class RegistrationWizard(SessionWizardView):
 
         if create_new_superformateur(self.request, form_list):
             messages.info(self.request, "Bienvenue sur ConsultPanel. Pour commencer, ajoutez une formation.")
+
+            if not settings.DEBUG:
+                total = Profile.objects.filter(user__is_staff=False).count()
+                requests.post(settings.SLACK_WEBHOOK_ENDPOINT, json={
+                    'text': 'A new user signed-up ! We now have ' + str(total) + ' registered users.'
+                })
+
             return redirect('admin_index')
 
         messages.warning(self.request, "Une erreur est survenue durant l'inscription. Réessayez plus tard.")
