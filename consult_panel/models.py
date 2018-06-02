@@ -1,6 +1,7 @@
 import datetime
 import os
 import base64
+import pytz
 
 from django.db import models
 from django.conf import settings
@@ -166,11 +167,11 @@ class Cours(models.Model):
 
     @staticmethod
     def _get_formated_date(date):
-        return date.strftime('%d/%m/%y')
+        return date.replace(tzinfo=pytz.utc).astimezone(tz=pytz.timezone(settings.TIME_ZONE)).strftime('%d/%m/%y')
 
     @staticmethod
     def _get_formated_heure(date):
-        return date.strftime('%Hh%M')
+        return date.replace(tzinfo=pytz.utc).astimezone(tz=pytz.timezone(settings.TIME_ZONE)).strftime('%Hh%M')
 
     def get_date_debut(self):
         return Cours._get_formated_date(self.date_cours_debut)
@@ -180,13 +181,13 @@ class Cours(models.Model):
 
     def get_interval(self):
         if self.date_cours_debut.date() == self.date_cours_fin.date():
-            return 'Le {} de {} à {} (UTC)'.format(
+            return 'Le {} de {} à {}'.format(
                 Cours._get_formated_date(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_fin)
             )
 
-        return 'Du {} {} au {} {} (UTC)'.format(
+        return 'Du {} {} au {} {}'.format(
             Cours._get_formated_date(self.date_cours_debut),
             Cours._get_formated_heure(self.date_cours_debut),
             Cours._get_formated_date(self.date_cours_fin),
