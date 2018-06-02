@@ -118,6 +118,9 @@ class CatalogueForm(ModelForm):
     class Meta:
         model = Catalogue
         fields = ['nom', 'liste_formations']
+        widgets = {
+            'liste_formations': CheckboxSelectMultiple
+        }
         labels = {
             'nom': 'Nom : ',
             'liste_formations': 'Liste des formations : ',
