@@ -77,7 +77,7 @@ class CentreFormation(models.Model):
     adresse = models.CharField(max_length=255)
     ville = models.CharField(max_length=255)
     code_postal = models.CharField(max_length=10)
-    telephone = models.CharField(max_length=15)
+    telephone = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.nom

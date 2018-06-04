@@ -49,11 +49,11 @@ class RegistrationForm(forms.ModelForm):
 
 class CentreFormationForm(forms.ModelForm):
     nom = forms.CharField(required=True, label="Nom de l'entreprise:")
-    siret = forms.CharField(required=True, label="Numéro de siret :")
+    siret = forms.CharField(required=False, label="Numéro de siret :")
     adresse = forms.CharField(required=True, label="Adresse :")
     ville = forms.CharField(required=True, label="Ville :")
     code_postal = forms.CharField(required=True, label="Code Postal :")
-    telephone =  forms.CharField(required=True, label="Téléphone :")
+    telephone = forms.CharField(required=False, label="Téléphone :")
 
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
