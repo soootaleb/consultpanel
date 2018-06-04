@@ -50,9 +50,9 @@ class RegistrationForm(forms.ModelForm):
 class CentreFormationForm(forms.ModelForm):
     nom = forms.CharField(required=True, label="Nom de l'entreprise:")
     siret = forms.CharField(required=False, label="Numéro de siret :")
-    adresse = forms.CharField(required=True, label="Adresse :")
-    ville = forms.CharField(required=True, label="Ville :")
-    code_postal = forms.CharField(required=True, label="Code Postal :")
+    adresse = forms.CharField(required=True, label="Adresse :", widget=forms.TextInput(attrs={'id': 'centre-formation-address'}))
+    ville = forms.CharField(required=True, label="Ville :", widget=forms.TextInput(attrs={'id': 'centre-formation-city'}))
+    code_postal = forms.CharField(required=True, label="Code Postal :", widget=forms.TextInput(attrs={'id': 'centre-formation-zip'}))
     telephone = forms.CharField(required=False, label="Téléphone :")
 
     def __init__(self, *args, **kwargs):
@@ -64,8 +64,8 @@ class CentreFormationForm(forms.ModelForm):
 
     class Meta:
         model = CentreFormation
-        fields = ['nom', 'siret', 'adresse', 'ville',
-                  'code_postal', 'telephone']
+        fields = ['nom', 'adresse', 'ville',
+                  'code_postal', 'telephone', 'siret']
 
 
 class LoginForm(forms.Form):
