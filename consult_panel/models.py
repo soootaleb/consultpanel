@@ -73,7 +73,7 @@ class Entreprise(models.Model):
 class CentreFormation(models.Model):
     nom = models.CharField(max_length=255)
     siret = models.CharField(
-        max_length=14, unique=True)
+        max_length=14, unique=True, blank=True, null=True)
     adresse = models.CharField(max_length=255)
     ville = models.CharField(max_length=255)
     code_postal = models.CharField(max_length=10)
