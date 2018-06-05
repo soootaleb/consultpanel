@@ -42,24 +42,52 @@ class RegistrationForm(forms.ModelForm):
 
 
 class CentreFormationForm(forms.ModelForm):
-    nom = forms.CharField(required=True, label="Nom de l'entreprise")
-    adresse = forms.CharField(required=True, label="Adresse", widget=forms.TextInput(attrs={'id': 'centre-formation-address'}))
-    ville = forms.CharField(required=True, label="Ville", widget=forms.TextInput(attrs={'id': 'centre-formation-city'}))
-    code_postal = forms.CharField(required=True, label="Code Postal", widget=forms.TextInput(attrs={'id': 'centre-formation-zip'}))
-    telephone = forms.CharField(required=False, label="Téléphone (Facultatif)")
-    siret = forms.CharField(required=False, label="Numéro de siret (Facultatif)")
+    nom = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': "Nom de l'entreprise"}))
+    adresse = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'centre-formation-address',
+            'placeholder': "Adresse"
+        }))
+    ville = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'centre-formation-city',
+            'placeholder': "Ville"
+        }))
+    code_postal = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'id': 'centre-formation-zip',
+            'placeholder': "Code Postal"
+        }))
+    telephone = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': "Téléphone (Facultatif)"
+        }))
+    siret = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': "Numéro de siret (Facultatif)"
+        }))
+    rgpd_generate_conventions = forms.BooleanField(
+        required=True,
+        label='Vous acceptez que vos données soient utilisées pour générer vos conventions.')
 
     def __init__(self, *args, **kwargs):
         super(CentreFormationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.form_show_labels = False
         self.helper.field_class = 'col-xs-12'
-
-        layout = self.helper.layout = Layout()
-        for field_name, field in self.fields.items():
-            layout.append(Field(field_name, placeholder=field.label))
-        self.helper.form_show_labels = False
+        self.fields['nom'].label = False
+        self.fields['adresse'].label = False
+        self.fields['ville'].label = False
+        self.fields['code_postal'].label = False
+        self.fields['telephone'].label = False
+        self.fields['siret'].label = False
 
     def clean(self):
         cleaned_data = super(CentreFormationForm, self).clean()
@@ -75,7 +103,8 @@ class CentreFormationForm(forms.ModelForm):
     class Meta:
         model = CentreFormation
         fields = ['nom', 'adresse', 'ville',
-                  'code_postal', 'telephone', 'siret']
+                  'code_postal', 'telephone', 'siret',
+                  'rgpd_generate_conventions']
 
 
 class LoginForm(forms.Form):
