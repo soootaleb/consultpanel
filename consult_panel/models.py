@@ -1,6 +1,7 @@
 import datetime
 import os
 import base64
+import pytz
 
 from django.db import models
 from django.conf import settings
@@ -71,12 +72,11 @@ class Entreprise(models.Model):
 
 class CentreFormation(models.Model):
     nom = models.CharField(max_length=255)
-    siret = models.CharField(
-        max_length=14, unique=True)
+    siret = models.CharField(max_length=14, blank=True, default='Non renseigné')
     adresse = models.CharField(max_length=255)
     ville = models.CharField(max_length=255)
     code_postal = models.CharField(max_length=10)
-    telephone = models.CharField(max_length=15)
+    telephone = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.nom
@@ -162,15 +162,15 @@ class Profile(models.Model):
 class Cours(models.Model):
     date_cours_debut = models.DateTimeField(default=datetime.datetime.now)
     date_cours_fin = models.DateTimeField(default=datetime.datetime.now)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, related_name="course_list", on_delete=models.CASCADE)
 
     @staticmethod
     def _get_formated_date(date):
-        return date.strftime('%d/%m/%y')
+        return date.replace(tzinfo=pytz.utc).astimezone(tz=pytz.timezone(settings.TIME_ZONE)).strftime('%d/%m/%y')
 
     @staticmethod
     def _get_formated_heure(date):
-        return date.strftime('%Hh%M')
+        return date.replace(tzinfo=pytz.utc).astimezone(tz=pytz.timezone(settings.TIME_ZONE)).strftime('%Hh%M')
 
     def get_date_debut(self):
         return Cours._get_formated_date(self.date_cours_debut)
@@ -180,13 +180,13 @@ class Cours(models.Model):
 
     def get_interval(self):
         if self.date_cours_debut.date() == self.date_cours_fin.date():
-            return 'Le {} de {} à {} (UTC)'.format(
+            return 'Le {} de {} à {}'.format(
                 Cours._get_formated_date(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_debut),
                 Cours._get_formated_heure(self.date_cours_fin)
             )
 
-        return 'Du {} {} au {} {} (UTC)'.format(
+        return 'Du {} {} au {} {}'.format(
             Cours._get_formated_date(self.date_cours_debut),
             Cours._get_formated_heure(self.date_cours_debut),
             Cours._get_formated_date(self.date_cours_fin),
@@ -216,8 +216,8 @@ class Preference(models.Model):
 class Inscription(models.Model):
     nom = models.CharField(max_length=255)
     prenom = models.CharField(max_length=255)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, related_name="incription_list", on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, related_name="incription_list", on_delete=models.CASCADE)
 
     def __str__(self):
         return 'Inscription: {} {} ({})'.format(

@@ -331,19 +331,6 @@
                                 Essayer ConsultPanel gratuitement
                             </a>
                         </span>
-                        {% comment %}
-                        <form method="GET" class="ask-for-beta">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="thanks hidden">Nous préparons votre arrivée...</div>
-                                <div class="input-group text-white">
-                                    <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                <span class="input-group-btn">
-                                    <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
-                                </span>
-                                </div>
-                            </div>
-                        </form>
-                        {% endcomment %}
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
@@ -609,22 +596,11 @@
                         </div>
                     </div>
                     <div class="row contact">
-                            <span class="input-group-btn">
-                                    <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-2')" class="btn btn-white">
-                                        Découvrir ConsultPanel gratuitement
-                                    </a>
-                                </span>
-                                <!-- <form method="GET" class="ask-for-beta">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <div class="thanks hidden">Nous préparons votre arrivée...</div>
-                                        <div class="input-group text-white">
-                                            <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control ask-for-beta-email" required>
-                                        <span class="input-group-btn">
-                                            <button onclick="ga('send', 'event', 'landing', 'subscribe-email-1')" class="btn btn-white">Essayer</button>
-                                        </span>
-                                        </div>
-                                    </div>
-                                </form> -->
+                        <span class="input-group-btn">
+                            <a href="{% url 'public_register' %}" onclick="ga('send', 'event', 'landing', 'try-it-2')" class="btn btn-white">
+                                Découvrir ConsultPanel gratuitement
+                            </a>
+                        </span>
                     </div><!-- /End Row -->
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
@@ -901,93 +877,14 @@
     <script src="{% static 'public_site/js/custom.js' %}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116398966-1"></script>
 
+    {% include 'tracking_scripts.html' %}
+
     {# JS #}
     <script type="text/javascript">
-        
-        // Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-116398966-1');
-
-        // Crisp
-        window.$crisp=[];window.CRISP_WEBSITE_ID="2e93e6a7-192a-415d-b6fd-b4efb3c1b8cd";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
-
-        // FullStory
-        window['_fs_debug'] = false;
-        window['_fs_host'] = 'fullstory.com';
-        window['_fs_org'] = 'CD7PA';
-        window['_fs_namespace'] = 'FS';
-        (function(m,n,e,t,l,o,g,y){
-            if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
-            g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[];
-            o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
-            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
-            g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){g(l,v)};
-            g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
-            g.consent=function(a){g("consent",!arguments.length||a)};
-            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
-            g.clearUserCookie=function(){};
-        })(window,document,window['_fs_namespace'],'script','user');
-
         // Consult Panel
         $(document).ready(function(){
 
             var win = $(window);
-
-            {% comment %}
-            /*
-             ** Email Beta
-             */
-            var emailForm = $('.ask-for-beta');
-            var emailSubmit = $('.ask-for-beta button');
-            var emailInput = $('.ask-for-beta-email');
-            var emailThanks = $('.ask-for-beta .thanks');
-            var validEmail = $('input.valid');
-            var emailInputParent = emailInput.parent('.input-group');
-
-            function validateEmail(email) {
-                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(email);
-            };
-
-            function sendEmail(email) {
-                var url = '{% url 'ajax_add_email_for_beta' %}';
-                $.getJSON( url+"?email="+email, function( json ) {
-                    if (json.status == "error"){
-                        emailThanks.removeClass('error');
-                    }
-                    emailThanks.text(json.message);
-                    emailInputParent.remove();
-                    emailThanks.removeClass('hidden');
-                });
-            };
-
-            emailInput
-                    .bind('input', function(event){
-                        var parent = $(this).parent('.input-group');
-                        if (validateEmail($(this).val())) {
-                            parent.removeClass('false');
-                            $(this).addClass("valid")
-                        }else{
-                            parent.addClass('false');
-                            $(this).removeClass("valid")
-                        }
-                    });
-
-            emailSubmit.hover(function(){
-                $(this).toggleClass('focus');
-            });
-
-            emailForm.submit(function(event){
-                event.preventDefault();
-                var input = $(this).find('.ask-for-beta-email');
-                var email = input.val();
-                if (input.hasClass('valid') && validateEmail(email)){
-                    sendEmail(email);
-                }
-            });
-            {% endcomment %}
 
             /*
              ** Text / Image

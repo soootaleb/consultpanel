@@ -9,12 +9,6 @@
             <div class="tbl-cell tbl-cell-title">
                 <h3>{{catalogue.liste_formations.count}} formation{% if catalogue.liste_formations.count > 1%}s{%endif%}</h3>
             </div>
-            <div class="tbl-cell tbl-cell-action-bordered">
-                <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i> Editer</button>
-            </div>
-            <div class="tbl-cell tbl-cell-action-bordered">
-                <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i> Supprimer</button>
-            </div>
         </div>
     </header>
     <div class="box-typical-body">
@@ -59,11 +53,11 @@
                                 Modifier
                             </a>
                             <a
-                                href="#"
+                                href="{% url 'catalogues_remove_formation' catalogue.id formation.id %}"
                                 type="button"
                                 class="btn btn-sm btn-rounded btn-secondary-outline"
                             >
-                                Retirer du Catalogue <span class="text-danger">#todo</span>
+                                Retirer du Catalogue
                             </a>
                         </td>
                     </tr>

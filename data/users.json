@@ -1,0 +1,22 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$eZj6zQDfmGbt$nzVYrXmRuFTnGT6LGTqIbhXJbKYo7J3pR43tqk3KO58=",
+      "last_login": "2018-05-30T20:52:22.825Z",
+      "is_superuser": false,
+      "username": "doe@consultpanel.fr",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "doe@consultpanel.fr",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-05-30T20:52:22.635Z",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  }
+]

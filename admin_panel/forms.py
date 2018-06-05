@@ -1,11 +1,14 @@
 # coding: utf-8
 
+from datetime import timedelta
+from datetime import datetime as dt
 from consult_panel.models import *
 from documents.models import *
 from django.forms import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+import pytz
 
 class InscriptionForm(ModelForm):
 
@@ -13,7 +16,7 @@ class InscriptionForm(ModelForm):
         self.helper = FormHelper()
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-10'
-        self.helper.add_input(Submit('submit', 'Envoyer'))
+        self.helper.add_input(Submit('submit', 'Ajouter'))
         super(InscriptionForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -71,6 +74,8 @@ class CoursForm(ModelForm):
         self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('submit', 'Ajouter'))
         super(CoursForm, self).__init__(*args, **kwargs)
+        self.fields['date_cours_debut'].initial = (dt.now() + timedelta(days=1)).replace(hour=9, minute=0, second=0)
+        self.fields['date_cours_fin'].initial = (dt.now() + timedelta(days=1)).replace(hour=17, minute=0, second=0)
 
     class Meta:
         model = Cours
@@ -113,6 +118,9 @@ class CatalogueForm(ModelForm):
     class Meta:
         model = Catalogue
         fields = ['nom', 'liste_formations']
+        widgets = {
+            'liste_formations': CheckboxSelectMultiple
+        }
         labels = {
             'nom': 'Nom : ',
             'liste_formations': 'Liste des formations : ',

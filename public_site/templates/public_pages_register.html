@@ -4,6 +4,45 @@
 {% load i18n %}
 
 {% block content %}
+    <section class="box-typical steps-numeric-block" style="width: 100%; max-width: 322px; margin: 0 auto;">
+
+        <img src="{% static 'main/img/consultpanel_logo_blue.png' %}" alt="Logo Consult Panel" style="height: 100px; width: 100px; display: block; margin: 20px auto 10px auto;" />
+
+        <div class="steps-numeric-header">
+            <div class="steps-numeric-header-in">
+                <ul>
+                    <li {% if wizard.steps.step0 == 0 %}class="active"{% endif %}>
+                        <div class="item"><span class="num">1</span>Vous</div>
+                    </li>
+                    <li {% if wizard.steps.step0 == 1 %}class="active"{% endif %}>
+                        <div class="item"><span class="num">2</span>Votre entreprise</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <form action="" method="post">
+            <div class="steps-numeric-inner" style="padding-bottom: 14px;">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+
+                {% crispy wizard.form %}
+            </div>
+            
+            <div class="tbl steps-numeric-footer">
+                {% comment %}
+                {% if wizard.steps.prev %}
+                <a name="wizard_goto_step" class="step-btn" type="submit" value="{{ wizard.steps.prev }}">
+                    ← Précédent
+                </a>
+                {% endif %}
+                {% endcomment %}
+                    <input style="width: 100%; line-height: 50px; background: none; border: none;" class="color-green" type="submit" value="Suivant →"/>
+            </div>
+        </form>
+    </section>
+    
+    {% comment %}
     <div class="col-xs-12 col-md-offset-1 col-md-10">
         <section class="box-typical steps-icon-block">
             <div class="row text-center" style="padding: 20px;">
@@ -17,7 +56,7 @@
                         </div>
                         <div class="caption">Vous</div>
                     </li>
-                    <li {%  if wizard.steps.step1 > 1%}class="active"{% endif %}>
+                    <li {% if wizard.steps.step1 > 1 %}class="active"{% endif %}>
                         <div class="icon">
                             <i class="font-icon font-icon-home"></i>
                         </div>
@@ -32,11 +71,11 @@
                 {% crispy wizard.form %}
 
                 <div class="col-xs-6 text-left">
-                {% if wizard.steps.prev %}
-                    <button name="wizard_goto_step" class="btn btn-rounded btn-grey" type="submit"
-                            value="{{ wizard.steps.prev }}">← Précédent
-                    </button>
-                {% endif %}
+                    {% if wizard.steps.prev %}
+                        <button name="wizard_goto_step" class="btn btn-rounded btn-grey" type="submit"
+                                value="{{ wizard.steps.prev }}">← Précédent
+                        </button>
+                    {% endif %}
                 </div>
                 <div class="col-xs-6 text-right">
                     <input type="submit" class="btn btn-rounded" value="Suivant →"/>
@@ -44,4 +83,25 @@
             </form>
         </section>
     </div>
+    {% endcomment %}
+
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.7.3"></script>
+    <script>
+        (function () {
+            var placesAutocomplete = places({
+                container: document.querySelector('#centre-formation-address'),
+                type: 'address',
+                templates: {
+                    value: function (suggestion) {
+                        return suggestion.name;
+                    }
+                }
+            });
+            placesAutocomplete.on('change', function resultSelected(e) {
+                document.querySelector('#centre-formation-city').value = e.suggestion.city || '';
+                document.querySelector('#centre-formation-zip').value = e.suggestion.postcode || '';
+            });
+        })();
+    </script>
+
 {% endblock %}

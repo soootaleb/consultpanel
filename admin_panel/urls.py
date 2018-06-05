@@ -33,6 +33,10 @@ urlpatterns = [
     url(r'^sessions/delete/(?P<id>[0-9]+)$', admin_sessions.sessions_delete, name='sessions_delete'),
     url(r'^sessions/detail/(?P<session_id>[0-9]+)(?:/(?P<tab>[a-z]+))?$',
         admin_sessions.sessions_detail, name='sessions_detail'),
+    url(r'^sessions/detail/(?P<session_id>[0-9]+)(?:/(?P<tab>[a-z]+))?/remove-course/(?P<course_id>[0-9]+)$',
+        admin_sessions.sessions_remove_course, name='sessions_remove_course'),
+    url(r'^sessions/detail/(?P<session_id>[0-9]+)(?:/(?P<tab>[a-z]+))?/remove-inscription/(?P<inscription_id>[0-9]+)$',
+        admin_sessions.sessions_remove_inscription, name='sessions_remove_inscription'),
 
     url(r'^catalogues/$', admin_catalogues.catalogues_index, name='catalogues_index'),
     url(r'^catalogues/index/$', admin_catalogues.catalogues_index,
@@ -45,6 +49,8 @@ urlpatterns = [
         admin_catalogues.catalogues_delete, name='catalogues_delete'),
     url(r'^catalogues/detail/(?P<id>[0-9]+)$',
         admin_catalogues.catalogues_detail, name='catalogues_detail'),
+    url(r'^catalogues/detail/(?P<id_catalogue>[0-9]+)/remove/(?P<id_formation>[0-9]+)$',
+        admin_catalogues.catalogues_remove_formation, name='catalogues_remove_formation'),
 
     url(r'^formations/$', admin_formations.formations_index, name='formations_index'),
     url(r'^formations/index/$', admin_formations.formations_index,

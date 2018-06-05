@@ -2,146 +2,186 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<section class="tabs-section">
-    <div class="tabs-section-nav tabs-section-nav-icons">
-        <div class="tbl">
-            <ul class="nav" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{%endif%}" href="#tabs-1-tab-1" role="tab" data-toggle="tab">
+    <section class="tabs-section">
+        <div class="tabs-section-nav tabs-section-nav-icons">
+            <div class="tbl">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_tab == 'detail' or active_tab == None %}active{% endif %}"
+                           href="#tabs-1-tab-1" role="tab" data-toggle="tab">
                         <span class="nav-link-in">
                             <i class="font-icon glyphicon glyphicon-duplicate"></i>
                             Détails
                         </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_tab == 'inscriptions' %}active{%endif%}" href="#tabs-1-tab-2" role="tab" data-toggle="tab">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_tab == 'inscriptions' %}active{% endif %}" href="#tabs-1-tab-2"
+                           role="tab" data-toggle="tab">
                         <span class="nav-link-in">
-                            <span class="glyphicon glyphicon-music"></span>
+                            <span class="glyphicon glyphicon-list-alt"></span>
                             Inscriptions
                         </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_tab == 'docs' %}active{%endif%}" href="#tabs-1-tab-3" role="tab" data-toggle="tab">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_tab == 'docs' %}active{% endif %}" href="#tabs-1-tab-3"
+                           role="tab" data-toggle="tab">
                         <span class="nav-link-in">
-                            <span class="glyphicon glyphicon-music"></span>
+                            <span class="font-icon glyphicon glyphicon-paperclip"></span>
                             Conventions
                         </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %} active {% endif %}" id="tabs-1-tab-1">
-            
-            <h4>Session</h4>
-            
-            <dl class="row m-b-lg">
-                <dt class="col-sm-3">Nom</dt>
-                <dd class="col-sm-8">{{session.formation.nom}}</dd>
-
-                <dt class="col-sm-3">Description</dt>
-                <dd class="col-sm-8">{{session.formation.description}}</dd>
-            </dl>
-
-            {% if cours %}
-
-            <h4>Cours de la Session</h4>
-            
-            <div class="table-responsive m-b-lg">
-
-                <table id="formations" class="display table cp" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Début</th>
-                            <th>Fin</th>
-                            <th>Passé</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for cour in cours %}
-                        <tr>
-                            <td><strong>{{ forloop.counter }}</strong></td>
-                            <td>{{cour.date_cours_debut|date:"SHORT_DATETIME_FORMAT"}}</td>
-                            <td>{{cour.date_cours_fin|date:"SHORT_DATETIME_FORMAT"}}</td>
-                            <td>
-                                {% if cour.is_past %}
-                                    <i class="fa fa-check-circle text-success fa-lg"></i>
-                                {% else %}
-                                    <i class="fa fa-times-circle text-primary fa-lg"></i>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-
-                    </tbody>
-                </table>
+                        </a>
+                    </li>
+                </ul>
             </div>
-
-            {% endif %}            
-
-            <h4>Ajouter un Cours</h4>
-
-            <form action="/consult/form/cours_add" method="POST">
-                <input type="hidden" name="session_id" value="{{ session.id }}"/>
-                {% crispy form_add_cours %}
-            </form>
         </div>
-        {% block detail_content %}{% endblock %}
-        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{%endif%}" id="tabs-1-tab-2">
-            <div class="row">
-                {% if session.inscriptions %}
-                <div class="col-sm-5">
-                    <h4>Inscrits</h4>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
+        <div class="tab-content">
+            <div role="tabpanel"
+                 class="tab-pane fade in {% if active_tab == 'detail' or active_tab == None %} active {% endif %}"
+                 id="tabs-1-tab-1">
+
+                <h4>Session</h4>
+
+                <dl class="row m-b-lg">
+                    <dt class="col-sm-3">Nom</dt>
+                    <dd class="col-sm-8">{{ session.formation.nom }}</dd>
+
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-8">{{ session.formation.description }}</dd>
+                </dl>
+
+                {% if cours %}
+
+                    <h4>Cours de la Session</h4>
+
+                    <div class="table-responsive m-b-lg">
+
+                        <table id="formations" class="display table cp" cellspacing="0" width="100%">
                             <thead>
-                                <tr>
-                                    <th>
-                                        Prénom
-                                    </th>
-                                    <th>
-                                        Nom
-                                    </th>
-                                </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Début</th>
+                                <th>Fin</th>
+                                <th>Passé</th>
+                                <th>Actions</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {% for i in session.inscriptions %}
+                            {% for cour in cours %}
                                 <tr>
+                                    <td><strong>{{ forloop.counter }}</strong></td>
+                                    <td>{{ cour.date_cours_debut|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                    <td>{{ cour.date_cours_fin|date:"SHORT_DATETIME_FORMAT" }}</td>
                                     <td>
-                                        {{i.prenom}}
+                                        {% if cour.is_past %}
+                                            <i class="fa fa-check-circle text-success fa-lg"></i>
+                                        {% else %}
+                                            <i class="fa fa-times-circle text-primary fa-lg"></i>
+                                        {% endif %}
                                     </td>
                                     <td>
-                                        {{i.nom}}
+                                        {% if not cour.is_past %}
+                                            <a
+                                                    href={% url 'sessions_remove_course' session.id active_tab cour.id %}
+                                                    type="button"
+                                                    class="btn btn-sm btn-rounded btn-secondary-outline"
+                                            >
+                                                <i class="glyphicon glyphicon-trash"></i> Supprimer
+                                            </a>
+                                        {% endif %}
                                     </td>
                                 </tr>
-                                {% endfor %}
+                            {% endfor %}
+
                             </tbody>
                         </table>
                     </div>
-                </div>
+
                 {% endif %}
-                <div class="col-sm-7">
-                    <h4>Ajouter un Participant</h4>
-                    <form action="/consult/form/inscriptions_add" method="POST">
-                        <input type="hidden" name="session_id" value="{{session.id}}"/>
-                        {% crispy form_add_inscription %}
-                    </form>
-                </div>
+
+                <h4>Ajouter un cours</h4>
+
+                <form action="/consult/form/cours_add" method="POST">
+                    <input type="hidden" name="session_id" value="{{ session.id }}"/>
+                    {% crispy form_add_cours %}
+                </form>
             </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{%endif%}" id="tabs-1-tab-3">
+            {% block detail_content %}{% endblock %}
+            <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'inscriptions' %}active{% endif %}"
+                 id="tabs-1-tab-2">
+                
+                {% if session.course_list.count > 0 %}
+                    <div class="row">
+                        {% if session.inscriptions %}
+                            <div class="col-sm-5">
+                                <h4>Participants</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Prénom
+                                            </th>
+                                            <th>
+                                                Nom
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for inscription in session.inscriptions %}
+                                            <tr>
+                                                <td>
+                                                    {{ inscription.prenom }}
+                                                </td>
+                                                <td>
+                                                    {{ inscription.nom }}
+                                                </td>
+                                                <td>
+                                                    <a
+                                                            href={% url 'sessions_remove_inscription' session.id active_tab inscription.id %}
+                                                            type="button"
+                                                            class="btn btn-sm btn-rounded btn-secondary-outline"
+                                                    >
+                                                        <i class="glyphicon glyphicon-trash"></i> Supprimer
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-sm-7">
+                            <h4>Ajouter un Participant</h4>
+                            <form action="/consult/form/inscriptions_add" method="POST">
+                                <input type="hidden" name="session_id" value="{{ session.id }}"/>
+                                {% crispy form_add_inscription %}
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
 
-            {% for cbc in conventions_by_client %}
+                    <h4>Vous devez ajouter un cours avant d'inscrire des participants</h4>
 
-            <h4>{{ cbc.client.nom }}</h4>
+                    <form action="/consult/form/cours_add" method="POST">
+                        <input type="hidden" name="session_id" value="{{ session.id }}"/>
+                        {% crispy form_add_cours %}
+                    </form>
+                {% endif %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade in {% if active_tab == 'docs' %}active{% endif %}"
+                 id="tabs-1-tab-3">
 
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
+                {% for cbc in conventions_by_client %}
+
+                    <h4>{{ cbc.client.nom }}</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
                                 <th>
                                     Cours
@@ -150,195 +190,197 @@
                                     Actions
                                 </th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             {% for convention in cbc.conventions %}
-                            <tr>
-                                <td>
-                                    <strong>{{ convention.cours.get_interval }}</strong>
-                                </td>
-                                <td>
-                                    <a
-                                        href="{% url 'document_convention_show' convention.id %}"
-                                        target="_blank"
-                                        type="button"
-                                        class="btn btn-sm btn-rounded btn-warning"
-                                    >
-                                        Télécharger
-                                    </a>
-                                    {% if not convention.signed_by_formateur %}
-                                    <button
-                                        class="btn btn-sm btn-rounded btn-primary btn-sign"
-                                        {# data-url="{% url 'ajax_documents_convention_sign' convention.id %}" #}
-                                        disabled
-                                    >
-                                        Signer <span class="badge badge-white" style="color: #00a8ff; background-color: #FFFFFF">Bientôt</span>
-                                    </button>
-                                    {% endif %}
-                                    <button
-                                        type="button"
-                                        class="btn btn-sm btn-rounded btn-info btn-send"
-                                        {# data-url="{% url 'ajax_documents_convention_send' convention.id %}" #}
-                                        disabled
-                                    >
-                                        Envoyer au Client <span class="badge badge-white" style="color: #ac6bec; background-color: #FFFFFF">Bientôt</span>
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ convention.cours.get_interval }}</strong>
+                                    </td>
+                                    <td>
+                                        <a
+                                                href="{% url 'document_convention_show' convention.id %}"
+                                                target="_blank"
+                                                type="button"
+                                                class="btn btn-sm btn-rounded btn-warning"
+                                        >
+                                            Télécharger
+                                        </a>
+                                        {% if not convention.signed_by_formateur %}
+                                            <button
+                                                    class="btn btn-sm btn-rounded btn-primary btn-sign"
+                                                    {# data-url="{% url 'ajax_documents_convention_sign' convention.id %}" #}
+                                                    disabled
+                                            >
+                                                Signer <span class="badge badge-white"
+                                                             style="color: #00a8ff; background-color: #FFFFFF">Bientôt</span>
+                                            </button>
+                                        {% endif %}
+                                        <button
+                                                type="button"
+                                                class="btn btn-sm btn-rounded btn-info btn-send"
+                                                {# data-url="{% url 'ajax_documents_convention_send' convention.id %}" #}
+                                                disabled
+                                        >
+                                            Envoyer au Client <span class="badge badge-white"
+                                                                    style="color: #ac6bec; background-color: #FFFFFF">Bientôt</span>
+                                        </button>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            
-            {% empty %}
+                            </tbody>
+                        </table>
+                    </div>
 
-            Vous devez ajouter des participants (onglet Inscriptions) pour pouvoir générer des conventions.
+                {% empty %}
 
-            {% endfor %}
-            
+                    Vous devez ajouter des participants (onglet Inscriptions) pour pouvoir générer des conventions.
+
+                {% endfor %}
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock %} {% block script %}
 
-<script type="text/javascript">
-    "use strict";
+    <script type="text/javascript">
+        "use strict";
 
-    $(document).ready(function() {
+        $(document).ready(function () {
 
-        /* ===============
-        Ajax
-        =================*/
-        $(".btn-sign").click(function(){
+            /* ===============
+            Ajax
+            =================*/
+            $(".btn-sign").click(function () {
 
-            var button = $(this);
-            var url = button.data().url;
+                var button = $(this);
+                var url = button.data().url;
 
-            $.ajax({
-                type: "GET", //rest Type
-                dataType: 'html', //mispelled
-                url: url,
-                contentType: "application/json; charset=utf-8",
-                success: function (msg) {
-                    button.hide();
-                    var json = JSON.parse(msg);
-                    alert(json.message);
-                },
-                error : function(response) {
-                    var message;
-                    try {
-                        var json = JSON.parse(response.responseText)
-                        if (json.message) {
-                            message = json.message
-                        } else {
-                            throw 'No message';
+                $.ajax({
+                    type: "GET", //rest Type
+                    dataType: 'html', //mispelled
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        button.hide();
+                        var json = JSON.parse(msg);
+                        alert(json.message);
+                    },
+                    error: function (response) {
+                        var message;
+                        try {
+                            var json = JSON.parse(response.responseText)
+                            if (json.message) {
+                                message = json.message
+                            } else {
+                                throw 'No message';
+                            }
+                        } catch (error) {
+                            message = "Une erreur est survenue, la convention n'a pas été signée.";
                         }
-                    } catch (error) {
-                        message = "Une erreur est survenue, la convention n'a pas été signée.";
+                        alert(message);
                     }
-                    alert(message);
+                });
+            });
+
+            $(".btn-send").click(function () {
+                alert('Cette fonctionnalité arrivera bientôt..');
+
+                // var url = $(this).data().url;
+
+                // $.ajax({
+                //     type: "GET", //rest Type
+                //     dataType: 'html', //mispelled
+                //     url: url,
+                //     contentType: "application/json; charset=utf-8",
+                //     success: function (msg) {
+                //         var json = JSON.parse(msg);
+                //         alert(json.message);
+                //     },
+                //     error : function(var1, var2, var3) {
+                //         alert("Une erreur est survenue, la convention n'a pas été envoyée");
+                //     }
+                // });
+            });
+
+            /* ==========================================================================
+                Documents templates
+                ========================================================================== */
+            var filterBtn = $('.files-manager-side-list a');
+            var templates = $('.fm-file');
+            var aside = {
+                'title': $('.files-manager-aside-section .box-typical-header-sm'),
+                'preveiw': $('.files-manager-aside-section .preview')
+            };
+            var filterClass;
+            var useBtn = $('#file-use');
+            var useAlreadyBtn = $('#file-already-used');
+
+
+            // Use
+            var canUse = function (templateSelector) {
+                if (templateSelector.hasClass('used')) {
+                    useBtn.addClass('hidden');
+                    useAlreadyBtn.removeClass('hidden');
+                } else {
+                    useBtn.removeClass('hidden');
+                    useAlreadyBtn.addClass('hidden');
                 }
+            };
+
+            var useTemplate = function (templateSelector) {
+                var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
+                classTab.removeClass('used');
+                templateSelector.addClass('used');
+                canUse(templateSelector);
+            };
+
+            useBtn.click(function (event) {
+                var selectedTemplate = $(".fm-file.current");
+                useTemplate(selectedTemplate);
+                //console.log(selectedTemplate.data('template-name'));
+                alert('TODO :\n- Sending to server\n- Modal')
             });
-        });
-
-        $(".btn-send").click(function(){
-            alert('Cette fonctionnalité arrivera bientôt..');
-
-            // var url = $(this).data().url;
-
-            // $.ajax({
-            //     type: "GET", //rest Type
-            //     dataType: 'html', //mispelled
-            //     url: url,
-            //     contentType: "application/json; charset=utf-8",
-            //     success: function (msg) {
-            //         var json = JSON.parse(msg);
-            //         alert(json.message);
-            //     },
-            //     error : function(var1, var2, var3) {
-            //         alert("Une erreur est survenue, la convention n'a pas été envoyée");
-            //     }
-            // });
-        });
-
-        /* ==========================================================================
-            Documents templates
-            ========================================================================== */
-        var filterBtn = $('.files-manager-side-list a');
-        var templates = $('.fm-file');
-        var aside = {
-            'title': $('.files-manager-aside-section .box-typical-header-sm'),
-            'preveiw': $('.files-manager-aside-section .preview')
-        };
-        var filterClass;
-        var useBtn = $('#file-use');
-        var useAlreadyBtn = $('#file-already-used');
 
 
-        // Use
-        var canUse = function (templateSelector) {
-            if (templateSelector.hasClass('used')) {
-                useBtn.addClass('hidden');
-                useAlreadyBtn.removeClass('hidden');
-            } else {
-                useBtn.removeClass('hidden');
-                useAlreadyBtn.addClass('hidden');
-            }
-        };
-
-        var useTemplate = function (templateSelector) {
-            var classTab = $('.fm-file.' + templateSelector[0].classList[1]);
-            classTab.removeClass('used');
-            templateSelector.addClass('used');
-            canUse(templateSelector);
-        };
-
-        useBtn.click(function (event) {
-            var selectedTemplate = $(".fm-file.current");
-            useTemplate(selectedTemplate);
-            //console.log(selectedTemplate.data('template-name'));
-            alert('TODO :\n- Sending to server\n- Modal')
-        });
+            //Aside
+            var refreshAside = function (templateSelector) {
+                aside['title'].text(templateSelector.find($('.fm-file-name')).text());
+                canUse(templateSelector);
+            };
 
 
-        //Aside
-        var refreshAside = function (templateSelector) {
-            aside['title'].text(templateSelector.find($('.fm-file-name')).text());
-            canUse(templateSelector);
-        };
+            //Selection
+            var selectTemplate = function (templateSelector) {
+                templates.removeClass('current');
+                templateSelector.addClass('current');
+                refreshAside(templateSelector);
+            };
 
-
-        //Selection
-        var selectTemplate = function (templateSelector) {
-            templates.removeClass('current');
-            templateSelector.addClass('current');
-            refreshAside(templateSelector);
-        };
-
-        templates.click(function (event) {
-            selectTemplate($(this));
-        });
-
-
-        //Filtering
-        filterBtn.click(function (event) {
-            event.preventDefault();
-            filterClass = $('.' + $(this).attr('href'));
-
-            filterBtn.removeClass('active');
-            $(this).addClass('active');
-
-            templates.addClass('hidden');
-            $.each(filterClass, function(key, val){
-                $(val).removeClass('hidden');
+            templates.click(function (event) {
+                selectTemplate($(this));
             });
-            selectTemplate($(filterClass[0]));
+
+
+            //Filtering
+            filterBtn.click(function (event) {
+                event.preventDefault();
+                filterClass = $('.' + $(this).attr('href'));
+
+                filterBtn.removeClass('active');
+                $(this).addClass('active');
+
+                templates.addClass('hidden');
+                $.each(filterClass, function (key, val) {
+                    $(val).removeClass('hidden');
+                });
+                selectTemplate($(filterClass[0]));
+            });
+
+            $(filterBtn[0]).trigger('click');
+
         });
 
-        $(filterBtn[0]).trigger('click');
-
-    });
-
-</script>
+    </script>
 {% endblock %}

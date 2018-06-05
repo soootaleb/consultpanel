@@ -119,7 +119,15 @@ class EmailTemplate(object):
         if msg_html:
             message.attach_alternative(msg_html, 'text/html')
 
-        if commit:
+        if hasattr(settings, 'CONSOLE_MAILER') and settings.CONSOLE_MAILER:
+            print("################################")
+            print("EMAIL SEND TO: %s \n" % recipient_list)
+            print(msg_txt)
+            print("################################")
+
+        elif commit:
             message.send(fail_silently=kwargs.get('fail_silently', False))
+
+
 
         return message
