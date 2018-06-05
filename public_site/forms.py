@@ -61,6 +61,17 @@ class CentreFormationForm(forms.ModelForm):
             layout.append(Field(field_name, placeholder=field.label))
         self.helper.form_show_labels = False
 
+    def clean(self):
+        cleaned_data = super(CentreFormationForm, self).clean()
+        telephone = cleaned_data.get('telephone')
+        siret = cleaned_data.get('siret')
+
+        if telephone == '':
+            cleaned_data['telephone'] = None
+        if siret == '':
+            cleaned_data['siret'] = 'Non renseigné'
+        return cleaned_data
+
     class Meta:
         model = CentreFormation
         fields = ['nom', 'adresse', 'ville',
@@ -92,6 +103,7 @@ class PasswordForgotForm(forms.Form):
             'placeholder': 'Email'
         })
     )
+
 
 class PasswordResetForm(forms.Form):
     password = forms.CharField(
