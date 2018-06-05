@@ -46,8 +46,8 @@ class CentreFormationForm(forms.ModelForm):
     adresse = forms.CharField(required=True, label="Adresse", widget=forms.TextInput(attrs={'id': 'centre-formation-address'}))
     ville = forms.CharField(required=True, label="Ville", widget=forms.TextInput(attrs={'id': 'centre-formation-city'}))
     code_postal = forms.CharField(required=True, label="Code Postal", widget=forms.TextInput(attrs={'id': 'centre-formation-zip'}))
-    siret = forms.CharField(required=False, label="Numéro de siret")
-    telephone = forms.CharField(required=False, label="Téléphone")
+    telephone = forms.CharField(required=False, label="Téléphone (Facultatif)")
+    siret = forms.CharField(required=False, label="Numéro de siret (Facultatif)")
 
     def __init__(self, *args, **kwargs):
         super(CentreFormationForm, self).__init__(*args, **kwargs)
