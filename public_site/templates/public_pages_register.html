@@ -29,13 +29,15 @@
                 {% crispy wizard.form %}
             </div>
             
-            <div class="steps-numeric-footer">
+            <div class="tbl steps-numeric-footer">
+                {% comment %}
                 {% if wizard.steps.prev %}
                 <a name="wizard_goto_step" class="step-btn" type="submit" value="{{ wizard.steps.prev }}">
                     ← Précédent
                 </a>
                 {% endif %}
-                <input class="step-btn color-green" type="submit" value="Suivant →"/>
+                {% endcomment %}
+                    <input style="width: 100%; line-height: 50px;" class="color-green" type="submit" value="Suivant →"/>
             </div>
         </form>
     </section>
