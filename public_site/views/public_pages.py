@@ -18,7 +18,6 @@ class RegistrationWizard(SessionWizardView):
         return ['public_pages_register.html']
 
     def render(self, form=None, **kwargs):
-
         if self.request.user.is_authenticated:
             return redirect('admin_index')
 
@@ -27,7 +26,6 @@ class RegistrationWizard(SessionWizardView):
         return self.render_to_response(context)
 
     def done(self, form_list, **kwargs):
-
         if create_new_superformateur(self.request, form_list):
             messages.info(self.request, "Bienvenue sur ConsultPanel. Pour commencer, ajoutez une formation.")
             return redirect('admin_index')
